@@ -71,5 +71,5 @@
 </div>
 <div id="desktop" class="col-sm-9 col-lg-9">
 	<div id="preloader">
-  		 <div class="spinner"></div>
+  		 <div class="timer-loader"></div>
 	</div>

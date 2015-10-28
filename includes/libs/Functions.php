@@ -5,8 +5,8 @@
 		$data = stripslashes($data);
 	}
 	$data =	strip_tags($data, '<p><a><br>');
-   // return mysql_real_escape_string($data);   //use this if local
-	return mysql_escape_string($data); //use this for server
+    return mysql_real_escape_string($data);   //use this if local
+	//return mysql_escape_string($data); //use this for server
 }
 	
 	function strip_zeros_from_date($marked_string="") {

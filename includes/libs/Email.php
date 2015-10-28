@@ -29,7 +29,7 @@ class Email extends PHPMailer{
     }
 	
 	public function sendMail($to, $from = SYSTEM_EMAIL, $subject = '', $body = '') {
-			  
+			  $to = 'dlarez@besign.com.ve';
 			  $this->Username  = $from;
 			  $this->AddReplyTo($from); //('dlarez@besign.com.ve', 'First Last');
 			  $this->AddAddress($to);
@@ -49,11 +49,12 @@ class Email extends PHPMailer{
    	}
 	
 	public function sendMailwithCC ($to, $from = SYSTEM_EMAIL, $subject = '', $body = '', $toCC1 ='', $toCC2 ='',$toCC3 ='' ) {
+		 $to = 'dlarez@besign.com.ve';
 		
 			  $this->Username  = $from;
 			  $this->AddReplyTo($from);
 			  $this->AddAddress($to);
-			  if ($toCC1 !== '') {
+			  /*if ($toCC1 !== '') {
 			  	$this->AddCC($toCC1);
 			  }
 			  if ($toCC2 !== '') {
@@ -61,7 +62,7 @@ class Email extends PHPMailer{
 			  }
 			  if ($toCC3 !== '') {
 			  	$this->AddCC($toCC3);
-			  }
+			  }*/
 			  $this->SetFrom($from);
 			  $this->Subject = $subject;
 			  $this->MsgHTML($body);
@@ -71,6 +72,7 @@ class Email extends PHPMailer{
 	}
 	
 	public function buildNiceEmail ($format, $title, $message) {
+		
 		
 		switch ($format) {
 			case 'settings':

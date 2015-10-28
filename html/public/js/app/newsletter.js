@@ -1,10 +1,13 @@
-define ( function (){
+define(['globals', 'functions'], function(globals, functions) {
+	
+	function validate() {
+
 		$('#newsletter').validate({
 						
 			submitHandler: function(form) {
 				$.ajax({
 				  type: "POST",
-				  url: URL+"newsletter/notifyme",
+				  url: globals.URL+"newsletter/notifyme",
 				  data: $(form).serialize(),
 				  timeout: 12000,
 				  success: function(response) {
@@ -19,5 +22,9 @@ define ( function (){
 				});
 				return false;
 			}
-		});		
+		});
+	}		
+return {
+      validate: validate
+    }
 });

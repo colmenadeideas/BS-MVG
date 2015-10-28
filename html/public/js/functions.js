@@ -1,7 +1,100 @@
+define(['globals'], function(globals) {
+	
+	function roundNumber(num) {
+		return (num.toString().indexOf(".") !== -1) ? num.toFixed(2) : num;
+	}
+	function getPage(position){
+		
+		var pathArray = window.location.pathname.split( '/' );
+		var accessToArray = pathArray[position];
+		console.log("Access:" + accessToArray);
+		return accessToArray;
+		
+	}
+	function showModal(modalid){		
+		//$(modalid).last().modal('show');		
+		switch(modalid[0]) {
+			
+			case "#":
+				$('div.view:visible').find(modalid).modal('show');
+				break;
+			case ".":
+				$('div.view:visible').find(modalid).modal('show');	
+				break;
+			default:
+				$('div.view:visible').find('#'+modalid).modal('show');	
+			break;
+		}
+	}
+	function closeModal(modalid) {
+		
+		switch(modalid[0]) {
+			
+			case "#":
+				$(modalid).last().modal('hide');
+				break;
+			case ".":
+				$(modalid).last().modal('hide');
+				break;
+			default:
+				$('#'+modalid).last().modal('hide');
+				break;
+		}
+		
+	}
+	function pad (str, max) {
+	  str = str.toString();
+	  return str.length < max ? pad("0" + str, max) : str;
+	}
 
-function roundNumber(num) {
-	return (num.toString().indexOf(".") !== -1) ? num.toFixed(2) : num;
-}
+	function getOnlyDate(data) {
+		var dateArr = data.split("-");
+		removeTime = dateArr[2].split(" ");
+		dateStr = removeTime[0] + "/" + dateArr[1] + "/" + dateArr[0];
+		return dateStr;
+	}
+	//Definition for mask
+
+	function initForm() {
+		$.mask.definitions['h'] = "[A-za-z0-9_]";
+		$('.datetimepicker').datetimepicker({pickTime: false, });
+		
+		$("[name='phonenumber']").mask("(0999) 999.99.99");
+		$("[name='cellphone']").mask("(0999) 999.99.99");
+		$("[name='phone']").mask("(0999) 999.99.99");
+
+		$("[name='parent-cellphone']").mask("(0999) 999.99.99");
+		$("[name='parent-phonenumber']").mask("(0999) 999.99.99");	
+		
+		$("[name='parent-cellphone-mother']").mask("(0999) 999.99.99");
+		$("[name='parent-phonenumber-mother']").mask("(0999) 999.99.99");
+		$("[name='parent-cellphone-father']").mask("(0999) 999.99.99");
+		$("[name='parent-phonenumber-father']").mask("(0999) 999.99.99");
+		
+		
+		$("[name='twitter']").mask("@?hhhhhhhhhhhhhhh",{ placeholder:" "});
+		$("[name='instagram']").mask("@?hhhhhhhhhhhhhhhhhhhhhhhhhhhhhh",{ placeholder:" "});
+		
+	}
+	return {
+      roundNumber: 	roundNumber,
+      getPage: 		getPage,
+      showModal: 	showModal,
+      closeModal: 	closeModal,
+      pad: 			pad,
+      getOnlyDate: 	getOnlyDate,
+      initForm: 	initForm
+
+	}
+
+});
+
+
+
+
+
+
+
 
 jQuery.validator.addMethod("bsformat", function(value, element) {
 	return this.optional(element) || /^([0-9]+(\.[0-9][0-9]?)?)$/i.test(value);
@@ -66,23 +159,6 @@ var normalize = (function() {
 		return ret.join('');
 	}
 })();
-
-/*function getPage(position){
-	
-	var pathArray = window.location.pathname.split( '/' );
-	var accessToArray = pathArray[position];
-	console.log("Access:" + accessToArray);
-	return accessToArray;
-	
-}*/
-
-function pad (str, max) {
-  str = str.toString();
-  return str.length < max ? pad("0" + str, max) : str;
-}
-
-
-//Definition for mask
 
 
 

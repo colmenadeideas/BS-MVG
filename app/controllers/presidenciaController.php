@@ -9,7 +9,6 @@
 		}
 	
 		public function index() {
-			
 			$role = $this->user->get('role');
 			
 			$this->loadModel('permissions');
@@ -45,10 +44,18 @@
 			
 			
 			$this->view->title = SITE_NAME. " | Inicio";
-			//Page
-			$this->view->buildpage('admin/home', 'admin');	
-			 	
+
+			$this->view->buildpage('', 'admin');	
+			$this->welcome();
+			 	 
 		}
+		
+		public function welcome() {
+
+			//Page
+			$this->view->render('admin/home');	
+		}
+
 	
 	}
 ?>

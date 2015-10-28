@@ -26,16 +26,16 @@ require.config({
         'assets/dataTables.bootstrap': ['jquery', 'assets/bootstrap.min', 'assets/jquery.dataTables.min'], 
         'paging': ['jquery','assets/jquery.dataTables.min'],
         'common': ['jquery','assets/jquery.ba-bbq.min','assets/jquery.validate.min','assets/bootstrap-editable.min', 'assets/jquery.easing.min', 'assets/jquery-ui.min','assets/bootstrap-datetimepicker','assets/dataTables.bootstrap','assets/jquery.PrintArea', 'assets/jquery.maskedinput.min', 'config'],
-        'app/controlestudio': ['common'],
+        'app/controldeestudios': ['common'],
         'app/registration': ['common'],
        
 	}
 });
 
 require([
-        'jquery','app/controlestudio',
+        'jquery','app/controldeestudios',
     ],	
-    function($, controlestudio)
+    function($, controldeestudios)
     {    	
     	console.log("Loaded! admin.js"); 
     }

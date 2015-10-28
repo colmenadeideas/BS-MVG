@@ -1,149 +1,155 @@
-//define ( function (){
+define(['globals', 'functions', 'app/newsletter'], function(globals, functions, newsletter) {
+	
+	//define ( function (){
 /*$('#print').click(function() {
 		//$('#limited-view').removeClass('limited-view');
 		$('#printable-area').printArea();
     	return false;
 });	*/
 
-function printdocs(){
-	$('#printable-area').printArea();
-}
-	
-function loadform(what, id) {
-	console.log();
-	switch (what) {
-		case 'payment':
-			var rute = 'registration/paymentform/';
-			var table = 'registrations';
-			var element = 'registrations';
-			break;
-
+	function printdocs(){
+		$('#printable-area').printArea();
 	}
-	$.post(URL + rute + id, function(data) {
-		$('#loadmodal .modal-body').hide().html(data).fadeIn('slow');
-		initForm();
-		//validates & process this form
+	
+	function loadform(what, id) {
+		console.log();
 		switch (what) {
 			case 'payment':
-				registerpayment();
+				var rute = 'registration/paymentform/';
+				var table = 'registrations';
+				var element = 'registrations';
 				break;
+
 		}
-		showModal('#loadmodal');
-
-		$('#loadmodal').on('hide.bs.modal', function(e) {
-			//$('#'+table+'-list').dataTable().fnDraw();
-		});
-	});
-	return false;
-}
-
-function registerpayment() {
-//alert(URL);
-
-	$('#payment-registration').validate({
-		rules : {
-			"payment-number": {	number: true }, 
-			"payment-amount": { bsformat: true },
-			"payment-code": {
-				minlength: 8,
-	            maxlength: 8,
-				remote: {
-					url: URL+'registration/verifycode/',
-					type: 'post',
-					data: {
-	                   // "code": function(){ return $('[name="payment-code"]').val(); },
-	                    id: function(){ return $('[name="id"]').val(); }
-	               }
-				},
-				
-			},
-		},
-		messages: {
-			"payment-code": { remote:jQuery.format("Codigo de Descuento Invalido") },
-		},
-		onkeyup: false,
-		onfocusout: false,
-		onclick: false,
-		submitHandler : function(form) {
-			$('.send').attr('disabled', 'disabled'); //prevent double send
-			$.ajax({
-				type : "POST",
-				url : URL + "registration/process/payment",
-				data : $(form).serialize(),
-				timeout : 12000,
-				success : function(response) {
-					console.log(response);
-					closeModal('loadmodal');
-					location.hash = 'registration/verify/again';
-				},
-				error : function(response) {
-					console.log(response);
-				}
-			});
-			return false;
-		}
-	});
-	/*$('#payment-registration').validate({
-		
-		rules : {
-			
-			"payment-code": {
-				text: true,
-				maxlength: 8,
-				remote: {
-					url: URL+'registration/verifycode/', 
-					type: 'post',
-					data: {
-	                    codigo: function(){ return $('[name="code"]').val(); },
-	                    id_registro_curso: function(){ return $('[name="courses_registration_id"]').val(); }
-	               }
-				},
-				
-			},
-		},
-		messages : {
-			"payment-code" : {remote : jQuery.format("Código incorrecto")},
-		},
-		onkeyup: false,
-		onfocusout: false,
-		onclick: false,	
-		submitHandler : function(form) {
-			$('.send').attr('disabled', 'disabled'); //prevent double send
-			$.ajax({
-				type : "POST",
-				url : URL + "registration/process/payment",
-				data : $(form).serialize(),
-				timeout : 12000,
-				success : function(response) {
-					console.log(response);
-					closeModal('loadmodal');
-					location.hash = 'registration/verify/again';
-				},
-				error : function(response) {
-					console.log(response);
-				}
-			});
-			return false;
-		}
-	});*/
-
-}
-
-function checkcurrentform() {
-	if ($('#complete-registration').length === 1) {
-		initForm();
-		
-		
-		$('#factura1').click(function() {
-			if ($('#factura1').is(':checked')) {
-				$('#factura-juridica').collapse('show');
-			} 
-		}); 
-		$('#factura2').click(function() {
-			if ($('#factura2').is(':checked')) {
-				$('#factura-juridica').collapse('hide');
+		$.post(URL + rute + id, function(data) {
+			$('#loadmodal .modal-body').hide().html(data).fadeIn('slow');
+			functions.initForm();
+			//validates & process this form
+			switch (what) {
+				case 'payment':
+					registerpayment();
+					break;
 			}
-		}); 
+			showModal('#loadmodal');
+
+			$('#loadmodal').on('hide.bs.modal', function(e) {
+				//$('#'+table+'-list').dataTable().fnDraw();
+			});
+		});
+		return false;
+	}
+
+	function registerpayment() {
+
+		$('#payment-registration').validate({
+			rules : {
+				"payment-number": {	number: true }, 
+				"payment-amount": { bsformat: true },
+				"payment-code": {
+					minlength: 8,
+		            maxlength: 8,
+					remote: {
+						url: URL+'registration/verifycode/',
+						type: 'post',
+						data: {
+		                   // "code": function(){ return $('[name="payment-code"]').val(); },
+		                    id: function(){ return $('[name="id"]').val(); }
+		               }
+					},
+					
+				},
+			},
+			messages: {
+				"payment-code": { remote:jQuery.format("Codigo de Descuento Invalido") },
+			},
+			onkeyup: false,
+			onfocusout: false,
+			onclick: false,
+			submitHandler : function(form) {
+				$('.send').attr('disabled', 'disabled'); //prevent double send
+				$.ajax({
+					type : "POST",
+					url : URL + "registration/process/payment",
+					data : $(form).serialize(),
+					timeout : 12000,
+					success : function(response) {
+						console.log(response);
+						closeModal('loadmodal');
+						location.hash = 'registration/verify/again';
+					},
+					error : function(response) {
+						console.log(response);
+					}
+				});
+				return false;
+			}
+		});
+		/*$('#payment-registration').validate({
+			
+			rules : {
+				
+				"payment-code": {
+					text: true,
+					maxlength: 8,
+					remote: {
+						url: URL+'registration/verifycode/', 
+						type: 'post',
+						data: {
+		                    codigo: function(){ return $('[name="code"]').val(); },
+		                    id_registro_curso: function(){ return $('[name="courses_registration_id"]').val(); }
+		               }
+					},
+					
+				},
+			},
+			messages : {
+				"payment-code" : {remote : jQuery.format("Código incorrecto")},
+			},
+			onkeyup: false,
+			onfocusout: false,
+			onclick: false,	
+			submitHandler : function(form) {
+				$('.send').attr('disabled', 'disabled'); //prevent double send
+				$.ajax({
+					type : "POST",
+					url : URL + "registration/process/payment",
+					data : $(form).serialize(),
+					timeout : 12000,
+					success : function(response) {
+						console.log(response);
+						closeModal('loadmodal');
+						location.hash = 'registration/verify/again';
+					},
+					error : function(response) {
+						console.log(response);
+					}
+				});
+				return false;
+			}
+		});*/
+
+	}
+
+	function checkcurrentform() {
+
+		if ($('#newsletter').length === 1) {
+			newsletter.validate();
+		}
+
+		if ($('#complete-registration').length === 1) {
+			functions.initForm();
+			
+			
+			$('#factura1').click(function() {
+				if ($('#factura1').is(':checked')) {
+					$('#factura-juridica').collapse('show');
+				} 
+			}); 
+			$('#factura2').click(function() {
+				if ($('#factura2').is(':checked')) {
+					$('#factura-juridica').collapse('hide');
+				}
+			}); 
 
 		
 		
@@ -193,7 +199,7 @@ function checkcurrentform() {
 	}
 //Step 0
 	if ($('#registration').length === 1) {
-		initForm();
+		functions.initForm();
 		console.log('exists registration!');
 		var $validator = $('#registration').validate({
 			rules : {
@@ -367,22 +373,29 @@ function checkcurrentform() {
 		});
 	});
 }
+ function run() {
+
+ 	$('.datetimepicker').datetimepicker({
+		pickTime : false
+	});
+	$('[name=birthdate]').on("dp.change", function(e) {
+		//TODO get date and fill AGE
+		// e.date
+		//  function _calculateAge(birthday) { // birthday is a date
+		/* var ageDifMs = Date.now() - birthday.getTime();
+		var ageDate = new Date(ageDifMs); // miliseconds from epoch
+		// return
+		agea = Math.abs(ageDate.getUTCFullYear() - 1970);*/
+		// agea = e.date;
+		// console.log(agea);
+		//}
+	});
+ }
 
 
-$('.datetimepicker').datetimepicker({
-	pickTime : false
+
+return {
+      run: run,
+      checkcurrentform: checkcurrentform
+	}
 });
-$('[name=birthdate]').on("dp.change", function(e) {
-	//TODO get date and fill AGE
-	// e.date
-	//  function _calculateAge(birthday) { // birthday is a date
-	/* var ageDifMs = Date.now() - birthday.getTime();
-	var ageDate = new Date(ageDifMs); // miliseconds from epoch
-	// return
-	agea = Math.abs(ageDate.getUTCFullYear() - 1970);*/
-	// agea = e.date;
-	// console.log(agea);
-	//}
-});
-
-//});

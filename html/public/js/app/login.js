@@ -1,30 +1,32 @@
-$(document).ready(function() {
-	signin();
-	
-	$('#password-recovery form').validate({
-		submitHandler : function(form) {
-			$('.recovery-send').attr('disabled', 'disabled');
-			$('#recovery-response').html('');
-			$.ajax({
-				type : "POST",
-				url : URL + "account/recover/",
-				data : $(form).serialize(),
-				timeout : 12000,
-				success : function(response) {
-					console.log('(' + response + ')');
-					$('.recovery-send').removeAttr('disabled');
-					$('#recovery-response').html(response).fadeIn('fast');
-				},
-				error : function(obj, errorText, exception) {
-					$('.recovery-send').removeAttr('disabled');
-					console.log(errorText);	
-				}
-			});
-			return false;
-		}
-	});
-});
-function signin() {
+define(['globals', 'functions'], function(globals,functions) {
+
+	function run() {
+		signin();
+		$('#password-recovery form').validate({
+			submitHandler : function(form) {
+				$('.recovery-send').attr('disabled', 'disabled');
+				$('#recovery-response').html('');
+				$.ajax({
+					type : "POST",
+					url : URL + "account/recover/",
+					data : $(form).serialize(),
+					timeout : 12000,
+					success : function(response) {
+						console.log('(' + response + ')');
+						$('.recovery-send').removeAttr('disabled');
+						$('#recovery-response').html(response).fadeIn('fast');
+					},
+					error : function(obj, errorText, exception) {
+						$('.recovery-send').removeAttr('disabled');
+						console.log(errorText);	
+					}
+				});
+				return false;
+			}
+		});
+	}
+
+	function signin() {
 
 		$('#login').validate({
 			messages : {
@@ -45,29 +47,29 @@ function signin() {
 						$("#response").addClass('alert alert-danger');
 						switch (response) {
 							case 'timeout':
-								var htmlz = "<div>¿tienes internet? pacere que hay problemas de conexión</div>";
-								$("#response").slideDown(500);
-								$(htmlz).hide().appendTo("#response").fadeIn(1000).delay(3000).fadeOut(function() {
-									$("#response").slideUp(500);
-								});
+							var htmlz = "<div>¿tienes internet? pacere que hay problemas de conexión</div>";
+							$("#response").slideDown(500);
+							$(htmlz).hide().appendTo("#response").fadeIn(1000).delay(3000).fadeOut(function() {
+								$("#response").slideUp(500);
+							});
 
-								break;
+							break;
 
 							case 'error':
 							
-								var htmlz = "<div>Usuario o Clave incorrecto</div>";
-								
-								$("#response").slideDown(500);
-								$(htmlz).hide().appendTo("#response").fadeIn(1000).delay(3000).fadeOut(function() {
-									$("#response").slideUp(500);
-								});
+							var htmlz = "<div>Usuario o Clave incorrecto</div>";
 
-								break;
+							$("#response").slideDown(500);
+							$(htmlz).hide().appendTo("#response").fadeIn(1000).delay(3000).fadeOut(function() {
+								$("#response").slideUp(500);
+							});
+
+							break;
 							
 							case 'welcome':
-								document.location = URL + 'account/identify';
-								break;
-								
+							document.location = URL + 'account/identify';
+							break;
+
 						}
 
 					},
@@ -76,17 +78,21 @@ function signin() {
 
 					}
 				});
-				return false;
+			return false;
 			}
 		});
-
 	}
-function showrecovery() {
-		closeModal('signin');
+
+	function showrecovery() {
+		functions.closeModal('signin');
 		$('#signin').on('hidden.bs.modal', function (e) {
 			console.log('hidden');
-			showModal('password-recovery');
+			functions.showModal('password-recovery');
 		});
-}
-
-	
+	}
+	return {
+		run: 			run,
+		signin:  	  	signin,
+		showrecovery: 	showrecovery
+	}
+});

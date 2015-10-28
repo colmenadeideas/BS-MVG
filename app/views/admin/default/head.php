@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="shortcut icon" href="<?php echo IMG; ?>favicon.gif">
+    <link rel="shortcut icon" href="<?php echo IMG; ?>favicon.png">
     
     <title><?php echo $this->title; ?></title>
 	
@@ -18,7 +18,7 @@
 	<?php echo GOOGLE_FONTS; ?>
 
     <script src="<?php echo JS; ?>config.js"></script>
-    <script data-main="<?php echo JS;?>main-admin" src="<?php echo JS; ?>require.js"></script>
+    <script data-main="<?php echo JS;?>main-app" src="<?php echo JS; ?>require.js"></script>
     
 		<!--Start of Zopim Live Chat Script>
 			<script type="text/javascript">

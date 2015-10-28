@@ -71,11 +71,11 @@
                            <div class="col-lg-1 col-sm-1 text-left">
                                
                                 <div class="col-lg-6 col-sm-6 text-center">
-                                  <h3><a href="#controlestudio/approveCronograma/aprobado/<?php echo $pendiente['id'];?>"> <i class="glyphicon glyphicon-ok"></i></a></h3>
+                                  <h3><a href="#controldeestudios/approveCronograma/aprobado/<?php echo $pendiente['id'];?>"> <i class="glyphicon glyphicon-ok"></i></a></h3>
                                 </div> 
 
                                 <div class="col-lg-6 col-sm-6 text-center">
-                                  <h3> <a href="#controlestudio/approveCronograma/rechazado/<?php echo $pendiente['id'];?>"> <i class="glyphicon glyphicon-remove"></i></a></h3>
+                                  <h3> <a href="#controldeestudios/approveCronograma/rechazado/<?php echo $pendiente['id'];?>"> <i class="glyphicon glyphicon-remove"></i></a></h3>
                                 </div> 
 
                           </div>  

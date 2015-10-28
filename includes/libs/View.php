@@ -30,10 +30,10 @@ class View {
 				$ruta	 = '';
 				break;
 
-			case 'controlestudio':
-				$head 	= "controlestudio/default/head";
-				$nav 	= "controlestudio/default/nav";
-				$footer = "controlestudio/default/footer";
+			case 'cde':
+				$head 	= "cde/default/head";
+				$nav 	= "cde/default/nav";
+				$footer = "cde/default/footer";
 				$ruta	 = '';
 					break;	
 			

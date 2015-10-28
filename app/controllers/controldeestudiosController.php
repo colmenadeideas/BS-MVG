@@ -1,17 +1,16 @@
 <?php 
 
-	class controlestudioController extends Controller {
+	class controldeestudiosController extends Controller {
 		
 		public function __construct() 
 		{
 			
 			parent::__construct();
-			//Auth::handleLogin('controlestudio');	//tu eres el que me esta fregando 
+			//Auth::handleLogin('controldeestudios');	//tu eres el que me esta fregando 
 		
 		}
 	
-		public function index() 
-		{
+		public function index() {
 			$role = $this->user->get('role');
 			
 			$this->loadModel('permissions');
@@ -24,59 +23,51 @@
 				if ($value == 1) { 
 					$menu = $this->model->getMenu($key);
 					if (!empty($menu)){
-						$permissions_menu[] = $menu[0];						
-						
-					}
-							
+						$permissions_menu[] = $menu[0];	
+					}							
 				}
 			}
-			foreach ($permissions_menu as $item) 
-			{
+
+			foreach ($permissions_menu as $item) {
 				
-				if($item['level'] != '1')
-				{
-					
+				if($item['level'] != '1'){					
 					$new_id = $item['parent'];
-					$this->view->menu[$new_id]['children'][] = $item;
-					
-				} 
-				else 
-				{
-					
+					$this->view->menu[$new_id]['children'][] = $item;					
+				} else {					
 					$new_id = $item['id'];
 					$this->view->menu[$new_id] = $item;
-				}
-				
+				}				
 			}
-			
-			
+						
 			$this->view->title = SITE_NAME. " | Inicio";
 			//Page
-			$this->view->buildpage('controlestudio/home', 'controlestudio');	
+			$this->view->buildpage('', 'cde');	
+			$this->welcome();
 			 	
 		}
 
-		public function addInfo($caso='')
-		{
+		public function welcome() {
+			$this->view->render('cde/home');
+		}
+
+		public function add($caso='') {
 
 
-			switch ($caso) 
-			{
+			switch ($caso) {
 				case 'profesor':
-						$materia= $this->model->getMateriaAll();
+						$materia = $this->model->getMaterias();
 						$this->view->materias = $materia;	
-
-						$this->view->render('controlestudio/vistas/addNewTeacher');	
+						$this->view->render('cde/add/profesor');	
 					break;
 				case 'materia':
-						$this->view->render('controlestudio/vistas/addNewMat');
+						$this->view->render('cde/add/materia');
 					break;	
 				case 'asignacion':
 						# code...
 					break;
 							
 				default:
-						$this->view->render('controlestudio/vistas/addNewInfo');
+						$this->view->render('cde/add/index');
 					break;
 			}
 
@@ -159,7 +150,7 @@
 						
 						
 						
-						$this->view->render('controlestudio/vistas/manegeCronograma');
+						$this->view->render('cde/vistas/cronograma');
 
 					break;
 			}

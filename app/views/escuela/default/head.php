@@ -18,7 +18,7 @@
 	<?php echo GOOGLE_FONTS; ?>
 
     <script src="<?php echo JS; ?>config.js"></script>
-    <script data-main="<?php echo JS;?>main-escuela" src="<?php echo JS; ?>require.js"></script>
+    <script data-main="<?php echo JS;?>main-app" src="<?php echo JS; ?>require.js"></script>
     
 
 </head>

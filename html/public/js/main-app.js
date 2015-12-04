@@ -61,13 +61,15 @@ require.config({
         			'assets/jquery.maskedinput.min', 'config'],
         'app/admin': ['globals','common'],
         'app/registration': ['globals','common'],
+        'app/profesor': ['globals','common'],
 
         'app/login': ['globals','common'],
         'app/registration': ['globals','jquery','assets/bootstrap-datetimepicker','assets/jquery.maskedinput.min'],
+        'app/profesor': ['globals','jquery','assets/bootstrap-datetimepicker','assets/jquery.maskedinput.min'],
         'app/newsletter': ['globals','assets/jquery.validate.min'],
         'app/escuela': ['globals','common'],
-        'app/app': ['globals','common', 'app/registration','app/newsletter'],
-
+        'app/app': ['globals','common', 'app/registration','app/newsletter','app/profesor'],
+        
     }
 });
 
@@ -79,6 +81,9 @@ require([
     function($, app, start) { 
 
       var accessArray = window.location.pathname.split('/');
+      console.log(window.location);
+
+
       var accessHash = $.param.fragment();
       
       console.log("Access:" + accessArray[3] +" Hash:" + accessHash);
@@ -89,6 +94,7 @@ require([
 
         case "escuela":  
           if (accessHash.length == 0) {
+
             window.location.hash  = "#presidencia/welcome";  
           }          
           /*require(['app/app'], function(app) {              
@@ -103,7 +109,8 @@ require([
           }); */
           break;
         case "presidencia":  
-          if (accessHash.length == 0) {
+          if (accessHash.length == 0) 
+          {
             window.location.hash  = "#presidencia/welcome";  
           }          
           /*require(['app/app'], function(app) {              
@@ -118,8 +125,11 @@ require([
           }); */
           break;
         case "controldeestudios":  
-          if (accessHash.length == 0) {
-            window.location.hash  = "#controldeestudios/welcome";  
+            if (accessHash.length == 0) {
+              console.log("ao");
+
+            window.location ='/BS-MVG/html/controldeestudios/#welcome';
+
           }         
           break;
 

@@ -11,7 +11,8 @@ define(['globals', 'functions', 'app/newsletter'], function(globals, functions, 
 		$('#printable-area').printArea();
 	}
 	
-	function loadform(what, id) {
+	function loadform(what, id)
+	{
 		console.log();
 		switch (what) {
 			case 'payment':
@@ -84,49 +85,7 @@ define(['globals', 'functions', 'app/newsletter'], function(globals, functions, 
 				return false;
 			}
 		});
-		/*$('#payment-registration').validate({
-			
-			rules : {
-				
-				"payment-code": {
-					text: true,
-					maxlength: 8,
-					remote: {
-						url: URL+'registration/verifycode/', 
-						type: 'post',
-						data: {
-		                    codigo: function(){ return $('[name="code"]').val(); },
-		                    id_registro_curso: function(){ return $('[name="courses_registration_id"]').val(); }
-		               }
-					},
-					
-				},
-			},
-			messages : {
-				"payment-code" : {remote : jQuery.format("Código incorrecto")},
-			},
-			onkeyup: false,
-			onfocusout: false,
-			onclick: false,	
-			submitHandler : function(form) {
-				$('.send').attr('disabled', 'disabled'); //prevent double send
-				$.ajax({
-					type : "POST",
-					url : URL + "registration/process/payment",
-					data : $(form).serialize(),
-					timeout : 12000,
-					success : function(response) {
-						console.log(response);
-						closeModal('loadmodal');
-						location.hash = 'registration/verify/again';
-					},
-					error : function(response) {
-						console.log(response);
-					}
-				});
-				return false;
-			}
-		});*/
+		
 
 	}
 

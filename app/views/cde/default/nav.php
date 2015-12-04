@@ -41,7 +41,7 @@
 								<ul class="nav nav-list">
 								<?php  foreach($Menu['children'] as $Submenu) { //build submenu <li> ?>
 									<li>
-										<a href="#<?php echo $Submenu['url']; ?>"><i class="glyphicon glyphicon-<?php echo $Submenu['icon']; ?> hidden-xs">&nbsp;</i><?php echo $Submenu['name']; ?></a>
+										<a href="<?php echo $Submenu['url']; ?>"><i class="glyphicon glyphicon-<?php echo $Submenu['icon']; ?> hidden-xs">&nbsp;</i><?php echo $Submenu['name']; ?></a>
 									</li>
 								<?php  } ?>
 								</ul>
@@ -49,12 +49,12 @@
 						</li>
 						<?php } else {  //Build normal <li> ?>
 						<li>
-							<a href="#<?php echo $Menu['url']; ?>"><i class="glyphicon glyphicon-<?php echo $Menu['icon']; ?> hidden-xs">&nbsp;</i><?php echo $Menu['name']; ?></a>
+							<?php $var= '#'.$Menu['url']; ?>
+							<a href="<?php echo $var; ?>"><i class="glyphicon glyphicon-<?php echo $Menu['icon']; ?> hidden-xs">&nbsp;</i><?php echo $Menu['name']; ?></a>
+							
 						</li>
 						<?php } ?>
-						<!--a href="#"> <span class="glyphicon glyphicon-calendar"></span> Inscripción</a>
 						
-						<a href="#"><span class="glyphicon glyphicon-calendar"></span> Notificaciones <span class="badge pull-right">42</span></a-->					
 					<?php  }?>	
 					<li>
 						<a href="<?php echo URL; ?>account/logout"  <span class="glyphicon glyphicon-log-out"></span> Salir </a>

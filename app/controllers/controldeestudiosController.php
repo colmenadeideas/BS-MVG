@@ -10,7 +10,8 @@
 		
 		}
 	
-		public function index() {
+		public function index() 
+		{
 			$role = $this->user->get('role');
 			
 			$this->loadModel('permissions');
@@ -46,10 +47,62 @@
 			 	
 		}
 
-		public function welcome() {
+		public function welcome() 
+		{
 			$this->view->render('cde/home');
 		}
 
+		public function profesor($action='') {
+
+
+			switch ($action) {
+				case 'add':
+
+						$profesores = $this->model->getProfesores();
+						$this->view->profesores = $profesores;
+
+						$materias = $this->model->getCoursePeriodo();
+						$this->view->materias = $materias;	
+
+						$this->view->render('cde/add/profesor');	
+
+					break;
+				case 'materia':
+						//$this->loadModel('courses');
+						$course_list = $this->model->getMateriasPensum();
+						//$course_list = $this->model->listAvailableCourses();
+						$this->view->course_lists = $course_list;
+						$this->view->render('cde/add/materia');
+				break; 	
+
+
+
+				case 'bind':
+						$materia = $this->model->getMaterias();
+						$this->view->materias = $materia;	
+						
+						$profesor = $this->model->getProfesores();
+						$this->view->profesores = $profesor;
+
+						$this->view->render('cde/add/asignarmateria');
+					break;
+				case 'nuevoperiodo':
+						
+						$this->loadModel('courses');
+						//$this->view->courses = $this->model->listAvailableCourses();
+						$this->view->courses = $this->model->getCoursesPensum();
+
+						$this->view->render('cde/add/nuevoperiodo');
+
+					break;	
+
+								
+				default:
+						$this->view->render('cde/add/index');
+					break;	
+
+			}
+		}
 		public function add($caso='') {
 
 
@@ -60,11 +113,37 @@
 						$this->view->render('cde/add/profesor');	
 					break;
 				case 'materia':
+						$this->loadModel('courses');
+						$course_list = $this->model->listAvailableCourses();
+						$this->view->course_lists = $course_list;
 						$this->view->render('cde/add/materia');
 					break;	
-				case 'asignacion':
-						# code...
+				case 'asigna':
+						$materia = $this->model->getMaterias();
+						$this->view->materias = $materia;	
+						
+						$profesor = $this->model->getProfesores();
+						$this->view->profesores = $profesor;
+
+						$this->view->render('cde/add/asignarmateria');
 					break;
+				case 'nuevoperiodo':
+
+						$this->loadModel('courses');
+						$course_list = $this->model->listAvailableCourses();
+						$this->view->course_lists = $course_list;
+
+						$this->view->render('cde/add/nuevoperiodo');
+					break;	
+
+				case 'pensum':
+
+						$this->loadModel('courses');
+						$course_list = $this->model->listAvailableCourses();
+						$this->view->course_lists = $course_list;
+						
+						$this->view->render('cde/add/cursopensum');
+						break;	
 							
 				default:
 						$this->view->render('cde/add/index');
@@ -73,42 +152,204 @@
 
 			
 		}
-		public function saveInfo($caso='')
+		public function saveinfo($caso='')
 		{
-			switch ($caso) {
-				case 'profesor':
-					/*$array_data = array();	
-					//paso 1
-					foreach ($_POST as $key => $value) 
+			$caso =$_POST['tipo'];
+			if(isset($_POST['c']))
+			{ 
+				$i = 1;
+								
+					foreach($_POST['c'] as $selected)
 					{
-						$field = escape_value($key);
-						$field_data = escape_value($value);
-						
-						$array_data[$field] = $field_data;
+						$courses[$i] = $selected;
+						$i++;
 					}
-					//paso 2 
 					
-					unset($array_data['submit']);
-					$array_registration['id'] = $array_data['registration_id'];
-					unset($array_data['registration_id']);
-					$array_registration['data'] 					 = 	json_encode($array_data);
-					$create_registration = $this->step3($array_registration);	*/		
-				
-					/*paso 3*/
+								$array_data['c'] = $courses;
+								unset($_POST['c']);
+			}			
+		
+			foreach ($_POST as $key => $value)
+			{
+					$field = escape_value($key);
+					$field_data = escape_value($value);
+					$array_data[$field] = $field_data;
+			}
+			unset($array_data['submit']);
+			
+
+			switch ($array_data['tipo']) 
+			{
+				case 'profesor':
+
+						unset($array_data['tipo']);
+						$array_profesor['username']     = $array_data['email'];
+						$array_profesor['estatus'] 		= 'Activo';
+						$array_profesor['nombre_profesor'] 		= $array_data['name'].' '.$array_data['lastname'];
+						$array_profesor['data'] 		= json_encode($array_data);
+						$insert = $this->helper->insert('profesor', $array_profesor);
+						$forcechangeurl = rand(0, 50);
+						$this->view->redirect_link = 'profesor'.'/'. $forcechangeurl;
+						$this->view->response = "Listo! Asigancion exitosa... ";
+						$this->view->render('redirect_hash');	
 
 
 					break;
+
 				case 'materia':
-					# code...
+
+						unset($array_data['tipo']);
+						
+
+						$codigo = $array_data['codigo'];
+						$id_courses = $array_data['courses'];
+				
+						$array_materia['nombre_materia'] = $array_data['name'];
+						$array_materia['codigo'] = $array_data['codigo'];
+						$array_materia['descripcion'] = $array_data['descripcion'];
+						$array_materia['pos_trimestre'] = $array_data['trimestre'];
+						$array_materia['id_courses'] = $array_data['courses'];
+						$array_materia['estatus'] ='Activo';
+
+						
+						$materia = $this->model->existemateria($codigo,$id_courses);
+						if(count($materia)==0)
+						{		
+							$insert = $this->helper->insert('materia', $array_materia);
+							
+							$this->view->redirect_link = 'profesor';
+							$this->view->response = "Listo!... ";
+							$this->view->render('redirect_hash');
+						}
+						else
+						{
+							$this->view->redirect_link = 'profesor';
+							$this->view->response = "La materia ya existe";
+							$this->view->render('redirect_hash');
+						}		
+						
 					break;
+
+				case 'bind':
+
+						unset($array_data['tipo']);
+						
+						$array_bind['id_profesor'] =  $array_data['id_profesor'] ;
+						$array_bind['id_materia']  =  $array_data['id_materia'] ;
+	
+
+						$this->view->redirect_link = 'profesor';
+						$this->view->response = "Listo! ... ";
+						$this->view->render('redirect_hash');
+						
+						break;	
+
 				case 'pensum':
 					# code...
 					break;
-				case 'trimestre':
-						# code...
+
+				case 'nuevoperiodo':
+
+
+						unset($array_data['tipo']);
+						
+
+						$array_periodo['star_date'] = $array_data['fechaInicio'];
+						$array_periodo['courses'] = $array_data['c'];
+
+						$i = 1; 
+						
+
+						switch ($array_data['parte1']) 
+						{
+							case 'parte1':
+								unset($array_periodo['parte1']);
+
+								$j = 1;
+								$k = 1;
+								$courC = $array_periodo['c'];
+								foreach ( $courC as $pem)
+								{
+									$aux = "and p.id_courses = $pem and c.parent_id = p.id_courses";	
+									
+									$pensum = $this->model->getPensum($aux,', courses_available_groups as c ');
+									
+									if(empty($pensum))
+									{
+										$sinPen[$j] = $pensum;
+										$j++;
+									}
+									else
+									{
+										$conPen[$k] = $pensum;;
+										$k++;	
+									}	
+
+								}
+								// liberamos las variables 
+								unset($j);
+								unset($k);
+								unset($pensum);
+								unset($aux);
+
+								//todos tienen pensum
+								if (empty($sinPen) and !empty($conPen)) 
+								{
+									
+									$this->view->courses = $conPen;
+									$this->view->form    = $array_periodo;	
+									$this->view->band    = 1;	
+									$this->view->render('cde/add/asignarperiodo');
+								}
+
+								//ninguno tienen pensum
+								if (!empty($sinPen) and empty($conPen)) 
+								{
+									# code...
+								}
+
+								//algunos tienen pensum y otros no 
+								if (!empty($sinPen) and !empty($conPen)) 
+								{
+									# code...
+								}
+
+								break;
+							
+							default:
+								# code...
+								break;
+						}
+
+
+
+						/*$array_periodo[''] =  $array_data['name'];
+						$array_periodo[''] =  $array_data['name'];
+						$array_periodo[''] =  $array_data['name'];
+						$array_periodo[''] =  $array_data['name'];*/
+
+
+						exit;
+						$materia = $this->model->existemateria($codigo,$id_courses);
+						if(count($materia)==0)
+						{		
+							$insert = $this->helper->insert('materia', $array_materia);
+							
+							$this->view->redirect_link = 'profesor';
+							$this->view->response = "Listo!... ";
+							$this->view->render('redirect_hash');
+						}
+						else
+						{
+							$this->view->redirect_link = 'profesor';
+							$this->view->response = "La materia ya existe";
+							$this->view->render('redirect_hash');
+						}	
+						
 					break;	
+
 				default:
-					# code...
+					$this->view->render('cde/home');
 					break;
 			}
 
@@ -122,33 +363,101 @@
 			{
 				case 'aprobado':
 
-						echo "aprobado el cronograma ".$id;
+						
 						$array_vars['estatus']='aprobado';
 						$this->helper->update('cronograma',$id,$array_vars);
 					
+						$pendientes= $this->model->cronogramaPendites();
+						
+						$i = 1;
+						foreach ($pendientes as $pendiente) 
+						{
+
+							
+								$aux = $this->model->cronogramaPenditeEvaluacion($pendiente['id']);
+							
+								if(!empty($aux))
+								{
+									$name = 'info'.$i;
+									$resultado[$name] = $pendiente;
+									$name = 'eval'.$i;
+									$resultado[$name] = $aux; 
+									$res[$i] = $resultado;
+									$i++;
+								}
+								unset($aux);	
+							
+						}
+						unset($aux);
+						unset($resultado);
+						$this->view->pendientes = $res;	
+						$this->view->render('cde/vistas/cronograma');
+					
 					break;
+
 				case 'rechazado':
-						echo "rechazado el cronograma ".$id;
+						
 						$array_vars['estatus']='rechazado';
 						$this->helper->update('cronograma',$id,$array_vars);
+
+						$pendientes= $this->model->cronogramaPendites();
+						
+						$i = 1;
+						foreach ($pendientes as $pendiente) 
+						{
+
+							
+								$aux = $this->model->cronogramaPenditeEvaluacion($pendiente['id']);
+							
+								if(!empty($aux))
+								{
+									$name = 'info'.$i;
+									$resultado[$name] = $pendiente;
+									$name = 'eval'.$i;
+									$resultado[$name] = $aux; 
+									$res[$i] = $resultado;
+									$i++;
+								}
+								unset($aux);	
+							
+						}
+						unset($aux);
+						unset($resultado);
+						$this->view->pendientes = $res;	
+
+						
+						
+						$this->view->render('cde/vistas/cronograma');
 					break;		
 				
 				default:
-						$pendientes= $this->model->cronogramaPendite();
-						$this->view->pendientes = $pendientes;	
+						$pendientes= $this->model->cronogramaPendites();
 						
-						$json =	$pendientes[0]['data'];
-						
-						$obj = json_decode($json);
-						$i=1;
-						while ($i <= 13) 
+						$i = 1;
+						foreach ($pendientes as $pendiente) 
 						{
-							$name = 'Semana'.$i;
-							$cronograma = $obj->{$name}; 
-							$i++;
+
+							
+								$aux = $this->model->cronogramaPenditeEvaluacion($pendiente['id']);
+								
+								if(!empty($aux))
+								{
+									$name = 'info'.$i;
+									$resultado[$name] = $pendiente;
+									$name = 'eval'.$i;
+									$resultado[$name] = $aux; 
+									$res[$i] = $resultado;
+									$i++;
+								}
+								unset($aux);	
+							
 						}
+						unset($aux);
+						unset($resultado);
+						$this->view->pendientes = $res;	
+
 						
-						
+					
 						
 						$this->view->render('cde/vistas/cronograma');
 

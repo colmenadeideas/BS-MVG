@@ -34,6 +34,12 @@ define(function() {
 																										
 						});						
 						break;
+					case "profesor":
+						require(['app/profesor'], function(profesor) {
+							profesor.checkcurrentform();
+																										
+						});						
+						break;
 				}
 
 				$('#preloader').fadeOut();

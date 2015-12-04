@@ -222,10 +222,11 @@
 				        
 		                <div class="clearfix"></div>
 		                <input type="button" name="previous" class="previous btn" value="« Anterior">
-		                <input type="submit" name="submit" class="btn btn-success" value="Listo!">
+		                </form>
+		            	<input type="submit" name="submit" class="btn btn-success" value="Listo!">
 		                    
 		              </fieldset>
-		        	</form>
+		        	
 		        	<div class="clearfix">&nbsp;</div>
 	</div>
 	<div id="response"></div>

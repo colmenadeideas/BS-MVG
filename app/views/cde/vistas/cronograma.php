@@ -1,124 +1,81 @@
-<div class="views">
-  <div class="col-lg-12 col-xs-12">
-    	<div class="jumbotron text-center" style="background-color: #eee;">
-    	<?php $pendientes = $this -> pendientes;
-     
-      ?> 
-      	<h1> <i class="glyphicon glyphicon-time"></i> <br>
-          -Cronogramas- 
-        </h1>
-  		
-  	  </div>
-    
-      
-
-            <div class="col-lg-12 col-sm-12">
-                 <?php 
-                if (empty($pendientes))
-                 {?> 
-                   <div class="text-center">
-   
-                     <h3>  No hay cronogramas pendientes por evaluar  </h3>
-                   </div>  
-            <?php }
-                 else 
-                 {
-                    # code...
-                   ?>
-                   <div class="col-lg-3 col-sm-3 text-left">
-                            <h3>Nombre del profesor:</h3>  </h4> 
-                   </div>  
-
-                   <div class="col-lg-3 col-sm-3 text-left">
-                            <h3>Nombre de la materia:<br></h3>
-                   </div>  
-                   <div class="col-lg-5 col-sm-5 text-left">
-                                  <h3>Descripcion del cronograma de actividades:</h3><br>
-                    </div>  
-                    <div class="col-lg-1 col-sm-1 text-left">
-                    </div>       
-                    <div class="col-lg-12 col-sm-12 ">       
-                   <?php 
-                      $j=1;
-                      $tam = count($pendientes);
-                      foreach ($pendientes as $pendiente)
-                      { 
-                        if ($j<=$tam) 
-                        {
-                          $inf = 'info'.$j;
-                      
-                          $eval = 'eval'.$j; 
-                         
-                        }
-
-                        ?>
-
-                          <div class="col-lg-3 col-sm-3 text-left">
-                            <h4><br> <?php echo $pendiente[$inf]['nombre_profesor'];?>  </h4> 
-                           </div>  
-                          
-                           <div class="col-lg-3 col-sm-3 text-left">
-                            <h4><br><?php echo $pendiente[$inf]['nombre_materia'];?></h4>
-                           </div>  
-                         
-                           <div class="col-lg-5 col-sm-5 text-left">
-                                 <p><br>
-                                        <ul>
-                                              <?php 
-                                                                                        
-                                             //  print_r($pendiente[$eval]);
-
-                                             
-                                                  $i=1;
-                                                  // print_r($pendiente);
-                                                  foreach ($pendiente[$eval] as $cronograma) 
-                                                  {
-
-                                                     
-                                                    
-                                                    ?>
-                                                          <li><?php echo 'Evaluacion '.$i; ?>  
-                                                           
-                                                              <ul>
-                                                                    <li><?php echo $cronograma['nombre_evaluacion']; ?></li>
-                                                                    <li><?php echo $cronograma['descripcion']; ?></li>
-                                                                    <br>
-                                                              </ul>
-
-                                                          </li> 
-                                                    <? 
-                                                    $i++;
-                                                    
-                                                  }
-
-                                                $j++;
-                                               ?>
-
-                                              
-                                       </ul>
-                                  </p> 
-                           </div>  
-
-
-                           <div class="col-lg-1 col-sm-1 text-left">
-                               
-                                <div class="col-lg-6 col-sm-6 text-center" style="padding-left: 0px;padding-right: 0px;">
-                                 <br> <p><a href="#approveCronograma/aprobado/<?php echo $pendiente[$inf]['id'];?>"> <i class="glyphicon glyphicon-ok"></i></a></p>
-                                </div> 
-
-                                <div class="col-lg-6 col-sm-6 text-center" style="padding-left: 0px;padding-right: 0px;">
-                                 <br> <p> <a href="#approveCronograma/rechazado/<?php echo $pendiente[$inf]['id'];?>"> <i class="glyphicon glyphicon-remove"></i></a></p>
-                                </div> 
-
-                          </div>  
-
-                   <?php  }?> 
-                 </div>
-               <?php    }  ?>   
-         
-
-          
+<!-- -->
+<div style="background-color: beige;">
+  <div class="views" >
+    <div class="col-lg-12 col-xs-12">
+      	<?php $evaluaciones = $this -> evaluaciones; ?> 
+          <h1 style="text-align: center"> <i class="glyphicon glyphicon-time"></i> <br>
+              -Cronogramas- 
+          </h1>
+          <hr style="color: white" />
     </div>
+  </div>  
+  
+
+ 
+   
+  <div class="col-lg-12 col-sm-12">
+       
+        <div class="col-lg-2 col-sm-2"></div>
+
+         <div class="col-lg-8 col-sm-8" style="border: 1px;background-color: aqua;border: 3px coral solid">
+          <button  name="imprimir" class="next btn" style="-webkit-border-radius: 30px; background-color: white; "> <i class="fa fa-print"></i> Imprimir</button>
+              <div class="col-lg-12 col-sm-12" style="height: 600px; overflow:auto;">
+              <?php $i =1; ?>
+              <?php foreach ($evaluaciones as $eval){ ?>
+
+                <div class="col-lg-12 col-sm-12" style="-webkit-border-radius: 15px; background-color: white; margin-bottom: 20px;margin-top: 20px;" > 
+                    
+                    <h3 style="text-align: right;">CLASE <?php echo $i; ?></h3>
+                   
+                    <hr style="color: white" />
+                    
+                    <p> <?php echo $eval['nombre_evaluacion']; ?> </p>
+                    <ul>
+                        <li>
+                            <?php echo $eval['descripcion']; ?>
+                        </li>
+                    </ul>
+
+                </div>
+              
+             <?php $i++; ?>
+             <?php } ?>
+              
+
+             </div>  
+        </div> 
+        
+        <div class="col-lg-2 col-sm-2">
+            <div class="col-lg-6 col-sm-6">
+                  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal"><i class="fa fa-check"></i></button>
+
+                  <!-- Modal -->
+                  <div class="modal fade" id="myModal" role="dialog">
+                    <div class="modal-dialog">
+                    
+                      <!-- Modal content-->
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                          <h4 style="text-align: center"> <i class="fa fa-check"></i><br>
+                             
+                          </h4>
+                        </div>
+                        <div class="modal-body">
+                          <p>Cronograma aprobado con exito! .</p>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Guardar</button>
+                        </div>
+                      </div>
+                      
+                    </div>
+                  </div>
+              </div>
+            <div class="col-lg-6 col-sm-6"><i class="glyphicon glyphicon-remove"></i></div>
+        </div> 
+
+
   </div> 
 </div> 
 

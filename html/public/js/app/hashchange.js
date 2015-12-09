@@ -18,6 +18,7 @@ define(function() {
 				
 				//run function according to page
 				var active_page = url.split('/');
+				
 				console.log(active_page[0]);
 
 				switch(active_page[0]) {
@@ -40,6 +41,7 @@ define(function() {
 																										
 						});						
 						break;
+						
 				}
 
 				$('#preloader').fadeOut();

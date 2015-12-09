@@ -96,7 +96,7 @@ define(['globals', 'functions', 'app/newsletter'], function(globals, functions, 
 
 	function checkcurrentform() 
 	{
-		
+
 	console.log("dd2");
 	if ($('#complete-registration-cde').length === 1) {
 		var form = '#complete-registration-cde';
@@ -231,58 +231,6 @@ define(['globals', 'functions', 'app/newsletter'], function(globals, functions, 
 		//if(animating) return false;
 		//animating = true;
 		
-		current_fs = $(this).parent();
-		next_fs = $(this).parent().next();
-		
-		// Besign: Validate before going further //
-		//find the form to validate
-		var formulario = $(this).closest('form');
-			
-		var $valid = formulario.valid(); 
-			if(!$valid) { 
-				$validator.focusInvalid();
-				return false;
-			} //else  continuar!
-			//show the next fieldset
-			next_fs.show(); 
-		//end Besign //	
-	
-		$("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");	
-		
-		//hide the current fieldset with style
-		current_fs.animate({opacity: 0}, {
-			step: function(now, mx) {
-				//as the opacity of current_fs reduces to 0 - stored in "now"
-				//1. scale current_fs down to 80%
-				scale = 1 - (1 - now) * 0.2;
-				//2. bring next_fs from the right(50%)
-				left = (now * 50)+"%";
-				//3. increase opacity of next_fs to 1 as it moves in
-				opacity = 1 - now;
-				current_fs.css({'transform': 'scale('+scale+')'});
-				next_fs.css({'left': left, 'opacity': opacity});
-			}, 
-			duration: 800, 
-			complete: function(){
-				current_fs.hide();
-				animating = false;
-			}, 
-			//this comes from the custom easing plugin
-			easing: 'easeInOutBack'
-		});
-		
-	});	
-
-		$(".next2").click(function() {
-	
-		//if(animating) return false;
-		//animating = true;
-		
-
-
-
-
-
 		current_fs = $(this).parent();
 		next_fs = $(this).parent().next();
 		

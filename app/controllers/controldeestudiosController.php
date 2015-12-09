@@ -52,7 +52,7 @@
 			$this->view->render('cde/home');
 		}
 
-		public function profesor($action='') {
+		public function profesor($action='') {//profesor
 
 
 			switch ($action) {
@@ -67,6 +67,7 @@
 						$this->view->render('cde/add/profesor');	
 
 					break;
+
 				case 'materia':
 						//$this->loadModel('courses');
 						$course_list = $this->model->getMateriasPensum();
@@ -86,6 +87,7 @@
 
 						$this->view->render('cde/add/asignarmateria');
 					break;
+
 				case 'nuevoperiodo':
 						
 						$this->loadModel('courses');
@@ -94,7 +96,16 @@
 
 						$this->view->render('cde/add/nuevoperiodo');
 
-					break;	
+					break;
+
+				case 'cronogramas':
+
+						$evaluaciones = $this->model->cronogramaPenditeEvaluacion('1','1');
+						$this->view->evaluaciones = $evaluaciones;	
+						$this->view->render('cde/vistas/cronograma');
+
+					break;
+
 
 								
 				default:

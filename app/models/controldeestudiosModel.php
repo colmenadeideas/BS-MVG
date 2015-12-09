@@ -47,9 +47,6 @@
 			return $result;	
 		}
 
-
-		
-
 		public function getMaterias() 
 		{			
 			/*materia activas*/
@@ -62,6 +59,9 @@
 									and m.`id_courses` = c.`id` ");
 			return $result;	
 		}
+
+
+
 
 
 		public function cronogramaPendites()	
@@ -77,20 +77,36 @@
 			return $result;		
 		}
 
-		public function cronogramaPenditeEvaluacion($id = '')
+		public function cronogramaPenditeEvaluacion($id_profesor = '', $id_materia)
 		{
 
-			/*$result = DB::query("SELECT * FROM `cronograma` as c, `evaluacion` as e
-											WHERE c.`id`=$id
-											 	and e.`id_cronograma` = c.`id` ");
-			*/
-			$result = DB::query("SELECT e.`nombre_evaluacion`,e.`descripcion` 
+			$result = DB::query("SELECT e.nombre_evaluacion,e.descripcion,e.id_cronograma 
+										 FROM materia as m, periodo as per, cronograma as c, evaluacion as e, profesor as p, pensum as pen, courses as cou 
+												WHERE c.id = e.id_cronograma 
+													and m.id = c.id_materia 
+													and p.id = c.id_profesor 
+													and c.estatus = 'pendiente' 
+													and m.id_courses = cou.id 
+													and pen.id_courses = cou.id
+													and pen.estatus = 'Activo' 
+													and per.id_pensum = pen.id
+													and m.id = $id_materia 
+													and p.id = $id_profesor");
+			return $result;		
+
+
+
+			/*$result = DB::query("SELECT e.`nombre_evaluacion`,e.`descripcion` 
 											FROM `cronograma` as c, `evaluacion` as e 
 												WHERE c.`id`=$id
 											 		and e.`id_cronograma` = c.`id`");
-			return $result;		
+			return $result;*/		
 		}
 		
+
+
+
+
 		public function getProfesores()	
 		{
 

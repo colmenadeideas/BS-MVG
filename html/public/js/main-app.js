@@ -61,14 +61,15 @@ require.config({
         			'assets/jquery.maskedinput.min', 'config'],
         'app/admin': ['globals','common'],
         'app/registration': ['globals','common'],
-        'app/profesor': ['globals','common'],
+        'app/profesor': ['globals','common'], 
 
         'app/login': ['globals','common'],
         'app/registration': ['globals','jquery','assets/bootstrap-datetimepicker','assets/jquery.maskedinput.min'],
-        'app/profesor': ['globals','jquery','assets/bootstrap-datetimepicker','assets/jquery.maskedinput.min'],
+       'app/profesor': ['globals','jquery','assets/bootstrap-datetimepicker','assets/jquery.maskedinput.min'],
         'app/newsletter': ['globals','assets/jquery.validate.min'],
         'app/escuela': ['globals','common'],
         'app/app': ['globals','common', 'app/registration','app/newsletter','app/profesor'],
+      
         
     }
 });

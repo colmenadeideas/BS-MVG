@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Dec 10, 2015 at 07:57 PM
+-- Generation Time: Dec 10, 2015 at 08:05 PM
 -- Server version: 5.5.29
 -- PHP Version: 5.4.10
 
@@ -3987,6 +3987,55 @@ INSERT INTO `ced_mailchimp_emails` (`id`, `email_address`, `status`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `ced_materia`
+--
+
+CREATE TABLE `ced_materia` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_pensum` int(11) NOT NULL,
+  `codigo` varchar(10) NOT NULL,
+  `nombre_materia` varchar(30) NOT NULL,
+  `descripcion` varchar(500) NOT NULL,
+  `trimestre` int(3) NOT NULL,
+  `id_courses` int(11) NOT NULL,
+  `estatus` enum('Activo','Inactivo') NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `codigo` (`codigo`),
+  KEY `id_courses` (`id_courses`),
+  KEY `id_pensum` (`id_pensum`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+
+--
+-- Dumping data for table `ced_materia`
+--
+
+INSERT INTO `ced_materia` (`id`, `id_pensum`, `codigo`, `nombre_materia`, `descripcion`, `trimestre`, `id_courses`, `estatus`) VALUES
+(1, 1, '', 'Pasarela', 'Como caminar en pasarela', 1, 2, 'Activo'),
+(2, 1, '', 'Fashion Art', 'Fashion Art', 1, 2, 'Activo'),
+(3, 1, '', 'Actuación', 'Clases de Actuación', 1, 2, 'Activo'),
+(4, 1, '', 'Coreografía', 'Clases de Coreografía', 1, 2, 'Activo'),
+(5, 1, 'P03', 'Casting', 'Casting', 3, 1, 'Activo'),
+(6, 1, 'ACT', 'Actuación', 'actuar', 4, 2, 'Activo');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ced_notas`
+--
+
+CREATE TABLE `ced_notas` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_student` int(11) NOT NULL,
+  `id_trimestre` int(11) NOT NULL,
+  `data` mediumtext NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_student` (`id_student`,`id_trimestre`),
+  KEY `id_trimestre` (`id_trimestre`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `ced_pensum`
 --
 
@@ -5645,39 +5694,6 @@ INSERT INTO `courses_registrations` (`id`, `course_available_group_id`, `student
 -- --------------------------------------------------------
 
 --
--- Table structure for table `materia`
---
-
-CREATE TABLE `materia` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_pensum` int(11) NOT NULL,
-  `codigo` varchar(10) NOT NULL,
-  `nombre_materia` varchar(30) NOT NULL,
-  `descripcion` varchar(500) NOT NULL,
-  `trimestre` int(3) NOT NULL,
-  `id_courses` int(11) NOT NULL,
-  `estatus` enum('Activo','Inactivo') NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `codigo` (`codigo`),
-  KEY `id_courses` (`id_courses`),
-  KEY `id_pensum` (`id_pensum`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
-
---
--- Dumping data for table `materia`
---
-
-INSERT INTO `materia` (`id`, `id_pensum`, `codigo`, `nombre_materia`, `descripcion`, `trimestre`, `id_courses`, `estatus`) VALUES
-(1, 1, '', 'Pasarela', 'Como caminar en pasarela', 1, 2, 'Activo'),
-(2, 1, '', 'Fashion Art', 'Fashion Art', 1, 2, 'Activo'),
-(3, 1, '', 'Actuación', 'Clases de Actuación', 1, 2, 'Activo'),
-(4, 1, '', 'Coreografía', 'Clases de Coreografía', 1, 2, 'Activo'),
-(5, 1, 'P03', 'Casting', 'Casting', 3, 1, 'Activo'),
-(6, 1, 'ACT', 'Actuación', 'actuar', 4, 2, 'Activo');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `menu`
 --
 
@@ -6430,22 +6446,6 @@ INSERT INTO `newsletter_subscriptions` (`id`, `email`, `timestamp`, `interests`,
 (493, 'andreadel123@hotmail.com', '2015-09-26 18:03:08', 'Model Look JUVENIL', 1),
 (494, 'editsy.will@gmail.com', '2015-09-30 16:19:51', 'Taller Auto Maquillaje,Taller Auto Maquillaje,Model Look JUVENIL,Model Look JUVENIL', 1),
 (495, 'neigleth@gmail.com', '2015-10-02 02:56:35', 'Model Look JUVENIL,Model Look JUVENIL', 1);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `notas`
---
-
-CREATE TABLE `notas` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_student` int(11) NOT NULL,
-  `id_trimestre` int(11) NOT NULL,
-  `data` mediumtext NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `id_student` (`id_student`,`id_trimestre`),
-  KEY `id_trimestre` (`id_trimestre`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -8391,7 +8391,7 @@ ALTER TABLE `ced_courses_available_groups_new`
 -- Constraints for table `ced_cronograma`
 --
 ALTER TABLE `ced_cronograma`
-  ADD CONSTRAINT `ced_cronograma_ibfk_1` FOREIGN KEY (`id_materia`) REFERENCES `materia` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `ced_cronograma_ibfk_1` FOREIGN KEY (`id_materia`) REFERENCES `ced_materia` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `ced_cronograma_ibfk_2` FOREIGN KEY (`id_profesor`) REFERENCES `ced_profesor` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
@@ -8399,6 +8399,19 @@ ALTER TABLE `ced_cronograma`
 --
 ALTER TABLE `ced_evaluacion`
   ADD CONSTRAINT `ced_evaluacion_ibfk_1` FOREIGN KEY (`id_cronograma`) REFERENCES `ced_cronograma` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `ced_materia`
+--
+ALTER TABLE `ced_materia`
+  ADD CONSTRAINT `ced_materia_ibfk_1` FOREIGN KEY (`id_courses`) REFERENCES `courses` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `ced_notas`
+--
+ALTER TABLE `ced_notas`
+  ADD CONSTRAINT `ced_notas_ibfk_1` FOREIGN KEY (`id_student`) REFERENCES `ced_student_profile` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `ced_notas_ibfk_2` FOREIGN KEY (`id_trimestre`) REFERENCES `ced_trimestre` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `ced_periodo`
@@ -8411,7 +8424,7 @@ ALTER TABLE `ced_periodo`
 -- Constraints for table `ced_profesor_dicta_materia`
 --
 ALTER TABLE `ced_profesor_dicta_materia`
-  ADD CONSTRAINT `ced_profesor_dicta_materia_ibfk_1` FOREIGN KEY (`id_materia`) REFERENCES `materia` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `ced_profesor_dicta_materia_ibfk_1` FOREIGN KEY (`id_materia`) REFERENCES `ced_materia` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `ced_profesor_dicta_materia_ibfk_2` FOREIGN KEY (`id_profesor`) REFERENCES `ced_profesor` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `ced_profesor_dicta_materia_ibfk_3` FOREIGN KEY (`id_periodo`) REFERENCES `ced_periodo` (`id_periodo`) ON DELETE CASCADE ON UPDATE CASCADE;
 
@@ -8421,19 +8434,6 @@ ALTER TABLE `ced_profesor_dicta_materia`
 ALTER TABLE `ced_trimestre_sigue_pensum`
   ADD CONSTRAINT `ced_trimestre_sigue_pensum_ibfk_1` FOREIGN KEY (`id_trimestre`) REFERENCES `ced_trimestre` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `ced_trimestre_sigue_pensum_ibfk_2` FOREIGN KEY (`id_pensum`) REFERENCES `ced_pensum` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `materia`
---
-ALTER TABLE `materia`
-  ADD CONSTRAINT `materia_ibfk_1` FOREIGN KEY (`id_courses`) REFERENCES `courses` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `notas`
---
-ALTER TABLE `notas`
-  ADD CONSTRAINT `notas_ibfk_1` FOREIGN KEY (`id_student`) REFERENCES `ced_student_profile` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `notas_ibfk_2` FOREIGN KEY (`id_trimestre`) REFERENCES `ced_trimestre` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

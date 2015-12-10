@@ -32,7 +32,7 @@
 
 		public function getCoursesPensum()
 		{
-			return DB::query("SELECT  a.`id`,a.`slug`,a.`name`,a.`description`,b.`id` as `id_pensum`, b.estatus FROM " . DB_PREFIX . "courses a  LEFT JOIN pensum b  ON (a.id = b.id_courses AND b.estatus = 'Activo')");
+			return DB::query("SELECT  a.`id`,a.`slug`,a.`name`,a.`description`,b.`id` as `id_pensum`, b.estatus FROM " . DB_PREFIX . "courses a  LEFT JOIN cde_pensum b  ON (a.id = b.id_courses AND b.estatus = 'Activo')");
 		}
 
 		

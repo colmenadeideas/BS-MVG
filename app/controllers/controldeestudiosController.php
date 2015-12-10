@@ -198,7 +198,7 @@
 						$array_profesor['estatus'] 		= 'Activo';
 						$array_profesor['nombre_profesor'] 		= $array_data['name'].' '.$array_data['lastname'];
 						$array_profesor['data'] 		= json_encode($array_data);
-						$insert = $this->helper->insert('profesor', $array_profesor);
+						$insert = $this->helper->insert('cde_profesor', $array_profesor);
 						$forcechangeurl = rand(0, 50);
 						$this->view->redirect_link = 'profesor'.'/'. $forcechangeurl;
 						$this->view->response = "Listo! Asigancion exitosa... ";
@@ -226,7 +226,7 @@
 						$materia = $this->model->existemateria($codigo,$id_courses);
 						if(count($materia)==0)
 						{		
-							$insert = $this->helper->insert('materia', $array_materia);
+							$insert = $this->helper->insert('cde_materia', $array_materia);
 							
 							$this->view->redirect_link = 'profesor';
 							$this->view->response = "Listo!... ";
@@ -344,7 +344,7 @@
 						$materia = $this->model->existemateria($codigo,$id_courses);
 						if(count($materia)==0)
 						{		
-							$insert = $this->helper->insert('materia', $array_materia);
+							$insert = $this->helper->insert('cde_materia', $array_materia);
 							
 							$this->view->redirect_link = 'profesor';
 							$this->view->response = "Listo!... ";
@@ -376,9 +376,9 @@
 
 						
 						$array_vars['estatus']='aprobado';
-						$this->helper->update('cronograma',$id,$array_vars);
+						$this->helper->update('cde_cronograma',$id,$array_vars);
 					
-						$pendientes= $this->model->cronogramaPendites();
+						$pendientes= $this->model->cronogramaPendientes();
 						
 						$i = 1;
 						foreach ($pendientes as $pendiente) 
@@ -409,9 +409,9 @@
 				case 'rechazado':
 						
 						$array_vars['estatus']='rechazado';
-						$this->helper->update('cronograma',$id,$array_vars);
+						$this->helper->update('cde_cronograma',$id,$array_vars);
 
-						$pendientes= $this->model->cronogramaPendites();
+						$pendientes= $this->model->cronogramaPendientes();
 						
 						$i = 1;
 						foreach ($pendientes as $pendiente) 
@@ -442,7 +442,7 @@
 					break;		
 				
 				default:
-						$pendientes= $this->model->cronogramaPendites();
+						$pendientes= $this->model->cronogramaPendientes();
 						
 						$i = 1;
 						foreach ($pendientes as $pendiente) 

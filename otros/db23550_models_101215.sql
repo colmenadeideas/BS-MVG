@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:3306
--- Generation Time: Oct 28, 2015 at 03:07 PM
+-- Generation Time: Dec 10, 2015 at 09:03 PM
 -- Server version: 5.5.34
 -- PHP Version: 5.5.10
 
@@ -19,6 +19,248 @@ SET time_zone = "+00:00";
 --
 -- Database: `db23550_models`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cde_cronograma`
+--
+
+CREATE TABLE `cde_cronograma` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_materia` int(11) NOT NULL,
+  `estatus` enum('aprobado','rechazado','pendiente','') NOT NULL,
+  `id_profesor` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_materia` (`id_materia`),
+  KEY `id_profesor` (`id_profesor`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `cde_cronograma`
+--
+
+INSERT INTO `cde_cronograma` (`id`, `id_materia`, `estatus`, `id_profesor`) VALUES
+(1, 1, 'pendiente', 1),
+(2, 1, 'pendiente', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cde_evaluacion`
+--
+
+CREATE TABLE `cde_evaluacion` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_cronograma` int(11) NOT NULL,
+  `nombre_evaluacion` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `descripcion` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_cronograma` (`id_cronograma`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `cde_evaluacion`
+--
+
+INSERT INTO `cde_evaluacion` (`id`, `id_cronograma`, `nombre_evaluacion`, `descripcion`) VALUES
+(1, 2, 'examen del tema 1 ', '10% de la nota final '),
+(2, 2, 'examen del tema 2', '20% de la nota final'),
+(3, 2, 'examen del tema 3', '30% de la nota final');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cde_materia`
+--
+
+CREATE TABLE `cde_materia` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_pensum` int(11) NOT NULL,
+  `codigo` varchar(10) NOT NULL,
+  `nombre_materia` varchar(30) NOT NULL,
+  `descripcion` varchar(500) NOT NULL,
+  `trimestre` int(3) NOT NULL,
+  `id_courses` int(11) NOT NULL,
+  `estatus` enum('Activo','Inactivo') NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `codigo` (`codigo`),
+  KEY `id_courses` (`id_courses`),
+  KEY `id_pensum` (`id_pensum`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+
+--
+-- Dumping data for table `cde_materia`
+--
+
+INSERT INTO `cde_materia` (`id`, `id_pensum`, `codigo`, `nombre_materia`, `descripcion`, `trimestre`, `id_courses`, `estatus`) VALUES
+(1, 1, '', 'Pasarela', 'Como caminar en pasarela', 1, 2, 'Activo'),
+(2, 1, '', 'Fashion Art', 'Fashion Art', 1, 2, 'Activo'),
+(3, 1, '', 'Actuación', 'Clases de Actuación', 1, 2, 'Activo'),
+(4, 1, '', 'Coreografía', 'Clases de Coreografía', 1, 2, 'Activo'),
+(5, 1, 'P03', 'Casting', 'Casting', 3, 1, 'Activo'),
+(6, 1, 'ACT', 'Actuación', 'actuar', 4, 2, 'Activo');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cde_notas`
+--
+
+CREATE TABLE `cde_notas` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_student` int(11) NOT NULL,
+  `id_trimestre` int(11) NOT NULL,
+  `data` mediumtext NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_student` (`id_student`,`id_trimestre`),
+  KEY `id_trimestre` (`id_trimestre`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cde_pensum`
+--
+
+CREATE TABLE `cde_pensum` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_courses` int(11) NOT NULL,
+  `codigo` varchar(10) NOT NULL,
+  `estatus` enum('Activo','Inactivo') NOT NULL,
+  `materias_por_trimestre` mediumtext CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_courses` (`id_courses`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `cde_pensum`
+--
+
+INSERT INTO `cde_pensum` (`id`, `id_courses`, `codigo`, `estatus`, `materias_por_trimestre`) VALUES
+(1, 2, '20152', 'Activo', ''),
+(2, 2, '20151', 'Inactivo', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cde_periodo`
+--
+
+CREATE TABLE `cde_periodo` (
+  `id_periodo` int(11) NOT NULL AUTO_INCREMENT,
+  `id_pensum` int(11) NOT NULL,
+  `id_courses` int(11) NOT NULL,
+  `star_date` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
+  `end_date` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
+  `estatus` enum('Activo','Inactivo','','') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'Activo',
+  PRIMARY KEY (`id_periodo`),
+  KEY `id_pensum` (`id_pensum`),
+  KEY `id_courses` (`id_courses`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `cde_periodo`
+--
+
+INSERT INTO `cde_periodo` (`id_periodo`, `id_pensum`, `id_courses`, `star_date`, `end_date`, `estatus`) VALUES
+(1, 1, 2, '12/1/2015', '', 'Activo');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cde_profesor`
+--
+
+CREATE TABLE `cde_profesor` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre_profesor` varchar(30) NOT NULL,
+  `data` mediumtext NOT NULL,
+  `username` varchar(100) NOT NULL,
+  `estatus` enum('Activo','Inactivo') NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
+
+--
+-- Dumping data for table `cde_profesor`
+--
+
+INSERT INTO `cde_profesor` (`id`, `nombre_profesor`, `data`, `username`, `estatus`) VALUES
+(1, 'Luis Garcia ', '{"nombre":"luis garcia","cedula":"24333111","email":"otroluismas@gmail.com"}', 'otroluismas@gmail.com', 'Activo'),
+(2, 'Angelina De Oliveira', '{"nombre":"Angelina De Oliveira","cedula":"23123456","email":"angelinadeoliveira@gmail.com"}', 'angelinadeoliveira@gmail.com', 'Activo'),
+(3, 'Cesar rodriguez', '{"nombre":"Cesar rodriguez","cedula":"15123456","email":"cesarr@gmail.com"}', 'cesarr@gmail.com', 'Inactivo'),
+(4, 'Mariflor Marturet', '{"tipo":"profesor","name":"Mariflor","lastname":"Marturet","nationality":"V","cedula":"191234567","birthplace":"Valencia","birthdate":"30\\/08\\/1989","age":"26","address":"Malta","phonenumber":"02411234567","cellphone":"04121234567","email":"mariflor@marturet.com","studies":"1"}', 'mariflor@marturet.com', 'Activo'),
+(5, 'Tapi Jose  Ramirez', '{"name":"Tapi Jose ","lastname":"Ramirez","nationality":"V","cedula":"19020820","birthplace":"Nirgua","birthdate":"11\\/03\\/1988","age":"27","address":"Nirgua York","phonenumber":"04141234567","cellphone":"1041012345","email":"tapij02@gmail.com"}', 'tapij02@gmail.com', 'Activo'),
+(6, 'Armando  Perez', '{"name":"Armando ","lastname":"Perez","nationality":"V","cedula":"19001847","birthplace":"Guacara","birthdate":"20\\/08\\/1989","age":"26","address":"jjjfj","phonenumber":"02141234567","cellphone":"04161234567","email":"armadonp@hotmail.com"}', 'armadonp@hotmail.com', 'Activo'),
+(8, 'beglis alvarado', '{"name":"beglis","lastname":"alvarado","nationality":"V","cedula":"20553321","birthplace":"valencia","birthdate":"11\\/04\\/2000","age":"15","address":"ll","phonenumber":"(0021) 323.21.32","cellphone":"(0231) 321.32.13","email":"balvarado@gmail.com"}', 'balvarado@gmail.com', 'Activo'),
+(9, 'Gloria Guerra', '{"name":"Gloria","lastname":"Guerra","nationality":"V","cedula":"13285106","birthplace":"Colombia","birthdate":"10\\/17\\/1957","age":"50","address":"Valencia","phonenumber":"(0241) 867.65.04","cellphone":"(0416) 141.79.81","email":"gcguerrah@hotmail.com"}', 'gcguerrah@hotmail.com', 'Activo'),
+(12, 'rafael padron', '{"name":"rafael","lastname":"padron","nationality":"V","cedula":"1233123","birthplace":"valencia","birthdate":"10\\/26\\/2015","age":"23","address":"av bolivar","phonenumber":"02342352352","cellphone":"02342352352","email":"padronrfael@hotmail.com"}', 'padronrfael@hotmail.com', 'Activo');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cde_profesor_dicta_materia`
+--
+
+CREATE TABLE `cde_profesor_dicta_materia` (
+  `id_materia` int(11) NOT NULL,
+  `id_profesor` int(11) NOT NULL,
+  `id_periodo` int(11) NOT NULL,
+  KEY `id_materia` (`id_materia`,`id_profesor`),
+  KEY `id_profesor` (`id_profesor`),
+  KEY `id_periodo` (`id_periodo`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `cde_profesor_dicta_materia`
+--
+
+INSERT INTO `cde_profesor_dicta_materia` (`id_materia`, `id_profesor`, `id_periodo`) VALUES
+(1, 1, 1),
+(1, 1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cde_trimestre`
+--
+
+CREATE TABLE `cde_trimestre` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `fechaIncio` date NOT NULL,
+  `fechaFin` date NOT NULL,
+  `codigo` varchar(6) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fechaIncio` (`fechaIncio`,`fechaFin`),
+  KEY `codigo` (`codigo`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `cde_trimestre`
+--
+
+INSERT INTO `cde_trimestre` (`id`, `fechaIncio`, `fechaFin`, `codigo`) VALUES
+(1, '2015-10-14', '2015-11-14', '20154');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cde_trimestre_sigue_pensum`
+--
+
+CREATE TABLE `cde_trimestre_sigue_pensum` (
+  `id_trimestre` int(11) NOT NULL,
+  `id_pensum` int(11) NOT NULL,
+  KEY `id_trimestre` (`id_trimestre`,`id_pensum`),
+  KEY `id_materia` (`id_pensum`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `cde_trimestre_sigue_pensum`
+--
+
+INSERT INTO `cde_trimestre_sigue_pensum` (`id_trimestre`, `id_pensum`) VALUES
+(1, 1);
 
 -- --------------------------------------------------------
 
@@ -130,6 +372,30 @@ INSERT INTO `courses_available_groups` (`id`, `parent_id`, `name`, `horario-slug
 (52, 4, 'Ultima Semana', 'modellook-infantil', '', '17/08/15', '21/08/15', '8:30am - 12:30pm', '', 0),
 (53, 9, 'Ultima Semana', 'modellook-juvenil', '', '17/08/15', '21/08/15', '8:30am - 12:30pm', '', 0),
 (54, 9, 'Ultima Semana', 'modellook-juvenil', '', '17/08/15', '21/08/15', '1:30pm - 5:30pm', '', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `courses_available_groups_new`
+--
+
+CREATE TABLE `courses_available_groups_new` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `parent_id` int(11) NOT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `horario-slug` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `description` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `start_date` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
+  `end_date` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
+  `schedule` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `registry_expiration_date` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
+  `max_quota` int(11) NOT NULL,
+  `id_pensum` int(11) NOT NULL,
+  `id_periodo` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_pensum` (`id_pensum`,`id_periodo`),
+  KEY `id_periodo` (`id_periodo`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -908,31 +1174,7 @@ INSERT INTO `courses_registrations` (`id`, `course_available_group_id`, `student
 (800, 50, 638, '2015-10-02 00:40:28', '0000-00-00 00:00:00', '{"course_available_group_id":"50","name":"Amanda Miguel","lastname":"Leon Olaizola","phonenumber":"(0414) 431.10.58","cellphone":"(0414) 431.10.58","email":"amandita2001@icloud.com","confirm_email":"amandita2001@icloud.com","facebook":"","twitter":"@","instagram":"@amandaleon19","buzz":"me entere de ustedes por unas amigas ","PromoIns":"1"}', '{"payment-form":"Dep\\u00f3sito","payment-number":"12","payment-bank":"0156","payment-amount":"212","payment-date":"26\\/10\\/15"}', 'recieved', 'completed', '2', '', NULL, NULL, NULL),
 (801, 51, 639, '2015-10-02 01:37:38', '0000-00-00 00:00:00', '{"course_available_group_id":"51","name":"javiexi","lastname":"jimenez","phonenumber":"(0241) 808.09.11","cellphone":"(0412) 409.63.74","email":"javierjesusj@hotmail.com","confirm_email":"javierjesusj@hotmail.com","facebook":"javiexi paola jimenez vivas","twitter":"@","instagram":"@javiexi_jimenez","buzz":"Por una amiga","PromoIns":"1"}', '{"payment-form":"Transferencia","payment-number":"1111","payment-bank":"0156","payment-amount":"11","payment-date":"26\\/10\\/15"}', 'recieved', 'completed', '2', '', NULL, NULL, NULL),
 (802, 28, 640, '2015-10-05 23:13:49', '0000-00-00 00:00:00', '{"course_available_group_id":"28","name":"Angelica Nathaly","lastname":"Angarita Morales","phonenumber":"(0241) 897.95.38","cellphone":"(0426) 141.48.63","email":"nathaly_a99@hotmail.com","confirm_email":"nathaly_a99@hotmail.com","facebook":"Angelica Angarita","twitter":"@A99Angelica","instagram":"@ANGELICANATHALY99","buzz":"Por una prima","PromoIns":"1"}', '{"payment-form":"Transferencia","payment-number":"2323","payment-bank":"0156","payment-amount":"2222","payment-date":"26\\/10\\/15"}', 'recieved', 'completed', '', '', NULL, NULL, NULL),
-(803, 4, 485, '2015-10-09 19:09:46', '0000-00-00 00:00:00', '', '', 'recieved', 'completed', '', '', NULL, NULL, NULL);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `cronograma`
---
-
-CREATE TABLE `cronograma` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_materia` int(11) NOT NULL,
-  `estatus` enum('aprobado','rechazado','pendiente','') NOT NULL,
-  `data` mediumtext NOT NULL,
-  `id_profesor` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `id_materia` (`id_materia`),
-  KEY `id_profesor` (`id_profesor`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
-
---
--- Dumping data for table `cronograma`
---
-
-INSERT INTO `cronograma` (`id`, `id_materia`, `estatus`, `data`, `id_profesor`) VALUES
-(1, 1, 'pendiente', '{"Semana1":"evaluacion 1","Semana2":"evaluacion 2","Semana3":"evaluacion 1","Semana4":"evaluacion 1","Semana5":"evaluacion 1","Semana6":"evaluacion 1","Semana7":"evaluacion 1","Semana8":"evaluacion 1","Semana9":"evaluacion 1","Semana10":"evaluacion 1","Semana11":"evaluacion 1","Semana12":"evaluacion 1"}', 1);
+(803, 4, 485, '2015-10-09 19:09:46', '0000-00-00 00:00:00', '', '', 'pending', 'approved', '', '', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -977,10 +1219,10 @@ INSERT INTO `eventos` (`id`, `year`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `LDT_available_dates`
+-- Table structure for table `ldt_available_dates`
 --
 
-CREATE TABLE `LDT_available_dates` (
+CREATE TABLE `ldt_available_dates` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `parent_id` int(11) NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -995,20 +1237,20 @@ CREATE TABLE `LDT_available_dates` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=28 ;
 
 --
--- Dumping data for table `LDT_available_dates`
+-- Dumping data for table `ldt_available_dates`
 --
 
-INSERT INTO `LDT_available_dates` (`id`, `parent_id`, `name`, `horario-slug`, `description`, `start_date`, `end_date`, `schedule`, `registry_expiration_date`, `max_quota`) VALUES
+INSERT INTO `ldt_available_dates` (`id`, `parent_id`, `name`, `horario-slug`, `description`, `start_date`, `end_date`, `schedule`, `registry_expiration_date`, `max_quota`) VALUES
 (26, 9, '27 de Mayo', 'dia1', '', '27/05/15', '', '5:00pm a 9:00pm', '30/05/2015', 5000),
 (27, 9, '28 de Mayo', 'dia2', '', '28/05/15', '', '10:00am a 9:00pm', '30/05/2015', 5000);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `LDT_event`
+-- Table structure for table `ldt_event`
 --
 
-CREATE TABLE `LDT_event` (
+CREATE TABLE `ldt_event` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `order` int(11) NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -1027,19 +1269,19 @@ CREATE TABLE `LDT_event` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=10 ;
 
 --
--- Dumping data for table `LDT_event`
+-- Dumping data for table `ldt_event`
 --
 
-INSERT INTO `LDT_event` (`id`, `order`, `name`, `slug`, `description`, `duration_payment_details`, `payment_details`, `step1_instructions`, `step2_instructions`, `step3_instructions`, `step4_instructions`, `welcome_instructions`, `disclosure`, `status`) VALUES
+INSERT INTO `ldt_event` (`id`, `order`, `name`, `slug`, `description`, `duration_payment_details`, `payment_details`, `step1_instructions`, `step2_instructions`, `step3_instructions`, `step4_instructions`, `welcome_instructions`, `disclosure`, `status`) VALUES
 (9, 0, 'LABORATORIO DE TENDENCIAS', 'ldt', '', '', '', '', '', '', '', '', '', 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `LDT_registration`
+-- Table structure for table `ldt_registration`
 --
 
-CREATE TABLE `LDT_registration` (
+CREATE TABLE `ldt_registration` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `data` longtext COLLATE utf8_unicode_ci NOT NULL,
@@ -1049,10 +1291,10 @@ CREATE TABLE `LDT_registration` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=297 ;
 
 --
--- Dumping data for table `LDT_registration`
+-- Dumping data for table `ldt_registration`
 --
 
-INSERT INTO `LDT_registration` (`id`, `email`, `data`, `timestamp`, `status`) VALUES
+INSERT INTO `ldt_registration` (`id`, `email`, `data`, `timestamp`, `status`) VALUES
 (1, 'bossshoesca@gmail.com', '{"name":"Dennis","lastname":"Papadatos","bussiness":"Boss Shoes CA","rif":"J-30683757-4","phonenumber":"(0241) 858.49.73","cellphone":"(0414) 340.48.15","email":"bossshoesca@gmail.com","acompanantes":"2","date":"28 de Mayo"}', '2015-05-08 01:24:28', 'registered'),
 (2, 'josealimorillo@gmail.com', '{"name":"Jos\\u00e9","lastname":"Morillo","bussiness":"Promotora Moar, C.A.","rif":"J303828582","phonenumber":"(0241) 832.94.08","cellphone":"(0414) 433.58.32","email":"josealimorillo@gmail.com","acompanantes":"2","date":"27 de Mayo"}', '2015-05-08 01:34:47', 'registered'),
 (16, 'danellysrodriguez@hotmail.com', '{"name":"Danellys","lastname":"Rodriguez","bussiness":"Inversiones Rosas y Azules C.A","rif":"J-29682347-2","phonenumber":"(0258) 433.29.53","cellphone":"(0412) 864.13.58","email":"danellysrodriguez@hotmail.com","acompanantes":"3","date":"27 de Mayo"}', '2015-05-09 23:00:18', 'registered'),
@@ -1218,7 +1460,7 @@ INSERT INTO `LDT_registration` (`id`, `email`, `data`, `timestamp`, `status`) VA
 (177, 'actitud.limitehojeij@gmail.con', '{"name":"Ibrahim","lastname":"Hojeij","bussiness":"Tienda actitud","rif":"400760216","phonenumber":"(0414) 409.40.18","cellphone":"(0414) 409.40.18","email":"actitud.limitehojeij@gmail.con","acompanantes":"2","date":"28 de Mayo"}', '2015-05-25 00:15:14', 'registered'),
 (178, 'mayelatt990@gmail.com', '{"name":"mayela","lastname":"toro","bussiness":"auto repuestos lf ca","rif":"J-404900730","phonenumber":"(0241) 867.70.15","cellphone":"(0414) 411.30.62","email":"mayelatt990@gmail.com","acompanantes":"4","date":"28 de Mayo"}', '2015-05-25 02:28:29', 'registered'),
 (179, 'caritasalegre@yahoo.com', '{"name":"GLADYS MARIBEL","lastname":"COLMENARES","bussiness":"CARITAS ALEGRES","rif":"V-10178950-7","phonenumber":"(0276) 340.31.40","cellphone":"(0414) 750.55.65","email":"caritasalegre@yahoo.com","acompanantes":"3","date":"28 de Mayo"}', '2015-05-25 13:06:09', 'registered');
-INSERT INTO `LDT_registration` (`id`, `email`, `data`, `timestamp`, `status`) VALUES
+INSERT INTO `ldt_registration` (`id`, `email`, `data`, `timestamp`, `status`) VALUES
 (180, 'beverlynge@hotmail.com', '{"name":"BEVERLYN","lastname":"PEREZ","bussiness":"AGOALIMENTOS P&M, CA","rif":"J403487022","phonenumber":"(0245) 591.54.46","cellphone":"(0424) 356.31.50","email":"beverlynge@hotmail.com","acompanantes":"1","date":"28 de Mayo"}', '2015-05-25 13:38:23', 'registered'),
 (181, 'soniadcfs@hotmail.com', '{"name":"SONIA","lastname":"FLORES","bussiness":"FLORECITAS C.A","rif":"J-31330837-4","phonenumber":"(0275) 221.59.97","cellphone":"(0416) 770.85.64","email":"soniadcfs@hotmail.com","acompanantes":"3","date":"28 de Mayo"}', '2015-05-25 14:17:11', 'registered'),
 (182, 'logistica@tiendaslapiramide.com.ve', '{"name":"Gerardo","lastname":"Belmonte","bussiness":"Distribuidora Arizona, C.A.","rif":"J-30667258-3","phonenumber":"(0241) 871.75.97","cellphone":"(0414) 428.18.64","email":"logistica@tiendaslapiramide.com.ve","acompanantes":"2","date":"27 de Mayo"}', '2015-05-25 15:15:44', 'registered'),
@@ -4802,32 +5044,6 @@ INSERT INTO `mailchimp_emails` (`id`, `email_address`, `status`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `materia`
---
-
-CREATE TABLE `materia` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `codigo` varchar(10) NOT NULL,
-  `nombre_materia` varchar(30) NOT NULL,
-  `descripcion` varchar(500) NOT NULL,
-  `Pos_trimestre` int(3) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `codigo` (`codigo`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
-
---
--- Dumping data for table `materia`
---
-
-INSERT INTO `materia` (`id`, `codigo`, `nombre_materia`, `descripcion`, `Pos_trimestre`) VALUES
-(1, '', 'Pasarela', 'Como caminar en pasarela', 1),
-(2, '', 'Fashion Art', 'Fashion Art', 1),
-(3, '', 'Actuación', 'Clases de Actuación', 1),
-(4, '', 'Coreografía', 'Clases de Coreografía', 1);
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `menu`
 --
 
@@ -4866,11 +5082,11 @@ INSERT INTO `menu` (`id`, `name`, `area`, `short_description`, `url`, `icon`, `l
 (12, 'Acceso a escuela', '', '//Solo para Auth del registration/verify', '', '', 1, 0, 0, 0, 0, 'active'),
 (13, 'Blank access', '', '', '', '', 1, 0, 0, 0, 0, 'active'),
 (14, 'Inscripción de alumnos', '', 'Registro manual de los estudiantes ', 'registrations/availableadmin', '', 2, 4, 0, 1, 1, 'active'),
-(15, 'Agregar Profesor', '', 'Agregar profesor en el sistema ', 'controldeestudios/add', '', 1, 0, 0, 1, 1, 'active'),
-(16, 'Aprobar Cronograma', '', 'El aprobar cronograma de una materia ', 'controldeestudios/approveCronograma', '', 1, 0, 0, 1, 1, 'active'),
+(15, 'Clases', '', 'Agregar profesor en el sistema \r\nAsignar MAterias\r\nAgregar Materias', 'profesor', '', 1, 0, 0, 1, 1, 'active'),
+(16, 'Aprobar Cronograma', '', 'El aprobar cronograma de una materia ', 'approveCronograma', '', 1, 0, 0, 1, 1, 'active'),
 (17, 'Listar alumnos', '', 'Lista los alumnos de un trimestre ', '', '', 1, 0, 0, 1, 1, 'active'),
-(18, 'Cargar Pensum ', '', 'Carga un pensum ', '', '', 1, 0, 0, 1, 1, 'active'),
-(19, 'Registrar Trismestre', '', 'Inicia el comienzo de un nuevo trimestre', '', '', 1, 0, 0, 1, 1, 'active');
+(18, 'Cargar Pensum ', '', 'Carga un pensum ', 'add/pensum', '', 1, 0, 0, 1, 1, 'active'),
+(19, 'Registrar Periodo', '', 'Inicia el comienzo de un nuevo periodo', 'profesor/nuevoperiodo', '', 1, 0, 0, 1, 1, 'active');
 
 -- --------------------------------------------------------
 
@@ -5584,83 +5800,6 @@ INSERT INTO `newsletter_subscriptions` (`id`, `email`, `timestamp`, `interests`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `notas`
---
-
-CREATE TABLE `notas` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_student` int(11) NOT NULL,
-  `id_trimestre` int(11) NOT NULL,
-  `data` mediumtext NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `id_student` (`id_student`,`id_trimestre`),
-  KEY `id_trimestre` (`id_trimestre`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pensum`
---
-
-CREATE TABLE `pensum` (
-  `id` int(11) NOT NULL,
-  `codigo` varchar(10) NOT NULL,
-  `estatus` enum('Activo','Inactivo') NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pensum_y_materias`
---
-
-CREATE TABLE `pensum_y_materias` (
-  `id_materia` int(11) NOT NULL,
-  `id_pensum` int(11) NOT NULL,
-  KEY `id_materia` (`id_materia`,`id_pensum`),
-  KEY `id_materia_2` (`id_materia`,`id_pensum`),
-  KEY `id_pensum` (`id_pensum`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `profesor`
---
-
-CREATE TABLE `profesor` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre_profesor` varchar(30) NOT NULL,
-  `data` mediumtext NOT NULL,
-  `username` varchar(100) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
-
---
--- Dumping data for table `profesor`
---
-
-INSERT INTO `profesor` (`id`, `nombre_profesor`, `data`, `username`) VALUES
-(1, 'Luis Garcia ', '{"nombre":"luis garcia","cedula":"24333111","email":"otroluismas@gmail.com"}', 'otroluismas@gmail.com');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `profesor_dicta_materia`
---
-
-CREATE TABLE `profesor_dicta_materia` (
-  `id_materia` int(11) NOT NULL,
-  `id_profesor` int(11) NOT NULL,
-  KEY `id_materia` (`id_materia`,`id_profesor`),
-  KEY `id_profesor` (`id_profesor`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `student_profile`
 --
 
@@ -6311,49 +6450,6 @@ INSERT INTO `student_profile` (`id`, `username`, `name`, `lastname`, `email`, `d
 -- --------------------------------------------------------
 
 --
--- Table structure for table `trimestre`
---
-
-CREATE TABLE `trimestre` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `fechaIncio` date NOT NULL,
-  `fechaFin` date NOT NULL,
-  `codigo` varchar(6) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fechaIncio` (`fechaIncio`,`fechaFin`),
-  KEY `codigo` (`codigo`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
-
---
--- Dumping data for table `trimestre`
---
-
-INSERT INTO `trimestre` (`id`, `fechaIncio`, `fechaFin`, `codigo`) VALUES
-(1, '2015-10-14', '2015-11-14', '20154');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `trimestre_se_ven_materias`
---
-
-CREATE TABLE `trimestre_se_ven_materias` (
-  `id_trimestre` int(11) NOT NULL,
-  `id_materia` int(11) NOT NULL,
-  KEY `id_trimestre` (`id_trimestre`,`id_materia`),
-  KEY `id_materia` (`id_materia`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `trimestre_se_ven_materias`
---
-
-INSERT INTO `trimestre_se_ven_materias` (`id_trimestre`, `id_materia`) VALUES
-(1, 1);
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `users`
 --
 
@@ -6372,7 +6468,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `rif`, `role`, `pass_hash`) VALUES
-(1, 'hola@besign.com.ve', 'J293972906', 'admin', 'sha256:1000:B1lE7YL+yO9er8r1eCvTBFJ+bFqwq51i:QZYYDuDm/uRoWyK2jTdHG5LygAs5ydm9'),
+(1, 'hola@besign.com.ve', 'J293972906', 'controldeestudios', 'sha256:1000:B1lE7YL+yO9er8r1eCvTBFJ+bFqwq51i:QZYYDuDm/uRoWyK2jTdHG5LygAs5ydm9'),
 (2, 'presidencia@modelsviewgroup.com', '', 'admin', 'sha256:1000:V9NvGYO2313J+0ctzsKutMlXRaVJvskP:BrpDCG3Gi4TxblKJB6HxZjScas2AVcCS'),
 (3, 'agenciamodelsview@gmail.com', '', 'administracion', 'sha256:1000:fDfp8djAGghZTtEpvQGkRFrd+qME/6Gc:C3JFujg2nvtwHy9KaArAjZiH/m9AUlIM'),
 (4, 'mercadeo@modelsviewgroup.com', '', 'mercadeo', 'sha256:1000:hwXRRI6AMqEmznvOZs1Of5Uio+iqEsT6:izcHo6XxcnY5xI6E+BHuSKFpdUERJjKb'),
@@ -7033,7 +7129,7 @@ CREATE TABLE `users_role_permissions` (
   `permissions` mediumtext COLLATE utf8_unicode_ci NOT NULL,
   `status` enum('active','inactive') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'active',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `users_role_permissions`
@@ -7044,7 +7140,8 @@ INSERT INTO `users_role_permissions` (`id`, `role`, `area`, `permissions`, `stat
 (2, 'estudiante', 'escuela', '{"1":"1","2":"1","3":"1","4":"0","5":"0","6":"0","7":"0","8":"0","9":"0",\n "10":"1","11":"1","12":"1","13":"1"}', 'active'),
 (3, 'administracion', 'presidencia', '{"1":"1","2":"1","3":"1","4":"1","5":"1","6":"1","7":"1","8":"1","9":"1","13":"1"}', 'active'),
 (4, 'mercadeo', 'presidencia', '{"1":"1","2":"1","3":"1","4":"1","5":"1","6":"0","7":"0","8":"1","9":"0","13":"1"}', 'active'),
-(5, 'controldeestudios', 'controldeestudios', '{"1":"1","2":"1","3":"1","4":"0","5":"0","6":"0","7":"0","8":"0","9":"0",\n "10":"0","11":"0","12":"1","13":"1","14":"0","15":"1","16":"1","17":"1","18":"1","19":"1"}', 'active');
+(5, 'controldeestudios', 'controldeestudios', '{"1":"1","2":"1","3":"1","4":"0","5":"0","6":"0","7":"0","8":"0","9":"0",\r\n "10":"0","11":"0","12":"1","13":"1","14":"0","15":"1","16":"1","17":"0","18":"1","19":"1"}', 'active'),
+(6, 'profesor', '', '{"1":"1","2":"1","3":"1","4":"0","5":"0","6":"0","7":"0","8":"0","9":"0",\r\n "10":"0","11":"0","12":"1","13":"1","14":"0","15":"1","16":"1","17":"0","18":"1","19":"1"}', 'active');
 
 -- --------------------------------------------------------
 
@@ -7088,7 +7185,7 @@ CREATE TABLE `user_session` (
   `url_in` mediumtext NOT NULL,
   `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1084 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1102 ;
 
 --
 -- Dumping data for table `user_session`
@@ -8180,7 +8277,25 @@ INSERT INTO `user_session` (`id`, `username`, `ip_address`, `session_randomkey`,
 (1080, 'aortega@besign.com.ve', '190.142.16.246', '2130394302562e9d3dcd23c4.52884783', 'localhost/BS-MVG/html/account/identify', '2015-10-26 21:38:06'),
 (1081, 'aortega@besign.com.ve', '190.142.16.246', '6877424835630c6fcc45732.40525301', 'localhost/BS-MVG/html/account/identify', '2015-10-28 13:00:45'),
 (1082, 'aortega@besign.com.ve', '190.142.16.246', '17999902155630c7487b4d03.40924261', 'localhost/BS-MVG/html/account/identify', '2015-10-28 13:02:00'),
-(1083, 'aortega@besign.com.ve', '190.142.16.246', '5751136205630d05891b669.48661214', 'localhost/BS-MVG/html/account/identify', '2015-10-28 13:40:40');
+(1083, 'aortega@besign.com.ve', '190.142.16.246', '5751136205630d05891b669.48661214', 'localhost/BS-MVG/html/account/identify', '2015-10-28 13:40:40'),
+(1084, 'aortega@besign.com.ve', '190.142.16.246', '1944376883563386cd1ac206.30218271', 'localhost/BS-MVG/html/account/identify', '2015-10-30 15:03:41'),
+(1085, 'aortega@besign.com.ve', '190.142.16.246', '1787564964563a071f698a30.47102629', 'localhost/BS-MVG/html/account/identify', '2015-11-04 13:24:47'),
+(1086, 'aortega@besign.com.ve', '190.142.16.246', '1306598932563b828de366f9.65097919', 'localhost/BS-MVG/html/account/identify', '2015-11-05 16:23:42'),
+(1087, 'aortega@besign.com.ve', '190.142.16.246', '4122536215641e43e7718d6.85133275', 'localhost/BS-MVG/html/account/identify', '2015-11-10 12:34:06'),
+(1088, 'aortega@besign.com.ve', '190.142.16.246', '19213763875641e7ee67e883.30570405', 'localhost/BS-MVG/html/account/identify', '2015-11-10 12:49:50'),
+(1089, 'aortega@besign.com.ve', '190.142.16.246', '1434247647564cdb155d9e36.07560177', 'localhost/BS-MVG/html/account/identify', '2015-11-18 20:09:57'),
+(1090, 'aortega@besign.com.ve', '190.142.16.246', '80180639564f2788c1c6c9.63758838', 'localhost/BS-MVG/html/account/identify', '2015-11-20 14:00:41'),
+(1091, 'aortega@besign.com.ve', '190.142.16.246', '1291711439564f77cadf23b6.61763087', 'localhost/BS-MVG/html/account/identify', '2015-11-20 19:43:07'),
+(1092, 'aortega@besign.com.ve', '190.142.16.246', '6490342156532651bb7e04.55354715', 'localhost/BS-MVG/html/account/identify', '2015-11-23 14:44:33'),
+(1093, 'aortega@besign.com.ve', '190.142.16.246', '196094207356575386223082.64231813', 'localhost/BS-MVG/html/account/identify', '2015-11-26 18:46:30'),
+(1094, 'aortega@besign.com.ve', '190.142.16.246', '203786023256576205c07d57.36248716', 'localhost/BS-MVG/html/account/identify', '2015-11-26 19:48:21'),
+(1095, 'aortega@besign.com.ve', '190.142.16.246', '850570081565857ad0e7da6.56379641', 'localhost/BS-MVG/html/account/identify', '2015-11-27 13:16:29'),
+(1096, 'aortega@besign.com.ve', '190.142.16.246', '8435658f7eb3b8115.31011412', 'localhost/BS-MVG/html/', '2015-11-28 00:41:50'),
+(1097, 'aortega@besign.com.ve', '190.142.16.246', '29518565d0f4994f903.96478695', 'localhost/BS-MVG/html/account/identify', '2015-12-01 03:08:57'),
+(1098, 'aortega@besign.com.ve', '190.142.16.246', '7706565d175dd66596.97927240', 'localhost/BS-MVG/html/account/identify', '2015-12-01 03:43:25'),
+(1099, 'aortega@besign.com.ve', '190.142.16.246', '28100565d1a10a7b624.66208188', 'localhost/BS-MVG/html/account/identify', '2015-12-01 03:54:56'),
+(1100, 'aortega@besign.com.ve', '190.142.16.246', '17929565d79b481cba0.46973276', 'localhost/BS-MVG/html/account/identify', '2015-12-01 10:43:00'),
+(1101, 'aortega@besign.com.ve', '190.142.16.246', '1400069667565c9d3e915005.42136486', 'localhost/BS-MVG/html/', '2015-12-01 13:37:26');
 
 -- --------------------------------------------------------
 
@@ -8266,39 +8381,59 @@ INSERT INTO `view_colaboradores` (`id`, `nombre`, `email`, `twitter`, `activo`) 
 --
 
 --
--- Constraints for table `cronograma`
+-- Constraints for table `cde_cronograma`
 --
-ALTER TABLE `cronograma`
-  ADD CONSTRAINT `cronograma_ibfk_1` FOREIGN KEY (`id_materia`) REFERENCES `materia` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `cronograma_ibfk_2` FOREIGN KEY (`id_profesor`) REFERENCES `profesor` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `cde_cronograma`
+  ADD CONSTRAINT `cde_cronograma_ibfk_1` FOREIGN KEY (`id_materia`) REFERENCES `cde_materia` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `cde_cronograma_ibfk_2` FOREIGN KEY (`id_profesor`) REFERENCES `cde_profesor` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `notas`
+-- Constraints for table `cde_evaluacion`
 --
-ALTER TABLE `notas`
-  ADD CONSTRAINT `notas_ibfk_1` FOREIGN KEY (`id_student`) REFERENCES `student_profile` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `notas_ibfk_2` FOREIGN KEY (`id_trimestre`) REFERENCES `trimestre` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `cde_evaluacion`
+  ADD CONSTRAINT `cde_evaluacion_ibfk_1` FOREIGN KEY (`id_cronograma`) REFERENCES `cde_cronograma` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `pensum_y_materias`
+-- Constraints for table `cde_materia`
 --
-ALTER TABLE `pensum_y_materias`
-  ADD CONSTRAINT `pensum_y_materias_ibfk_1` FOREIGN KEY (`id_materia`) REFERENCES `materia` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `pensum_y_materias_ibfk_2` FOREIGN KEY (`id_pensum`) REFERENCES `pensum` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `cde_materia`
+  ADD CONSTRAINT `cde_materia_ibfk_1` FOREIGN KEY (`id_courses`) REFERENCES `courses` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `profesor_dicta_materia`
+-- Constraints for table `cde_notas`
 --
-ALTER TABLE `profesor_dicta_materia`
-  ADD CONSTRAINT `profesor_dicta_materia_ibfk_1` FOREIGN KEY (`id_materia`) REFERENCES `materia` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `profesor_dicta_materia_ibfk_2` FOREIGN KEY (`id_profesor`) REFERENCES `profesor` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `cde_notas`
+  ADD CONSTRAINT `cde_notas_ibfk_1` FOREIGN KEY (`id_student`) REFERENCES `student_profile` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `cde_notas_ibfk_2` FOREIGN KEY (`id_trimestre`) REFERENCES `cde_trimestre` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `trimestre_se_ven_materias`
+-- Constraints for table `cde_periodo`
 --
-ALTER TABLE `trimestre_se_ven_materias`
-  ADD CONSTRAINT `trimestre_se_ven_materias_ibfk_1` FOREIGN KEY (`id_trimestre`) REFERENCES `trimestre` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `trimestre_se_ven_materias_ibfk_2` FOREIGN KEY (`id_materia`) REFERENCES `materia` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `cde_periodo`
+  ADD CONSTRAINT `cde_periodo_ibfk_1` FOREIGN KEY (`id_pensum`) REFERENCES `cde_pensum` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `cde_periodo_ibfk_2` FOREIGN KEY (`id_courses`) REFERENCES `courses` (`id`);
+
+--
+-- Constraints for table `cde_profesor_dicta_materia`
+--
+ALTER TABLE `cde_profesor_dicta_materia`
+  ADD CONSTRAINT `cde_profesor_dicta_materia_ibfk_1` FOREIGN KEY (`id_materia`) REFERENCES `cde_materia` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `cde_profesor_dicta_materia_ibfk_2` FOREIGN KEY (`id_profesor`) REFERENCES `cde_profesor` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `cde_profesor_dicta_materia_ibfk_3` FOREIGN KEY (`id_periodo`) REFERENCES `cde_periodo` (`id_periodo`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `cde_trimestre_sigue_pensum`
+--
+ALTER TABLE `cde_trimestre_sigue_pensum`
+  ADD CONSTRAINT `cde_trimestre_sigue_pensum_ibfk_1` FOREIGN KEY (`id_trimestre`) REFERENCES `cde_trimestre` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `cde_trimestre_sigue_pensum_ibfk_2` FOREIGN KEY (`id_pensum`) REFERENCES `cde_pensum` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `courses_available_groups_new`
+--
+ALTER TABLE `courses_available_groups_new`
+  ADD CONSTRAINT `courses_available_groups_new_ibfk_1` FOREIGN KEY (`id_pensum`) REFERENCES `cde_pensum` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `courses_available_groups_new_ibfk_2` FOREIGN KEY (`id_periodo`) REFERENCES `cde_periodo` (`id_periodo`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

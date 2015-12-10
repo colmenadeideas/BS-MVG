@@ -106,7 +106,7 @@
 		
 		public function identify () {
 				
-			//print_r($_SESSION);
+			print_r($_SESSION); exit;
 			User::checkSession();
 			//Auth::handleLogin('account');
 			User::gotoMainArea();			

@@ -64,15 +64,13 @@
 
 
 
-		public function cronogramaPendientes()	
-		{
+		public function getPendingCronogramas()	{
 
-			$result = DB::query("SELECT c.`id` ,c.`id_profesor`,p.`nombre_profesor`,c.`id_materia`, m.`nombre_materia`
+			$result = DB::query("SELECT c.`id` ,c.`id_profesor`, p.`name`, p.`lastname`,c.`id_materia`, m.`nombre_materia`
 									 FROM `cde_cronograma` AS c, `cde_profesor` AS p, `cde_materia` AS m  
-											WHERE c.`estatus`='pendiente' 
+											WHERE c.`status`='pendiente' 
 													AND c.`id_materia` = m.`id`
 													AND c.`id_profesor` = p.`id` ");
-				
 		
 			return $result;		
 		}
@@ -85,11 +83,11 @@
 				$and = "" ;
 			}
 			$result = DB::query("SELECT e.nombre_evaluacion,e.descripcion,e.id_cronograma 
-										 FROM cde_materia AS m, cde_periodo AS per, cde_cronograma AS c, cde_evaluacion AS e, cde_profesor AS p, cde_pensum AS pen, courses AS cou 
+										 FROM cde_materia AS m, cde_periodo AS per, cde_cronograma AS c, cde_cronograma_actividades AS e, cde_profesor AS p, cde_pensum AS pen, courses AS cou 
 												WHERE c.id = e.id_cronograma 
 													and m.id = c.id_materia 
 													and p.id = c.id_profesor 
-													and c.estatus = 'pendiente' 
+													and c.status = 'pendiente' 
 													and m.id_courses = cou.id 
 													and pen.id_courses = cou.id
 													and pen.estatus = 'Activo' 
@@ -114,7 +112,7 @@
 		public function getProfesores()	
 		{
 
-			$result = DB::query("SELECT * FROM `cde_profesor`  WHERE `estatus`='Activo' ");
+			$result = DB::query("SELECT * FROM `cde_profesor`  WHERE `status`='1' ");
 			return $result;		
 		}
 		public function getCoursePeriodo()	

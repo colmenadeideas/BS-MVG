@@ -39,6 +39,15 @@ define(function() {
 						require(['app/profesor'], function(profesor) {
 							profesor.checkcurrentform();
 																										
+						});
+					case "cronogramas":
+						require(['app/cronogramas'], function(Cronogramas) {
+							Cronogramas.run();																										
+						});						
+						break;
+					case "users":
+						require(['app/users'], function(Users) {
+							Users.run();																										
 						});						
 						break;
 						

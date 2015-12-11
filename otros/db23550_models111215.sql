@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:3306
--- Generation Time: Dec 10, 2015 at 09:03 PM
+-- Generation Time: Dec 11, 2015 at 01:58 PM
 -- Server version: 5.5.34
 -- PHP Version: 5.5.10
 
@@ -29,8 +29,10 @@ SET time_zone = "+00:00";
 CREATE TABLE `cde_cronograma` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_materia` int(11) NOT NULL,
-  `estatus` enum('aprobado','rechazado','pendiente','') NOT NULL,
   `id_profesor` int(11) NOT NULL,
+  `status` enum('aprobado','rechazado','pendiente') NOT NULL DEFAULT 'pendiente',
+  `creationdate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `lastupdate` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`),
   KEY `id_materia` (`id_materia`),
   KEY `id_profesor` (`id_profesor`)
@@ -40,17 +42,17 @@ CREATE TABLE `cde_cronograma` (
 -- Dumping data for table `cde_cronograma`
 --
 
-INSERT INTO `cde_cronograma` (`id`, `id_materia`, `estatus`, `id_profesor`) VALUES
-(1, 1, 'pendiente', 1),
-(2, 1, 'pendiente', 1);
+INSERT INTO `cde_cronograma` (`id`, `id_materia`, `id_profesor`, `status`, `creationdate`, `lastupdate`) VALUES
+(1, 1, 1, 'pendiente', '2015-11-30 04:30:00', '0000-00-00 00:00:00'),
+(2, 1, 1, 'pendiente', '2015-12-05 04:30:00', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cde_evaluacion`
+-- Table structure for table `cde_cronograma_actividades`
 --
 
-CREATE TABLE `cde_evaluacion` (
+CREATE TABLE `cde_cronograma_actividades` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_cronograma` int(11) NOT NULL,
   `nombre_evaluacion` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
@@ -60,10 +62,10 @@ CREATE TABLE `cde_evaluacion` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
 
 --
--- Dumping data for table `cde_evaluacion`
+-- Dumping data for table `cde_cronograma_actividades`
 --
 
-INSERT INTO `cde_evaluacion` (`id`, `id_cronograma`, `nombre_evaluacion`, `descripcion`) VALUES
+INSERT INTO `cde_cronograma_actividades` (`id`, `id_cronograma`, `nombre_evaluacion`, `descripcion`) VALUES
 (1, 2, 'examen del tema 1 ', '10% de la nota final '),
 (2, 2, 'examen del tema 2', '20% de la nota final'),
 (3, 2, 'examen del tema 3', '30% de la nota final');
@@ -174,10 +176,13 @@ INSERT INTO `cde_periodo` (`id_periodo`, `id_pensum`, `id_courses`, `star_date`,
 
 CREATE TABLE `cde_profesor` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre_profesor` varchar(30) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `lastname` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
   `data` mediumtext NOT NULL,
-  `username` varchar(100) NOT NULL,
-  `estatus` enum('Activo','Inactivo') NOT NULL,
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `status` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
 
@@ -185,16 +190,10 @@ CREATE TABLE `cde_profesor` (
 -- Dumping data for table `cde_profesor`
 --
 
-INSERT INTO `cde_profesor` (`id`, `nombre_profesor`, `data`, `username`, `estatus`) VALUES
-(1, 'Luis Garcia ', '{"nombre":"luis garcia","cedula":"24333111","email":"otroluismas@gmail.com"}', 'otroluismas@gmail.com', 'Activo'),
-(2, 'Angelina De Oliveira', '{"nombre":"Angelina De Oliveira","cedula":"23123456","email":"angelinadeoliveira@gmail.com"}', 'angelinadeoliveira@gmail.com', 'Activo'),
-(3, 'Cesar rodriguez', '{"nombre":"Cesar rodriguez","cedula":"15123456","email":"cesarr@gmail.com"}', 'cesarr@gmail.com', 'Inactivo'),
-(4, 'Mariflor Marturet', '{"tipo":"profesor","name":"Mariflor","lastname":"Marturet","nationality":"V","cedula":"191234567","birthplace":"Valencia","birthdate":"30\\/08\\/1989","age":"26","address":"Malta","phonenumber":"02411234567","cellphone":"04121234567","email":"mariflor@marturet.com","studies":"1"}', 'mariflor@marturet.com', 'Activo'),
-(5, 'Tapi Jose  Ramirez', '{"name":"Tapi Jose ","lastname":"Ramirez","nationality":"V","cedula":"19020820","birthplace":"Nirgua","birthdate":"11\\/03\\/1988","age":"27","address":"Nirgua York","phonenumber":"04141234567","cellphone":"1041012345","email":"tapij02@gmail.com"}', 'tapij02@gmail.com', 'Activo'),
-(6, 'Armando  Perez', '{"name":"Armando ","lastname":"Perez","nationality":"V","cedula":"19001847","birthplace":"Guacara","birthdate":"20\\/08\\/1989","age":"26","address":"jjjfj","phonenumber":"02141234567","cellphone":"04161234567","email":"armadonp@hotmail.com"}', 'armadonp@hotmail.com', 'Activo'),
-(8, 'beglis alvarado', '{"name":"beglis","lastname":"alvarado","nationality":"V","cedula":"20553321","birthplace":"valencia","birthdate":"11\\/04\\/2000","age":"15","address":"ll","phonenumber":"(0021) 323.21.32","cellphone":"(0231) 321.32.13","email":"balvarado@gmail.com"}', 'balvarado@gmail.com', 'Activo'),
-(9, 'Gloria Guerra', '{"name":"Gloria","lastname":"Guerra","nationality":"V","cedula":"13285106","birthplace":"Colombia","birthdate":"10\\/17\\/1957","age":"50","address":"Valencia","phonenumber":"(0241) 867.65.04","cellphone":"(0416) 141.79.81","email":"gcguerrah@hotmail.com"}', 'gcguerrah@hotmail.com', 'Activo'),
-(12, 'rafael padron', '{"name":"rafael","lastname":"padron","nationality":"V","cedula":"1233123","birthplace":"valencia","birthdate":"10\\/26\\/2015","age":"23","address":"av bolivar","phonenumber":"02342352352","cellphone":"02342352352","email":"padronrfael@hotmail.com"}', 'padronrfael@hotmail.com', 'Activo');
+INSERT INTO `cde_profesor` (`id`, `username`, `name`, `lastname`, `email`, `data`, `created`, `status`) VALUES
+(1, 'otroluismas@gmail.com', 'Luis ', 'García', '', '{"nombre":"luis garcia","cedula":"24333111","email":"otroluismas@gmail.com", "photo":"photo.png"}', '0000-00-00 00:00:00', 1),
+(2, 'angelinadeoliveira@gmail.com', 'Angelina', 'De Oliveira', '', '{"nombre":"Angelina De Oliveira","cedula":"23123456","email":"angelinadeoliveira@gmail.com", "photo":"photo.png"}', '0000-00-00 00:00:00', 1),
+(3, 'cesarr@gmail.com', 'Cesar', 'Rodriguez', '', '{"nombre":"Cesar rodriguez","cedula":"15123456","email":"cesarr@gmail.com", "photo":"photo.png"}', '0000-00-00 00:00:00', 1);
 
 -- --------------------------------------------------------
 
@@ -5083,7 +5082,7 @@ INSERT INTO `menu` (`id`, `name`, `area`, `short_description`, `url`, `icon`, `l
 (13, 'Blank access', '', '', '', '', 1, 0, 0, 0, 0, 'active'),
 (14, 'Inscripción de alumnos', '', 'Registro manual de los estudiantes ', 'registrations/availableadmin', '', 2, 4, 0, 1, 1, 'active'),
 (15, 'Clases', '', 'Agregar profesor en el sistema \r\nAsignar MAterias\r\nAgregar Materias', 'profesor', '', 1, 0, 0, 1, 1, 'active'),
-(16, 'Aprobar Cronograma', '', 'El aprobar cronograma de una materia ', 'approveCronograma', '', 1, 0, 0, 1, 1, 'active'),
+(16, 'Cronogramas', '', 'El aprobar cronograma de una materia ', 'cronogramas', '', 1, 0, 0, 1, 1, 'active'),
 (17, 'Listar alumnos', '', 'Lista los alumnos de un trimestre ', '', '', 1, 0, 0, 1, 1, 'active'),
 (18, 'Cargar Pensum ', '', 'Carga un pensum ', 'add/pensum', '', 1, 0, 0, 1, 1, 'active'),
 (19, 'Registrar Periodo', '', 'Inicia el comienzo de un nuevo periodo', 'profesor/nuevoperiodo', '', 1, 0, 0, 1, 1, 'active');
@@ -5810,7 +5809,7 @@ CREATE TABLE `student_profile` (
   `lastname` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `data` mediumtext COLLATE utf8_unicode_ci NOT NULL,
-  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `status` int(1) DEFAULT '1',
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`)
@@ -7136,11 +7135,11 @@ CREATE TABLE `users_role_permissions` (
 --
 
 INSERT INTO `users_role_permissions` (`id`, `role`, `area`, `permissions`, `status`) VALUES
-(1, 'admin', 'presidencia', '{"1":"1","2":"1","3":"1","4":"1","5":"1","6":"1","7":"1","8":"1","9":"1","13":"1","14":"1"}', 'active'),
+(1, 'admin', 'presidencia', '{"1":"1","2":"1","3":"1","4":"1","5":"1","6":"1","7":"1","8":"1","9":"1",\n "10":"1","11":"1","12":"1","13":"1","14":"1","15":"1","16":"1","17":"1","18":"1","19":"1"}', 'active'),
 (2, 'estudiante', 'escuela', '{"1":"1","2":"1","3":"1","4":"0","5":"0","6":"0","7":"0","8":"0","9":"0",\n "10":"1","11":"1","12":"1","13":"1"}', 'active'),
 (3, 'administracion', 'presidencia', '{"1":"1","2":"1","3":"1","4":"1","5":"1","6":"1","7":"1","8":"1","9":"1","13":"1"}', 'active'),
 (4, 'mercadeo', 'presidencia', '{"1":"1","2":"1","3":"1","4":"1","5":"1","6":"0","7":"0","8":"1","9":"0","13":"1"}', 'active'),
-(5, 'controldeestudios', 'controldeestudios', '{"1":"1","2":"1","3":"1","4":"0","5":"0","6":"0","7":"0","8":"0","9":"0",\r\n "10":"0","11":"0","12":"1","13":"1","14":"0","15":"1","16":"1","17":"0","18":"1","19":"1"}', 'active'),
+(5, 'controldeestudios', 'controldeestudios', '{"1":"1","2":"1","3":"1","4":"1","5":"1","6":"1","7":"1","8":"1","9":"1",\n "10":"1","11":"1","12":"1","13":"1","14":"1","15":"1","16":"1","17":"1","18":"1","19":"1"}', 'active'),
 (6, 'profesor', '', '{"1":"1","2":"1","3":"1","4":"0","5":"0","6":"0","7":"0","8":"0","9":"0",\r\n "10":"0","11":"0","12":"1","13":"1","14":"0","15":"1","16":"1","17":"0","18":"1","19":"1"}', 'active');
 
 -- --------------------------------------------------------
@@ -7185,7 +7184,7 @@ CREATE TABLE `user_session` (
   `url_in` mediumtext NOT NULL,
   `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1102 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1106 ;
 
 --
 -- Dumping data for table `user_session`
@@ -8295,7 +8294,11 @@ INSERT INTO `user_session` (`id`, `username`, `ip_address`, `session_randomkey`,
 (1098, 'aortega@besign.com.ve', '190.142.16.246', '7706565d175dd66596.97927240', 'localhost/BS-MVG/html/account/identify', '2015-12-01 03:43:25'),
 (1099, 'aortega@besign.com.ve', '190.142.16.246', '28100565d1a10a7b624.66208188', 'localhost/BS-MVG/html/account/identify', '2015-12-01 03:54:56'),
 (1100, 'aortega@besign.com.ve', '190.142.16.246', '17929565d79b481cba0.46973276', 'localhost/BS-MVG/html/account/identify', '2015-12-01 10:43:00'),
-(1101, 'aortega@besign.com.ve', '190.142.16.246', '1400069667565c9d3e915005.42136486', 'localhost/BS-MVG/html/', '2015-12-01 13:37:26');
+(1101, 'aortega@besign.com.ve', '190.142.16.246', '1400069667565c9d3e915005.42136486', 'localhost/BS-MVG/html/', '2015-12-01 13:37:26'),
+(1102, 'hola@besign.com.ve', '190.142.16.246', '19341492975669d19c9b58c2.51210580', 'localhost/BS-MVG/html/registrations/get/all?sEcho=1&iColumns=8&sColumns=&iDisplayStart=0&iDisplayLength=20&mDataProp_0=0&mDataProp_1=function&mDataProp_2=function&mDataProp_3=function&mDataProp_4=function&mDataProp_5=function&mDataProp_6=function&mDataProp_7=function&sSearch=&bRegex=false&sSearch_0=&bRegex_0=false&bSearchable_0=true&sSearch_1=&bRegex_1=false&bSearchable_1=true&sSearch_2=&bRegex_2=false&bSearchable_2=true&sSearch_3=&bRegex_3=false&bSearchable_3=true&sSearch_4=&bRegex_4=false&bSearchable_4=true&sSearch_5=&bRegex_5=false&bSearchable_5=true&sSearch_6=&bRegex_6=false&bSearchable_6=true&sSearch_7=&bRegex_7=false&bSearchable_7=true&iSortCol_0=5&sSortDir_0=desc&iSortingCols=1&bSortable_0=true&bSortable_1=true&bSortable_2=true&bSortable_3=true&bSortable_4=true&bSortable_5=true&bSortable_6=true&bSortable_7=true&_=1449785919521', '2015-12-10 22:18:40'),
+(1103, 'hola@besign.com.ve', '190.142.16.246', '1196023533566abb56b904f3.19521311', 'localhost/BS-MVG/html/account/identify', '2015-12-11 12:03:02'),
+(1104, 'hola@besign.com.ve', '190.142.16.246', '1449264943566abc10e8bc63.53709925', 'localhost/BS-MVG/html/account/identify', '2015-12-11 12:05:37'),
+(1105, 'hola@besign.com.ve', '190.142.16.246', '1860710270566abc8c8d0ab8.90673072', 'localhost/BS-MVG/html/account/identify', '2015-12-11 12:07:40');
 
 -- --------------------------------------------------------
 
@@ -8381,17 +8384,10 @@ INSERT INTO `view_colaboradores` (`id`, `nombre`, `email`, `twitter`, `activo`) 
 --
 
 --
--- Constraints for table `cde_cronograma`
+-- Constraints for table `cde_cronograma_actividades`
 --
-ALTER TABLE `cde_cronograma`
-  ADD CONSTRAINT `cde_cronograma_ibfk_1` FOREIGN KEY (`id_materia`) REFERENCES `cde_materia` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `cde_cronograma_ibfk_2` FOREIGN KEY (`id_profesor`) REFERENCES `cde_profesor` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `cde_evaluacion`
---
-ALTER TABLE `cde_evaluacion`
-  ADD CONSTRAINT `cde_evaluacion_ibfk_1` FOREIGN KEY (`id_cronograma`) REFERENCES `cde_cronograma` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `cde_cronograma_actividades`
+  ADD CONSTRAINT `cde_cronograma_actividades_ibfk_1` FOREIGN KEY (`id_cronograma`) REFERENCES `cde_cronograma` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `cde_materia`

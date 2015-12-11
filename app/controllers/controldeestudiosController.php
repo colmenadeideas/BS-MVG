@@ -2,16 +2,14 @@
 
 	class controldeestudiosController extends Controller {
 		
-		public function __construct() 
-		{
+		public function __construct() {
 			
 			parent::__construct();
 			//Auth::handleLogin('controldeestudios');	//tu eres el que me esta fregando 
 		
 		}
 	
-		public function index() 
-		{
+		public function index() {
 			$role = $this->user->get('role');
 			
 			$this->loadModel('permissions');
@@ -46,12 +44,49 @@
 			$this->welcome();
 			 	
 		}
-		
 
-		public function welcome() 
-		{
+		public function welcome() {
 			$this->view->render('cde/home');
 		}
+
+		public function cronogramas($action='') {
+			switch ($action) {
+				default: //'all'
+					
+//					$pending = $this->model->getPendingCronogramas();
+
+					//print_r($pending); 
+					$this->view->pendientes = $this->model->getPendingCronogramas();
+					$this->view->render('cde/cronogramas/all');
+
+					/*
+					//this is edit
+					$i = 1;
+					foreach ($pending as $cronograma) {
+
+						$cronogramasActivities = $this->model->getCronogramasActivi($pendiente['id']);
+							
+							if(!empty($aux))
+							{
+								$name = 'info'.$i;
+								$resultado[$name] = $pendiente;
+								$name = 'eval'.$i;
+								$resultado[$name] = $aux; 
+								$res[$i] = $resultado;
+								$i++;
+							}
+							unset($aux);	
+						
+					}
+					unset($aux);
+					unset($resultado);
+					$this->view->pendientes = $res;	
+					
+					$this->view->render('cde/vistas/cronograma');*/
+					break;
+			}
+		}
+		
 
 		public function profesor($action='') {//profesor
 
@@ -164,8 +199,7 @@
 
 			
 		}
-		public function saveinfo($caso='')
-		{
+		public function saveinfo($caso='') {
 			$caso =$_POST['tipo'];
 			if(isset($_POST['c']))
 			{ 
@@ -196,8 +230,10 @@
 
 						unset($array_data['tipo']);
 						$array_profesor['username']     = $array_data['email'];
-						$array_profesor['estatus'] 		= 'Activo';
-						$array_profesor['nombre_profesor'] 		= $array_data['name'].' '.$array_data['lastname'];
+						$array_profesor['status'] 		= '1';
+						$array_profesor['name'] 		= $array_data['name'];
+						$array_profesor['lastname'] 	= $array_data['lastname'];
+						//$array_data['photo'] 			= '<img src="'.SITE_URL.'public/img/photo.png" class="img-responsive img-circle" />';
 						$array_profesor['data'] 		= json_encode($array_data);
 						$insert = $this->helper->insert('cde_profesor', $array_profesor);
 						$forcechangeurl = rand(0, 50);
@@ -442,97 +478,9 @@
 						$this->view->render('cde/vistas/cronograma');
 					break;		
 				
-				default:
-						$pendientes= $this->model->cronogramaPendientes();
-						
-						$i = 1;
-						foreach ($pendientes as $pendiente) 
-						{
-
-							
-								$aux = $this->model->cronogramaPenditeEvaluacion($pendiente['id']);
-								
-								if(!empty($aux))
-								{
-									$name = 'info'.$i;
-									$resultado[$name] = $pendiente;
-									$name = 'eval'.$i;
-									$resultado[$name] = $aux; 
-									$res[$i] = $resultado;
-									$i++;
-								}
-								unset($aux);	
-							
-						}
-						unset($aux);
-						unset($resultado);
-						$this->view->pendientes = $res;	
-
-						
-					
-						
-						$this->view->render('cde/vistas/cronograma');
-
-					break;
 			}
 
 		}
-
-
-		/*****************************************************************************************************************************/
-
-		public function users($action='') {//profesor
-
-
-			switch ($action) {
-				
-				case 'all':
-						//Auth::handleLogin('users');
-						$this->view->render('cde/users/all');
-				
-				case 'get':
-
-						//Auth::handleLogin('users');
-						switch($action){
-							case 'users':
-								$tablename = 'user_profile'; // List only administrative Users ( won't show clientes) 
-								$fields = array( 'name', 'username', 'id');
-								$where = "WHERE status !='deleted'";
-								$temptable ='';
-								break;
-							case 'actionlogs':
-								$tablename = 'users_action_log';
-								$fields = array( 'name_user', 'action','controller', 'date', 'item','id');					
-								$temptable = 'actionlogs';
-								$where = "";//"WHERE supplies_fields.status='active'";
-								break;
-						}
-						$data = $this->helper->getJSONtables($tablename, $fields, $where, $temptable);
-						echo $data;
-									
-								break;
-
-				case 'edit':
-						//Auth::handleLogin('users');
-						/*$userdata = $this->user->getUserdata();
-						switch($action){
-						case 'user':
-							$this->view->item = $this->model->getUser($id, 'id');					
-							$this->view->item_profile = $this->model->getUserProfile($id,'id');
-							//page
-							$this->view->render('cde/users/detail');
-							break;*/
-				break;
-
-
-			}
-		}
-		
-
-
-
-
-
 	
 	}
 ?>

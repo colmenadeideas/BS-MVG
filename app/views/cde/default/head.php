@@ -14,6 +14,7 @@
 	<link href="<?php echo CSS; ?>font-awesome.css" rel="stylesheet">
 	<link href="<?php echo CSS; ?>styles.css" rel="stylesheet">
 	<link href="<?php echo CSS;?>all.css" rel="stylesheet">  
+	<link href="<?php echo CSS;?>delia.css" rel="stylesheet">  
 	
 	<?php echo GOOGLE_FONTS; ?>
 

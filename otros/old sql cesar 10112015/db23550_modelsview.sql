@@ -1,0 +1,1457 @@
+-- phpMyAdmin SQL Dump
+-- version 3.5.7
+-- http://www.phpmyadmin.net
+--
+-- Host: localhost
+-- Generation Time: Dec 10, 2015 at 04:58 PM
+-- Server version: 5.5.29
+-- PHP Version: 5.4.10
+
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+
+--
+-- Database: `db23550_modelsview`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `courses`
+--
+
+CREATE TABLE `courses` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `order` int(11) NOT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `slug` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `description` mediumtext COLLATE utf8_unicode_ci NOT NULL,
+  `duration_payment_details` longtext COLLATE utf8_unicode_ci NOT NULL,
+  `step1_instructions` mediumtext COLLATE utf8_unicode_ci NOT NULL,
+  `step2_instructions` mediumtext COLLATE utf8_unicode_ci NOT NULL,
+  `step3_instructions` mediumtext COLLATE utf8_unicode_ci NOT NULL,
+  `step4_instructions` mediumtext COLLATE utf8_unicode_ci NOT NULL,
+  `welcome_instructions` mediumtext COLLATE utf8_unicode_ci NOT NULL,
+  `disclosure` mediumtext COLLATE utf8_unicode_ci NOT NULL,
+  `status` int(11) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=9 ;
+
+--
+-- Dumping data for table `courses`
+--
+
+INSERT INTO `courses` (`id`, `order`, `name`, `slug`, `description`, `duration_payment_details`, `step1_instructions`, `step2_instructions`, `step3_instructions`, `step4_instructions`, `welcome_instructions`, `disclosure`, `status`) VALUES
+(1, 4, 'Juvenil', 'juvenil', 'De 15 años en adelante', '<ul>\n					<li>Horario: \n						<ul>\n							<li>lunes, martes o jueves de 2:30PM a 5:10 PM</li>\n							<li>sábado: damas/caballeros<br>\n							9:00AM a 11:40AM  (I y II semestre)<br>\n							12:00PM a 2:40AM  (III y IV semestre)\n							</li>\n						</ul>\n						</li>\n					<li>Duración: 1 año</li>\n					<li>Título: Modelo Profesional Integral</li>\n					<li>Inscripción: Bs 1.500,00 (INGLUYE AGENDA MVG)</li>\n					<li>Mensualidad: Bs 1.800,00 (si cancela losprimeros 7 días del mes: Bs 1.500,00)</li>\n					<li>Requisitos: Tres (3) fotos tipo carnet, fotocopia de la cédula de identidad, fotocopia de la cédula del representante (si es menor de edad)</li>\n				</ul>', 'Para continuar debes:\n<ol>		<li>Realizar un depósito EN EFECTIVO o Transferencia con los siguientes datos<br><br> <strong>MODEL''S VIEW GROUP C.A.<br>RIF J-31701084-1<br>Banco de Venezuela<br>Cuenta Corriente\n<br>01020692810000016528<br>agenciamodelsview@gmail.com</strong>\n<br><br>Bs. 3.300,00<br><br>\n</li>\n<li>Ingresa a mi.modelsviewgroup.com con tu usuario y clave y registra tu Depósito o Voucher de pago<br><br></li>\n<li>En un lapso de hasta 72 horas recibirás la validación de tu pago y podrás continuar con el proceso de Inscripción</li>\n</ol>', 'Estamos procesando la información que registraste.<br>Al verificarse tu pago, recibirás un correo notificándolo.<br> Esto puede demorar hasta <strong>72 horas</strong>. Por favor, ¡ten paciencia! <br><h3>¡Ya falta poco para que seas parte de Models View!</h3>', '<ol>\n							<li>Entrar al sistema y completar los datos adicionales</li>\n<li>Imprime la planilla y normas de la academia (en 1 sola hoja por ambas caras)</li>\n<li>Lleva tu documentación, foto y voucher de pago a Model''s View para formalizar la inscripción</li>', 'Ahora que ya has completado tus datos, formaliza tu inscripción entregando  Tu planilla Impresa, Normas de la academia y Voucher de pago en Model''s View, C.C. Guaparo Valencia, Edo. Carabobo', '', 'Tu cupo NO está garantizado hasta que hayas realizado el pago y completado el proceso de inscripción. La preinscripción podría sufrir cambios en la fecha o asignación de grupo', 1),
+(2, 2, 'Infantil', 'infantil', 'De 5 hasta 11 años', '<ul>\n					<li>Horario: miercoles de 3:00PM a 6:00PM</li>\n					<li>Duración: 1 año</li>\n					<li>Título: Modelo Profesional Integral</li>\n					<li>Inscripción: Bs 1.500,00</li>\n					<li>Mensualidad: Bs 1.800,00 (si cancela losprimeros 7 días del mes: Bs 1.500,00)</li>\n					<li>Requisitos: Tres (3) fotos tipo carnet, fotocopia de la cédula del representante</li>\n				</ul>', 'Para continuar debes:\n<ol>		<li>Realizar un depósito EN EFECTIVO o Transferencia con los siguientes datos<br><br> <strong>MODEL''S VIEW GROUP C.A.<br>RIF J-31701084-1<br>Banco de Venezuela<br>Cuenta Corriente\n<br>01020692810000016528<br>agenciamodelsview@gmail.com</strong>\n<br><br>la cantidad de Bs. 3.300,00<br><br>\n</li>\n<li>Ingresa a mi.modelsviewgroup.com con tu usuario y clave y registra tu Depósito o Voucher de pago<br><br></li>\n<li>En un lapso de hasta 72 horas recibirás la validación de tu pago y podrás continuar con el proceso de Inscripción</li>\n</ol>', 'Estamos procesando la información que registraste.<br>Al verificarse tu pago, recibirás un correo notificándolo.<br> Esto puede demorar hasta <strong>72 horas</strong>. Por favor, ¡ten paciencia! <br><h3>¡Ya falta poco para que seas parte de Models View!</h3>', '<ol>\n							<li>Entrar al sistema y completar los datos adicionales</li>\n<li>Imprime la planilla y normas de la academia (en 1 sola hoja por ambas caras)</li>\n<li>Lleva tu documentación, foto y voucher de pago a Model''s View para formalizar la inscripción</li>', 'Ahora que ya has completado tus datos, formaliza tu inscripción entregando  Tu planilla Impresa, Normas de la academia y Voucher de pago en Model''s View, C.C. Guaparo Valencia, Edo. Carabobo', '', 'Tu cupo NO está garantizado hasta que hayas realizado el pago y completado el proceso de inscripción. La preinscripción podría sufrir cambios en la fecha o asignación de grupo', 1),
+(3, 5, 'Only for Men', 'only-for-men', 'Para Caballeros', '<ul>\n					<li>Horario: sábado de 12:00PM a 2:40PM\n							</li>\n					<li>Duración: 3 meses</li>\n					<li>Título: Modelo Profesional Integral</li>\n					<li>Inscripción: Bs 1.000,00</li>\n					<li>Mensualidad: Bs 1.000,00</li>\n					<li>Requisitos: Tres (3) fotos tipo carnet, fotocopia de la cédula de identidad, fotocopia de la cédula del representante (si es menor de edad)</li>\n				</ul>', 'Para continuar debes:\n<ol>		<li>Realizar un depósito EN EFECTIVO o Transferencia con los siguientes datos<br><br> <strong>MODEL''S VIEW GROUP C.A.<br>RIF J-31701084-1<br>Banco de Venezuela<br>Cuenta Corriente\n<br>01020692810000016528<br>agenciamodelsview@gmail.com</strong>\n<br><br>la cantidad de Bs. 2.000,00<br><br>\n</li>\n<li>Ingresa a mi.modelsviewgroup.com con tu usuario y clave y registra tu Depósito o Voucher de pago<br><br></li>\n<li>En un lapso de hasta 72 horas recibirás la validación de tu pago y podrás continuar con el proceso de Inscripción</li>\n</ol>', 'Estamos procesando la información que registraste.<br>Al verificarse tu pago, recibirás un correo notificándolo.<br> Esto puede demorar hasta <strong>72 horas</strong>. Por favor, ¡ten paciencia! <br><h3>¡Ya falta poco para que seas parte de Models View!</h3>', '<ol>\n							<li>Entrar al sistema y completar los datos adicionales</li>\n<li>Imprime la planilla y normas de la academia (en 1 sola hoja por ambas caras)</li>\n<li>Lleva tu documentación, foto y voucher de pago a Model''s View para formalizar la inscripción</li>', 'Ahora que ya has completado tus datos, formaliza tu inscripción entregando  Tu planilla Impresa, Normas de la academia y Voucher de pago en Model''s View, C.C. Guaparo Valencia, Edo. Carabobo', '', 'Tu cupo NO está garantizado hasta que hayas realizado el pago y completado el proceso de inscripción. La preinscripción podría sufrir cambios en la fecha o asignación de grupo', 1),
+(4, 8, 'Model Look', 'model-look', 'Plan Vacacional', '', 'Para continuar debes:\n<ol>							<li>Realice un depósito EN EFECTIVO o Transferencia con los siguientes datos<br><br> <strong>MODEL''S VIEW GROUP C.A.<br>RIF J-31701084-1<br>Banco de Venezuela<br>Cuenta Corriente\n<br>01020692810000016528<br>agenciamodelsview@gmail.com</strong>\n<br><br>la cantidad de Bs. 5.300,00 (3era Preventa) <br><br>\n</li>\n<li>Ingresa a mi.modelsviewgroup.com con tu usuario y clave y registra tu Depósito o Voucher de pago<br><br></li>\n<li>En un lapso de hasta 72 horas recibirás la validación de tu pago y podrás continuar con el proceso de Inscripción</li>\n</ol>', 'Estamos procesando la información que registraste.<br>Al verificarse tu pago, recibirás un correo notificándolo.<br> Esto puede demorar hasta <strong>72 horas</strong>. Por favor, ¡ten paciencia! <br><h3>¡Ya falta poco para que seas parte de Models View!</h3>', '<ol>\n							<li>Entrar al sistema y completar los datos adicionales</li>\n<li>Imprime la planilla y normas de la academia (en 1 sola hoja por ambas caras)</li>\n<li>Lleva tu documentación, foto y voucher de pago a Model''s View para formalizar la inscripción</li>', 'Ahora que ya has completado tus datos, formaliza tu inscripción entregando  Tu planilla Impresa, Normas de la academia y Voucher de pago en Model''s View, C.C. Guaparo Valencia, Edo. Carabobo', 'Entra al sistema e Imprime tu horario. <h1>¡Bienvenida a Model''s View!</h1>', 'Tu cupo NO está garantizado hasta que hayas realizado el pago y completado el proceso de inscripción. La preinscripción podría sufrir cambios en la fecha o asignación de grupo', 0),
+(5, 1, 'Baby Model', 'baby-model', '', '<ul>\n					<li>Horario: miércoles de 3:00PM a 4:15PM</li>\n					<li>Duración: 3 meses</li>\n					<li>Inscripción: Bs 1.000,00</li>\n					<li>Mensualidad: Bs 1.300,00 (si cancela losprimeros 7 días del mes: Bs 1.000,00)</li>\n					<li>Requisitos: Tres (3) fotos tipo carnet, fotocopia de la cédula del representante</li>\n				</ul>', 'Para continuar debes:\n<ol>		<li>Realizar un depósito EN EFECTIVO o Transferencia con los siguientes datos<br><br> <strong>MODEL''S VIEW GROUP C.A.<br>RIF J-31701084-1<br>Banco de Venezuela<br>Cuenta Corriente\n<br>01020692810000016528<br>agenciamodelsview@gmail.com</strong>\n<br><br>la cantidad de Bs. 2.300,00<br><br>\n</li>\n<li>Ingresa a mi.modelsviewgroup.com con tu usuario y clave y registra tu Depósito o Voucher de pago<br><br></li>\n<li>En un lapso de hasta 72 horas recibirás la validación de tu pago y podrás continuar con el proceso de Inscripción</li>\n</ol>', 'Estamos procesando la información que registraste.<br>Al verificarse tu pago, recibirás un correo notificándolo.<br> Esto puede demorar hasta <strong>72 horas</strong>. Por favor, ¡ten paciencia! <br><h3>¡Ya falta poco para que seas parte de Models View!</h3>', '<ol>\n							<li>Entrar al sistema y completar los datos adicionales</li>\n<li>Imprime la planilla y normas de la academia (en 1 sola hoja por ambas caras)</li>\n<li>Lleva tu documentación, foto y voucher de pago a Model''s View para formalizar la inscripción</li>', 'Ahora que ya has completado tus datos, formaliza tu inscripción entregando  Tu planilla Impresa, Normas de la academia y Voucher de pago en Model''s View, C.C. Guaparo Valencia, Edo. Carabobo', '', 'Tu cupo NO está garantizado hasta que hayas realizado el pago y completado el proceso de inscripción. La preinscripción podría sufrir cambios en la fecha o asignación de grupo', 1),
+(6, 3, 'Pre Juvenil', 'pre-juvenil', 'De 12 hasta 14 años', '', '', 'Estamos procesando la información que registraste.<br>Al verificarse tu pago, recibirás un correo notificándolo.<br> Esto puede demorar hasta <strong>72 horas</strong>. Por favor, ¡ten paciencia! <br><h3>¡Ya falta poco para que seas parte de Models View!</h3>', '<ol>\n							<li>Entrar al sistema y completar los datos adicionales</li>\n<li>Imprime la planilla y normas de la academia (en 1 sola hoja por ambas caras)</li>\n<li>Lleva tu documentación, foto y voucher de pago a Model''s View para formalizar la inscripción</li>', 'Ahora que ya has completado tus datos, formaliza tu inscripción entregando  Tu planilla Impresa, Normas de la academia y Voucher de pago en Model''s View, C.C. Guaparo Valencia, Edo. Carabobo', '', 'Tu cupo NO está garantizado hasta que hayas realizado el pago y completado el proceso de inscripción. La preinscripción podría sufrir cambios en la fecha o asignación de grupo', 1),
+(7, 7, 'Taller Auto Maquillaje', 'taller-automaquillaje', '', '', '', 'Estamos procesando la información que registraste.<br>Al verificarse tu pago, recibirás un correo notificándolo.<br> Esto puede demorar hasta <strong>72 horas</strong>. Por favor, ¡ten paciencia! <br><h3>¡Ya falta poco para que seas parte de Models View!</h3>', '', '', '', 'Tu cupo NO está garantizado hasta que hayas realizado el pago y completado el proceso de inscripción. La preinscripción podría sufrir cambios en la fecha o asignación de grupo', 1),
+(8, 6, 'Certificacion 5 Estrellas', 'certificacion-5-estrellas', '', '', '', 'Estamos procesando la información que registraste.<br>Al verificarse tu pago, recibirás un correo notificándolo.<br> Esto puede demorar hasta <strong>72 horas</strong>. Por favor, ¡ten paciencia! <br><h3>¡Ya falta poco para que seas parte de Models View!</h3>', '', '', '', 'Tu cupo NO está garantizado hasta que hayas realizado el pago y completado el proceso de inscripción. La preinscripción podría sufrir cambios en la fecha o asignación de grupo', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `courses_available_groups`
+--
+
+CREATE TABLE `courses_available_groups` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `parent_id` int(11) NOT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `horario-slug` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `description` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `start_date` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
+  `end_date` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
+  `schedule` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `registry_expiration_date` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
+  `max_quota` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=22 ;
+
+--
+-- Dumping data for table `courses_available_groups`
+--
+
+INSERT INTO `courses_available_groups` (`id`, `parent_id`, `name`, `horario-slug`, `description`, `start_date`, `end_date`, `schedule`, `registry_expiration_date`, `max_quota`) VALUES
+(1, 4, 'Temporada 1 - INFANTIL', 'modellook-infantil', '', '21/07/14', '01/08/14', '8:00am - 12:00pm', '21/07/14', 50),
+(2, 4, 'Temporada 1 - JUVENIL', 'modellook-juvenil', '', '21/07/14', '01/08/14', '1:00pm - 5:00pm', '21/07/14', 70),
+(3, 4, 'Temporada 2 - INFANTIL', 'modellook-infantil', '', '04/08/14', '15/08/14', '8:00am - 12:00pm', '04/08/14', 50),
+(4, 4, 'Temporada 2 - JUVENIL', 'modellook-juvenil', '', '04/08/14', '15/08/14', '1:00pm - 5:00pm', '04/08/14', 70),
+(5, 4, 'Temporada 3 - INFANTIL', 'modellook-infantil', '', '18/08/14', '29/08/14', '8:00am - 12:00pm', '18/08/14', 50),
+(6, 4, 'Temporada 3 - JUVENIL', 'modellook-juvenil', '', '18/08/14', '29/08/14', '1:00pm - 5:00pm', '18/08/14', 70),
+(7, 5, 'Miércoles', '', '', '14/01/15', '', '3:00pm - 4:15pm', '', 10),
+(8, 2, 'Miércoles', 'infantil', '', '14/01/15', '', '3:00pm - 6:00pm', '', 30),
+(9, 1, 'Lunes', 'juvenil', '', '12/01/15', '', '2:30pm - 5:10pm', '', 30),
+(10, 1, 'Martes', 'juvenil', '', '13/01/15', '', '2:30pm - 5:10pm', '', 30),
+(11, 1, 'Sábado', 'juvenil', '', '17/01/15', '', '9:00am - 11:40am', '', 30),
+(12, 3, 'Lunes', '', '', '12/01/15', '', '12:00pm - 2:40pm', '', 30),
+(13, 3, 'Martes', '', '', '13/01/15', '', '12:00pm - 2:40pm', '', 30),
+(14, 3, 'Sábado', '', '', '17/01/15', '', '12:00pm - 2:40pm', '', 30),
+(15, 1, 'Lunes', 'juvenil', '', '13/04/15', '', '2:30pm - 5:10pm', '', 30),
+(16, 1, 'Martes', 'juvenil', '', '14/04/15', '', '2:30pm - 5:10pm', '', 30),
+(17, 1, 'Jueves', 'juvenil', '', '16/04/15', '', '2:30pm - 5:10pm', '', 30),
+(18, 1, 'Sábado', 'juvenil', '', '18/04/15', '', '9:00am - 11:40am', '', 30),
+(19, 2, 'Miércoles', 'infantil', '', '15/06/15', '', '3:00pm - 6:00pm', '', 30),
+(20, 3, 'Sábado', '', '', '18/04/15', '', '12:00pm - 2:40pm', '', 30),
+(21, 5, 'Miércoles', '', '', '15/06/15', '', '3:00pm - 4:15pm', '', 10);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `courses_registrations`
+--
+
+CREATE TABLE `courses_registrations` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `course_available_group_id` int(11) NOT NULL,
+  `student_id` int(11) NOT NULL,
+  `data` mediumtext COLLATE utf8_unicode_ci NOT NULL,
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `lastModified` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `data_payment` mediumtext COLLATE utf8_unicode_ci NOT NULL,
+  `documentation` enum('to complete','pending','recieved') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'to complete',
+  `status` enum('pending','clearpayment','approved','agency','cancelled','completed') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'pending',
+  `rememberMail` varchar(1) COLLATE utf8_unicode_ci NOT NULL,
+  `razon` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=227 ;
+
+--
+-- Dumping data for table `courses_registrations`
+--
+
+INSERT INTO `courses_registrations` (`id`, `course_available_group_id`, `student_id`, `data`, `date`, `lastModified`, `data_payment`, `documentation`, `status`, `rememberMail`, `razon`) VALUES
+(221, 16, 221, '{"course_available_group_id":"16","name":"carmen berenice","lastname":"melendez viloria","phonenumber":"(0241) 872.77.65","cellphone":"(0426) 440.33.35","email":"carmenberenice25@gmail.com","confirm_email":"carmenberenice25@gmail.com","facebook":"","twitter":"@carmenbere","instagram":"@carmenbere2","buzz":"vaya publicitaria "}', '2015-06-13 16:09:11', '0000-00-00 00:00:00', '', 'to complete', 'pending', '5', ''),
+(222, 16, 220, '{"course_available_group_id":"16","name":"maria eugenia","lastname":"jimenez freitez","phonenumber":"(0254) 234.90.80","cellphone":"(0426) 952.34.91","email":"mariafrei24@hotmail.com","confirm_email":"mariafrei24@hotmail.com","facebook":"maria eugenia jimenez freitez","twitter":"@mariufrei","instagram":"@mariaeugeniajimenezfreitez","buzz":"por una valla publicitaria "}', '2015-06-14 04:30:00', '0000-00-00 00:00:00', '', 'to complete', 'pending', '5', ''),
+(223, 16, 222, '{"course_available_group_id":"21","name":"Arannath Maria.","lastname":"Lesmes Medina","phonenumber":"(0241) 872.56.81","cellphone":"(0424) 408.21.68","email":"SANDRACAROLYM@GMAIL.COM","confirm_email":"SANDRACAROLYM@GMAIL.COM","buzz":"POR VALLA Publicitaria. "}', '2015-06-14 04:30:00', '0000-00-00 00:00:00', '', 'to complete', 'pending', '5', ''),
+(226, 5, 219, '{"course_available_group_id":"19","name":"aaa","lastname":"aaa","phonenumber":"(0545) 455.54.55","cellphone":"(0545) 454.54.54","email":"crodriguez@besign.com.ve","confirm_email":"crodriguez@besign.com.ve","buzz":"sadasdasdas"}', '2015-06-14 04:30:00', '0000-00-00 00:00:00', '', 'to complete', 'cancelled', '2', '{"date":"19-06-15 12:06:49","id":"226","razon":"Inscripcion","obs":"WWWWWW"}');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `eventos`
+--
+
+CREATE TABLE `eventos` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `year` varchar(4) COLLATE utf8_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id` (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=21 ;
+
+--
+-- Dumping data for table `eventos`
+--
+
+INSERT INTO `eventos` (`id`, `year`, `name`) VALUES
+(1, '2008', 'Amazonian'),
+(2, '2009', 'Biostyle'),
+(3, '2011', 'Boat Party'),
+(4, '2011', 'Calendario'),
+(5, '2010', 'Desfile Chevignon'),
+(6, '2010', 'Desfile Verano'),
+(7, '2011', 'Metropolis Regreso a Clases'),
+(8, '2011', 'Nova Shopping & Fashion Show'),
+(9, '2011', 'Plan Vacacional Tierra Firme'),
+(10, '2009', 'Prestigio'),
+(11, '2012', 'Runway Galeria Café #1'),
+(12, '2012', 'Runway Weekend Galeria Café #2'),
+(13, '2011', 'SoloEnSeis'),
+(14, '2012', 'Runway Weekend Shandoo #3'),
+(15, '2011', 'Trendy Fashion Show'),
+(16, '2010', 'View'),
+(17, '2012', 'Show Room Día de las Madres CC La Granja'),
+(18, '2012', 'Show Room Día de las Madres CC Metrópolis'),
+(19, '2012', 'Runway Nautilus Jardín Gourmet'),
+(20, '2013', 'OTR OFF THE RACK World Trade Center');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `menu`
+--
+
+CREATE TABLE `menu` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `area` enum('produccion','gerencia','administracion') COLLATE utf8_unicode_ci NOT NULL,
+  `short_description` mediumtext COLLATE utf8_unicode_ci NOT NULL,
+  `url` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `icon` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `level` int(11) DEFAULT '1',
+  `parent` int(11) NOT NULL,
+  `order` int(11) NOT NULL,
+  `public` int(1) NOT NULL DEFAULT '1',
+  `display` int(11) NOT NULL DEFAULT '1',
+  `status` enum('active','inactive') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'active',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=14 ;
+
+--
+-- Dumping data for table `menu`
+--
+
+INSERT INTO `menu` (`id`, `name`, `area`, `short_description`, `url`, `icon`, `level`, `parent`, `order`, `public`, `display`, `status`) VALUES
+(1, 'Mi Web', '', '', 'presidencia', '', 1, 0, 0, 0, 0, 'active'),
+(2, 'Settings', '', 'Editar Perfil del usuario', 'account/identify', '', 1, 0, 0, 1, 0, 'active'),
+(3, 'Escuela', '', 'ver trabajos por imprimir', 'escuela', '', 1, 0, 0, 1, 0, 'active'),
+(4, 'Inscripciones', '', '', 'registrations/home', 'credit-card', 1, 0, 0, 0, 1, 'active'),
+(5, 'Inscribir', '', 'Inscribir en sistema', 'courses/available/nopage', '', 2, 4, 0, 1, 0, 'active'),
+(6, 'Inscripciones en Curso', '', 'Listado de Inscripciones en proceso abierto', 'registrations/all', '', 2, 4, 0, 1, 1, 'active'),
+(7, 'Aprobaciones de Pago', '', 'Listado de estudiantes procesados', 'registrations/clearpayment', '', 2, 4, 0, 1, 1, 'active'),
+(8, 'Estudiantes', '', '', 'registrations/active', 'credit-card', 1, 0, 0, 1, 1, 'active'),
+(9, 'Pendientes por Pago', '', 'Pre-Inscripciones aún por registrar pago', 'registrations/pending', '', 2, 4, 0, 1, 1, 'active'),
+(10, 'Mi Inscripción', '', '', 'registration/verify', '', 1, 0, 0, 1, 1, 'active'),
+(11, 'Mi Horario', '', '', 'registration/verify/schedule', '', 1, 0, 0, 1, 1, 'active'),
+(12, 'Acceso a escuela', '', '//Solo para Auth del registration/verify', '', '', 1, 0, 0, 0, 0, 'active'),
+(13, 'Blank access', '', '', '', '', 1, 0, 0, 0, 0, 'active');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `modelos`
+--
+
+CREATE TABLE `modelos` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `cat` enum('kids','women','men','talento') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'women',
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `lastname` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `born` varchar(10) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `height` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
+  `bust` int(3) NOT NULL,
+  `waist` int(3) NOT NULL,
+  `hips` int(3) NOT NULL,
+  `size` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
+  `pants` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
+  `shoe` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
+  `hair` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `eyes` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `skin` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `activo` enum('si','no') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'si',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id` (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=168 ;
+
+--
+-- Dumping data for table `modelos`
+--
+
+INSERT INTO `modelos` (`id`, `cat`, `name`, `lastname`, `born`, `height`, `bust`, `waist`, `hips`, `size`, `pants`, `shoe`, `hair`, `eyes`, `skin`, `activo`) VALUES
+(1, 'women', 'María José', 'Ruíz', '', '165', 76, 60, 76, '', '', '37', 'Castaño', 'Marrones', 'Blanca', 'no'),
+(2, 'women', 'Vanessa Alessandra', 'Alvarez', '', '165', 81, 60, 86, '', '', '37', 'Rubio', 'Marrón Claro', '', 'no'),
+(3, 'women', 'María Fernanda', 'Parra', '', '165', 80, 63, 90, 'S', '36', '39', 'Negro', 'Marrón Claro', 'trigueña', 'si'),
+(4, 'women', 'Stefani', 'Ventura', '', '165', 85, 60, 90, 'S', '26', '37', 'Castaño oscuro', 'Marrones', 'Morena', 'si'),
+(5, 'women', 'Mariana', 'Blanco', '', '169', 83, 67, 92, 'S', '', '37', 'Castaño', 'Miel', 'Blanca', 'si'),
+(6, 'women', 'Irina ', 'Bozzone ', '', '163', 82, 59, 87, 'S', '', '38', 'Rubio', 'Marrón Claro', 'Blanca', 'no'),
+(8, 'women', 'Loredana', 'Bruni', '', '170', 86, 67, 95, '', '', '9', 'Rubio', 'Marrones', '', 'si'),
+(9, 'women', 'Giusy', 'Palmisano', '', '170', 88, 60, 88, 'S', '', '37', 'Castaño claro', 'Verdes', 'Morena Clara', 'si'),
+(10, 'women', 'Isabella', 'Arriaga', '', '173', 80, 62, 92, '', '', '8', 'Castaño', 'Marrones', 'Blanca', 'si'),
+(11, 'women', 'Oriana', 'Luchesse', '', '174', 90, 60, 90, 'S', '', '38', '', 'Marrones', 'Blanca', 'no'),
+(12, 'women', 'Andrea', 'Suárez', '', '165', 85, 67, 79, '', '', '39', 'Castaño', 'Verdes', '', 'no'),
+(13, 'women', 'Lucia', 'Suárez', '', '155', 89, 70, 79, '', '', '38', 'Castaño', 'Marrones', '', 'no'),
+(14, 'women', 'Jeny', 'de Andrade', '', '155', 77, 62, 88, 'S', '', '36', 'Rojizo', 'Marrones', '', 'no'),
+(15, 'women', 'Mary', 'de la Peña', '', '', 0, 0, 0, '', '', '', '', '', '', 'no'),
+(16, 'women', 'María Virginia', 'Ríos', '', '175', 90, 62, 98, '', '', '39', 'Castaño oscuro', 'Marrones', '', 'si'),
+(17, 'kids', 'Melanie', 'Neuman', '', '', 0, 0, 0, '8', '', '', 'Castaño Claro', 'Marrón Claro', 'Blanca', 'si'),
+(18, 'women', 'Juliet', 'Aguilar', '', '160', 75, 60, 82, 'S', '', '36', 'Rubio', 'Verdes', 'Blanca', 'si'),
+(19, 'men', 'Miguel', 'Cascarano', '', '182', 0, 0, 0, 'S', '31', '42', 'Marrón', 'Marrones', 'Trigueño', 'si'),
+(20, 'women', 'Annalisa', 'Perfido', '', '176', 86, 69, 98, 'M', '', '39', '', 'Azules', 'Blanca', 'no'),
+(21, 'men', 'Fabrizio', 'Sassano', '', '184', 0, 0, 0, 'M', '32', '45', 'Castaño', 'Marrones', 'Blanca', 'si'),
+(22, 'men', 'Alvaro', 'Tortolero', NULL, '182', 0, 0, 0, 'S', '30', '42', 'Castaño', 'Verdes', '', 'no'),
+(23, 'women', 'Sara', 'González', NULL, '', 0, 0, 0, '', '', '', '', '', '', 'no'),
+(24, 'women', 'Lorena', 'Guzmán', NULL, '', 0, 0, 0, '', '', '', 'Negro', 'Marrón Oscuro', '', 'no'),
+(25, 'men', 'Mauricio', 'Lugo Manfredini', NULL, '180', 0, 0, 0, 'M', '31', '43', 'Castaño Oscuro', 'Verdes', 'Blanca', 'no'),
+(26, 'women', 'Oriana', 'Duarte', NULL, '155', 87, 65, 99, 'S', '', '38', 'Castaño Claro', 'Marrones', 'Blanca', 'si'),
+(27, 'women', 'Patricia', 'Duarte', NULL, '151', 79, 66, 91, 'S', '', '37', 'Castaño Claro', 'Marrones', 'Blanca', 'si'),
+(28, 'women', 'Ana', 'Martínez', NULL, '168', 84, 66, 91, 'XS', '', '37', 'Castaño Oscuro', 'Marrones', 'Morena Clara', 'si'),
+(29, 'women', 'Mariarita', 'Miozzi', NULL, '171', 82, 71, 98, 'S', '', '39', 'Castaño Oscuro', 'Marrones', 'Blanca', 'si'),
+(30, 'women', 'Anaís', 'Parra', NULL, '168', 78, 65, 74, '', '', '39', 'Negro', 'Marrones', '', 'no'),
+(31, 'women', 'Ana Julia', 'Plasencia', NULL, '165', 85, 63, 95, 'S', '', '37', 'Castaño Oscuro', 'Marrones', 'morena', 'no'),
+(32, 'women', 'Valentina', 'López', NULL, '165', 87, 64, 90, 'S', '', '39', 'Castaño Claro', 'Marrones', 'Morena', 'si'),
+(33, 'women', 'Dannielys', 'Díaz', NULL, '156', 80, 62, 89, 'S', '28', '36', 'Rubio Cenizo', 'Marrón Oscuro', 'Blanca', 'no'),
+(34, 'kids', 'Orleannys', 'Castilla', '7', '', 0, 0, 0, '', '', '30', 'Castaño Claro', 'Marrones', 'Morena', 'si'),
+(35, 'women', 'Dulce', 'Silva', NULL, '172', 87, 68, 85, '', '', '39', 'Castaño Claro', 'Marrones', 'Morena', 'si'),
+(36, 'women', 'María José', 'Arcilagos', NULL, '160', 81, 64, 90, '', '', '38', 'Rubio', 'Verdes', '', 'no'),
+(37, 'women', 'Lalezka', 'Pérez', NULL, '156', 80, 64, 90, '', '', '37', 'Rubio', 'Azules', '', 'no'),
+(39, 'kids', 'Oriana', 'Ovalles', '12', '', 0, 0, 0, '14', '', '36', 'Castaño Oscuro', 'Negro', 'Morena Oscura', 'si'),
+(41, 'kids', 'Fernanda', 'Mendoza', NULL, '145', 0, 0, 0, '', '', '37', 'Negro', 'Marrones Oscuros', '', 'no'),
+(42, 'women', 'Ivanna', 'Maldonado', NULL, '158', 70, 42, 50, 'XS', '', '37', 'Castaño Oscuro', 'Marron Oscuros', 'Trigueña', 'si'),
+(43, 'kids', 'Kamila', 'Romero Flores', NULL, '', 0, 0, 0, '', '', '', 'Castaño Oscuro', 'Marrones', 'Morena', 'si'),
+(44, 'kids', 'Maryheber', 'Pérez', NULL, '', 0, 0, 0, '', '', '', 'Negro', 'Marrones Oscuros', '', 'no'),
+(45, 'kids', 'Joselys', 'Carrion', NULL, '', 0, 0, 0, '', '', '36', 'Negro', 'Marrones', '', 'si'),
+(46, 'kids', 'María Alejandra', 'Silva', NULL, '149', 0, 0, 0, 'S', '', '36', 'Castaño Oscuro', 'Marrones Oscuros', 'Morena', 'no'),
+(47, 'women', 'Yoselin', 'Rivero', NULL, '163', 79, 61, 81, 'S', '', '37', 'Negro', 'Marron Oscuro', 'Morena Oscura', 'si'),
+(48, 'women', 'Tracy', 'Banda', NULL, '157', 78, 57, 87, 'S', '', '37', 'Negro', 'Miel', 'Blanca', 'no'),
+(49, 'kids', 'Stephany', 'Castellanos', NULL, '', 0, 0, 0, '8', '', '', 'Castaño', 'Verdes', 'Blanca', 'si'),
+(50, 'women', 'Paola', 'Del Pino', NULL, '166', 84, 60, 89, 'S', '', '36', 'Castaño Oscuro', 'Castaño Claro', 'Blanca', 'si'),
+(52, 'women', 'Luisana', 'Jaimes', NULL, '172', 80, 61, 83, 'S', '', '37', 'Castaño Oscuro', 'Marrones', 'Blanca', 'si'),
+(53, 'women', 'Catherine', 'Padilla', NULL, '169', 68, 91, 85, '', '', '38', 'Castaño', 'Marrones', '', 'no'),
+(54, 'women', 'Karla', 'Fernández', '', '167', 82, 62, 92, 'S', '', '38', 'Castaño Oscuro', 'Verdes', 'Trigueña', 'no'),
+(55, 'women', 'Jessica', 'Terán', NULL, '170', 84, 64, 94, '', '', '39', 'Castaño Claro', 'Miel', 'Morena', 'si'),
+(56, 'women', 'Arianna', 'Ianello', NULL, '170', 77, 63, 87, '', '', '40', 'Castaño Oscuro', 'Marrones', 'Blanca', 'no'),
+(57, 'women', 'Angélica', 'Benitez', NULL, '', 90, 61, 88, '', '', '', 'Castaño Oscuro', 'Castaño Oscuro', '', 'no'),
+(58, 'women', 'Andrea', 'Ostos', NULL, '163', 85, 60, 90, '', '', '37', 'Castaño Claro', 'Miel', '', 'si'),
+(60, 'women', 'Ambar', 'Gutiérrez', '', '157', 80, 64, 81, 'XS', '', '38', 'Rubio Rojizo', 'Verdes', 'Blanca', 'no'),
+(61, 'women', 'Mariangélica', 'Jacotte', '', '165', 82, 63, 90, '', '', '39', 'Rubio', 'Marrones', '', 'no'),
+(62, 'women', 'Yuliany', 'Cabrera', '', '165', 78, 63, 83, 'S', '', '37', 'Castaño', 'Marrones', 'blanca', 'si'),
+(63, 'women', 'Mariana', 'Costanzo', '', '168', 82, 71, 95, 'S', '', '37', 'Castaño Rojizo', 'Marrones', 'Blanca', 'si'),
+(64, 'women', 'Camila', 'Ferrer', '', '169', 91, 65, 93, 'S', '', '39', 'Castaño', 'Marrones', 'Trigueña', 'si'),
+(65, 'women', 'Andrea', 'Istúriz', '', '171', 90, 64, 90, 'S', '', '38', 'Castaño', 'Verdes', 'Blanca', 'si'),
+(66, 'women', 'Ysmar', 'Martínez', '', '172', 88, 65, 75, 'XS', '', '39', 'Negro', 'Marron oscuro', 'blanca', 'no'),
+(67, 'women', 'Maricarmen', 'Araujo', '', '175', 84, 62, 95, '', '', '41', 'Negro', 'Marrones', 'Morena', 'si'),
+(68, 'women', 'Neikelly', 'Escalante', '', '161', 68, 58, 87, 'XS', '', '37', 'Castaño', 'Marron Oscuro', 'Blanca', 'si'),
+(69, 'women', 'Mariella', 'Agriesti', '', '170', 83, 66, 92, '', '', '39', 'Rubia', 'Verdes', '', 'no'),
+(70, 'kids', 'Veronica', 'Perozo', '', '', 0, 0, 0, '12', '', '36', 'Castaño Oscuro', 'Marrones', 'blanca', 'si'),
+(71, 'kids', 'Yosmar', 'Contreras', '', '', 0, 0, 0, '12', '', '', 'Castaño Oscuro', 'Marrones', 'Morena', 'si'),
+(72, 'kids', 'Yuliana', 'Cabrera', '', '165', 78, 63, 83, 'S', '', '37', 'Castaño Oscuro', 'Marrones', 'Morena clara', 'si'),
+(86, 'women', 'Ariadna ', 'Barreto', '', '175', 82, 64, 95, 'S ', '24', '39', 'Castaño Claro', 'Marrones', 'Blanca', 'no'),
+(85, 'women', 'Daniela', 'Bou-mansour', '', '172', 77, 65, 85, 'S ', '28', '39', 'castaño oscuro', 'Marrones', 'Morena clara', 'no'),
+(84, 'women', 'Hillary', 'Ferrer', '', '169', 87, 70, 92, 'S ', '28', '39', 'chocolate', 'Marrones', 'Morena', 'no'),
+(83, 'women', 'Claribel', 'Luis', '', '167', 92, 66, 85, 'S ', '36', '37', 'castaño medio', 'Marrones', 'Blanca', 'si'),
+(82, 'women', 'Valentina ', 'Gonzalez', '', '172', 82, 60, 85, 'S ', '28', '40', 'negro', 'Marrones', 'morena', 'si'),
+(81, 'women', 'Lucero', 'Gomez', '', '160', 70, 60, 80, 'S ', '24', '37', 'castaño claro', 'ambar', 'blanca', 'no'),
+(87, 'women', 'Edgarvy', 'Garces', '', '167', 83, 67, 85, 'S ', '26', '39', 'Negro', 'negro', 'Morena', 'si'),
+(88, 'women', 'Pierina', 'Gonzalez', '', '170', 87, 69, 90, 'S ', '28', '40', 'castaño', 'verdes', 'morena', 'no'),
+(89, 'women', 'Valentina ', 'Sorondo', '', '163', 79, 64, 88, 'S ', '26', '37', 'castaño', 'Marrones', 'blanca', 'no'),
+(90, 'women', 'Valeria ', 'Solorzano', '', '164', 79, 63, 87, 'S ', '24', '38', 'castaño', 'Miel', 'blanca', 'si'),
+(105, 'women', 'Daniela', 'Santana', NULL, '170', 75, 64, 80, 'S', '26', '37', 'castaño medio', 'Marrones', 'blanca', 'no'),
+(92, 'women', 'Anniella', 'Flores', '', '163', 88, 63, 97, 'S', '28', '38', 'Rojo', 'marron', 'blanca ', 'si'),
+(93, 'kids', 'Veronica', 'Passariello', '', '127', 60, 57, 60, '8', '8', '33', 'castaño', 'marrones', 'blanca', 'si'),
+(98, 'women', 'Julia', 'Pinto', '', '161', 78, 59, 82, 'S ', '26', '35', 'castaño', 'marrones', 'blanca', 'no'),
+(95, 'women', 'Wilmery', 'Vargas', '', '164', 84, 60, 81, 'S', '28', '38', 'castaño oscuro', 'marrones', 'morena', 'no'),
+(96, 'women', 'Maria Angélica', 'Sepulveda', '', '170', 79, 68, 89, 'M', '28', '38', 'Chocolate', 'Marrones', 'morena', 'si'),
+(97, 'kids', 'Valentina', 'Jorge', '', '138', 65, 55, 69, '10', '10', '30', 'castaño', 'Marrones', 'morena clara', 'si'),
+(100, 'women', 'Gretel ', 'Urene', '', '175', 81, 63, 89, 'S', '26', '39', 'Castaño', 'Café', 'blanca', 'no'),
+(101, 'women', 'Ariadna ', 'Hernandez', '', '164', 81, 63, 86, 'S ', '26', '38', 'castaño', 'verdes', 'Blanca', 'no'),
+(102, 'women', 'Angely', 'Brito', '', '164', 83, 68, 96, 'S', '26', '38', 'castaño', 'verdes', 'Blanca', 'no'),
+(106, 'women', 'Luisa', 'Ovalles', NULL, '166', 84, 67, 81, 'S', '26', '38', 'castaño claro', 'verdes', 'blanca', 'si'),
+(107, 'talento', 'Daniela', 'Villavicencio', NULL, '', 0, 0, 0, '', '', '', '', '', '', 'si'),
+(109, 'women', 'Ana', 'Estaba', NULL, '170', 94, 68, 96, 'S', '26', '39', 'Rubio Medio', 'Verdes', 'blanca', 'si'),
+(110, 'women', 'Karin', 'El Aridi', NULL, '165', 81, 65, 78, 'S', '', '39', 'Negro', 'Negro', 'Blanca', 'si'),
+(111, 'talento', 'Irene', 'Sandoval', NULL, '', 0, 0, 0, 'S', '', '', '', '', '', 'si'),
+(112, 'talento', 'Lorena', 'Mazza', NULL, '', 0, 0, 0, '', '', '', '', '', '', 'si'),
+(113, 'women', 'María Fernanda', 'Rivas', NULL, '166', 87, 64, 93, 'S', '39', '', 'Castaño Oscuro', 'Marrones', 'Morena', 'no'),
+(114, 'talento', 'María Gabriela ', 'Corral', NULL, '', 0, 0, 0, '', '', '', '', '', '', 'si'),
+(115, 'talento', 'María', 'Vivas', NULL, '', 0, 0, 0, '', '', '', '', '', '', 'si'),
+(116, 'talento', 'Marianny', 'Bello', NULL, '', 0, 0, 0, '', '', '', '', '', '', 'si'),
+(117, 'women', 'Marian', 'Angulo', NULL, '165', 76, 61, 77, 'S', '', '36', 'Castaño', 'Marron Oscuro', 'Morena', 'no'),
+(118, 'talento', 'Sthefany', 'Faria', NULL, '', 0, 0, 0, '', '', '', '', '', '', 'si'),
+(119, 'women', 'Rosmar', 'Hernández', NULL, '164', 78, 62, 84, 'S', '', '36', 'Castaño oscuro', 'Marron Oscuro', 'Blanca', 'no'),
+(120, 'talento', 'Yinerid', 'Morales', NULL, '', 0, 0, 0, '', '', '', '', '', '', 'si'),
+(121, 'women', 'Danna', 'Solorzano', NULL, '172', 89, 97, 70, 'S', '', '38', 'Castaño oscuro', 'Marrones', 'Blanca', 'si'),
+(122, 'women', 'Vicentina', 'Colaruzzo', NULL, '166', 81, 61, 85, 'S', '24', '38', 'Castaño', 'Marrones', 'Blanca', 'no'),
+(123, 'men', 'Marco', 'Di Salvatore', NULL, '188', 0, 0, 0, 'M', '', '45', 'Negro', 'Marones', 'Blanco', 'si'),
+(124, 'men', 'Héctor', 'R', NULL, '193', 0, 0, 0, 'M', '32', '4', 'Castaño Oscuro', 'Marrones Oscuro', 'Moreno Oscuro', 'si'),
+(125, 'women', 'Estebalis', 'Diaz', NULL, '175', 80, 60, 85, 'M', '', '40', 'Castaño', 'Marrones', 'Blanca', 'si'),
+(126, 'women', 'Andrea', 'Osio', NULL, '177', 84, 62, 92, 'S', '', '38', 'Rubio', 'Marrones', 'Blanca', 'si'),
+(127, 'women', 'Erika', 'Pereira', NULL, '177', 78, 64, 93, 'S', '', '38', 'Cenizo', 'Marrones', 'Blanca', 'si'),
+(128, 'women', 'Ana Cristina', 'Rivero', NULL, '168', 89, 68, 91, 'S', '', '41', 'Castaño Claro', 'Marron Claro', 'trigueña', 'no'),
+(134, 'kids', 'Omkhie', 'Chan', NULL, '', 0, 0, 0, '', '', '', 'Negro', 'Marron Oscuro', 'Blanca', 'si'),
+(130, 'women', 'Kelis', 'Rosales', NULL, '177', 88, 60, 86, 'S', '', '41', 'Castaño Medio', 'Marron Oscuro', 'Morena Oscuro', 'no'),
+(131, 'women', 'Luissana', 'Vallenilla', NULL, '', 88, 65, 88, 'S', '', '38', 'Castaño Oscuro', 'Marrones', 'Trigeña', 'no'),
+(132, 'women', 'Maria Fernanda', 'Morera', NULL, '171', 79, 62, 70, 'S', '', '37', 'Castaño Oscuro', 'Marrones', 'Trigueña', 'no'),
+(135, 'women', 'Nathaly', 'De Lima', NULL, '158', 82, 61, 92, 'S', '', '37', 'Castaño', 'Pardos', 'Morena', 'si'),
+(136, 'kids', 'Veronica', 'Rosales', NULL, '', 0, 0, 0, '12', '', '', 'castaño claro', 'marrones', 'blanca', 'si'),
+(137, 'women', 'Rina', 'López', NULL, '169', 82, 60, 83, 'S', '', '36', 'Castaño oscuro', 'Marron oscuro', 'Blanca', 'no'),
+(138, 'women', 'Thaily', 'González', NULL, '169', 86, 63, 92, 'S', '', '37', 'Castaño Rojizo', 'Marrones', 'Blanca', 'si'),
+(139, 'women', 'María Alejandra', 'Ostos', NULL, '172', 78, 66, 90, 'S', '', '38', 'castaño medio', 'Marrones oscuro', 'blanca', 'no'),
+(140, 'kids', 'Bárbara', 'Castellano', NULL, '', 0, 0, 0, '', '', '', '', '', '', 'si'),
+(141, 'talento', 'Aranza', 'Castillo', NULL, '', 0, 0, 0, '', '', '', '', '', '', 'si'),
+(142, 'talento', 'Daniela', 'Corro', NULL, '', 0, 0, 0, '', '', '', '', '', '', 'si'),
+(143, 'talento', 'Erika', 'Perez', NULL, '', 0, 0, 0, '', '', '', '', '', '', 'si'),
+(144, 'talento', 'Gabriela', 'Azcarrunz', NULL, '', 0, 0, 0, '', '', '', '', '', '', 'si'),
+(145, 'talento', 'Jhosbeli', 'Díaz', NULL, '', 0, 0, 0, '', '', '', '', '', '', 'si'),
+(146, 'talento', 'Karen ', 'Rivera', NULL, '', 0, 0, 0, '', '', '', '', '', '', 'si'),
+(147, 'talento', 'Karla ', 'Hernandez', NULL, '', 0, 0, 0, '', '', '', '', '', '', 'si'),
+(148, 'talento', 'Luciana', 'Ondosgoittiz', NULL, '', 0, 0, 0, '', '', '', '', '', '', 'si'),
+(149, 'talento', 'Maria ', 'Lugo', NULL, '', 0, 0, 0, '', '', '', '', '', '', 'si'),
+(150, 'talento', 'Mariana ', 'París', NULL, '', 0, 0, 0, '', '', '', '', '', '', 'si'),
+(151, 'talento', 'Milagros', 'Ramírez', NULL, '', 0, 0, 0, '', '', '', '', '', '', 'si'),
+(152, 'talento', 'Rosismenia', 'Gonzalez', NULL, '', 0, 0, 0, '', '', '', '', '', '', 'si'),
+(153, 'talento', 'Rosmary', 'Romero', NULL, '', 0, 0, 0, '', '', '', '', '', '', 'si'),
+(154, 'talento', 'Silene', 'Hurtado', NULL, '', 0, 0, 0, '', '', '', '', '', '', 'si'),
+(155, 'talento', 'Vanessa', 'Carrero', NULL, '', 0, 0, 0, '', '', '', '', '', '', 'si'),
+(156, 'talento', 'Yoselin', 'Gonzalez', NULL, '', 0, 0, 0, '', '', '', '', '', '', 'si'),
+(157, 'talento', 'Michelle ', 'Chavez', NULL, '', 0, 0, 0, '', '', '', '', '', '', 'si'),
+(159, 'women', 'Andrea', 'Martins', NULL, '172', 76, 86, 65, 'S', '', '39', 'Castaño Claro', 'Marron Oscuro', 'Blanca', 'no'),
+(158, 'women', 'Adriana', 'Torrealba', NULL, '', 0, 0, 0, '', '', '', '', '', '', 'no'),
+(160, 'women', 'Chabelis', 'Chain', NULL, '1.66', 80, 85, 91, 'S', '', '38', 'Castaño Oscuro', 'Marrones', 'Morena', 'si'),
+(161, 'women', 'Winnifer', 'Jimenez', NULL, '1.67', 78, 64, 90, 'S', '', '38', 'Negro', 'Marrones', 'Blanca', 'si'),
+(162, 'women', 'Leonella', 'Paris ', NULL, '1.62', 90, 68, 92, 'S', '', '38', 'Rubia', 'Marrones', 'Blanca', 'si'),
+(163, 'women', 'Fernanda', 'de Sousa', NULL, '1.67', 86, 62, 89, 'S', '', '38', 'Castaño', 'Miel', 'Trigueña', 'si'),
+(164, 'women', 'Estefani', 'Ortegano', NULL, '1.71', 94, 70, 98, 'S', '', '39', 'Chocolate', 'Marrones', 'Morena', 'si'),
+(165, 'women', 'Laura', 'Montenegro', NULL, '1.58', 86, 66, 89, 'S', '', '36', 'Negro', 'Marrones', 'Trigueña', 'si'),
+(166, 'women', 'Maria Valentina', 'Cuevas', NULL, '1.60', 89, 68, 92, 'S', '', '37', 'Castaño Oscuro', 'Marrones', 'Trigueña', 'si'),
+(167, 'women', 'Ashly', 'Porras', NULL, '168', 83, 61, 89, 's', '', '37', 'negro', 'marrones', 'trigeña', 'si');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `newsletter_subscriptions`
+--
+
+CREATE TABLE `newsletter_subscriptions` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `interests` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `status` int(1) DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=355 ;
+
+--
+-- Dumping data for table `newsletter_subscriptions`
+--
+
+INSERT INTO `newsletter_subscriptions` (`id`, `email`, `timestamp`, `interests`, `status`) VALUES
+(1, 'barbiecastillo24@hotmail.com', '2014-06-19 15:01:49', 'Juvenil,Juvenil', 1),
+(2, 'dlarez@besign.com.ve', '2014-06-20 15:37:00', 'Juvenil,Juvenil', 1),
+(3, 'gixel_10@hotmail.com', '2014-06-20 15:47:49', 'Juvenil,Juvenil', 1),
+(4, 'valej_1789@hotmail.com', '2014-06-20 23:10:14', 'Juvenil', 1),
+(5, 'fheralvis@hotmail.com', '2014-06-21 19:22:43', 'Juvenil,Juvenil', 1),
+(6, 'leonella39@hotmail.com', '2014-06-22 13:48:36', 'Juvenil,Juvenil', 1),
+(7, 'orianna_08@hotmail.com', '2014-06-22 18:58:34', 'Juvenil,Juvenil,Baby Model,Baby Model', 1),
+(8, 'stephanie10394@hotmail.com', '2014-06-22 20:23:17', 'Juvenil,Juvenil', 1),
+(9, 'clauolz16@gmail.com', '2014-06-24 22:27:38', 'Juvenil,Juvenil', 1),
+(10, 'adrianajpg@hotmail.com', '2014-06-25 07:49:31', 'Infantil,Infantil', 1),
+(11, 'lizzyzam92@gmail.com', '2014-06-25 14:22:46', 'Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil', 1),
+(12, 'maryorimedina46@gmail.com', '2014-06-27 18:05:52', 'Juvenil,Juvenil', 1),
+(13, 'andreinagutierrezv@yahoo.es', '2014-06-28 21:41:14', 'Juvenil,Juvenil,Infantil', 1),
+(14, 'cmaryan22@hotmail.com', '2014-06-29 18:06:03', 'Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil', 1),
+(15, 'constanza.rivas@hotmail.com', '2014-06-29 22:44:37', 'Juvenil,Juvenil,Juvenil,Juvenil', 1),
+(16, 'ori-alvarez@hotmail.com', '2014-06-30 19:10:59', 'Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil', 1),
+(17, 'mariannes_12@hotmail.es', '2014-06-30 20:38:27', 'Juvenil,Juvenil,Juvenil', 1),
+(18, 'ibe_13_14@hotmail.com', '2014-07-03 04:40:49', 'Juvenil,Juvenil,Juvenil,Juvenil', 1),
+(19, 'oleimar_26@hotmail.com', '2014-07-06 00:00:09', 'Juvenil,Juvenil,Juvenil,Juvenil,Juvenil', 1),
+(20, 'chikita.paz2013@hotmail.com', '2014-08-10 14:37:48', 'Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil', 1),
+(21, 'fvcv11@hotmail.com', '2014-07-04 00:49:32', 'Infantil,Infantil,Infantil,Infantil', 1),
+(22, 'gabrielarodriguez49@hotmail.com', '2014-12-17 22:04:54', 'Juvenil,Juvenil,Juvenil,Juvenil', 1),
+(23, 'concettamoranas@gmail.com', '2014-07-04 22:09:36', 'Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil', 1),
+(24, 'alejandra_gabriela@hotmail.com', '2014-07-05 00:07:15', 'Juvenil,Juvenil,Juvenil', 1),
+(25, 'manzanarez1502@gmail.com', '2014-10-21 16:57:58', 'Juvenil,Juvenil,Juvenil,Juvenil,Juvenil', 1),
+(26, 'natalylorenislopezchacon@gmail.com', '2014-07-05 15:28:17', 'Juvenil,Juvenil', 1),
+(27, 'ledysherrera8@gmail.com', '2014-07-06 22:49:41', 'Juvenil,Juvenil', 1),
+(28, 'anyelborges@gmail.com', '2014-07-07 13:51:07', 'Juvenil,Juvenil', 1),
+(29, 'samialexortega@hotmail.com', '2014-07-08 15:15:08', 'Juvenil,Juvenil,Juvenil', 1),
+(30, 'mkpmariana@gmail.com', '2014-07-08 15:27:57', 'Juvenil,Juvenil', 1),
+(31, 'bibibella1@hotmail.com', '2014-07-08 19:19:27', 'Juvenil,Juvenil', 1),
+(32, 'victoriaale96@hotmail.com', '2014-07-08 19:35:27', 'Juvenil,Juvenil', 1),
+(33, 'solimar_s_15@hotmail.com', '2014-07-08 19:44:26', 'Juvenil,Juvenil,Juvenil', 1),
+(34, 'lacharo.kz@gmail.com', '2014-07-08 19:53:31', 'Juvenil,Juvenil,Juvenil', 1),
+(35, 'arevalodanielys@hotmail.com', '2014-07-09 00:09:44', 'Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil', 1),
+(36, 'REBECA.QZ79@GMAIL.COM', '2014-07-09 03:10:01', 'Infantil', 1),
+(37, 'yuleidi-10@hotmail.com', '2014-07-09 13:01:02', 'Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil', 1),
+(38, 'carmenyvalera@gmail.com', '2014-07-09 15:34:31', 'Juvenil,Juvenil,Juvenil,Juvenil', 1),
+(39, 'andrea38281@hotmail.com', '2014-07-09 23:26:43', 'Juvenil,Juvenil', 1),
+(40, 'itsvirgim@gmail.com', '2014-07-10 02:10:50', 'Baby Model,Baby Model,Baby Model,Juvenil', 1),
+(41, 'gabrielahernandez-20@hotmail.com', '2014-07-10 22:18:35', 'Juvenil,Juvenil', 1),
+(42, 'yenfa.corro.18@gmail.com', '2014-07-11 14:52:02', 'Juvenil,Juvenil,Juvenil', 1),
+(43, 'jedelgado7@gmail.com', '2014-07-12 02:21:02', 'Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil', 1),
+(44, 'sharonrangel2@gmail.com', '2014-07-13 01:03:18', 'Juvenil,Juvenil,Juvenil,Juvenil,Juvenil', 1),
+(45, 'joselen2013@hotmail.com', '2014-07-14 17:05:37', 'Juvenil,Juvenil', 1),
+(46, 'sofia_araujo21@hotmail.com', '2014-07-14 19:12:35', 'Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil', 1),
+(47, 'claucm02@live.com.ar', '2014-07-14 23:17:02', 'Juvenil', 1),
+(48, 'arianavanesa05@hotmail.com', '2014-07-14 23:56:51', 'Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil', 1),
+(49, 'Keylismartejeda@hotmail.com', '2014-07-15 01:29:16', 'Infantil,Infantil', 1),
+(50, 'marialaurabrandt@hotmail.com', '2014-07-15 21:10:55', 'Juvenil,Juvenil,Juvenil,Juvenil', 1),
+(51, 'alejandraisabel9@hotmail.com', '2014-07-28 18:01:26', 'Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Baby Model,Baby Model,Baby Model', 1),
+(52, 'vanessamarqz05@hotmail.com', '2014-07-16 03:11:24', 'Juvenil,Juvenil,Juvenil', 1),
+(53, 'lizvalentina2109@hotmail.com', '2014-07-16 18:24:41', 'Juvenil,Juvenil,Juvenil', 1),
+(54, 'andredany2009@hotmail.com', '2014-07-16 19:04:41', 'Juvenil', 1),
+(55, 'dubraseqzar@gmail.com', '2014-07-16 20:04:53', 'Infantil,Infantil,Infantil', 1),
+(56, 'Ammarylynda@gmail.com', '2014-07-17 03:04:38', 'Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil', 1),
+(57, 'aalvarez@transbanca.com.ve', '2014-07-17 21:55:36', 'Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil', 1),
+(58, 'lizzie_raigoza@hotmail.com', '2014-07-17 23:21:00', 'Juvenil,Juvenil', 1),
+(59, 'maritza_blandon@hotmail.com', '2014-07-18 15:02:56', 'Juvenil', 1),
+(60, 'daysequera27@hotmail.com', '2014-07-18 17:47:41', 'Juvenil', 1),
+(61, 'mdani_28@hotmail.com', '2014-07-18 22:29:15', 'Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil', 1),
+(62, 'ale_valentina2000@hotmail.com', '2014-07-20 05:09:31', 'Juvenil,Juvenil,Juvenil', 1),
+(63, 'valeria.muktans@gmail.com', '2014-07-20 22:52:39', 'Juvenil,Juvenil,Juvenil,Juvenil,Juvenil', 1),
+(64, 'Anelyi_07@hotmail.com', '2014-07-22 23:57:45', 'Juvenil,Juvenil', 1),
+(65, 'yennylet_93@hotmail.com', '2014-07-23 14:07:11', 'Juvenil,Juvenil,Juvenil', 1),
+(66, 'aydanacolmenares2803@gmail.com', '2014-07-23 19:13:21', 'Juvenil,Juvenil,Juvenil,Juvenil', 1),
+(67, 'guandaisabelalc@hotmail.com', '2014-07-24 02:45:18', 'Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil', 1),
+(68, 'maria.gabriela1996@hotmail.com', '2014-07-24 03:58:52', 'Juvenil,Juvenil,Juvenil,Juvenil', 1),
+(69, 'Endjerlinh@hotmail.com', '2014-07-24 04:43:52', 'Juvenil,Juvenil', 1),
+(70, 'luisaledezma19@hotmail.com', '2014-07-25 01:50:03', 'Juvenil,Juvenil,Juvenil,Juvenil,Juvenil', 1),
+(71, 'gaby_caro_b@hotmail.com', '2014-07-25 19:22:18', 'Juvenil', 1),
+(72, 'kharen.2306@gmail.com', '2014-07-27 11:52:45', 'Juvenil,Juvenil,Juvenil,Juvenil,Juvenil', 1),
+(73, 'andrea_velasquezc@hotmail.com', '2014-07-28 13:50:12', 'Juvenil,Juvenil', 1),
+(74, 'alejandra_girls4@gmail.com', '2014-07-28 18:01:46', 'Baby Model', 1),
+(75, 'crizztina.rocha@gmail.com', '2014-07-28 20:21:19', 'Juvenil,Juvenil,Juvenil,Juvenil,Juvenil', 1),
+(76, 'dgraphic1987@hotmail.com', '2014-07-28 20:35:23', 'Caballeros,Caballeros,Caballeros', 1),
+(77, 'aidanamendez@hotmail.com', '2014-07-28 21:11:49', 'Juvenil,Juvenil,Juvenil,Juvenil', 1),
+(78, 'loryanna_27@hotmail.com', '2014-07-29 12:02:11', 'Juvenil,Juvenil,Juvenil', 1),
+(79, 'martinaramos05112000@gmail.com', '2014-07-29 16:16:35', 'Juvenil,Juvenil,Juvenil', 1),
+(80, 'jeremydavid99@hotmail.com', '2014-07-29 17:22:02', 'Caballeros,Caballeros,Caballeros', 1),
+(81, 'cruzmary93@gmail.com', '2014-07-30 22:39:08', 'Juvenil,Juvenil,Juvenil,Juvenil,Juvenil', 1),
+(82, 'cruzmary93@hotmail.com', '2014-07-30 22:39:15', 'Juvenil', 1),
+(83, 'angi1D_@hotmail.com', '2014-07-31 02:07:08', 'Juvenil,Juvenil', 1),
+(84, 'ruth.gomez.2001@gmail.com', '2014-07-31 14:58:47', 'Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil', 1),
+(85, 'maripatriba@hotmail.com', '2014-08-01 00:21:24', 'Juvenil,Juvenil,Juvenil,Juvenil', 1),
+(86, 'gabyandra_27@hotmail.com', '2014-08-01 06:19:11', 'Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil', 1),
+(87, 'leoberlisf@hotmail.com', '2014-08-01 20:47:48', 'Juvenil,Juvenil,Juvenil,Juvenil,Juvenil', 1),
+(88, 'avrilrodriguezj@gmail.com', '2014-08-03 04:15:23', 'Juvenil,Juvenil', 1),
+(89, 'pina042@hotmail.com', '2014-08-04 02:56:42', 'Juvenil,Juvenil,Juvenil', 1),
+(90, 'nath.flores@hotmail.com', '2014-09-02 15:14:00', 'Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil', 1),
+(91, 'jadefox2503@hotmail.com', '2014-08-04 17:04:17', 'Infantil,Infantil', 1),
+(92, 'meryromero74@hotmail.com', '2014-08-04 18:24:27', 'Juvenil,Juvenil', 1),
+(93, 'carlajorgelis08@gmail.com', '2014-08-05 02:29:27', 'Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil', 1),
+(94, 'jhonelsyslopez@gmail.com', '2014-08-05 18:14:04', 'Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil', 1),
+(95, 'sarai.nouel_28@hotmail.com', '2014-08-05 20:45:19', 'Juvenil,Juvenil,Juvenil', 1),
+(96, 'isabelita3500@hotmail.com', '2014-08-05 23:56:24', 'Juvenil,Juvenil', 1),
+(97, 'merlysofia1541@gmail.com', '2014-08-06 00:43:46', 'Juvenil,Juvenil', 1),
+(98, 'trolajbm713@gmail.com', '2014-08-06 03:07:18', 'Infantil,Infantil,Infantil', 1),
+(99, '17charlotte.horan@gmail.com', '2014-08-07 02:19:28', 'Juvenil,Juvenil', 1),
+(100, 'nazarethfigueroa11@hotmail.com', '2014-08-08 00:35:29', 'Juvenil,Juvenil,Juvenil', 1),
+(101, 'steudel-24@hotmail.com', '2014-08-08 15:43:58', 'Juvenil,Juvenil', 1),
+(102, 'mariafernandarodriguez_1999@hotmail.com', '2014-08-09 01:24:05', 'Juvenil,Juvenil', 1),
+(103, 'elisabetrojas67@yahoo.es', '2014-09-18 19:11:51', 'Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil', 1),
+(104, 'paoladomingz@gmail.com', '2014-08-09 16:53:23', 'Juvenil,Juvenil,Juvenil', 1),
+(105, 'paulabencomo30@gmail.com', '2014-08-11 00:25:25', 'Juvenil,Juvenil,Juvenil,Juvenil', 1),
+(106, 'genesisrh@outlook.com', '2014-08-11 02:43:25', 'Juvenil,Juvenil', 1),
+(107, 'itsbarbara01@hotmail.com', '2014-08-11 21:40:59', 'Juvenil,Juvenil,Juvenil', 1),
+(108, 'princess_ggh@hotmail.com', '2014-08-11 21:41:05', 'Juvenil,Juvenil', 1),
+(109, 'jesuscasdia16@gmail.com', '2014-08-11 23:52:21', 'Caballeros,Caballeros', 1),
+(110, 'marlinernes@hotmail.com', '2014-08-12 19:15:03', 'Juvenil,Juvenil', 1),
+(111, 'daincar@hotmail.com', '2014-12-10 03:59:30', 'Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil', 1),
+(112, 'susanita13yara@hotmail.com', '2014-10-15 05:19:50', 'Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil', 1),
+(113, 'maybeltirado@hotmail.com', '2014-08-13 15:53:26', 'Juvenil,Juvenil', 1),
+(114, 'johannamendoza0512@outlook.com', '2014-08-13 19:39:56', 'Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil', 1),
+(115, 'lucilett98@gmail.com', '2014-08-14 23:43:50', 'Juvenil,Juvenil', 1),
+(116, 'cacuina2@hotmail.com', '2014-08-15 18:03:52', 'Infantil,Infantil', 1),
+(117, 'alexcadariana@hotmail.com', '2014-08-17 00:52:13', 'Juvenil', 1),
+(118, 'iliana_borges_2001@hotmail.com', '2014-08-17 05:32:48', 'Juvenil', 1),
+(119, '12annaaparicio@hotmail.com', '2014-08-17 19:11:02', 'Juvenil,Juvenil,Juvenil', 1),
+(120, '12annaaparicio@gmail.com', '2014-08-17 19:11:51', 'Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil', 1),
+(121, 'dloz_in_the_zon@hotmail.com', '2014-08-18 22:02:10', 'Caballeros,Caballeros,Caballeros,Caballeros', 1),
+(122, 'patricia_dellirocioli@hotmail.com', '2014-08-19 23:02:35', 'Juvenil,Juvenil', 1),
+(123, 'bulos82@gmail.com', '2014-08-20 05:00:33', 'Juvenil,Juvenil', 1),
+(124, 'sissyeua@hotmail.com', '2014-08-20 14:50:39', 'Infantil,Infantil,Infantil,Infantil,Infantil', 1),
+(125, 'erimar.cabana@gmail.com', '2014-08-22 20:21:18', 'Juvenil,Juvenil,Juvenil', 1),
+(126, 'mayuya_1@hotmail.com', '2014-08-22 21:28:02', 'Juvenil,Juvenil', 1),
+(127, 'pieraruffo@hotmail.com', '2014-08-25 16:44:17', 'Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil', 1),
+(128, 'yeniferbarrios3000@hotmail.com', '2014-08-25 20:11:38', 'Juvenil,Juvenil,Juvenil,Juvenil,Juvenil', 1),
+(129, 'chiiiqm@hotmail.com', '2014-11-14 01:12:54', 'Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil', 1),
+(130, 'ayexa_155@hotmail.com', '2014-08-26 19:40:43', 'Juvenil,Juvenil', 1),
+(131, 'ariadny06@hotmail.com', '2014-08-26 20:25:53', 'Juvenil,Juvenil', 1),
+(132, 'ysamartovar@yahoo.es', '2014-08-26 21:42:51', 'Infantil,Infantil,Infantil', 1),
+(133, 'fmarian-@hotmail.com', '2014-08-27 04:31:13', 'Juvenil', 1),
+(134, 'dioma_2011@hotmail.com', '2014-08-28 20:07:17', 'Juvenil,Juvenil,Juvenil,Juvenil,Juvenil', 1),
+(135, 'castillosergio@gmail.com', '2014-08-29 06:09:06', 'Juvenil,Juvenil', 1),
+(136, 'castillosergio234@gmail.com', '2014-08-29 06:10:52', 'Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil', 1),
+(137, 'bebaotero@gmail.com', '2014-08-29 21:44:12', 'Infantil,Infantil,Infantil,Infantil', 1),
+(138, 'mafer.leal_11@hotmail.com', '2014-09-01 12:46:51', 'Juvenil,Juvenil', 1),
+(139, 'vivi-021@hotmail.com', '2014-09-03 15:25:19', 'Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil', 1),
+(140, 'marirefu@hotmail.com', '2014-09-04 01:55:25', 'Juvenil,Juvenil,Juvenil,Juvenil', 1),
+(141, 'ydalis_1@hotmail.com', '2014-09-06 04:29:03', 'Juvenil,Juvenil', 1),
+(142, 'gutierrez_maria_25@hotmail.com', '2014-09-07 18:13:03', 'Juvenil,Juvenil', 1),
+(143, 'eudimaguz@gmail.com', '2014-09-07 19:20:12', 'Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil', 1),
+(144, 'maferbaute19@outlook.es', '2014-09-08 19:07:51', 'Juvenil', 1),
+(145, 'roxanaelisariera@gmail.com', '2014-09-09 04:13:04', 'Juvenil,Juvenil', 1),
+(146, 'abgandreaparra@gmail.com', '2014-09-09 05:01:25', 'Infantil,Infantil', 1),
+(147, 'jhoan-12eduardo@hotmail.com', '2014-09-09 20:08:55', 'Caballeros,Caballeros,Caballeros', 1),
+(148, 'mariiacastillo_@hotmail.com', '2014-09-10 12:29:46', 'Juvenil,Juvenil,Juvenil,Juvenil,Juvenil', 1),
+(149, 'marianela190199@hotmail.com', '2014-09-10 20:56:36', 'Juvenil,Juvenil,Juvenil,Juvenil,Juvenil', 1),
+(150, 'esthefanialdr@gmail.com', '2014-09-11 14:43:29', 'Juvenil,Juvenil,Juvenil,Juvenil', 1),
+(151, 'fabianalesti@hotmail.com', '2014-09-11 14:43:40', 'Juvenil', 1),
+(152, 'joserosmi@hotmail.com', '2014-09-11 14:54:58', 'Caballeros,Caballeros,Caballeros,Caballeros', 1),
+(153, 'poa_velasquez@hotmail.com', '2014-09-11 17:05:46', 'Juvenil', 1),
+(154, 'gilbertolini@hotmail.com', '2014-09-11 18:36:10', 'Juvenil,Juvenil', 1),
+(155, 'georginoking@hotmail.com', '2014-09-14 18:34:49', 'Caballeros,Caballeros', 1),
+(156, 'lauraurrego7@gmail.com', '2014-09-15 04:16:51', 'Juvenil,Juvenil', 1),
+(157, 'lenyszhao499@hotmail.com', '2014-09-15 13:41:12', 'Juvenil,Juvenil', 1),
+(158, 'giovannaturri97@hotmail.com', '2014-09-15 18:39:20', 'Juvenil,Juvenil', 1),
+(159, 'iraid.gutierrez@gmail.com', '2015-01-26 00:46:07', 'Juvenil,Juvenil,Juvenil,Pre Juvenil,Pre Juvenil,Pre Juvenil', 1),
+(160, 'isa-csc@hotmail.com', '2014-09-15 22:03:08', 'Juvenil,Juvenil', 1),
+(161, 'valerysubero@gmail.com', '2014-09-16 21:39:28', 'Juvenil,Juvenil,Juvenil', 1),
+(162, 'lennyskh@gmail.com', '2014-09-17 05:13:37', 'Juvenil,Juvenil,Juvenil', 1),
+(163, 'karen221077@gmail.com', '2014-09-17 09:53:47', 'Infantil,Infantil', 1),
+(164, 'decode_0805@hotmail.com', '2014-10-30 15:19:22', 'Juvenil,Juvenil,Juvenil', 1),
+(165, 'alejandraelizabet1999@hotmail.com', '2014-09-18 19:12:19', 'Juvenil', 1),
+(166, 'elirojasal@yahoo.es', '2014-09-18 19:12:45', 'Juvenil,Juvenil,Juvenil', 1),
+(167, 'mariaclaudiabarreat@hotmail.com', '2014-09-19 15:39:53', 'Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil', 1),
+(168, 'nelitzarivero@hotmail.com', '2014-09-19 17:28:45', 'Juvenil,Juvenil', 1),
+(169, 'nelyanam_20@hotmail.com', '2014-09-19 21:57:38', 'Juvenil,Juvenil', 1),
+(170, 'marthalorenacm02@hotmail.com', '2014-09-21 03:54:18', 'Juvenil,Juvenil,Juvenil', 1),
+(171, 'kimmyskt@gmail.com', '2014-09-21 14:43:04', 'Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil', 1),
+(172, 'cambursito@hotmail.com', '2014-09-22 15:32:42', 'Juvenil,Juvenil,Juvenil', 1),
+(173, 'esthefgomez@hotmail.com', '2014-09-22 15:49:59', 'Juvenil,Juvenil,Juvenil,Juvenil', 1),
+(174, 'dignamorales3@gmail.com', '2014-09-22 20:09:56', 'Juvenil', 1),
+(175, 'daylis1231@hotmail.com', '2014-09-23 00:41:36', 'Juvenil,Juvenil,Juvenil', 1),
+(176, 'nenufar.torrealba.valero@gmail.com', '2014-09-23 20:12:39', 'Juvenil,Juvenil', 1),
+(177, 'milagros_correia8@hotmail.com', '2014-09-23 21:04:23', 'Juvenil,Juvenil,Juvenil', 1),
+(178, 'mariajescalona634@gmail.com', '2014-09-24 23:23:35', 'Juvenil,Juvenil', 1),
+(179, 'francybastidas18@hotmail.com', '2015-01-08 19:19:37', 'Juvenil,Juvenil,Juvenil,Juvenil,Pre Juvenil,Pre Juvenil,Pre Juvenil,Pre Juvenil,Pre Juvenil,Pre Juvenil,Pre Juvenil', 1),
+(180, 'israislys_rios@hotmail.com', '2014-09-25 20:04:50', 'Juvenil,Juvenil', 1),
+(181, 'melanialexandra95@gmail.com', '2014-09-27 01:07:51', 'Juvenil,Juvenil', 1),
+(182, 'paoladefreitas888@gmail.com', '2014-09-27 03:05:13', 'Juvenil,Juvenil,Juvenil,Juvenil,Juvenil', 1),
+(183, 'lismer.triana_1996@hotmail.com', '2014-09-28 23:52:23', 'Juvenil,Juvenil', 1),
+(184, 'labeba52525@hotmail.com', '2014-09-30 02:25:45', 'Juvenil', 1),
+(185, 'aleynena09@gmail.com', '2014-09-30 18:56:45', 'Infantil', 1),
+(186, 'lucianaviegas15@hotmail.com', '2014-11-02 22:18:05', 'Juvenil,Juvenil,Juvenil,Juvenil,Juvenil', 1),
+(187, 'hindirasarmeinto@hotmail.com', '2014-10-01 19:27:58', 'Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil', 1),
+(188, 'fernand188@gmail.com', '2014-10-02 15:47:10', 'Juvenil,Juvenil', 1),
+(189, 'daisysarcos@hotmail.com', '2014-10-05 22:20:49', 'Juvenil,Juvenil,Juvenil,Juvenil', 1),
+(190, 'noe_mary2392@hotmail.com', '2014-10-07 04:25:50', 'Juvenil,Juvenil,Juvenil', 1),
+(191, 'feoantonella7@gmail.com', '2014-10-08 01:45:32', 'Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil', 1),
+(192, 'ye_lineth@hotmail.com', '2014-10-11 19:00:14', 'Juvenil,Juvenil,Juvenil,Juvenil', 1),
+(193, 'gricelff@gmail.com', '2015-01-08 02:52:05', 'Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Taller Auto Maquillaje,Taller Auto Maquillaje,Taller Auto Maquillaje,Taller Auto Maquillaje,Taller Auto Maquillaje,Taller Auto Maquillaje,Taller Auto Maquillaje', 1),
+(194, 'valeriavalero1@outlook.com', '2014-10-12 20:02:03', 'Juvenil,Juvenil,Juvenil,Juvenil,Juvenil', 1),
+(195, 'marii_maar_02@hotmail.com', '2015-01-12 17:43:16', 'Juvenil,Juvenil,Juvenil,Juvenil,Taller Auto Maquillaje,Taller Auto Maquillaje,Taller Auto Maquillaje,Taller Auto Maquillaje,Taller Auto Maquillaje', 1),
+(196, 'celisblanco@hotmail.com', '2014-10-13 20:01:16', 'Juvenil,Juvenil,Caballeros', 1),
+(197, 'elisabetjuarez@cglamil.com', '2014-10-14 02:47:46', 'Juvenil,Juvenil', 1),
+(198, 'marig_08r@hotmail.com', '2014-10-14 15:32:40', 'Juvenil,Juvenil,Juvenil,Juvenil,Juvenil', 1),
+(199, 'marijoh@hotmail.com', '2014-10-14 18:50:02', 'Baby Model,Baby Model,Baby Model,Infantil', 1),
+(200, 'nssg_25@hotmail.com', '2014-10-16 21:22:09', 'Caballeros,Caballeros', 1),
+(201, 'genesissucre70@hotmail.com', '2014-10-19 19:44:30', 'Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil', 1),
+(202, 'gmaria7898@gmail.com', '2014-10-22 01:31:46', 'Juvenil,Juvenil,Juvenil,Juvenil,Juvenil', 1),
+(203, 'edgardore1@gmail.com', '2014-10-23 01:41:03', 'Juvenil,Juvenil', 1),
+(204, 'camiale.puentes@gmail.com', '2014-10-24 02:17:53', 'Juvenil', 1),
+(205, 'pedroantonio_valero@hotmail.com', '2014-10-26 00:06:16', 'Caballeros,Caballeros,Caballeros', 1),
+(206, 'mariaalexandrahanna@hotmail.com', '2014-10-27 00:55:19', 'Juvenil,Juvenil', 1),
+(207, 'crivas4163@gmail.com', '2014-10-28 02:36:22', 'Juvenil', 1),
+(208, 'mangelica301@hotmail.com', '2014-10-28 16:20:15', 'Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil', 1),
+(209, 'kamilab18@hotmail.com', '2014-10-28 21:51:04', 'Juvenil,Juvenil,Juvenil', 1),
+(210, 'kdi_0794@hotmail.com', '2014-10-29 02:40:34', 'Juvenil,Juvenil', 1),
+(211, 'dannycristinah@gmail.com', '2014-10-29 19:55:55', 'Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Infantil', 1),
+(212, 'Decode0805@gmail.com', '2014-10-30 15:20:12', 'Juvenil,Juvenil,Juvenil', 1),
+(213, 'alixmendez@hotmail.com', '2014-12-22 16:11:38', 'Juvenil,Juvenil,Juvenil,Juvenil', 1),
+(214, 'navarreteramon21@gmail.com', '2014-11-02 16:51:53', 'Caballeros,Caballeros,Caballeros', 1),
+(215, 'arianysvaleriahernandezvalera@hotmail.com', '2014-11-02 22:14:50', 'Juvenil,Juvenil', 1),
+(216, 'jhesme_10@hotmail.com', '2014-11-04 03:43:24', 'Juvenil,Juvenil', 1),
+(217, 'alejandrac.z.-97@hotmail.com', '2014-11-05 23:35:21', 'Juvenil,Juvenil,Juvenil,Juvenil,Juvenil', 1),
+(218, 'and_velasquez03@hotmail.com', '2014-11-08 02:58:42', 'Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil', 1),
+(219, 'ana.gissell2309@gmail.com', '2014-11-08 23:51:30', 'Juvenil,Juvenil,Juvenil', 1),
+(220, 'ceballosdessi@hotmail.com', '2014-11-09 04:20:15', 'Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil', 1),
+(221, 'brimar_13@hotmail.com', '2014-11-11 15:30:23', 'Baby Model,Baby Model,Baby Model,Infantil', 1),
+(222, 'lisday_7@hotmail.com', '2014-11-11 18:19:35', 'Juvenil,Juvenil,Juvenil', 1),
+(223, 'Sgenesis1322@gmail.com', '2014-11-12 21:42:09', 'Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil', 1),
+(224, 'yenniferarias24@gmail.com', '2014-11-12 23:18:02', 'Juvenil,Juvenil,Juvenil', 1),
+(225, 'gabibea2211@gmail.com', '2014-11-13 21:28:03', 'Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil', 1),
+(226, 'barlid08@gmail.com', '2014-11-16 16:46:04', 'Infantil,Infantil,Infantil,Infantil,Infantil,Infantil,Infantil,Infantil', 1),
+(227, 'lisferdy25@hotmail.com', '2014-11-16 18:11:33', 'Juvenil,Juvenil,Juvenil,Juvenil,Juvenil', 1),
+(228, 'cosa.1702@hotmail.com', '2014-11-16 21:44:07', 'Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil', 1),
+(229, 'milagrosdelvalle200@gmail.com', '2014-11-17 22:30:52', 'Juvenil,Juvenil', 1),
+(230, 'luisanaemilia@gmail.com', '2014-11-20 20:04:54', 'Juvenil,Juvenil', 1),
+(231, 'zurisaday8@gmail.com', '2014-11-22 13:45:24', 'Juvenil', 1),
+(232, 'jessicacalatayut766@gmail.com', '2014-11-24 19:06:41', 'Infantil,Infantil', 1),
+(233, 'erlimarandreamirandahidalgo@hotmail.com', '2014-11-26 19:06:03', 'Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil', 1),
+(234, 'gaby_rodriguez_1999@hotmail.com', '2014-11-26 23:25:17', 'Juvenil,Juvenil,Juvenil,Juvenil', 1),
+(235, 'granadillo2310@gmail.com', '2014-11-28 16:03:35', 'Juvenil', 1),
+(236, 'leefebres@outlook.com', '2014-11-29 00:37:29', 'Juvenil,Juvenil,Juvenil,Juvenil,Juvenil', 1),
+(237, 'mayita20@gmail.com', '2014-12-03 22:59:33', 'Juvenil,Juvenil,Juvenil', 1),
+(238, 'chimagadi@hotmail.com', '2014-12-04 13:30:38', 'Juvenil,Juvenil,Juvenil,Juvenil', 1),
+(239, 'josegclt@gmail.com', '2014-12-07 01:56:24', 'Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil', 1),
+(240, 'eneimar.duno@hotmail.com', '2014-12-08 02:02:43', 'Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil', 1),
+(241, 'gkb_bordones@hotmail.com', '2014-12-08 13:02:22', 'Juvenil,Juvenil', 1),
+(242, 'arehani_0513@hotmail.com', '2014-12-08 13:50:57', 'Juvenil,Juvenil,Juvenil', 1),
+(243, 'ashleyduarterey@hotmail.com', '2014-12-08 18:19:37', 'Juvenil,Juvenil', 1),
+(244, 'valeriasanchezp27@gmail.com', '2014-12-09 13:38:24', 'Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil', 1),
+(245, 'gustavovillegas2005@hotmail.com', '2014-12-09 22:27:37', 'Caballeros,Caballeros,Caballeros,Caballeros,Caballeros,Caballeros,Caballeros,Caballeros', 1),
+(246, 'ompsanchez21@hotmail.com', '2014-12-10 17:21:31', 'Caballeros', 1),
+(247, 'milagros-19-17@hotmail.com', '2014-12-10 23:52:20', 'Juvenil,Juvenil,Juvenil', 1),
+(248, 'andre-483@hotmail.com', '2015-01-20 21:13:17', 'Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil', 1),
+(249, 'annydefariabilhim@gmail.com', '2014-12-12 14:01:45', 'Juvenil,Juvenil', 1),
+(250, 'ljelmasri95@gmail.com', '2014-12-12 23:59:17', 'Juvenil,Juvenil', 1),
+(251, 'victoria_dicuru2001@hotmail.com', '2014-12-13 20:15:30', 'Infantil,Infantil,Infantil,Infantil,Infantil', 1),
+(252, 'alexarangel2007@gmail.com', '2014-12-15 15:18:11', 'Infantil,Infantil', 1),
+(253, 'mariannajoya@hotmail.com', '2015-01-10 03:05:04', 'Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Pre Juvenil,Pre Juvenil,Pre Juvenil,Pre Juvenil', 1),
+(254, 'aynelsilva30@gmail.com', '2014-12-15 17:31:40', 'Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil', 1),
+(255, 'anacastilloss_75@hotmail.com', '2014-12-16 16:14:26', 'Juvenil', 1),
+(256, 'mariajrg0224@hotmail.com', '2014-12-16 16:57:11', 'Juvenil,Juvenil', 1),
+(257, 'annaleejoya@hotmail.com', '2015-01-10 03:04:42', 'Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Pre Juvenil,Pre Juvenil,Pre Juvenil,Pre Juvenil,Pre Juvenil,Pre Juvenil', 1),
+(258, 'oriannacardenas@gmail.com', '2014-12-18 15:45:30', 'Juvenil,Juvenil', 1),
+(259, 'valerhi612@hotmail.com', '2015-01-28 18:03:41', 'Juvenil,Juvenil,Juvenil,Pre Juvenil,Pre Juvenil', 1),
+(260, 'karianny.garay13@gmail.com', '2014-12-20 01:24:20', 'Juvenil,Juvenil', 1),
+(261, 'abnymen@hotmail.com', '2014-12-20 05:05:13', 'Juvenil,Juvenil', 1),
+(262, 'barbiecastillo24@gmail.com', '2014-12-20 17:00:26', 'Juvenil,Juvenil,Juvenil', 1),
+(263, 'keylavqc@hotmail.com', '2015-01-02 18:31:51', 'Juvenil,Juvenil,Pre Juvenil,Pre Juvenil', 1),
+(264, 'rone_97@hotmail.com', '2014-12-21 01:23:51', 'Juvenil,Juvenil,Juvenil', 1),
+(265, 'Natha081@hotmail.com', '2015-01-11 20:56:22', 'Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Pre Juvenil,Pre Juvenil,Pre Juvenil,Pre Juvenil', 1),
+(266, 'noheliachacon@hotmail.com', '2014-12-22 16:11:20', 'Juvenil,Juvenil', 1),
+(267, 'nezza08@hotmail.com', '2014-12-26 03:49:55', 'Taller Auto Maquillaje,Taller Auto Maquillaje,Taller Auto Maquillaje,Taller Auto Maquillaje,Taller Auto Maquillaje,Taller Auto Maquillaje', 1),
+(268, 'rangelsaav@gmail.com', '2014-12-26 03:56:20', 'Pre Juvenil,Pre Juvenil,Pre Juvenil,Taller Auto Maquillaje', 1),
+(269, 'yennileth06@hotmail.com', '2014-12-29 02:55:42', 'Taller Auto Maquillaje,Taller Auto Maquillaje', 1),
+(270, 'gddg_8@hotmail.com', '2014-12-29 18:58:55', 'Taller Auto Maquillaje,Taller Auto Maquillaje', 1),
+(271, 'valeriapabon15@hotmail.com', '2014-12-31 05:40:12', 'Pre Juvenil,Pre Juvenil', 1),
+(272, 'betzy.ortega@hotmail.com', '2015-01-03 15:22:05', 'Taller Auto Maquillaje,Taller Auto Maquillaje,Taller Auto Maquillaje,Taller Auto Maquillaje', 1),
+(273, 'mariagabriela.ceballos@gmail.com', '2015-01-04 16:39:25', 'Pre Juvenil,Pre Juvenil,Pre Juvenil', 1),
+(274, 'stdiaz1012@gmail.com', '2015-01-04 23:36:30', 'Taller Auto Maquillaje,Taller Auto Maquillaje,Taller Auto Maquillaje', 1),
+(275, 'orianavrivero81@gmail.com', '2015-01-05 21:17:04', 'Pre Juvenil,Pre Juvenil,Pre Juvenil', 1),
+(276, 'nccm_23@hotmail.com', '2015-01-06 15:23:11', 'Taller Auto Maquillaje,Taller Auto Maquillaje,Taller Auto Maquillaje,Taller Auto Maquillaje,Taller Auto Maquillaje,Taller Auto Maquillaje,Taller Auto Maquillaje', 1),
+(277, 'gleda.30@hotmail.com', '2015-01-07 02:54:39', 'Pre Juvenil,Pre Juvenil,Pre Juvenil,Pre Juvenil', 1),
+(278, 'paola.gamez.17@gmail.com', '2015-01-07 17:56:40', 'Pre Juvenil,Pre Juvenil', 1),
+(279, 'floriannapalermo25@gmail.com', '2015-01-07 19:59:45', 'Pre Juvenil', 1),
+(280, 'samanthaol@icloud.com', '2015-01-15 03:35:37', 'Pre Juvenil,Pre Juvenil,Taller Auto Maquillaje,Taller Auto Maquillaje,Taller Auto Maquillaje', 1),
+(281, 'roxy.mgrm12@gmail.com', '2015-01-08 02:08:09', 'Pre Juvenil,Pre Juvenil', 1),
+(282, 'Andrea_p59@hotmail.com', '2015-01-08 18:41:34', 'Taller Auto Maquillaje,Taller Auto Maquillaje,Taller Auto Maquillaje', 1),
+(283, 'luzdary_39@hotmail.com', '2015-01-08 22:11:09', 'Certificacion 5 Estrellas,Certificacion 5 Estrellas,Certificacion 5 Estrellas,Certificacion 5 Estrellas', 1),
+(284, 'mollygile2010@hotmail.com', '2015-01-09 15:58:37', 'Pre Juvenil,Pre Juvenil,Pre Juvenil,Pre Juvenil,Pre Juvenil,Pre Juvenil,Pre Juvenil,Pre Juvenil,Pre Juvenil,Pre Juvenil,Pre Juvenil,Pre Juvenil,Pre Juvenil,Pre Juvenil,Pre Juvenil,Pre Juvenil,Pre Juvenil,Pre Juvenil,Pre Juvenil,Pre Juvenil,Pre Juvenil,Pre', 1),
+(285, 'paola01batista@hotmail.com', '2015-01-09 15:59:55', 'Pre Juvenil,Pre Juvenil,Pre Juvenil,Pre Juvenil,Pre Juvenil,Pre Juvenil', 1),
+(286, 'carmenherrerah22@gmail.com', '2015-01-09 17:32:12', 'Pre Juvenil,Pre Juvenil', 1),
+(287, 'claudiamedina_1@hotmail.com', '2015-01-09 23:07:57', 'Pre Juvenil,Pre Juvenil', 1),
+(288, 'dorimarreyes@hotmail.com', '2015-01-10 21:14:09', 'Pre Juvenil,Pre Juvenil,Pre Juvenil,Pre Juvenil', 1),
+(289, 'eli__103@hotmail.com', '2015-01-11 15:06:12', 'Certificacion 5 Estrellas,Certificacion 5 Estrellas', 1),
+(290, 'jaov_91@hotmail.com', '2015-01-12 16:08:42', 'Only for Men,Only for Men', 1),
+(291, 'valen_599@hotmail.com', '2015-01-13 01:25:15', 'Pre Juvenil,Pre Juvenil,Pre Juvenil,Pre Juvenil', 1),
+(292, 'stefaniajdza@gmail.com', '2015-01-13 22:03:26', 'Taller Auto Maquillaje,Taller Auto Maquillaje', 1),
+(293, 'tubellezaprallevar@gmail.com', '2015-01-14 14:24:56', 'Pre Juvenil', 1),
+(294, 'los_morochos_2005@hotmail.com', '2015-01-14 21:56:11', 'Infantil,Infantil,Infantil', 1),
+(295, 'nieves_maria1@hotmail.com', '2015-01-15 00:33:44', 'Juvenil,Juvenil,Juvenil,Taller Auto Maquillaje,Taller Auto Maquillaje', 1),
+(296, 'anagabriela320@hotmail.com', '2015-01-15 00:36:47', 'Juvenil,Juvenil', 1),
+(297, 'bibi123456bibi@gmail.com', '2015-01-15 12:54:32', 'Juvenil,Juvenil,Juvenil,Juvenil', 1),
+(298, 'mildredd21@hotmail.com', '2015-01-15 13:32:54', 'Baby Model,Baby Model,Infantil', 1),
+(299, 'estefanigaby@hotmail.com', '2015-01-15 14:41:20', 'Juvenil,Juvenil,Juvenil', 1),
+(300, 'fabian_7088@hotmail.com', '2015-01-15 14:50:58', 'Juvenil,Juvenil,Juvenil,Juvenil,Juvenil', 1),
+(301, 'andreadcpv@gmail.com', '2015-01-15 22:26:07', 'Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil', 1),
+(302, 'danielagranadosmolina@aol.com', '2015-01-16 05:51:43', 'Juvenil', 1),
+(303, 'andreaalvarezbideau@hotmail.com', '2015-01-17 03:59:36', 'Infantil,Infantil,Infantil', 1),
+(304, 'cuchianto@gmail.com', '2015-01-17 04:03:58', 'Juvenil,Juvenil,Pre Juvenil,Pre Juvenil,Pre Juvenil,Pre Juvenil,Pre Juvenil', 1),
+(305, 'mariaisabel_escorihuela@hotmail.com', '2015-01-17 19:35:38', 'Pre Juvenil,Pre Juvenil,Pre Juvenil,Pre Juvenil', 1),
+(306, 'daniela.gonzalezmoronta@gmail.com', '2015-01-17 21:50:37', 'Pre Juvenil,Pre Juvenil,Pre Juvenil', 1),
+(307, 'guadalupejabi@hotmail.com', '2015-01-18 14:56:17', 'Juvenil,Juvenil,Pre Juvenil,Pre Juvenil', 1),
+(308, 'genne_cf@hotmail.es', '2015-01-19 20:08:11', 'Juvenil,Juvenil', 1),
+(309, 'marcemd@hotmail.com', '2015-01-19 21:04:23', 'Infantil,Infantil', 1),
+(310, 'astrid-bff@hotmail.com', '2015-01-20 02:22:58', 'Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil,Juvenil', 1),
+(311, 'estrella.bazan@hotmail.com', '2015-01-20 12:44:31', 'Pre Juvenil,Pre Juvenil', 1),
+(312, 'eleymarcoronel@hotmail.com', '2015-01-20 15:28:51', 'Juvenil,Juvenil', 1),
+(313, 'clara.g.a@outlook.es', '2015-01-20 19:29:56', 'Pre Juvenil,Pre Juvenil', 1),
+(314, 'sttefanyjosemar_13@hotmail.com', '2015-01-21 21:28:50', 'Juvenil,Juvenil,Juvenil', 1),
+(315, 'norielkis_15@Hotmail.com', '2015-01-22 17:48:09', 'Juvenil,Juvenil,Juvenil', 1),
+(316, 'm_nathalia_09@hotmail.com', '2015-01-22 20:04:56', 'Juvenil,Juvenil,Juvenil,Juvenil', 1),
+(317, 'andreskyu@hotmail.com', '2015-01-24 05:44:56', 'Only for Men,Only for Men', 1),
+(318, 'joselyscarrion.10@gmail.com', '2015-01-25 02:21:20', 'Taller Auto Maquillaje,Taller Auto Maquillaje,Taller Auto Maquillaje', 1),
+(319, 'anagabi_elas@hotmail.com', '2015-01-25 03:47:31', 'Juvenil,Juvenil', 1),
+(320, 'mym100pre@outlook.es', '2015-01-27 14:23:17', 'Infantil,Infantil,Infantil,Infantil', 1),
+(321, 'jf.valecillo@gmail.com', '2015-01-28 12:31:12', 'Infantil,Infantil', 1),
+(322, 'zuleiny_5@hotmail.com', '2015-01-28 15:02:31', 'Juvenil,Juvenil,Juvenil', 1),
+(323, 'anahisdelsolsanchez@hotmail.com', '2015-01-29 21:11:56', 'Juvenil,Juvenil,Juvenil', 1),
+(324, 'mayeladfh@hotmail.com', '2015-01-30 14:12:33', 'Juvenil,Juvenil,Juvenil,Taller Auto Maquillaje', 1),
+(325, 'AYTANAVLB@HOTMAIL.COM', '2015-01-30 16:20:46', 'Pre Juvenil', 1),
+(326, 'ritabelier@hotmail.com', '2015-01-31 23:44:40', 'Pre Juvenil,Pre Juvenil,Pre Juvenil', 1),
+(327, 'vivianafabiana@hotmail.com', '2015-02-03 12:33:44', 'Infantil', 1),
+(328, 'juandyaponte@gmail.com', '2015-02-08 00:07:01', 'Taller Auto Maquillaje,Taller Auto Maquillaje,Taller Auto Maquillaje,Taller Auto Maquillaje', 1),
+(329, 'florparra1406@hotmail.com', '2015-02-09 01:01:17', 'Pre Juvenil,Pre Juvenil,Pre Juvenil', 1),
+(330, 'stefipink@hotmail.com', '2015-02-09 14:02:31', 'Pre Juvenil', 1),
+(331, 'enildajramireza@hotmail.com', '2015-02-12 18:49:27', 'Pre Juvenil,Pre Juvenil,Pre Juvenil,Taller Auto Maquillaje', 1),
+(332, 'manuelparelespino@hotmail.com', '2015-02-12 18:47:40', 'Pre Juvenil,Pre Juvenil,Pre Juvenil', 1),
+(333, 'mariaalexandra021@hotmail.com', '2015-02-12 18:48:23', 'Pre Juvenil,Pre Juvenil', 1),
+(334, 'obdaly411@hotmail.com', '2015-02-12 21:08:43', 'Model Look,Model Look', 1),
+(335, 'obdaly411@gmail.com', '2015-02-12 21:09:12', 'Model Look,Model Look,Model Look,Model Look', 1),
+(336, 'carmenelvira76@gmail.com', '2015-02-12 23:37:57', 'Pre Juvenil,Pre Juvenil,Pre Juvenil,Pre Juvenil,Pre Juvenil,Pre Juvenil', 1),
+(337, 'LETICIAFDIAZM5@GMAIL.COM', '2015-02-13 14:07:18', 'Model Look', 1),
+(338, 'marbelisgarcia_2011@hotmail.com', '2015-02-14 12:37:29', 'Taller Auto Maquillaje,Taller Auto Maquillaje,Taller Auto Maquillaje', 1),
+(339, 'daniellamosquera1@gmail.com', '2015-02-17 05:02:43', 'Taller Auto Maquillaje,Taller Auto Maquillaje,Taller Auto Maquillaje,Taller Auto Maquillaje,Taller Auto Maquillaje,Taller Auto Maquillaje,Taller Auto Maquillaje,Taller Auto Maquillaje,Taller Auto Maquillaje,Taller Auto Maquillaje,Taller Auto Maquillaje,Ta', 1),
+(340, 'polibustamante15@gmail.com', '2015-02-19 18:52:19', 'Taller Auto Maquillaje,Taller Auto Maquillaje,Taller Auto Maquillaje,Taller Auto Maquillaje', 1),
+(341, 'sisishams90@gmail.com', '2015-02-21 02:38:41', 'Taller Auto Maquillaje,Taller Auto Maquillaje,Taller Auto Maquillaje,Taller Auto Maquillaje,Taller Auto Maquillaje', 1),
+(342, 'amorzul_12@hotmail.com', '2015-02-23 01:03:56', 'Pre Juvenil,Pre Juvenil,Pre Juvenil,Pre Juvenil,Pre Juvenil,Pre Juvenil,Pre Juvenil,Pre Juvenil,Pre Juvenil,Pre Juvenil,Pre Juvenil,Pre Juvenil,Pre Juvenil,Pre Juvenil', 1),
+(343, 'arianny_zs@hotmail.com', '2015-03-15 21:43:40', 'Pre Juvenil,Pre Juvenil', 1),
+(344, 'stephany-131@hotmail.com', '2015-02-23 19:11:29', 'Model Look,Model Look,Model Look', 1),
+(345, 'agenciamodelsview@gmail.com', '2015-02-24 16:44:56', 'Model Look,Taller Auto Maquillaje,Taller Auto Maquillaje', 1),
+(346, 'barbimodelsview@gmail.com', '2015-02-24 20:54:42', 'Taller Auto Maquillaje', 1),
+(347, 'evelin200153@gmail.com', '2015-02-25 21:11:54', 'Pre Juvenil,Pre Juvenil,Pre Juvenil,Pre Juvenil,Pre Juvenil,Pre Juvenil,Pre Juvenil,Pre Juvenil', 1),
+(348, 'anale_258@hotmail.com', '2015-02-25 22:23:10', 'Model Look,Model Look', 1),
+(349, 'nrgj97@hotmail.com', '2015-02-26 18:06:23', 'Pre Juvenil,Pre Juvenil', 1),
+(350, 'stephane_17_la@hotmail.com', '2015-02-26 21:59:52', 'Taller Auto Maquillaje,Model Look,Model Look', 1),
+(351, 'ajpaublott@gmail.com', '2015-03-01 15:28:55', 'Certificacion 5 Estrellas,Certificacion 5 Estrellas,Certificacion 5 Estrellas', 1),
+(352, 'sarapaopr@hotmail.com', '2015-03-05 02:00:15', 'Pre Juvenil,Pre Juvenil,Pre Juvenil,Pre Juvenil,Pre Juvenil,Pre Juvenil', 1),
+(353, 'astridleon84@gmail.com', '2015-03-08 15:00:28', 'Pre Juvenil,Pre Juvenil,Pre Juvenil,Pre Juvenil,Pre Juvenil', 1),
+(354, 'estefaniagonzalez2002@hotmail.com', '2015-03-09 19:32:09', 'Pre Juvenil,Pre Juvenil,Pre Juvenil,Pre Juvenil', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `student_profile`
+--
+
+CREATE TABLE `student_profile` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `lastname` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `data` mediumtext COLLATE utf8_unicode_ci NOT NULL,
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `status` int(1) DEFAULT '1',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `username` (`username`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=223 ;
+
+--
+-- Dumping data for table `student_profile`
+--
+
+INSERT INTO `student_profile` (`id`, `username`, `name`, `lastname`, `email`, `data`, `created`, `status`) VALUES
+(219, 'crodriguez@besign.com.ve', 'C', 'Rod', 'crodriguez@besign.com.ve', '', '2015-06-17 18:50:09', 1),
+(220, 'angelina@besign.com.ve', 'A', 'Ang', 'angelina@besign.com.ve', '', '2015-06-17 19:15:25', 1),
+(221, 'dlarez@besign.com.ve', 'D', 'Larez', 'dlarez@besign.com.ve', '', '2015-06-17 19:15:14', 1),
+(222, 'mercadeo@besign.com.ve', 'L', 'Gar', 'Mercardeo@besign.com.ve', '', '2015-06-14 19:10:00', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(32) NOT NULL,
+  `rif` varchar(10) NOT NULL,
+  `role` enum('admin','administracion','mercadeo','estudiante') NOT NULL DEFAULT 'estudiante',
+  `pass_hash` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `username` (`username`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=220 ;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `username`, `rif`, `role`, `pass_hash`) VALUES
+(1, 'hola@besign.com.ve', 'J293972906', 'admin', 'sha256:1000:w1FHy2g5kgl7U4y5Ls7OBb7pKJCqjgGY:Sh4l2GZFPPoUaZmGIu33urjs2Kd804YY'),
+(2, 'presidencia@modelsviewgroup.com', '', 'admin', 'sha256:1000:V9NvGYO2313J+0ctzsKutMlXRaVJvskP:BrpDCG3Gi4TxblKJB6HxZjScas2AVcCS'),
+(3, 'agenciamodelsview@gmail.com', '', 'administracion', 'sha256:1000:fDfp8djAGghZTtEpvQGkRFrd+qME/6Gc:C3JFujg2nvtwHy9KaArAjZiH/m9AUlIM'),
+(4, 'mercadeo@modelsviewgroup.com', '', 'mercadeo', 'sha256:1000:hwXRRI6AMqEmznvOZs1Of5Uio+iqEsT6:izcHo6XxcnY5xI6E+BHuSKFpdUERJjKb'),
+(5, 'barbiecastillo24@gmail.com', '', 'estudiante', 'sha256:1000:EMzwMr7p6Gem9xbehnY3spQ/YDIR6Kdd:DhWRSyr2VT3cbcZINryfC0ZVY8XOTBGV'),
+(6, 'carmenvaleriom@hotmail.com', '', 'estudiante', 'sha256:1000:VkSz481VfWMiIELqOic+5SLLv9c4UEp1:G2OOz4Tx77bGe94+nve+RECJ7TuD97Od'),
+(7, 'fsarianna19@gmail.com', '', 'estudiante', 'sha256:1000:82MUuNJNUdQo2r/EyVAwztFMzgEcz9d3:KYjECT2i2u79hS0DQ1tbwrNFpL/gc3HJ'),
+(8, 'wskplml@hotmail.com', '', 'estudiante', 'sha256:1000:r7S8et7SarBIvhTQNINZiSIQ8/ZZmvbp:DUWKKCvnyKkexZYVrmcXLv7SW44VD1l4'),
+(9, 'morelcart@gmail.com', '', 'estudiante', 'sha256:1000:9KNMS6VBxU4rIWxjEUHU+klvtrRwC7ZW:0mUjsUtHFaveXGgPmpL0aRQvIg3HZlXt'),
+(10, 'lauritamarinl@hotmail.com', '', 'estudiante', 'sha256:1000:7d3FBNcK1aGxrqI6TRQBklfunwZjZFQH:vEv9eZ9j0aPmOA/k44m+0sjukbrJxRSL'),
+(11, 'clauolz16@gmail.com', '', 'estudiante', 'sha256:1000:HM9dA0/NI3DW0e2ixWhBa7WtzZpmaTYU:WHTuofEBMysmNk2gK3PdFy/wKPLGMR+i'),
+(12, 'rosalabrador@gmail.com', '', 'estudiante', 'sha256:1000:1lJwtAGnJQJ96NrOP9EScOl7HltmEHzp:j9bUgwPtCe5+6fHiSHnYGB4DcUuKCtGY'),
+(13, 'efashiona@gmail.com', '', 'estudiante', 'sha256:1000:J19MZQ6juKE1jP7pPVPCwMTI8oAT+4KB:iyhQclfZOzYyXkFdCd4H1TvkRk0QnyC5'),
+(14, 'bebameneses@hotmail.com', '', 'estudiante', 'sha256:1000:4cinNOQuQcpHXeCPwZJApMvF+gdkRVO4:f8qzdtluYU5YhgtpQdPBqB13BFxeZcl7'),
+(15, 'maryorimedina46@gmail.com', '', 'estudiante', 'sha256:1000:Be1NJUeE5V5CDYt+KpiznC36eB9XEoul:dZ++a6S7rCFEZhXNO8bayUFucwkX68Re'),
+(16, 'gen.valentina@hotmail.com', '', 'estudiante', 'sha256:1000:YhjfnQeWfWeI6UCAb9OkL+MNuzx7Q90r:jiBh6ky4U0mxb3k0oJpyeCC49rSYIx5b'),
+(17, 'yadimay_hernandez@yahoo.com', '', 'estudiante', 'sha256:1000:IHbaCCR0En0Jj0HijSQHmiM5tEazWwgZ:LtZP1/rkyKxE6z+IHaKdWsaLJdLlSYE4'),
+(18, 'veroael14@hotmail.com', '', 'estudiante', 'sha256:1000:Qp431UuKW1HLVbDSooGspkLJ5eK+7Ril:uDAq8XDv3tI8mHGIS9u1EkZpZDEjm5w9'),
+(19, 'MPEDERSEN@CANTV.NET', '', 'estudiante', 'sha256:1000:VIcSn/P/p+U2a8PNBZ0ayf2XtAKYyL8W:o5z37qPaKQ8at7YkI8Ag7W3usorUIPOr'),
+(20, 'naffircardenas@hotmail.com', '', 'estudiante', 'sha256:1000:5S4Xdk52NIwjQO0F5iIJbsX/iLpucEma:szbxrdba8x8FVJGFDBVt0Um07qOKvG9W'),
+(21, 'sagujia@hotmail.com', '', 'estudiante', 'sha256:1000:nRiBcpOAlXi7DSLVOYR0sRZW/+3scQOS:Cf/yZyAULP1+gxq6GP+ngsup8Oko+qgX'),
+(22, 'gretalopez2005@hotmail.com', '', 'estudiante', 'sha256:1000:RXqzLKuP7HC7pxLIAxjCWGnLBkCafvff:LoL+TLqXkXB9wTnd9V2u9SLhPqdfG5+q'),
+(23, 'rivas_jacquelin.1997@hotmail.com', '', 'estudiante', 'sha256:1000:jueyggm12Mtbiwx8JWRWA9Sm8GUlOajN:yOIE/63rep8IjgqR7vmhqwjzW/a8Kri3'),
+(24, 'valeriaparra97@hotmail.com', '', 'estudiante', 'sha256:1000:8kZQ4Z/Jua/WCJ4p/fOPympi9dfBw8Bs:UdH30nstd7yFgoxXtDPxDYksacWtM4Yz'),
+(25, 'amigastra2009@hotmaill.com', '', 'estudiante', 'sha256:1000:wwUuy+WWrc+GLxGsEDdKmvVMcQ+z+mBe:2IkcIHEP8Vk4z1PPTwbWlk5SsjpsXgY9'),
+(26, 'bianca_requena_bella@hotmail.com', '', 'estudiante', 'sha256:1000:bPVOZS2aOeyS0CXkUd97TGWWDnYmYU1v:BK04D5xEcQVf2rtcVtazitj9Fy4dCR/C'),
+(27, 'soyalicelabarca@gmail.com', '', 'estudiante', 'sha256:1000:zubncKZ71LVHbKNpgWJs5hV5tKCmJAtt:05kDjk+Vlsv2YvxDBgtyLEQQf2D8Tqc2'),
+(28, 'nakiilinares@gmail.com', '', 'estudiante', 'sha256:1000:Z8jjWZvI1AvQAurfz2cS6q+rxVX4ZDG1:NZQmvkQudSecVEm0Ja+vQZZ7lTXFXPbZ'),
+(29, 'smcl.1896@gmail.com', '', 'estudiante', 'sha256:1000:uz9mHABXmwwQwFNfDZXG+VTk8BhQntR/:mc3U8EmXGY+f/RoQo41BKz6g+FADsG8W'),
+(30, 'fvcv11@hotmail.com', '', 'estudiante', 'sha256:1000:2TT3MrNX8TtAAJUec9Zu5WcnGYXwO/dv:IKu0F7Y8c2DNW6ZYCMbs1Mfp6RIHcieP'),
+(31, 'concettamoranas@gmail.com', '', 'estudiante', 'sha256:1000:ewsRKZxLsgtKzAh1VhrL7Aae50phncNg:mSCwSU2KvLog0R663Vpj1udXLV8tEPzV'),
+(32, 'fluque10@hotmail.com', '', 'estudiante', 'sha256:1000:gH9m08q6CL0ts4x2bhwFOoLcEi+Djbbp:v7cbBLD12I8aQFOOOmjr4E08yHdNgZVB'),
+(33, 'isabelberdugo@hotmail.com', '', 'estudiante', 'sha256:1000:BCAZ9pOMc5eFRb+X4Go5WDr/tH3X/rP2:cLITu2Inccw+882TShM98ds5W1NygpF8'),
+(34, 'wamaya2013@gmail.com', '', 'estudiante', 'sha256:1000:YKAH89Bm0X5UrPA8RZ6gC9E35LxeZLgW:AB+Ns8/MgbStFvNjvjCJb1i0HWBiUpJQ'),
+(35, 'Ibastidas74@gmail.com', '', 'estudiante', 'sha256:1000:4Jii1vuzbgPONYqP6f/LVbebCMe8KbcM:KRDyCaH6Ji5Fmw0tWwJwzh9BaVRkUlnY'),
+(36, 'iremamartinez@hotmail.com', '', 'estudiante', 'sha256:1000:QjNX95tEnxISYlUgfanaTejOtbLN8MWc:4uX2GGIHwK2EetfmKPlM4J+1lgQoLLDJ'),
+(37, 'ledysherrera8@gmail.com', '', 'estudiante', 'sha256:1000:zkdz+n/cemHT/jGBJoQw4GyhMR623+yr:tfsI6fGQdojWsdsoW8BQQHEFJJzI7ivw'),
+(38, 'camiladelgadotovar@hotmail.com', '', 'estudiante', 'sha256:1000:6dRA1VQ8rue7niQOS6C2wIzHMIdkiOou:aQ+Ly63Hxl5RTrb1RShJQ/7fXEJQ7fcD'),
+(39, 'dlarez@besign.com.ve', '', 'estudiante', 'sha256:1000:FflF4HtvPc7T7gY8fxZXZDljuikcwMVz:e7QUq7HyI70mn3lmOXeimJSokrucilNZ'),
+(40, 'alessacapriles@hotmail.com', '', 'estudiante', 'sha256:1000:aRaPVjy8oHpF8L0SluVlBRpU8aiJ6tq1:JwAgVDbnwoU/+A15lbVMvYk6ixi/AouQ'),
+(41, 'mariiacastillo_@hotmail.com', '', 'estudiante', 'sha256:1000:BAd0jq3VKq4QO6B/7mtSVNfymPQHuNKY:Rh28a226pPqZQ+b1Iyzr+S7LLEC0AOxy'),
+(42, 'annabassolsr@gmail.com', '', 'estudiante', 'sha256:1000:ue9htgG8Kfnhzhv7nJ0kEJ3ZyMuPN+s2:31oKIyUQE78BJswHnhL/IeBMWwxy5egv'),
+(43, 'mkpmariana@gmail.com', '', 'estudiante', 'sha256:1000:gmDS7oURFlpfNpBBi2HkYT4SvaTwgOtM:pScuLep/W9EZhi7COMJSYqABehc9oO5z'),
+(44, 'victoriaale96@hotmail.com', '', 'estudiante', 'sha256:1000:e6k332wbDcMhxHqdXRCjCYv32G04WkyN:FmmwPBf4C1uPlNbMERtUwspn9pMzGAob'),
+(45, 'carmenyvalera@gmail.com', '', 'estudiante', 'sha256:1000:dHwuq08RYF90eL6FC7gRyQMeJcqnzaaE:5BsQ1K3xLieOxx1ggwEtjZqTjEchFqnI'),
+(46, 'itsvirgim@gmail.com', '', 'estudiante', 'sha256:1000:k9GJ0bqp6Fl7hpVYno5mPhKdWGW2PD5F:Ys7C6i+fTp8IryLAa563oeVBtFYDPTYe'),
+(47, 'Maria_Alej_94@hotmail.com', '', 'estudiante', 'sha256:1000:bY+UnAa23mg9lVPqMqgbFAII5pNei2Yu:hza2pd+eQK+SUmTYuOUlex7dDEAJd1dY'),
+(48, 'giovannaperez@hotmail.es', '', 'estudiante', 'sha256:1000:6LHC6RDhs6zvdC5ZUv7WRMCZxGGowRVP:WRtj9OCNHH9usdAUTN1jHuR33OxblY3s'),
+(49, 'aytanavlb@hotmail.com', '', 'estudiante', 'sha256:1000:OSXkaOZsU/rZgxyjDHeer8E0fV0vhlBD:aKzZvmy8cuWhvhhqety3Xyz80g+g9PPH'),
+(50, 'Andrea14hernandez14@gmail.com', '', 'estudiante', 'sha256:1000:ul2qe+hllvDyHtrmDAgQDf/5uk7saiKM:lN2xKOpN4GnL2NyqbFACKFoYVdiFBVq7'),
+(51, 'jmaveledo@hotmail.com', '', 'estudiante', 'sha256:1000:+Aaf3afiZkcTXeD62IZhPrX/MFY6r4ja:QiYmvPR6Ga7Yn0+nace1TARQ5H4TvcVJ'),
+(52, 'estefani-79@hotmail.com', '', 'estudiante', 'sha256:1000:vuw7fubXu3icqL2EmctlEzTj9y0t4a0/:+mZIdiaz5dzh2MxGgfRAz0QSFNk8Ci/c'),
+(53, 'velasquez.meme@gmail.com', '', 'estudiante', 'sha256:1000:r1HBojk2Y34M7BBILchrpBK2yexASaY/:uA20mUWpLbFimbrd8BEbinzJZwb+HxRl'),
+(54, 'RUTHOCHOA.2475@GMAIL.COM', '', 'estudiante', 'sha256:1000:N7MMVyUIsbzsDWhoH42rsu+5mEwezk17:/7A91Jp+dTdEO4AulwgEkaK85cYSIOZF'),
+(55, 'sofia_araujo21@hotmail.com', '', 'estudiante', 'sha256:1000:Lo6yYqlaZyqSd9/Ruw63LZnc7tiNTGxI:Fxa5zWYng602KdNASP4QwVNHbJVYXyGY'),
+(56, 'claucm02@live.com.ar', '', 'estudiante', 'sha256:1000:ARJ+h7XiUxpZ8lsb30YeVoaHno64OTsu:nXeDBfNNYAFf48aGfAr3lwM7/S5NHkZ1'),
+(57, 'mayca0409@hotmail.com', '', 'estudiante', 'sha256:1000:6p8YlDjijCD87G2SetPdfXzv1rVT0Rto:1eR7qnrj5iryUA1UTtBuVnmES6g2GQ10'),
+(58, 'permary@gmail.com', '', 'estudiante', 'sha256:1000:Pq85AwfWzU5MV/xrzvOCaa79FIZYbRmw:mXv9Y42qoPT4Hd3mvjO8WBCdlzUX/jc5'),
+(59, 'viannymacero24@hotmail.es', '', 'estudiante', 'sha256:1000:2SEcyQM8ULpvTNcZViKZWM6vCIT8DOYo:XBOp6/hjOqvRW2qS9jmvlmWgPzsllIlk'),
+(60, 'corin_uban08@hotmail.com', '', 'estudiante', 'sha256:1000:kCODD0SXoUadXQzns+JY9sgOg2Ky+iP1:DF+DY22NkVbDQhnCqyNK+vfHtBV1ORu5'),
+(61, 'quisyslorenzo@hotmail.com', '', 'estudiante', 'sha256:1000:xpBwIbvkfclH8vCffRD4UGRyEq5rOOou:eksVnLfG3NpLoauRX2ZoJhQjuWWdzH4K'),
+(62, 'alejandraisabel9@hotmail.com', '', 'estudiante', 'sha256:1000:BdYdNKfNXrdARBU6CfRsmt8t2JHGGD31:8BE8IQH8mUePe20NN6h4IJxvaw6yUK8m'),
+(63, 'gabrielajoseip@hotmail.com', '', 'estudiante', 'sha256:1000:X1m+LS9eAbK0Ne18bNAHLz3hqD319q15:/BsG5zIEuE6jpJQkEF4TQvgr/M4G1GPA'),
+(64, 'cferrer@besign.com.ve', 'v18062516', 'admin', 'sha256:1000:4f/Cmn6IROcY43MC8BAH34i6ooxXAu7n:wU8igbk6Uz/3hAjiJdBU9N4o9ie0NA5t'),
+(65, 'domenica65@gmail.com', '', 'estudiante', 'sha256:1000:83s6mcItsCl30tc91Sl1ewp3HgjBtngm:qWHV9TfByOS6zw8NAWOzY/CJH1EXdugV'),
+(66, 'daysequera27@hotmail.com', '', 'estudiante', 'sha256:1000:PwZBQF0+9M3sB2wIMX58gHD6L2TrZnzn:e8IV+cY13H7/joTQcpsSN4A8wX8QosR8'),
+(67, 'lachiki-rodriguez@hotmail.com', '', 'estudiante', 'sha256:1000:rL289dMWgjPfKosYr0rQHWGVf8jfygir:XeMuDdGR4zop13qIAPglguJzUEyFHdRa'),
+(68, 'emilydennise28@gmail.com', '', 'estudiante', 'sha256:1000:qrgKtDb6NdjyyT1dM74kudKqH+A3mHD4:sEgbZO5au9EZb9G3BpaSJjxvS1QjVFDr'),
+(69, 'danifornos2009@hotmail.com', '', 'estudiante', 'sha256:1000:8X6NHWENzsyEIvmUknDB+PtIqpnbyP4Y:51mMA0IFIB583K7x24Ucb+OjCEKbBDGF'),
+(70, 'aleacna_11@hotmail.com', '', 'estudiante', 'sha256:1000:KQCvXM65f9WRybzM7UJje4qpFwtD415M:Lgz4eJ6ZOzUESVBlQbmhOELR5cMs3A0s'),
+(71, 'andrw_19@hotmail.com', '', 'estudiante', 'sha256:1000:VlIIHVGjjfmh2PVyAIbV228jvsQlO/tl:ClKyv2zYlnFq89lTjqhU8i7XLEKn5xLH'),
+(72, 'Fabiola36@hotmail.com', '', 'estudiante', 'sha256:1000:lx55EGXZ/00qH4wTd8WexCRDR2nPnIcI:MTLaOdSKn9//KVEPoe0kn/3+UXVla4IK'),
+(73, 'yumig82@hotmail.com', '', 'estudiante', 'sha256:1000:lDnfUp8rZWX/8UoU6fyFxiaiaYmulSxA:WlXgGU0KUBzNbeMBJD22EPd6CO/IxpYn'),
+(74, 'fcollell@ford.com', '', 'estudiante', 'sha256:1000:4idO2YGj6jZp/Tfab4gEHtZc9RHaAXGx:joN7JejOyHoyvCGcNwYbXEgjd3gghzdn'),
+(75, 'dariola@gmail.com', '', 'estudiante', 'sha256:1000:V6m0d4yL4jA9zEUtiPqr+mJJAwIi83b9:qliojFLCLb3UENcl+4LnVgiVwFXodKOh'),
+(76, 'nicol.perez@outlook.com', '', 'estudiante', 'sha256:1000:69NdodyVokh3PJqnrjervIn5FA4g4Nr5:I/3gSy7RDcstt6QYtcmTF28U35hal/K3'),
+(77, 'isnieta@hotmail.com', '', 'estudiante', 'sha256:1000:vaRah3OA+JsB8ytzTHHg8cXFAhpIsRsM:YfU1RQ1982A1o5oPjud6ALy5WCOMiphC'),
+(78, 'adrianam.gutierrez@hotmail.com', '', 'estudiante', 'sha256:1000:41JWWst+wEyFAY92HHHw69FVXqIrybyG:9GGWV0ZkoRyc+GzXaIC1DrcBD2kqf3Gh'),
+(79, 'aydanacolmenares2803@gmail.com', '', 'estudiante', 'sha256:1000:td+mXobSGSWbrSNBCquryntCnVwKgYMu:6UAur7Zu3R74bmY+DcI3LMiW0Y4+wynz'),
+(82, 'barbimodelsview@gmail.com', '', 'estudiante', 'sha256:1000:Ii8tJOTW/Ff4ZGV1t5h9mbNhIoi1MBSi:Zhi2LPTZM3j8ogpoNnDq1fDthIPf0CsS'),
+(83, 'SAYO.07@HOTMAIL.COM', '', 'estudiante', 'sha256:1000:EQaFcsUfN8YjXB3URtk4m0vRGPxQbgVg:bs4+kyWmR+xGwOiBhBff5xiZRzpsaA2E'),
+(84, 'dr.carlosaperezt@gmail.com', '', 'estudiante', 'sha256:1000:IBX9x+ddwaZG4tWl/qrQBsAI76cH4gkv:XUY+rPXYOQsjIo8qG0jo6Bog/NQE7RfA'),
+(85, 'juliethluquez@hotmail.com', '', 'estudiante', 'sha256:1000:CmbCfxnuRqkbD84K4QOJGXbcjCmR8nvs:ZqrJOILK6zk/J0HFAVmHn/JJGvXMYoio'),
+(86, 'antujuegos@gmail.com', '', 'estudiante', 'sha256:1000:teZUsdfuRoKu3gkTRqHeglz3VOKo48Ly:MfowZ8zgmC8My0VvN4QgtgYxHRKsA5dQ'),
+(87, 'carynel000@hotmail.com', '', 'estudiante', 'sha256:1000:5SnJ1QrUAV/ZQ7Kmvy+G1ri3JCy9d7tv:g0zJ44F94fUah340plelCOqO0JsDitJt'),
+(88, 'NAVARRONEDDY@HOTMAIL.COM', '', 'estudiante', 'sha256:1000:jDcl+liJmEc21ifxHO8lEKglF/0U6sLr:pGqRaean5/JuFBoOWzsysca9wkq9LP+e'),
+(89, 'hgjuridicos@gmail.com', '', 'estudiante', 'sha256:1000:mcu2KBrtsFF8uaoihIzhdETLFxRTXBXu:FkA4NwWsk29sT/QTUrJ5axBSHenTXWXW'),
+(90, 'elenaanzola10@hotmail.com', '', 'estudiante', 'sha256:1000:VGP0oglpeXOcKu8IFJB6r5K8VZSMRBu3:sdyBeqTt56IOTecgCJbMEHYFtn6WDhT7'),
+(91, 'yvonneyvis4@gmail.com', '', 'estudiante', 'sha256:1000:aaQ/Z6uNLHKCQRha4NgDRDoh9adHX7Hi:2y9t2Q8zXSlrpuWWvF/fy8o1tPSUuEwl'),
+(92, 'alejandrabenedikte@yahoo.com', '', 'estudiante', 'sha256:1000:qL/Eise7tnNnD3Hde43G51aQ5ySDa6dS:0qlZHzy8V1AbvtoviVeo0/jGi4kP1/1S'),
+(93, 'andreabpjorgensen@gmail.com', '', 'estudiante', 'sha256:1000:vkP3S+VlnE6nN/weE4V7X/GUmh3UGTkm:7/XpDcqCnJuvNW85yu9UxkxNmdldLRX4'),
+(94, 'eyraramirez@hotmail.com', '', 'estudiante', 'sha256:1000:zD89KBdIXsD8HpS+/+JyJHMT5GsH0EhK:HpunD/K6fpK6smqlloxqjHp3Yvk/FWNE'),
+(95, 'teretere12@gmail.com', '', 'estudiante', 'sha256:1000:kkDXqmS9w6KqyWbhzzPqLpRPpBv0De1t:7aeAYLMDfabJ4CnO58agxgk7YQVEJfod'),
+(96, 'SARRIAINGRID@HOTMAIL.COM', '', 'estudiante', 'sha256:1000:C8oby1hZiUdPBNjWPDnozb7r0JE6GMLN:9EBqE7mtYzS5Ja26/GNRhFpf3U/JHBRQ'),
+(97, 'armas_laura@hotmail.com', '', 'estudiante', 'sha256:1000:a1i8nJTGBywp98ssgiOYLU+CgN38154W:VBgQH7sTqwii7/4gofDsJdZjwcmFu0Tv'),
+(98, 'carrasmariel@hotmail.com', '', 'estudiante', 'sha256:1000:q8UaMphssasIyf9vrKJ+VmPN3sU8sNNO:zL9ODCwyi7T7podTL5LJkPW5S1YJe+xX'),
+(99, 'nancylidu_19@hotmail.com', '', 'estudiante', 'sha256:1000:KPTnaBwv/SDkD26gWLdrhIWW6actJZeb:JFw8Tq89/yU/sdXaG82r8T5sMCxVcY8s'),
+(100, 'modelsviewgroup@gmail.com', '', 'estudiante', 'sha256:1000:340kxBeCEItNdssOBu1UtG2C8154nWce:msRVaecu/qk5afMMz8FmQ2F6FJkGS0Ub'),
+(101, 'cgnf1997@hotmail.es', '', 'estudiante', 'sha256:1000:Ze/y6+NRN7WUbTkVXEqjQwQM9t6zWUWK:Al9grvxE4QMtp7J5uotzfCL4X1EHk4X+'),
+(102, 'andreabenedikte@yahoo.com', '', 'estudiante', 'sha256:1000:cD9IMY2UKOqnqZGI3C/yTXGwDGRWqaGq:kpUCnfPqQGgbd3huIA3XMzgeV+pJmknR'),
+(103, 'maigledys@hotmail.com', '', 'estudiante', 'sha256:1000:rb7QKoUDShCcSOMDhX+kOEE+v8gRJ2E3:2bpwZO33mWHnGf8lNVMY52WVG8Ex9+pA'),
+(104, 'yadiramartinez43@hotmail.com', '', 'estudiante', 'sha256:1000:7+rJ3yOW1/6OTf7ZcVzOpKzn2u0rh5qQ:BvEh+iXNgI6EqFY6qzLaDlTbzlyDt/TE'),
+(105, 'nataliabricenomargiotta@gmail.co', '', 'estudiante', 'sha256:1000:oqUIn6x3KIg/pQn3AkZfTqAK/nYRmXF3:vbBhCBhRstIrzr0si+v95lcdL5O/q8hJ'),
+(106, 'nath.flores@hotmail.com', '', 'estudiante', 'sha256:1000:rP5m401+wJ0EF0nPdEhwSsEKrovYwyxI:b8aS/vVztkLF5u4SRIwNHYxsFDBevrDe'),
+(107, 'Bracheld28@gmail.com', '', 'estudiante', 'sha256:1000:TK8mGlrgJTqOrbcD12qV3SJPoV3ZYLUU:DtikBDGYWxdjhBsux8+RLeidgQw+X7CT'),
+(108, 'marifermen@hotmail.com', '', 'estudiante', 'sha256:1000:OkNAjpqGD+TNZm8SRTYFaCLWdinedxJe:UIbmN03hM20F/kIIwZw5bFdR0NvIehx6'),
+(109, 'dariana_araneo@hotmail.com', '', 'estudiante', 'sha256:1000:ZXbTH5IB18v9D02HyxON18NQd8GXVDDs:GXAseX0DxjCXszoDC+Jj0cxQvTRLoESn'),
+(110, 'nathazha2000@hotmail.com', '', 'estudiante', 'sha256:1000:o/6BmvFy45pmtaS88XfCbku+uxU1bqI4:f0cank6+woaRMg0gmIQ8zeErErAdR7pg'),
+(111, 'jhonelsyslopez@gmail.com', '', 'estudiante', 'sha256:1000:+F9eHSFhy2G+AuTdBqFgpvizIvU0uE/v:RrbxC3rMQ9X9fuh8Pb7C7PgcHduoKjmK'),
+(112, 'franchesk.h_22@hotmail.com', '', 'estudiante', 'sha256:1000:nn0YvU8u51+TRztMupbjTSrPUBA8mpMu:kGVkMVmNSSS0K+JgYv7RoODmzeHW8fvu'),
+(113, 'yaramsita@gmail.com', '', 'estudiante', 'sha256:1000:JfTB1R4nxroU6xRq4K8ZOSoHbNt0C2lM:unKBJNqgTCz6W8NfNB28YT2sTNEKR1Yx'),
+(114, 'reynagonzalez64@gmail.com', '', 'estudiante', 'sha256:1000:fq5qEvb3JRmHKT/eXGXf+zpFfgaYjN6H:9CLwAT2j5A3tXmwtsf9fJVfzbKR1KoXO'),
+(115, 'hernandezf@productosdm.com.ve', '', 'estudiante', 'sha256:1000:4YyAzBlMmdJEBsDsFORlFksbjEOchknw:Hx5WVGONH42fm3Ewg+7QGsiWP+lQH6Vd'),
+(116, 'mamatoya57@gmail.com', '', 'estudiante', 'sha256:1000:VoQ3tXyPM/NWp+AwWGGXYsKAswijCaAI:5oiJP36jFNUs/SNebTtMsJVMNzimkRG7'),
+(117, 'gginayamac@gmail.com', '', 'estudiante', 'sha256:1000:Jrz5Hq+nO9HeS7qxhx9c5TjUnUo7KpbT:+zANN8OCwkuNRCXqmgqdatCEV4sh5KXX'),
+(118, 'marili_li@hotmail.com', '', 'estudiante', 'sha256:1000:0/RmMoD1iuDqrbjqkFWmaMwP2UySdRe9:WkuIPwOJJD9uzD55O82h+erPrcv70JAn'),
+(119, 'mariaviloriacalvo@hotmail.com', '', 'estudiante', 'sha256:1000:JSkzzS80qFzj6OPgPjCEM922GZfXdgXK:PqRt+2JKtRZ+uFVcqgHdK2KIMtqyygS3'),
+(120, 'ei-lyng-rodriguez@outlook.com', '', 'estudiante', 'sha256:1000:jZdHhLWDIxgm5pFMRAOIf7+BB6MxA4jP:N0NFf5J5RRQyGEoQzyR4tXfk9qJtlg3O'),
+(121, 'katherinerha@hotmail.com', '', 'estudiante', 'sha256:1000:J7q3UXpNlWNXPfHnt4vir1xDi9KyZjQU:o1jUunUgA3lD2gfKhVmtmdCtbDsSXFdH'),
+(122, 'yulissa.ramirez98@gmail.com', '', 'estudiante', 'sha256:1000:XVsgkjFA+c9OhgCMzzPNUdFFgQprGfiG:N9m2v1G3yS+srEppbADyKAwzxDqmUpVK'),
+(123, 'lo.y13@hotmail.com', '', 'estudiante', 'sha256:1000:4opcl1o4Vd2qAo7LEY4uSBJGmGN5rgZn:+4UlFmNzRhfZf2iKhLiNKaWnK563OGA4'),
+(124, 'joaquin.mejias@gmail.com', '', 'estudiante', 'sha256:1000:ne8x6/HyxpKlz/W8lwQpO2dXDy0dYq58:eiJ21CxnXO0h50+0rNtTsEuru+RpBWax'),
+(125, 'kareliafranco71@hotmail.com', '', 'estudiante', 'sha256:1000:/USeotfZbs4WAlmO7NtTQMQGZnoo0VaA:1tX1elrVAVDB1ELjNnzkvaoIjJmOAZVP'),
+(126, 'paoh1997@hotmail.com', '', 'estudiante', 'sha256:1000:jLlHH0bSLU+GMzfjLvHDq1SQ4culJvyp:lWrsl0msnr/vx0w6TzHSOZIdQpjkHNAL'),
+(127, 'o.j.gomez@hotmail.com', '', 'estudiante', 'sha256:1000:EwsChiw1w2Q5Y/NxGEUVfq3sQABBvAHN:5WOMuS2nZ8xjee9vtz+Jl6A7HPBRuXCr'),
+(128, 'iliana_borges_2001@hotmail.com', '', 'estudiante', 'sha256:1000:1uBeJbHpDWU3FGKoy47MSrpS15HdsZZt:bQP8Q6563umjS5YLjLuV06KdgTF9KLZK'),
+(129, 'trina_naranjo@hotmail.com', '', 'estudiante', 'sha256:1000:aw1u0pGT81CaSfGWKvnZCIHUw9ks4klR:e5XP6MMzv8dS88d0u6sHDxjJlmGERU/b'),
+(130, 'barbaraburgues98@gmail.com', '', 'estudiante', 'sha256:1000:GsJnuxDM0oeguS5PlmzXYCXb/7DNnMfw:VrQfhvEeQau/9DhWqKGS5clQokxhIMPH'),
+(131, 'sarai_nouel@hotmail.com', '', 'estudiante', 'sha256:1000:qC7DpUEa2Bd7Qght6NZmUeblGQ6kiH66:eOZnV9KWcj1qUd8XoDEiYCgx+dQDiyFp'),
+(132, 'tatis__9@hotmail.com', '', 'estudiante', 'sha256:1000:IXMaKfyt4lLZ3rq+qRjBiqFzCfgvbyl6:t+nlu1mebDAAIGrE35w+JgoEmpmwaRGJ'),
+(133, 'karenpop524@gmail.com', '', 'estudiante', 'sha256:1000:kJaVihr8k2lxrC+bdqvujrcCr/BSeewd:UDzfttiVh3AM/JeDOZB1z+nvudi7c5yL'),
+(134, 'marianela190199@hotmail.com', '', 'estudiante', 'sha256:1000:152S9xhlf4ooiQ7CSPVvqcUfMm+pI8Ec:zGrxOSo0ZT4o8V9kAyiYJXjWDji1N4L6'),
+(135, 'lismer.triana_1996@hotmail.com', '', 'estudiante', 'sha256:1000:vDLXGDsdHuQrb8am67qplVHSjt0bdDnS:tpoPFhGwLRmbCcHGUtInOJk7R5VI/oT5'),
+(137, 'edwardyanez11@gmail.com', '', 'estudiante', 'sha256:1000:T7Ve7IWO1GKcFCqwObO0cfRrfWW7k0cW:RqqgxfnZ2v4h8u9/LJhunUrRT0OqmRoJ'),
+(138, 'arianysvaleriahernandezvalera@ho', '', 'estudiante', 'sha256:1000:9holsjRMMlaU01yntaD+UO0MTX0Hs50X:QG3bhrClqdtheki/zP7b186m2QFKt6n1'),
+(139, 'kimberlin_sanchez@hotmail.com', '', 'estudiante', 'sha256:1000:15LDQ5RK6tYgji7CJc19W+WGkM2TlrpD:UxU1dylepyubUxmf0CDhQ8nLWIfUMEr8'),
+(140, 'jessicacalatayut766@gmail.com', '', 'estudiante', 'sha256:1000:cPy00/YHfJvzChQdd0lOSvtAOmFKJAEV:g4qliwtp7418HYNayrUcnbaH74Xl0LYs'),
+(141, 'leandrovasqez@gmail.com', '', 'estudiante', 'sha256:1000:snxS7cuMb12wgUrFYXwgxYbWWvzmwqiY:bquGEZ4qdAM2HZQlp2sHWi+3407k7+3u'),
+(142, 'angelica4con@gmail.com', '', 'estudiante', 'sha256:1000:6lKoACNNjF5aXaaYPCJ60SggUQtuv5VF:/PpaEz7XVmfikgFNiRkD6wZwFIfWnzlP'),
+(143, 'luisianamazzilli@hotmail.com', '', 'estudiante', 'sha256:1000:vnEFBaz53i9gm5tdjenn8hSTQnSSS/3a:uvjUhUvJhi3BjXVM5l7SZY4Jfag4CzH1'),
+(144, 'israislys_rios@hotmail.com', '', 'estudiante', 'sha256:1000:QwipyFogY1lw4wwMdGIDiDpbKu2vd7KO:5IiUZwUq/MmSQY4GhCNAqdizDarMj6Sl'),
+(145, 'marialuciacoppin@hotmail.com', '', 'estudiante', 'sha256:1000:LX92UPy5GmTmL/OdoMZBVMdmyGD4UzQ5:K0vZSbfTYiJHDb9ArTpD73FzYFrX3m6O'),
+(146, 'daniellanievesv@gmail.com', '', 'estudiante', 'sha256:1000:edwR9Ku2FIJySliUgtZb8LfGVv7IYE5G:PyY+luFl1RAFeuQMkE6cB6lbidxOdZ7j'),
+(147, 'littlejama@gmail.com', '', 'estudiante', 'sha256:1000:/NPQMexPvGWvu9yqhUOmeIcsZwD8Ju1s:LAsh+HtbJBKojEu3G/ZJ04WBV2rlfr5v'),
+(148, 'gddg_8@hotmail.com', '', 'estudiante', 'sha256:1000:6MoJiG9mGf8a4a0sP0KV1WNQV1dICgWB:X81Pvy20MXuTpw7x/n8BzJADIpcxikFb'),
+(149, 'meli_vale_99@hotmail.com', '', 'estudiante', 'sha256:1000:wXikHcKFSd4NL48ZM7YeZYafYhgGcS7B:IDzYJHDgcF4RWqVWwtlC16sPjLessZsj'),
+(150, 'pepa2494_@hotmail.com', '', 'estudiante', 'sha256:1000:8+VB6Vd+TeqbuObQisHi9C7Gur9uVQsR://B1cbU9SkADlvuFN3lt58MPijZIqEC4'),
+(151, 'lolaestefan@gmail.com', '', 'estudiante', 'sha256:1000:2n23xEyMVgXG9YKb5oVoO02vJO4nTLXn:HFctUkOAFfipAk6wvd0gUmkL/d3zSkSo'),
+(152, 'mffb1005@hotmail.com', '', 'estudiante', 'sha256:1000:OHwUuW6tc+Yn4lP/01OT16oY7kbULSp5:jD8dFhvKYvieM1/QOMBeqkgHoVht+J5V'),
+(153, 'yenniferarias24@gmail.com', '', 'estudiante', 'sha256:1000:Y12XGip9G7EEDVj0UpI33BGHcsqVBRcN:BgCR3tvPA/IBMgMpG45kk430Jh3cySWL'),
+(154, 'julieth_sarco2003@hotmail.com', '', 'estudiante', 'sha256:1000:ThZtxQzWsXaWDQOHt6z0jmbQi5UiiXSb:vbrIH8ztf82pIZpTqFiaDLT9wzyCtqQh'),
+(155, 'ydalis_1@hotmail.com', '', 'estudiante', 'sha256:1000:5pEWOX+ndGPsjUmyLfk4J6JBoCaMyFjM:Y2vh585BovpSAyYMd64Ec1jFYjLiY9fw'),
+(156, 'arehani_0513@hotmail.com', '', 'estudiante', 'sha256:1000:8cdEsKby0GMfYWSV1sf8+Rjb2EAchF86:nVqMeIeAyBJYGPTbvb6WbwnAQ8yBOt0H'),
+(157, 'gddg240298@gmail.com', '', 'estudiante', 'sha256:1000:B3Lt7h6/LNmegWQrZKQqr/nLWT8tp7Et:vmfqC1XkvQ613Yu8CQAV38RoO9pKe1+v'),
+(158, 'chiiiqm@hotmail.com', '', 'estudiante', 'sha256:1000:XBXvCOVenki4RNgXdF+sXRw/3TrUSnMA:hiC7v4LfDv++bpHKC8nl2y5mGG6qzwbP'),
+(159, 'dulceygaby@hotmail.com', '', 'estudiante', 'sha256:1000:wtQFpBNR+xqHQhTEWYztZDcrpk0BVTPZ:ppOn3JLpfkPzm7y1SVVk48nKqYOwline'),
+(160, 'lisferdy25@hotmail.com', '', 'estudiante', 'sha256:1000:lkFWXWS0weusqGl1D07+WTG4ORGHzMnR:xX3svrxUGvpTSUSQCFJLfNodPZBDf7jU'),
+(161, 'kamilab18@hotmail.com', '', 'estudiante', 'sha256:1000:o4E7WDvcARw+N65HeJNFLKe5HOXby3/K:qTnxPpU7i2zp92jVP6dQ9KWCn48d0JGU'),
+(162, 'natthy252@gmail.com', '', 'estudiante', 'sha256:1000:Fjt/9IpYM2277M36MWBrurO1nxkXPGhe:mGKCraekw2hveiRiBsLC25muMxqbeTAd'),
+(163, 'stefania.andreiu@gmail.com', '', 'estudiante', 'sha256:1000:M4JsM9DOobcZ2f3YyVcS3KvSFYn0E4fD:3P+DOoz0eMbajMt7ds8IAjbraLfQ+AJZ'),
+(164, 'anto_17041@hotmail.com', '', 'estudiante', 'sha256:1000:ZqJOYbQULnJmmgn3xWOVtoI9sYjAAk0S:TpR0OWjFCuig7TBC/cFUyDOMdYCnMJgP'),
+(165, 'laprincesademai_02@hotmail.com', '', 'estudiante', 'sha256:1000:ndPYdrhB4VUYCMEEFYV28VaEldSgcnfJ:bB7F18abRy5Xd9kYLR1SnK8WmcMbVKVt'),
+(166, 'stdiaz1012@gmail.com', '', 'estudiante', 'sha256:1000:1VkSetchlHV9zyWu/6VNhcOs/kW6TkVY:Tbkg+TZ3Kt4+hmLQPF6MJLgl070z0Owu'),
+(167, 'valengaerste@gmail.com', '', 'estudiante', 'sha256:1000:IMkSLmWCTacZzkTu+fcK+75N/VXG66wq:HP0OPMAcrhlbdQN2CjcyJRC7oYuPZKf4'),
+(168, 'mayde.meza@hotmail.com', '', 'estudiante', 'sha256:1000:5l6kqWARnOF9rg5W1r4lrB93w6zokJI2:yaID6kLC858QmxqLExZMgqE0kZtWiyHd'),
+(169, 'hefabuasik@hotmail.com', '', 'estudiante', 'sha256:1000:LirNdmJ7WrYWI2ZEf+xdNlROCOD068dL:SLQYzkjoEZ0aYqsYW8jKTfOxciK6jbKu'),
+(170, 'abnymen@hotmail.com', '', 'estudiante', 'sha256:1000:VI9/kXB9kOXbrjmZiefI739f/jZiAPkq:BJ36XwEgWXIqffP+CfKIUiWCMgapOsf5'),
+(171, 'nccm_23@hotmail.com', '', 'estudiante', 'sha256:1000:3HKf48hvRsNWmg+9zJAvdkf5OpGxseSS:lgzFLVrAGOeSK0k5o9dUItU7NfMQjFHb'),
+(172, 'vacontessi@gmail.com', '', 'estudiante', 'sha256:1000:Y6aitkWmxgze/UotQLDRYHUkPNgkRF76:HckAqAKZIam4p7LKEC6Wk4yu0xJIzXhB'),
+(173, 'fabiaroc1@gmail.com', '', 'estudiante', 'sha256:1000:QpPHbRL5ZNO00Ww0ZxHPP4pWmAl0Rool:UzAbd274iDfQNWOWt6pixL6mDYz16cpn'),
+(174, 'roxy.mgrm12@gmail.com', '', 'estudiante', 'sha256:1000:fe0Yqc5KuoqyOd6LScyjJls4F3T/xnzp:i2XGiWZaoEzb1VssExnai5qLcYWumEDD'),
+(175, 'gricelff@gmail.com', '', 'estudiante', 'sha256:1000:6I9f5/JhuJkOaHKm20q1N5kt0HUumnDv:MO3VZkEULKSyoGpy3KPtRJfjomxN6oGb'),
+(176, 'jesus_moncada_1996@hotmail.com', '', 'estudiante', 'sha256:1000:XJa4+ugfgs+O3xB3Tt6P8lCytm+65wo1:fgjw7f57bBh/wbuX1BYBsbElwOBeBcjy'),
+(177, 'mafer.leal_11@hotmail.com', '', 'estudiante', 'sha256:1000:W1WoeRsLo1nbpDYWjNCrk80Sj+q2r1Ic:r/r6ngBhHuvSNTVAlOZQcMn7VE7CmLFY'),
+(178, 'verogranados@gmail.com', '', 'estudiante', 'sha256:1000:IN/J1AX3zXhqRpqETPvL7bqBbF0FLSBr:GeVk9CybvGHr13FTA+U0R5wf1MT4ziVS'),
+(179, 'andrea_p59@hotmail.com', '', 'estudiante', 'sha256:1000:7XDdJ2ggLmu5Rw4eejpu7ULN6lVqZjjx:OyzZwVXieI5vqqOYASMN3alTomUgsrth'),
+(180, 'winnic_g95@hotmail.com', '', 'estudiante', 'sha256:1000:dnHEUxO+8tCT7Oa6+EraHBo6ax4qlnHP:Qqo0sWhcdrdc507xSHMh+igbTYK06Clk'),
+(181, 'anyparamore991801@hotmail.com', '', 'estudiante', 'sha256:1000:CoQpnRsWsCfeDipqZ0IqCPuxV7lXREvO:W1jSlEKbxnkGaa294FgKTEhkcW+BhXYt'),
+(182, 'alondrard23@hotmail.com', '', 'estudiante', 'sha256:1000:ruIG+8rI+evpl5mHFREqOjWI+ddEBwe8:kZFft3td6M6HUeRUaBdZ0A/VEITwpaYA'),
+(183, 'andreinamilagros22@hotmail.com', '', 'estudiante', 'sha256:1000:fDRaEPPENbwnUzbP9N2grq1Oboefrsov:JR4eBx6xpNeJSuCC4FS2zZn+EwPNiBz2'),
+(184, 'mfernanda.16@outlook.com', '', 'estudiante', 'sha256:1000:3TIhF/a5bViPuRgEkJTz7nz1ADybzUhn:3rRTUiSfJKA236FbayfAQOam2xAzo2B1'),
+(185, 'yoibirotg0795@gmail.com', '', 'estudiante', 'sha256:1000:Kpk6gJkZ92zy8olFoVNSY8D0hIWaNb0T:S27v19QZbe9CGqm2R6YyzOP3oeoddS5D'),
+(186, 'pin.ky97@hotmail.com', '', 'estudiante', 'sha256:1000:SaRB2v5QZUPgKepcdC/tY15oSB5rm9SO:UOcSiS1hQCU1eKve9iLUnh3Tp6W4faXw'),
+(187, 'krisminnie@hotmail.com', '', 'estudiante', 'sha256:1000:5p/KRInwKEQweU16dsKx0ixzWFQsDLk/:ijuCQ6b8flZBbfjTjYS56iNfQqUo5E1/'),
+(188, 'l.lorena@hotmail.com', '', 'estudiante', 'sha256:1000:ANgWCIbyOjwAXOv4Ul0+UCbuvhajvle4:x0a10A1jOayBasb4DkEIy+XiYN9TUxyH'),
+(189, 'diana_1512_mm@hotmail.com', '', 'estudiante', 'sha256:1000:lHIu2qkZ61IlG46BvFxxXdf4Nde/QXaj:aTkKhYifiXepYum/anQJZnI4EGABWPyY'),
+(190, 'tubellezaparallevar@gmail.com', '', 'estudiante', 'sha256:1000:luKFiTg3eY/XgPZyfdxsWaPOfxKQeDy2:8lWTy/WsJL+JoVzFJ/mLAz0Gn1Tbn6d5'),
+(191, 'grupovicezquiel@gmail.com', '', 'estudiante', 'sha256:1000:omR5EByqH2HfHp1ptZ2rb7e0icLsFDoG:wqbaOkk8KPAN32dQUI5NUa2T0C6pu1lP'),
+(192, 'laurytcalderon@gmail.com', '', 'estudiante', 'sha256:1000:OSi3HbZhWGsX8ciVvZ+CTbOCINF6dkpM:toKo43GDvzNE1Bg4wvLBWFBPQwlpzDMN'),
+(193, 'anadelrisco@hotmail.com', '', 'estudiante', 'sha256:1000:BNhed+jwAGvwDxUAA4lzSquQUd/utqLh:lHEZVwpkYoEAYIgvON//+9Dzzi8xQb5m'),
+(194, 'alexandrahr95@gmail.com', '', 'estudiante', 'sha256:1000:NgcN/vLFjebXw7dwY7WQ77Z1zuYSsmtU:619kXEsDP7OPL8B54XEby5hrnbRCjoFv'),
+(195, 'ANAHISDELSOLSANCHEA@HOTMAIL.COM', '', 'estudiante', 'sha256:1000:uoUOLrA8f9TFUNH8Sqvon1Ose0fy79L2:2rxs7pLL+4uTE0Y+5EmTrRh+45If8s2h'),
+(196, 'maryori_1305@hotmail.com', '', 'estudiante', 'sha256:1000:rDSoCGsenWWMGa8a87kkLW1mZgve6aAv:9N7QcIKuN/3AgHBRKa6zn5xQrFHHovf1'),
+(197, 'lucianaviegas15@hotmail.com', '', 'estudiante', 'sha256:1000:BzfNeXldtGo4JgUzVzxgl9dBuF1asxL/:g5VOcwQIMG380JIp8+uSyRLctMeGMz/S'),
+(198, 'hisbeht-rivero@hotmail.com', '', 'estudiante', 'sha256:1000:yVE+CeU49zyG9PVtDqGE/MfWMXxIWgdx:HAekI3Nk/porKheeseUjgVBcpFDEoEvD'),
+(199, 'LA_GIRLS_333@HOTMAIL.COM', '', 'estudiante', 'sha256:1000:1B3mTfEE2cK/rkFYJvuQZwoo1KjmO6iH:QwOd0wgQYJxSnFGB9yWKxs/ZzNB7bka3'),
+(200, 'nayerlinpinto@hotmail.com', '', 'estudiante', 'sha256:1000:AkAlH326pkmwWgBbp9qBbqMaU4/3P9CN:1p+XMbmtJUlGgub6/b81/8v+xtztqvCw'),
+(201, 'genesis1998gonzalez@gmail.com', '', 'estudiante', 'sha256:1000:mKEY1/Vh9GXKGSeoapYkAbsJHAdRaw4t:N/fI2igjhjwldX/ejHH8XHFG85wxD2a6'),
+(202, 'wilandre94@hotmail.com', '', 'estudiante', 'sha256:1000:8+og4pxbalTsolkEe7WvdEzL8LK8m5oq:ELnZKlQuV8dXwVD7xi2mvo462P5Pa8Ww'),
+(203, 'sisishams90@gmail.com', '', 'estudiante', 'sha256:1000:CyrFzuOhhR/pc60304pEqpZm02CpRhAi:lU8Tpxgsqd+5WhwJt0qhXWPGAZEKBPxx'),
+(204, 'mafergaitanm@gmail.com', '', 'estudiante', 'sha256:1000:yI/iKwtNb01g/5n536omEFkJYlhb4bmt:ThUqx7SQur8FMBqiHLE+r4ypC91uesHs'),
+(205, 'cami_2@hotmail.com', '', 'estudiante', 'sha256:1000:al/RbXO7rzyqd+uX/RYLt6XBY7Luv4co:wEMS2EtXSzVWyTijBGUql89BIyp5kwz/'),
+(206, 'fabiana_123@hotmail.com', '', 'estudiante', 'sha256:1000:LWvuK5mjaoru2R+8+LGfmj0p3xLXLs1c:NfWO2eYSUO6Z2TkvVHfag997r0f/HDp1'),
+(207, 'dengerly_laprincesa14@hotmail.co', '', 'estudiante', 'sha256:1000:1FG9yWWq7539IpH4YpLZJLOnS8ruFONj:uk+MpAgWsEjXfTXMznYtF/WVzioNqcED'),
+(208, 'nemesis_5_11_@hotmail.com', '', 'estudiante', 'sha256:1000:lGGw1AVTQuSRqBfDZdzsO8ClibJmjQn2:YpP8diwaTC+90MoYU8uPokcH/M/XU049'),
+(209, 'ana_ds_25@hotmail.com', '', 'estudiante', 'sha256:1000:KUYbO2WkdsKJDs3ux6Qwa/Hq66iSB0F+:9S4RXCKiHgyb28L6xzUzBVDdDV1lbyt4'),
+(210, 'katherinn5toe@gmail.com', '', 'estudiante', 'sha256:1000:jzGOMI0csUTuqu9QolS3td97Zs3KbJiY:8kA0Nphj7jxvSh2k+FNHjH/b4X9mpKCV'),
+(211, 'mauriciojh38@hotmail.com', '', 'estudiante', 'sha256:1000:ocndEXEWIt2/8cZrCr5f2v2/CvjMce+D:YELQ1NPWCPOM8ZUns89y9UaxXreVMbLp'),
+(212, 'perezroviramaria@gmail.com', '', 'estudiante', 'sha256:1000:xXJfG/X/tvTWP8OCv8X/sMfdBXmF0LRp:MsHe0Eio16TS+4HCObgpr3Yq0lL77Wz5'),
+(213, 'norasievers@yahoo.com', '', 'estudiante', 'sha256:1000:1LOFO6M2FPKHwk8MTU2dz6TsqENy5Ldq:Ob4s1g0RQahRDRKUXHcUYtXRe78atQb2'),
+(214, 'vivianafabiana@hotmail.com', '', 'estudiante', 'sha256:1000:LpXGFaNE21ReODjI971Xqy4mNObd46db:h7LJRB1vIxdw75d5jegEUu4nRVYBm1Ge'),
+(215, 'francys18@outlook.com', '', 'estudiante', 'sha256:1000:sr4L2rqrVWwnuP+sgBIjZOafbj28hmUl:mnyPHsoC46AMFax69DNrLZR3kJkj4f1n'),
+(216, 'noli_9511@hotmail.com', '', 'estudiante', 'sha256:1000:nawb+7jTz3h9eZLsaglig4MHYhA2LebF:q2aqCQFJv92YV0ldQiqpVEgEb3urYA4N'),
+(217, 'carmenberenice25@gmail.com', '', 'estudiante', 'sha256:1000:2lsC/hKgbHShZ7c1oV4oh/CVB2b9lUOY:ie0+AxS5QJv2V8KkrcMlosGw7QqQOuls'),
+(218, 'mariafrei24@hotmail.com', '', 'estudiante', 'sha256:1000:6zojueADLMoYZOjHiYmT1a6P6A74I1Hc:0fH4WP+i3AXvLp/SUtz3ZkEjUamDe3gd'),
+(219, 'earana@besign.com.ve', '', 'estudiante', 'sha256:1000:zJTpRgBE3NzKLhLd3VZ3I6wjSF2i+W87:oSNKBEl4S/Ph26tz3kf8ZdZbH/kSXFZU');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users_action_log`
+--
+
+CREATE TABLE `users_action_log` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` int(11) NOT NULL,
+  `controller` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `action` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `item` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users_role_permissions`
+--
+
+CREATE TABLE `users_role_permissions` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `role` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `area` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `permissions` mediumtext COLLATE utf8_unicode_ci NOT NULL,
+  `status` enum('active','inactive') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'active',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
+
+--
+-- Dumping data for table `users_role_permissions`
+--
+
+INSERT INTO `users_role_permissions` (`id`, `role`, `area`, `permissions`, `status`) VALUES
+(1, 'admin', 'presidencia', '{"1":"1","2":"1","3":"1","4":"1","5":"1","6":"1","7":"1","8":"1","9":"1","13":"1"}', 'active'),
+(2, 'estudiante', 'escuela', '{"1":"1","2":"1","3":"1","4":"0","5":"0","6":"0","7":"0","8":"0","9":"0",\n "10":"1","11":"1","12":"1","13":"1"}', 'active'),
+(3, 'administracion', 'presidencia', '{"1":"1","2":"1","3":"1","4":"1","5":"1","6":"1","7":"1","8":"1","9":"1","13":"1"}', 'active'),
+(4, 'mercadeo', 'presidencia', '{"1":"1","2":"1","3":"1","4":"1","5":"1","6":"0","7":"0","8":"1","9":"0","13":"1"}', 'active');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_profile`
+--
+
+CREATE TABLE `user_profile` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `phone` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `rif` (`username`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+
+--
+-- Dumping data for table `user_profile`
+--
+
+INSERT INTO `user_profile` (`id`, `username`, `name`, `email`, `phone`) VALUES
+(1, 'hola@besign.com.ve', 'Besign, C.A.', 'hola@besign.com.ve', '(0241) 825.10.78'),
+(2, 'presidencia@modelsviewgroup.com', 'Presidencia', 'presidencia@modelsviewgroup.com', ''),
+(3, 'agenciamodelsview@gmail.com', 'Administracion', 'agenciamodelsview@gmail.com', ''),
+(4, 'mercadeo@modelsviewgroup.com', 'Mercadeo\r\n', 'mercadeo@modelsviewgroup.com', ''),
+(5, 'cferrer@besign.com.ve', 'caryarit', 'cferrer@besign.com.ve', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_session`
+--
+
+CREATE TABLE `user_session` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(255) NOT NULL,
+  `ip_address` varchar(255) NOT NULL,
+  `session_randomkey` varchar(255) NOT NULL,
+  `url_in` mediumtext NOT NULL,
+  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=247 ;
+
+--
+-- Dumping data for table `user_session`
+--
+
+INSERT INTO `user_session` (`id`, `username`, `ip_address`, `session_randomkey`, `url_in`, `timestamp`) VALUES
+(1, 'hola@besign.com.ve', '190.142.2.248', '1909584017539ee9ed3dd847.58727736', 'mi.modelsviewgroup.com/account/update/password/', '2014-06-16 12:58:49'),
+(2, 'hola@besign.com.ve', '190.142.2.248', '37631621553a2cf1f11cb30.73122624', 'mi.modelsviewgroup.com/account/identify', '2014-06-19 11:53:03'),
+(3, 'hola@besign.com.ve', '190.142.2.248', '213736238553a45664d994b1.47327716', 'mi.modelsviewgroup.com/account/identify', '2014-06-20 15:42:29'),
+(4, 'wskplml@hotmail.com', '190.38.82.251', '53243489253a747305af551.99364738', 'mi.modelsviewgroup.com/account/update/password/', '2014-06-22 21:14:53'),
+(5, 'hola@besign.com.ve', '190.142.2.248', '171838055053a8343a71f500.18108462', 'mi.modelsviewgroup.com/account/identify', '2014-06-23 14:05:46'),
+(6, 'morelcart@gmail.com', '190.204.232.26', '27202055753a868a87f5b86.75281728', 'mi.modelsviewgroup.com/account/update/password/', '2014-06-23 17:49:47'),
+(7, 'lauritamarinl@hotmail.com', '190.204.155.8', '56431971353a87775ae3094.34966123', 'mi.modelsviewgroup.com/account/update/password/', '2014-06-23 18:52:59'),
+(8, 'clauolz16@gmail.com', '200.8.86.156', '119504928253a9fd43201d10.35175602', 'mi.modelsviewgroup.com/account/update/password/', '2014-06-24 22:36:26'),
+(9, 'hola@besign.com.ve', '190.142.31.40', '28411718653ab24c8bf1646.45493725', 'mi.modelsviewgroup.com/account/identify', '2014-06-25 19:36:40'),
+(10, 'presidencia@modelsviewgroup.com', '200.84.141.169', '32670085953ac38f7799712.99390564', 'mi.modelsviewgroup.com/account/update/password/', '2014-06-26 15:15:30'),
+(11, 'hola@besign.com.ve', '190.142.31.40', '54454303753ac3eeebc7b41.98778665', 'mi.modelsviewgroup.com/account/identify', '2014-06-26 15:40:30'),
+(12, 'hola@besign.com.ve', '200.8.87.112', '166934618853ad834bde3c82.32070716', 'mi.modelsviewgroup.com/account/identify', '2014-06-27 14:44:28'),
+(13, 'maryorimedina46@gmail.com', '190.206.21.207', '203263432153adb4e069f208.96355508', 'mi.modelsviewgroup.com/account/update/password/', '2014-06-27 18:16:34'),
+(14, 'yadimay_hernandez@yahoo.com', '190.206.9.42', '184056986753af0c4e391526.62977488', 'mi.modelsviewgroup.com/account/update/password/', '2014-06-28 18:42:31'),
+(15, 'hola@besign.com.ve', '186.14.172.186', '133791657353b189c4e963b8.88303494', 'mi.modelsviewgroup.com/account/identify', '2014-06-30 16:01:09'),
+(16, 'MPEDERSEN@CANTV.NET', '190.78.207.159', '83485011953b1aa3b536a82.76621085', 'mi.modelsviewgroup.com/account/update/password/', '2014-06-30 18:20:27'),
+(17, 'sagujia@hotmail.com', '190.206.9.200', '41298308053b1c58f1a1f42.76953731', 'mi.modelsviewgroup.com/account/update/password/', '2014-06-30 20:16:39'),
+(18, 'gretalopez2005@hotmail.com', '186.90.247.221', '30686677553b1d5ade427e1.08733434', 'mi.modelsviewgroup.com/account/update/password/', '2014-06-30 21:25:26'),
+(19, 'hola@besign.com.ve', '186.14.172.186', '203578859153b2ab08b5dc13.41533654', 'mi.modelsviewgroup.com/account/identify', '2014-07-01 12:35:20'),
+(20, 'presidencia@modelsviewgroup.com', '190.200.254.31', '61967069553b45b0f673237.29978297', 'mi.modelsviewgroup.com/account/identify', '2014-07-02 19:18:40'),
+(21, 'hola@besign.com.ve', '186.14.172.186', '194512301353b48627ab5f31.83469965', 'mi.modelsviewgroup.com/account/identify', '2014-07-02 22:22:31'),
+(22, 'agenciamodelsview@gmail.com', '190.200.254.31', '214005428553b567a2c67bf7.71680475', 'mi.modelsviewgroup.com/account/update/password/', '2014-07-03 14:25:12'),
+(23, 'nakiilinares@gmail.com', '190.79.71.178', '186894858953b589e4a39545.58692908', 'mi.modelsviewgroup.com/account/update/password/', '2014-07-03 16:50:57'),
+(24, 'agenciamodelsview@gmail.com', '190.200.254.31', '208194547653b6c8300a0124.53801389', 'mi.modelsviewgroup.com/account/identify', '2014-07-04 15:28:49'),
+(25, 'isabelberdugo@hotmail.com', '201.242.49.153', '30492423653b81411df1023.24867236', 'mi.modelsviewgroup.com/account/update/password/', '2014-07-05 15:05:21'),
+(26, 'wamaya2013@gmail.com', '201.211.102.191', '179231951153b8173b4ee855.35485505', 'mi.modelsviewgroup.com/account/update/password/', '2014-07-05 15:19:07'),
+(27, 'Ibastidas74@gmail.com', '190.38.255.74', '212280188353b8d399ae7f91.75803828', 'mi.modelsviewgroup.com/account/update/password/', '2014-07-06 04:42:48'),
+(28, 'Ibastidas74@gmail.com', '190.38.255.74', '130682075053b8d74f1a7562.50151548', 'mi.modelsviewgroup.com/account/identify', '2014-07-06 04:57:51'),
+(29, 'hola@besign.com.ve', '186.14.172.186', '127530802353b975c3a15439.01109110', 'mi.modelsviewgroup.com/account/identify', '2014-07-06 16:13:55'),
+(30, 'ledysherrera8@gmail.com', '201.210.56.73', '175446944253b9d0dfbf9dc1.93449599', 'mi.modelsviewgroup.com/account/update/password/', '2014-07-06 22:43:07'),
+(31, 'camiladelgadotovar@hotmail.com', '200.84.181.194', '115090666453b9f393464673.79282617', 'mi.modelsviewgroup.com/account/update/password/', '2014-07-07 01:11:57'),
+(32, 'camiladelgadotovar@hotmail.com', '200.84.181.194', '45911396153b9f6543415a6.12466743', 'mi.modelsviewgroup.com/account/identify', '2014-07-07 01:22:28'),
+(33, 'agenciamodelsview@gmail.com', '190.206.2.102', '94159166953bac284b5db67.19175878', 'mi.modelsviewgroup.com/account/identify', '2014-07-07 15:53:41'),
+(34, 'camiladelgadotovar@hotmail.com', '200.84.181.194', '74053218553badd69885e33.51144280', 'mi.modelsviewgroup.com/account/identify', '2014-07-07 17:48:25'),
+(35, 'hola@besign.com.ve', '186.14.172.186', '58314849953badd75068b01.95167168', 'mi.modelsviewgroup.com/account/identify', '2014-07-07 17:48:37'),
+(36, 'agenciamodelsview@gmail.com', '190.206.2.102', '72402022453baddcf478277.70851080', 'mi.modelsviewgroup.com/account/identify', '2014-07-07 17:50:07'),
+(37, 'dlarez@besign.com.ve', '186.14.172.186', '202377163053bae62296fe81.24394377', 'mi.modelsviewgroup.com/account/update/password/', '2014-07-07 18:26:11'),
+(38, 'hola@besign.com.ve', '186.14.172.186', '180597739053bae758013823.25692469', 'mi.modelsviewgroup.com/account/identify', '2014-07-07 18:30:48'),
+(39, 'dlarez@besign.com.ve', '186.14.172.186', '191651199753bae938b41f32.75576286', 'mi.modelsviewgroup.com/account/identify', '2014-07-07 18:38:49'),
+(40, 'agenciamodelsview@gmail.com', '190.206.2.102', '32196260253baecfc3a1600.62122110', 'mi.modelsviewgroup.com/account/identify', '2014-07-07 18:54:52'),
+(41, 'hola@besign.com.ve', '186.14.172.186', '174083994153baf103a8e256.17896928', 'mi.modelsviewgroup.com/account/identify', '2014-07-07 19:12:03'),
+(42, 'hola@besign.com.ve', '186.14.172.186', '51216060153bb0efde98125.76477555', 'mi.modelsviewgroup.com/account/identify', '2014-07-07 21:19:58'),
+(43, 'alessacapriles@hotmail.com', '200.71.129.47', '178432798853bb1a0aa3ba13.95405912', 'mi.modelsviewgroup.com/account/update/password/', '2014-07-07 22:08:56'),
+(44, 'alessacapriles@hotmail.com', '200.71.129.47', '209515193753bb1bb477a292.28093416', 'mi.modelsviewgroup.com/account/identify', '2014-07-07 22:14:14'),
+(45, 'camiladelgadotovar@hotmail.com', '200.84.181.194', '93681552053bb32a43453b7.85116496', 'mi.modelsviewgroup.com/account/identify', '2014-07-07 23:52:04'),
+(46, 'camiladelgadotovar@hotmail.com', '201.211.113.114', '103832889953bb500162a1a5.39228945', 'mi.modelsviewgroup.com/account/identify', '2014-07-08 01:57:21'),
+(47, 'mariiacastillo_@hotmail.com', '190.142.4.215', '188520320453bb63eb3e2a31.85590841', 'mi.modelsviewgroup.com/account/update/password/', '2014-07-08 03:23:25'),
+(48, 'mariiacastillo_@hotmail.com', '74.82.68.161', '7544756253bbe9568a4039.04647097', 'mi.modelsviewgroup.com/account/identify', '2014-07-08 12:51:35'),
+(49, 'hola@besign.com.ve', '186.14.172.186', '139596823553bc12aeaff5b8.10761450', 'mi.modelsviewgroup.com/account/identify', '2014-07-08 15:47:58'),
+(50, 'agenciamodelsview@gmail.com', '190.206.2.102', '114970509453bc24968c0723.08021955', 'mi.modelsviewgroup.com/account/identify', '2014-07-08 17:04:22'),
+(51, 'Ibastidas74@gmail.com', '190.38.255.74', '52215116353bc2864b6e3a0.99727609', 'mi.modelsviewgroup.com/account/identify', '2014-07-08 17:20:36'),
+(52, 'hola@besign.com.ve', '186.14.172.186', '152431170753bc31f7152c97.40178159', 'mi.modelsviewgroup.com/account/identify', '2014-07-08 18:01:27'),
+(53, 'agenciamodelsview@gmail.com', '190.206.2.102', '211144440753bc3379741188.89321815', 'mi.modelsviewgroup.com/account/identify', '2014-07-08 18:07:53'),
+(54, 'victoriaale96@hotmail.com', '190.37.65.205', '180458723953bc4778972056.41053211', 'mi.modelsviewgroup.com/account/update/password/', '2014-07-08 19:33:38'),
+(55, 'victoriaale96@hotmail.com', '190.37.65.205', '110462909953bc47bc0eb460.19021181', 'mi.modelsviewgroup.com/account/identify', '2014-07-08 19:34:20'),
+(56, 'iremamartinez@hotmail.com', '186.90.72.54', '88014269553bc49c535f836.69195622', 'mi.modelsviewgroup.com/account/update/password/', '2014-07-08 19:43:22'),
+(57, 'agenciamodelsview@gmail.com', '190.206.2.102', '103075120653bc56e1e11722.03476876', 'mi.modelsviewgroup.com/account/identify', '2014-07-08 20:38:58'),
+(58, 'presidencia@modelsviewgroup.com', '190.206.2.102', '87849403253bd6266410251.01321520', 'mi.modelsviewgroup.com/account/identify', '2014-07-09 15:40:23'),
+(59, 'presidencia@modelsviewgroup.com', '190.206.2.102', '161856377153bd6b27053d15.77035573', 'mi.modelsviewgroup.com/account/identify', '2014-07-09 16:17:43'),
+(60, 'hola@besign.com.ve', '200.8.29.4', '41565110153bda6db0265b1.15697779', 'mi.modelsviewgroup.com/account/identify', '2014-07-09 20:32:27'),
+(61, 'camiladelgadotovar@hotmail.com', '200.84.181.194', '167193209653bdb04509e936.52292485', 'mi.modelsviewgroup.com/account/identify', '2014-07-09 21:12:37'),
+(62, 'mariiacastillo_@hotmail.com', '190.142.4.215', '191729589753bde2546617e5.19955516', 'mi.modelsviewgroup.com/account/identify', '2014-07-10 00:46:12'),
+(63, 'giovannaperez@hotmail.es', '190.200.243.237', '90109613853bede83301af8.73914658', 'mi.modelsviewgroup.com/account/update/password/', '2014-07-10 18:42:34'),
+(64, 'jmaveledo@hotmail.com', '181.208.23.19', '112426687453bf24031c86a6.23177034', 'mi.modelsviewgroup.com/account/update/password/', '2014-07-10 23:39:07'),
+(65, 'agenciamodelsview@gmail.com', '190.206.2.102', '33216991753c04f725a6711.84913375', 'mi.modelsviewgroup.com/account/identify', '2014-07-11 20:56:18'),
+(66, 'camiladelgadotovar@hotmail.com', '200.84.181.194', '34342403753c07fc127fb16.14364461', 'mi.modelsviewgroup.com/account/identify', '2014-07-12 00:22:25'),
+(67, 'hola@besign.com.ve', '200.8.29.4', '203806927953c28ef0e71636.73330486', 'mi.modelsviewgroup.com/account/identify', '2014-07-13 13:51:45'),
+(68, 'camiladelgadotovar@hotmail.com', '200.84.181.194', '113142376053c34d00c2fdc2.84939308', 'mi.modelsviewgroup.com/account/identify', '2014-07-14 03:22:41'),
+(69, 'agenciamodelsview@gmail.com', '190.206.2.102', '165293671353c3dbaad77074.25909779', 'mi.modelsviewgroup.com/account/identify', '2014-07-14 13:31:23'),
+(70, 'mariiacastillo_@hotmail.com', '179.22.127.152', '3824966553c3e5ffa99180.97262692', 'mi.modelsviewgroup.com/account/identify', '2014-07-14 14:15:29'),
+(71, 'RUTHOCHOA.2475@GMAIL.COM', '201.210.31.228', '79992399353c42503610c57.17217586', 'mi.modelsviewgroup.com/account/update/password/', '2014-07-14 18:44:43'),
+(72, 'sofia_araujo21@hotmail.com', '190.201.35.191', '60411063153c43155529db0.17277933', 'mi.modelsviewgroup.com/account/update/password/', '2014-07-14 19:37:40'),
+(73, 'agenciamodelsview@gmail.com', '190.206.2.102', '14690504653c43b35103ed5.19145237', 'mi.modelsviewgroup.com/account/identify', '2014-07-14 20:19:02'),
+(74, 'agenciamodelsview@gmail.com', '190.206.2.102', '32730099153c441b1e079c9.74098839', 'mi.modelsviewgroup.com/account/identify', '2014-07-14 20:46:42'),
+(75, 'claucm02@live.com.ar', '200.93.19.132', '89760371853c466363b8a85.08694768', 'mi.modelsviewgroup.com/account/update/password/', '2014-07-14 23:22:45'),
+(76, 'agenciamodelsview@gmail.com', '190.206.2.102', '145413267353c5426484cc73.61370540', 'mi.modelsviewgroup.com/account/identify', '2014-07-15 15:01:56'),
+(77, 'presidencia@modelsviewgroup.com', '190.206.2.102', '137318489053c54f52ccb9b0.93838000', 'mi.modelsviewgroup.com/account/identify', '2014-07-15 15:57:07'),
+(78, 'hola@besign.com.ve', '200.8.29.4', '197371242053c560d6558bb2.90066881', 'mi.modelsviewgroup.com/account/identify', '2014-07-15 17:11:50'),
+(79, 'permary@gmail.com', '186.89.98.228', '116480635953c56c95a10035.76071053', 'mi.modelsviewgroup.com/account/update/password/', '2014-07-15 18:02:27'),
+(80, 'hola@besign.com.ve', '200.8.29.4', '137256659953c578c7d64ea8.96049365', 'mi.modelsviewgroup.com/account/identify', '2014-07-15 18:54:00'),
+(81, 'mariiacastillo_@hotmail.com', '200.71.164.142', '160710124853c57978c383f3.82555764', 'mi.modelsviewgroup.com/account/identify', '2014-07-15 18:56:59'),
+(82, 'agenciamodelsview@gmail.com', '190.206.2.102', '41110224253c59957a4bdb9.34740174', 'mi.modelsviewgroup.com/account/identify', '2014-07-15 21:12:56'),
+(83, 'agenciamodelsview@gmail.com', '190.206.2.102', '74835389153c5b0748c9607.89811359', 'mi.modelsviewgroup.com/account/identify', '2014-07-15 22:51:32'),
+(84, 'agenciamodelsview@gmail.com', '190.206.2.102', '162922041053c5b52ad04141.53053746', 'mi.modelsviewgroup.com/account/identify', '2014-07-15 23:11:39'),
+(85, 'quisyslorenzo@hotmail.com', '186.95.217.160', '55550829653c5be86de5027.31493508', 'mi.modelsviewgroup.com/account/update/password/', '2014-07-15 23:51:53'),
+(86, 'cferrer@besign.com.ve', '200.8.29.4', '127917131253c68196752fa1.98889230', 'mi.modelsviewgroup.com/account/update/password/', '2014-07-16 13:44:05'),
+(87, 'cferrer@besign.com.ve', '200.8.29.4', '179364249053c6951198e5c4.52362112', 'mi.modelsviewgroup.com/account/identify', '2014-07-16 15:06:57'),
+(88, 'domenica65@gmail.com', '190.199.222.120', '94421254453c69884dabb61.14146473', 'mi.modelsviewgroup.com/account/update/password/', '2014-07-16 15:22:15'),
+(89, 'hola@besign.com.ve', '200.8.29.4', '141227870453c6a713c53161.46100858', 'mi.modelsviewgroup.com/account/identify', '2014-07-16 16:23:48'),
+(90, 'agenciamodelsview@gmail.com', '190.206.2.102', '3913831353c6bbaba97589.04002034', 'mi.modelsviewgroup.com/account/identify', '2014-07-16 17:51:40'),
+(91, 'mariiacastillo_@hotmail.com', '179.46.188.12', '56696199553c6c88b3351f3.46381989', 'mi.modelsviewgroup.com/account/identify', '2014-07-16 18:46:36'),
+(92, 'camiladelgadotovar@hotmail.com', '200.84.181.194', '194401784353c6c986759341.08180806', 'mi.modelsviewgroup.com/account/identify', '2014-07-16 18:50:46'),
+(93, 'mariiacastillo_@hotmail.com', '190.76.54.71', '53744534253c6d519da88d5.63061013', 'mi.modelsviewgroup.com/account/identify', '2014-07-16 19:40:12'),
+(94, 'hola@besign.com.ve', '200.8.29.4', '72289967453c6d877e4b7e3.48603780', 'mi.modelsviewgroup.com/account/identify', '2014-07-16 19:54:32'),
+(95, 'presidencia@modelsviewgroup.com', '190.206.2.102', '195371520453c6e298005520.63948861', 'mi.modelsviewgroup.com/account/identify', '2014-07-16 20:37:44'),
+(96, 'camiladelgadotovar@hotmail.com', '190.199.197.215', '91532694053c7018e071088.16070276', 'mi.modelsviewgroup.com/account/identify', '2014-07-16 22:49:50'),
+(97, 'agenciamodelsview@gmail.com', '190.206.2.102', '138494335253c7da623f8c00.80983195', 'mi.modelsviewgroup.com/account/identify', '2014-07-17 14:14:58'),
+(98, 'giovannaperez@hotmail.es', '186.95.195.73', '143098672853c9567c8a6c37.99899747', 'mi.modelsviewgroup.com/account/identify', '2014-07-18 17:16:44'),
+(99, 'agenciamodelsview@gmail.com', '190.206.13.9', '125709852653c96c22104cd5.91773069', 'mi.modelsviewgroup.com/account/identify', '2014-07-18 18:49:06'),
+(100, 'giovannaperez@hotmail.es', '186.95.195.73', '32909617853c96d0c0ecf53.09906256', 'mi.modelsviewgroup.com/account/identify', '2014-07-18 18:53:00'),
+(101, 'agenciamodelsview@gmail.com', '190.206.13.9', '74030489353cad5253e4410.98429356', 'mi.modelsviewgroup.com/account/identify', '2014-07-19 20:29:25'),
+(102, 'lachiki-rodriguez@hotmail.com', '200.93.10.93', '190267457953cc46ece35f12.35732534', 'mi.modelsviewgroup.com/account/update/password/', '2014-07-20 22:47:36'),
+(103, 'emilydennise28@gmail.com', '200.8.59.102', '22352176453cc522df22485.29406327', 'mi.modelsviewgroup.com/account/update/password/', '2014-07-20 23:35:40'),
+(104, 'andrw_19@hotmail.com', '190.205.212.95', '98357006053cc5e530563d6.02313006', 'mi.modelsviewgroup.com/account/update/password/', '2014-07-21 00:29:55'),
+(105, 'Fabiola36@hotmail.com', '190.199.192.82', '211687394553cd160ff2c597.40467006', 'mi.modelsviewgroup.com/account/update/password/', '2014-07-21 13:31:18'),
+(106, 'Fabiola36@hotmail.com', '190.199.192.82', '178702187653cd1781700b08.42393385', 'mi.modelsviewgroup.com/account/identify', '2014-07-21 13:37:05'),
+(107, 'agenciamodelsview@gmail.com', '190.206.13.9', '157834170353cd3401bb4337.74193291', 'mi.modelsviewgroup.com/account/identify', '2014-07-21 15:38:42'),
+(108, 'hola@besign.com.ve', '200.8.29.4', '169072131253cd45016069d2.81787543', 'mi.modelsviewgroup.com/account/identify', '2014-07-21 16:51:14'),
+(109, 'yumig82@hotmail.com', '186.24.82.175', '60882629553cd7f237d7482.57204915', 'mi.modelsviewgroup.com/account/update/password/', '2014-07-21 21:00:39'),
+(110, 'mariiacastillo_@hotmail.com', '186.95.74.131', '196565460453ce5e72952bc1.01273915', 'mi.modelsviewgroup.com/account/identify', '2014-07-22 12:52:02'),
+(111, 'mariiacastillo_@hotmail.com', '200.35.103.135', '138093652353ce64564a12a9.24893494', 'mi.modelsviewgroup.com/account/identify', '2014-07-22 13:17:10'),
+(112, 'hola@besign.com.ve', '200.8.29.4', '85476657953ce8e4fe2ae94.47723212', 'mi.modelsviewgroup.com/account/identify', '2014-07-22 16:16:16'),
+(113, 'agenciamodelsview@gmail.com', '190.206.13.9', '207842299053ce8ecf6617f0.41205844', 'mi.modelsviewgroup.com/account/identify', '2014-07-22 16:18:23'),
+(114, 'isnieta@hotmail.com', '74.82.68.160', '95381173253cf0586d08413.80936056', 'mi.modelsviewgroup.com/account/update/password/', '2014-07-23 00:45:45'),
+(115, 'agenciamodelsview@gmail.com', '190.206.13.9', '69526055753cfb6ec562290.91263693', 'mi.modelsviewgroup.com/account/identify', '2014-07-23 13:21:49'),
+(116, 'agenciamodelsview@gmail.com', '190.206.13.9', '72281404253cfe06bd8fd30.48130417', 'mi.modelsviewgroup.com/account/identify', '2014-07-23 16:18:52'),
+(117, 'adrianam.gutierrez@hotmail.com', '181.208.162.82', '64794828153d001e2e20590.41473717', 'mi.modelsviewgroup.com/account/update/password/', '2014-07-23 18:42:06'),
+(118, 'agenciamodelsview@gmail.com', '190.206.13.9', '162100911653d012697b8142.22492555', 'mi.modelsviewgroup.com/account/identify', '2014-07-23 19:52:09'),
+(119, 'barbimodelsview@gmail.com', '190.206.13.9', '154168950453d01376a1f4e6.88066675', 'mi.modelsviewgroup.com/account/update/password/', '2014-07-23 19:57:02'),
+(120, 'presidencia@modelsviewgroup.com', '190.206.13.9', '185775217053d01443102274.40160045', 'mi.modelsviewgroup.com/account/identify', '2014-07-23 20:00:04'),
+(121, 'barbimodelsview@gmail.com', '190.206.13.9', '81560249553d01563079823.97001700', 'mi.modelsviewgroup.com/account/identify', '2014-07-23 20:04:52'),
+(122, 'SAYO.07@HOTMAIL.COM', '136.1.1.113', '53249026153d0196264d450.07592883', 'mi.modelsviewgroup.com/account/update/password/', '2014-07-23 20:22:18'),
+(123, 'SAYO.07@HOTMAIL.COM', '136.1.1.113', '86873549653d01a6acd7c02.49512048', 'mi.modelsviewgroup.com/account/identify', '2014-07-23 20:26:19'),
+(124, 'antujuegos@gmail.com', '200.93.14.118', '9726089353d172beb83b90.14558239', 'mi.modelsviewgroup.com/account/update/password/', '2014-07-24 20:55:48'),
+(125, 'SAYO.07@HOTMAIL.COM', '136.2.1.109', '1365825153d176bbf222a0.83246295', 'mi.modelsviewgroup.com/account/identify', '2014-07-24 21:12:28'),
+(126, 'NAVARRONEDDY@HOTMAIL.COM', '186.95.201.100', '160558019853d2b6cd094687.55707332', 'mi.modelsviewgroup.com/account/update/password/', '2014-07-25 19:58:25'),
+(127, 'NAVARRONEDDY@HOTMAIL.COM', '186.95.201.100', '128570062153d2b7878e6574.87350893', 'mi.modelsviewgroup.com/account/identify', '2014-07-25 20:01:11'),
+(128, 'hgjuridicos@gmail.com', '190.153.79.185', '36436809753d2b8be377d21.85848014', 'mi.modelsviewgroup.com/account/update/password/', '2014-07-25 20:06:52'),
+(129, 'elenaanzola10@hotmail.com', '201.210.13.39', '18777923553d2d2ba779638.51271791', 'mi.modelsviewgroup.com/account/update/password/', '2014-07-25 21:57:49'),
+(130, 'agenciamodelsview@gmail.com', '74.82.68.145', '67409005953d3c92c1263d6.03931810', 'mi.modelsviewgroup.com/account/identify', '2014-07-26 15:28:45'),
+(131, 'alejandrabenedikte@yahoo.com', '186.14.134.188', '159259079853d452d5a51eb0.32270729', 'mi.modelsviewgroup.com/account/update/password/', '2014-07-27 01:16:31'),
+(132, 'andreabpjorgensen@gmail.com', '186.14.134.188', '108811502653d458a0c4b769.84592499', 'mi.modelsviewgroup.com/account/update/password/', '2014-07-27 01:41:44'),
+(133, 'alejandrabenedikte@yahoo.com', '186.14.134.188', '68532159953d45a375527f2.52840569', 'mi.modelsviewgroup.com/account/identify', '2014-07-27 01:47:35'),
+(134, 'eyraramirez@hotmail.com', '200.84.145.23', '43484190153d5923412cab1.69809000', 'mi.modelsviewgroup.com/account/update/password/', '2014-07-27 23:59:39'),
+(135, 'eyraramirez@hotmail.com', '200.84.145.23', '131333138253d592b592f012.39576684', 'mi.modelsviewgroup.com/account/identify', '2014-07-28 00:00:54'),
+(136, 'SARRIAINGRID@HOTMAIL.COM', '181.208.0.8', '71447658853d5b6f4212250.29431316', 'mi.modelsviewgroup.com/account/update/password/', '2014-07-28 02:36:42'),
+(137, 'agenciamodelsview@gmail.com', '186.95.209.40', '151903533853d68df269ab69.07824959', 'mi.modelsviewgroup.com/account/identify', '2014-07-28 17:52:50'),
+(138, 'armas_laura@hotmail.com', '190.142.26.253', '178627748053d6e1e5c64a56.95931223', 'mi.modelsviewgroup.com/account/update/password/', '2014-07-28 23:55:55'),
+(139, 'cgnf1997@hotmail.es', '186.92.139.55', '201688697953d7bc3c27b1b0.58153861', 'mi.modelsviewgroup.com/account/update/password/', '2014-07-29 15:23:11'),
+(140, 'agenciamodelsview@gmail.com', '186.95.209.40', '154956405553d7de965aea12.90379160', 'mi.modelsviewgroup.com/account/identify', '2014-07-29 17:49:10'),
+(141, 'andreabenedikte@yahoo.com', '181.208.19.176', '167926615953d7f2592fdff0.54945724', 'mi.modelsviewgroup.com/account/update/password/', '2014-07-29 19:13:50'),
+(142, 'andreabenedikte@yahoo.com', '181.208.19.176', '171586841753d80d239db1d8.91060116', 'mi.modelsviewgroup.com/account/identify', '2014-07-29 21:07:47'),
+(143, 'andreabenedikte@yahoo.com', '181.208.19.176', '74225072653d8764b9cd918.26063774', 'mi.modelsviewgroup.com/account/identify', '2014-07-30 04:36:28'),
+(144, 'eyraramirez@hotmail.com', '200.84.145.23', '152597830953d8e603c29017.26809093', 'mi.modelsviewgroup.com/account/identify', '2014-07-30 12:33:08'),
+(145, 'andreabenedikte@yahoo.com', '181.208.19.176', '59712744353d933a6d5e390.80092536', 'mi.modelsviewgroup.com/account/identify', '2014-07-30 18:04:23'),
+(146, 'SAYO.07@HOTMAIL.COM', '136.1.1.107', '123176102753d937db880c38.21289860', 'mi.modelsviewgroup.com/account/identify', '2014-07-30 18:22:19'),
+(147, 'agenciamodelsview@gmail.com', '186.95.209.40', '146098553753d94a915a6740.20586833', 'mi.modelsviewgroup.com/account/identify', '2014-07-30 19:42:09'),
+(148, 'andreabenedikte@yahoo.com', '181.208.19.176', '77607128453d983e1300685.10353594', 'mi.modelsviewgroup.com/account/identify', '2014-07-30 23:46:41'),
+(149, 'andreabenedikte@yahoo.com', '181.208.19.176', '146873048953da649ad299b9.70924335', 'mi.modelsviewgroup.com/account/identify', '2014-07-31 15:45:31'),
+(150, 'agenciamodelsview@gmail.com', '186.95.209.40', '110090384253da99aa87c979.56077812', 'mi.modelsviewgroup.com/account/identify', '2014-07-31 19:31:54'),
+(151, 'cgnf1997@hotmail.es', '186.92.139.55', '175052014453dae4639e5b69.36923489', 'mi.modelsviewgroup.com/account/identify', '2014-08-01 00:50:43'),
+(152, 'eyraramirez@hotmail.com', '200.84.145.23', '93691760853db94c75bbc52.73930497', 'mi.modelsviewgroup.com/account/identify', '2014-08-01 13:23:19'),
+(153, 'andreabenedikte@yahoo.com', '181.208.19.176', '11467941253dbbbe522cca3.94667531', 'mi.modelsviewgroup.com/account/identify', '2014-08-01 16:10:13'),
+(154, 'eyraramirez@hotmail.com', '200.84.145.23', '47143652653dc10c3bafd85.53055403', 'mi.modelsviewgroup.com/account/identify', '2014-08-01 22:12:20'),
+(155, 'Bracheld28@gmail.com', '200.75.101.95', '177413724153dd51a83f1282.82203111', 'mi.modelsviewgroup.com/account/update/password/', '2014-08-02 21:02:07'),
+(156, 'agenciamodelsview@gmail.com', '186.95.209.40', '63330926353df851a61b4a4.34324522', 'mi.modelsviewgroup.com/account/identify', '2014-08-04 13:05:32'),
+(157, 'nath.flores@hotmail.com', '181.208.29.86', '111733300653df86994c8c68.21455482', 'mi.modelsviewgroup.com/account/update/password/', '2014-08-04 13:12:10'),
+(158, 'agenciamodelsview@gmail.com', '186.95.209.40', '46591840653e006243a4d66.97916335', 'mi.modelsviewgroup.com/account/identify', '2014-08-04 22:16:04'),
+(159, 'agenciamodelsview@gmail.com', '186.95.209.40', '42740103253e0e165606931.66143325', 'mi.modelsviewgroup.com/account/identify', '2014-08-05 13:51:33'),
+(160, 'nathazha2000@hotmail.com', '190.205.193.50', '66019163953e11d1a74a8e1.49135404', 'mi.modelsviewgroup.com/account/update/password/', '2014-08-05 18:06:50'),
+(161, 'agenciamodelsview@gmail.com', '186.95.209.40', '14427887653e263813ac9a8.83160659', 'mi.modelsviewgroup.com/account/identify', '2014-08-06 17:18:57'),
+(162, 'hola@besign.com.ve', '200.82.190.142', '51563102153e295e57fe716.74919668', 'mi.modelsviewgroup.com/account/identify', '2014-08-06 20:53:57'),
+(163, 'yaramsita@gmail.com', '186.89.120.138', '87165178153e2bee311cad5.57969619', 'mi.modelsviewgroup.com/account/update/password/', '2014-08-06 23:49:00'),
+(164, 'agenciamodelsview@gmail.com', '186.95.209.40', '189218484053e3844b180651.70666825', 'mi.modelsviewgroup.com/account/identify', '2014-08-07 13:51:07'),
+(165, 'reynagonzalez64@gmail.com', '10.1.10.138', '9376511553e3981608b283.11061799', 'mi.modelsviewgroup.com/account/update/password/', '2014-08-07 15:16:22'),
+(166, 'reynagonzalez64@gmail.com', '10.1.10.138', '123470123053e39e5faf63f6.56873601', 'mi.modelsviewgroup.com/account/identify', '2014-08-07 15:42:24'),
+(167, 'mamatoya57@gmail.com', '10.1.10.138', '143540120653e39fec6b3f04.80101279', 'mi.modelsviewgroup.com/account/update/password/', '2014-08-07 15:49:12'),
+(168, 'mamatoya57@gmail.com', '10.1.10.138', '163841221353e3a79a51cfb9.95819848', 'mi.modelsviewgroup.com/account/identify', '2014-08-07 16:21:46'),
+(169, 'agenciamodelsview@gmail.com', '186.95.209.40', '169995721453e3a9172ac8c0.10285892', 'mi.modelsviewgroup.com/account/identify', '2014-08-07 16:28:07'),
+(170, 'marili_li@hotmail.com', '190.200.228.101', '150434236253e4de673671e2.82210558', 'mi.modelsviewgroup.com/account/update/password/', '2014-08-08 14:28:03'),
+(171, 'agenciamodelsview@gmail.com', '186.95.209.40', '44254553e530ef8f7ee7.91278183', 'mi.modelsviewgroup.com/account/identify', '2014-08-08 20:20:03'),
+(172, 'ei-lyng-rodriguez@outlook.com', '190.205.193.248', '101928747353e69eb825e119.66264936', 'mi.modelsviewgroup.com/account/update/password/', '2014-08-09 22:21:02'),
+(173, 'ei-lyng-rodriguez@outlook.com', '190.205.193.248', '101771181653e69f1f2c6848.35663564', 'mi.modelsviewgroup.com/account/identify', '2014-08-09 22:22:23'),
+(174, 'andreabenedikte@yahoo.com', '181.208.19.176', '75892488353e6b248137674.02736138', 'mi.modelsviewgroup.com/account/identify', '2014-08-09 23:44:08'),
+(175, 'hola@besign.com.ve', '200.82.190.142', '35266270753e8b91d8192f5.68839939', 'mi.modelsviewgroup.com/account/identify', '2014-08-11 12:37:49'),
+(176, 'mamatoya57@gmail.com', '190.206.0.162', '32404862653e945b943ac06.98322720', 'mi.modelsviewgroup.com/account/identify', '2014-08-11 22:37:46'),
+(177, 'katherinerha@hotmail.com', '190.199.219.228', '132037648353e9a393692f65.74955263', 'mi.modelsviewgroup.com/account/update/password/', '2014-08-12 05:18:59'),
+(178, 'Bracheld28@gmail.com', '200.84.165.30', '66229287853ea3bfbbc90f5.94264777', 'mi.modelsviewgroup.com/account/identify', '2014-08-12 16:08:28'),
+(179, 'Bracheld28@gmail.com', '200.84.165.30', '144143091153ea3e488adb74.72566440', 'mi.modelsviewgroup.com/account/identify', '2014-08-12 16:18:16'),
+(180, 'katherinerha@hotmail.com', '190.199.219.228', '185359315953ea3ea78390e0.12984223', 'mi.modelsviewgroup.com/account/identify', '2014-08-12 16:19:52'),
+(181, 'mamatoya57@gmail.com', '190.206.0.162', '31623902653eb6f82534bb0.08982829', 'mi.modelsviewgroup.com/account/identify', '2014-08-13 14:00:34'),
+(182, 'agenciamodelsview@gmail.com', '186.95.209.40', '175297369053eb8cfcc6d535.45262018', 'mi.modelsviewgroup.com/account/identify', '2014-08-13 16:06:21'),
+(183, 'Bracheld28@gmail.com', '200.84.165.30', '48028739953ebaca1b89205.42238423', 'mi.modelsviewgroup.com/account/identify', '2014-08-13 18:21:22'),
+(184, 'mamatoya57@gmail.com', '186.90.74.182', '126824819653ecd69367f416.37785997', 'mi.modelsviewgroup.com/account/identify', '2014-08-14 15:32:35'),
+(185, 'mamatoya57@gmail.com', '186.90.74.182', '11463147653ecd6daaf94e7.98982882', 'mi.modelsviewgroup.com/account/identify', '2014-08-14 15:33:47'),
+(186, 'mamatoya57@gmail.com', '186.90.74.182', '47593194953ecd748504ab7.00789911', 'mi.modelsviewgroup.com/account/identify', '2014-08-14 15:35:36'),
+(187, 'agenciamodelsview@gmail.com', '186.95.209.40', '140022615753ece750a1b717.88986224', 'mi.modelsviewgroup.com/account/identify', '2014-08-14 16:44:00'),
+(188, 'Bracheld28@gmail.com', '179.22.193.181', '164916562953ed4e030a39f6.38471787', 'mi.modelsviewgroup.com/account/identify', '2014-08-15 00:02:12'),
+(189, 'Bracheld28@gmail.com', '190.206.27.92', '109471934253ee11273198c5.55783407', 'mi.modelsviewgroup.com/account/identify', '2014-08-15 13:54:47'),
+(190, 'marili_li@hotmail.com', '190.200.228.101', '49509632653ee3c6c2b46a7.46034939', 'mi.modelsviewgroup.com/account/identify', '2014-08-15 16:59:24'),
+(191, 'katherinerha@hotmail.com', '190.199.219.228', '57425616253ee3cdf1cc188.07674327', 'mi.modelsviewgroup.com/account/identify', '2014-08-15 17:01:19'),
+(192, 'kareliafranco71@hotmail.com', '201.210.51.73', '8812866553ee77aee0ca58.96298550', 'mi.modelsviewgroup.com/account/update/password/', '2014-08-15 21:13:01'),
+(193, 'Bracheld28@gmail.com', '186.90.70.198', '24812598253ee8ee78d85b1.03730762', 'mi.modelsviewgroup.com/account/identify', '2014-08-15 22:51:19'),
+(194, 'paoh1997@hotmail.com', '201.210.15.212', '44938890053ef69f34d7494.24273644', 'mi.modelsviewgroup.com/account/update/password/', '2014-08-16 14:26:16'),
+(195, 'iliana_borges_2001@hotmail.com', '190.205.198.114', '115509275253f037500da6d7.30307151', 'mi.modelsviewgroup.com/account/update/password/', '2014-08-17 05:02:25'),
+(196, 'agenciamodelsview@gmail.com', '186.90.92.22', '180056170153f66281489722.87827158', 'mi.modelsviewgroup.com/account/identify', '2014-08-21 21:20:01'),
+(197, 'cgnf1997@hotmail.es', '186.92.139.55', '22155111553f695d115f506.29328192', 'mi.modelsviewgroup.com/account/identify', '2014-08-22 00:58:57'),
+(198, 'agenciamodelsview@gmail.com', '186.90.92.22', '133608002553f78a65d8e574.98158211', 'mi.modelsviewgroup.com/account/identify', '2014-08-22 18:22:30'),
+(199, 'aydanacolmenares2803@gmail.com', '190.206.24.133', '161334626353fcf2298a89b9.37548561', 'mi.modelsviewgroup.com/account/update/password/', '2014-08-26 20:47:34'),
+(200, 'agenciamodelsview@gmail.com', '186.90.92.22', '130929846253fdde992fad22.04224368', 'mi.modelsviewgroup.com/account/identify', '2014-08-27 13:35:21'),
+(201, 'agenciamodelsview@gmail.com', '186.90.92.22', '1904004745540081c4a7a258.10420409', 'mi.modelsviewgroup.com/account/identify', '2014-08-29 13:36:05'),
+(202, 'barbaraburgues98@gmail.com', '186.14.129.16', '1465018533540361fdf2b6d6.65325243', 'mi.modelsviewgroup.com/account/update/password/', '2014-08-31 17:57:33'),
+(203, 'cferrer@besign.com.ve', '190.142.7.212', '100820525954087a24897825.64547388', 'mi.modelsviewgroup.com/account/identify', '2014-09-04 14:41:41'),
+(204, 'lismer.triana_1996@hotmail.com', '200.75.100.150', '14966415355428a104f2d1f0.22993796', 'mi.modelsviewgroup.com/account/update/password/', '2014-09-29 00:00:27'),
+(205, 'hola@besign.com.ve', '186.188.112.249', '1264367034542b2ff627b214.43638487', 'mi.modelsviewgroup.com/account/identify', '2014-09-30 22:34:30'),
+(206, 'hola@besign.com.ve', '190.204.231.83', '1989929757543571f8b58ff3.57134734', 'mi.modelsviewgroup.com/account/identify', '2014-10-08 17:18:48'),
+(207, 'agenciamodelsview@gmail.com', '190.204.246.151', '21039225245446603e4de495.52521538', 'mi.modelsviewgroup.com/account/identify', '2014-10-21 13:31:42'),
+(208, 'dlarez@besign.com.ve', '190.201.248.117', '1967827821549c9c7bd73588.32011831', 'mi.modelsviewgroup.com/account/identify', '2014-12-25 23:23:40'),
+(209, 'yoibirotg0795@gmail.com', '190.205.194.30', '91702514954b4428b5b3cc5.83227034', 'mi.modelsviewgroup.com/account/update/password/', '2015-01-12 21:59:59'),
+(210, 'krisminnie@hotmail.com', '190.79.69.163', '49427867954b56614973702.01266205', 'mi.modelsviewgroup.com/account/update/password/', '2015-01-13 18:38:49'),
+(211, 'tubellezaparallevar@gmail.com', '201.211.125.114', '29732135154b67e76a59504.32742112', 'mi.modelsviewgroup.com/account/update/password/', '2015-01-14 14:34:47'),
+(212, 'grupovicezquiel@gmail.com', '201.211.125.114', '158442032054b6806fbb9864.73858091', 'mi.modelsviewgroup.com/account/update/password/', '2015-01-14 14:43:10'),
+(213, 'anadelrisco@hotmail.com', '190.201.226.139', '18372771254b6ad36bd0db0.87734600', 'mi.modelsviewgroup.com/account/update/password/', '2015-01-14 17:54:18'),
+(214, 'alexandrahr95@gmail.com', '186.91.168.109', '15549657554b6dab15cdb93.41661886', 'mi.modelsviewgroup.com/account/update/password/', '2015-01-14 21:08:31'),
+(215, 'dlarez@besign.com.ve', '181.208.161.72', '43072546254cbc583c90140.50357387', 'mi.modelsviewgroup.com/account/identify', '2015-01-30 17:55:16'),
+(216, 'hisbeht-rivero@hotmail.com', '186.94.123.81', '213427514354d6a3e02c6ca7.54729389', 'mi.modelsviewgroup.com/account/update/password/', '2015-02-07 23:47:11'),
+(217, 'nath.flores@hotmail.com', '181.208.4.94', '136938800854e2c77fc8dc04.83809782', 'mi.modelsviewgroup.com/', '2015-02-17 04:46:14'),
+(218, 'nath.flores@hotmail.com', '181.208.4.94', '7416634354e38ed8abaa03.34229883', 'mi.modelsviewgroup.com/account/identify', '2015-02-17 18:56:24'),
+(219, 'wilandre94@hotmail.com', '186.95.208.65', '144821391454e61391dd97b0.09727887', 'mi.modelsviewgroup.com/account/update/password/', '2015-02-19 16:47:39'),
+(220, 'agenciamodelsview@gmail.com', '186.95.218.11', '98815300254eca48a39d1b3.50273331', 'mi.modelsviewgroup.com/account/identify', '2015-02-24 16:19:22'),
+(221, 'hola@besign.com.ve', '190.142.22.210', '46801775354ee5000b35798.38946118', 'mi.modelsviewgroup.com/account/identify', '2015-02-25 22:43:13'),
+(222, 'katherinn5toe@gmail.com', '190.206.114.254', '80991532454f5ef36a1fad2.79748625', 'mi.modelsviewgroup.com/account/update/password/', '2015-03-03 17:28:41'),
+(223, 'wilandre94@hotmail.com', '190.205.198.53', '185126402854f8b8276e6cf9.74198989', 'mi.modelsviewgroup.com/account/identify', '2015-03-05 20:10:15'),
+(224, 'LA_GIRLS_333@HOTMAIL.COM', '186.90.86.126', '164292178154fce6c1f07aa8.74638257', 'mi.modelsviewgroup.com/account/update/password/', '2015-03-09 00:19:23'),
+(225, 'LA_GIRLS_333@HOTMAIL.COM', '186.90.86.126', '107300175454ff56ac1c8139.19409266', 'mi.modelsviewgroup.com/account/identify', '2015-03-10 20:40:12'),
+(226, 'perezroviramaria@gmail.com', '186.95.218.11', '4154739055500be219cd1b9.50322600', 'mi.modelsviewgroup.com/account/update/password/', '2015-03-11 22:14:52'),
+(227, 'vivianafabiana@hotmail.com', '190.142.3.119', '16085523835500d2afefdf47.10765968', 'mi.modelsviewgroup.com/account/update/password/', '2015-03-11 23:41:57'),
+(228, 'vivianafabiana@hotmail.com', '190.142.3.119', '15724666725500d3df56d7c0.98735725', 'mi.modelsviewgroup.com/account/identify', '2015-03-11 23:46:39'),
+(229, 'francys18@outlook.com', '190.79.72.122', '7327290265501e4e038be47.15922582', 'mi.modelsviewgroup.com/account/update/password/', '2015-03-12 19:12:20'),
+(230, 'carmenberenice25@gmail.com', '200.93.14.94', '6562782495506e7137885c9.19740850', 'mi.modelsviewgroup.com/account/update/password/', '2015-03-16 14:22:25'),
+(231, 'agenciamodelsview@gmail.com', '186.95.218.11', '92318267555072d594ed181.50852333', 'mi.modelsviewgroup.com/account/identify', '2015-03-16 19:22:01'),
+(232, 'agenciamodelsview@gmail.com', '186.95.218.11', '320247093550737ee46ab62.52761536', 'mi.modelsviewgroup.com/account/identify', '2015-03-16 20:07:10'),
+(233, 'mariafrei24@hotmail.com', '190.201.236.186', '20078122055079fa3435369.95434347', 'mi.modelsviewgroup.com/account/update/password/', '2015-03-17 03:30:01'),
+(234, 'SANDRACAROLYM@GMAIL.COM', '186.95.209.29', '15694849635508558a963286.65010616', 'mi.modelsviewgroup.com/account/update/password/', '2015-03-17 16:26:13'),
+(235, 'SANDRACAROLYM@GMAIL.COM', '186.95.209.29', '317677725550856cf42e347.48087173', 'mi.modelsviewgroup.com/account/identify', '2015-03-17 16:31:11'),
+(236, 'hola@besign.com.ve', '190.142.28.172', '39636786355086b367f9349.35452500', 'mi.modelsviewgroup.com/account/identify', '2015-03-17 17:58:14'),
+(237, 'hola@besign.com.ve', '190.142.16.246', '11876141655087af6d33ca0.21645731', 'localhost/MiModelsView/html/account/identify', '2015-03-17 19:05:27'),
+(238, 'hola@besign.com.ve', '190.142.16.246', '767547895550889dec85091.19549616', 'localhost/MiModelsView/html/account/identify', '2015-03-17 20:09:02'),
+(239, 'hola@besign.com.ve', '190.142.16.246', '54043074455088e19bd45c1.20771551', 'localhost/MiModelsView/html/account/identify', '2015-03-17 20:27:05'),
+(240, 'hola@besign.com.ve', '190.142.16.246', '394140935550977d5de3857.98429835', 'localhost/MiModelsView/html/account/identify', '2015-03-18 13:04:22'),
+(241, 'hola@besign.com.ve', '190.142.16.246', '1873143434550acafb27b355.76697233', 'localhost/MiModelsView/html/account/identify', '2015-03-19 13:11:23'),
+(242, 'hola@besign.com.ve', '190.142.16.246', '1549932803550acb0d0253f6.80821105', 'localhost/MiModelsView/html/account/identify', '2015-03-19 13:11:41'),
+(243, 'hola@besign.com.ve', '190.142.16.246', '40132130255102ce6051713.37495220', 'localhost/MiModelsView/html/account/identify', '2015-03-23 15:10:30'),
+(244, 'hola@besign.com.ve', '190.142.16.246', '1764918010551168a37267c1.69565141', 'localhost/MiModelsView/html/account/identify', '2015-03-24 13:37:39'),
+(245, 'hola@besign.com.ve', '190.142.16.246', '24303168551947c23688e4.05670865', 'localhost/MiModelsView/html/account/identify', '2015-03-30 12:55:30'),
+(246, 'hola@besign.com.ve', '190.142.16.246', '868275724552fc7ae7d49c6.83087862', 'localhost/MiModelsView/html/account/identify', '2015-04-16 14:31:10');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `view_articulos`
+--
+
+CREATE TABLE `view_articulos` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `colaborador` int(11) NOT NULL,
+  `categoria` enum('autoestima','fitness','moda') COLLATE utf8_unicode_ci NOT NULL,
+  `video` enum('si','no') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'no',
+  `titulo` mediumtext COLLATE utf8_unicode_ci NOT NULL,
+  `resumen` mediumtext COLLATE utf8_unicode_ci NOT NULL,
+  `cuerpo` longtext COLLATE utf8_unicode_ci NOT NULL,
+  `imagen` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `fecha` date NOT NULL,
+  `activo` enum('si','no') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'no',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=9 ;
+
+--
+-- Dumping data for table `view_articulos`
+--
+
+INSERT INTO `view_articulos` (`id`, `colaborador`, `categoria`, `video`, `titulo`, `resumen`, `cuerpo`, `imagen`, `fecha`, `activo`) VALUES
+(1, 1, 'autoestima', 'no', 'Como recuperar el Autoestima', '', '<p>Todos somos el resultado de nuestra historia personal, esto significa que somos y nos comportamos como lo hacemos, gracias  al ejemplo, a las experiencias, y a la educación que recibimos desde pequeños. En nuestra casa, escuela y entorno aprendimos a valorarnos, a ser responsables de nosotros mismos, y a sentirnos capaces. O tal vez, aprendimos a no valorarnos, a obedecer órdenes para complacer a otros, a sentirnos incapaces, y a depender de las opiniones de los demás. Así es como se va construyendo la autoestima de una persona desde la infancia.</p>\n<p>Pero no importa cuál haya sido tu historia personal. Tú puedes comenzar hoy mismo a trabajar paso a paso para recuperar y mejorar tu autoestima. Mejorar tu autoestima es como fortalecer tus músculos, tienes que hacer rutinas de ejercicios todos los días de manera constante, y los resultados se notarán poco a poco.</p>\n<p><br />\n  <strong>!Hoy es el momento para realizar este cambio interno!</strong><br />\n</p>\n<p>Comienza por abrazarte a diario y felicitarte por lo que  has hecho de este dia.<br>\nCrea afirmaciones junto a imagenes de seguridad como por ejemplo !Yo Soy Grande y Poderosa y Todo lo Puedo!<br>\nCamina con paso seguro sintiendo la grandeza de quien eres.</p>\n<p>Recuerda que tus huellas digitales nadie las posee eres unica en el mundo.</p>\n<p>Sonriele a la vida que tu expresion haga transformar a quien te observe dandole el sentido a la vida.</p>\n<p>Agradece a diario todo lo que te rodea, a tus padres quienes te dieron la vida, a tus hermanos, amigos, etc.</p>\n<p> Recuerda que tú eres capaz de lograr todo lo que te propongas!</p>\n<p><br />\n Hasta una nueva oportunidad,  tu terapeuta amiga,</p>\n', '', '2013-08-19', 'si'),
+(2, 1, 'autoestima', 'no', 'Las Tres estructuras esenciales del Amor', '', '<p>El amor  se sostiene por tres pilares importantes y si uno de ellos falla la relación de pareja se vendrá a bajo,  Imaginate  que sobre una mesa triangular sostenida por tres patas vas a intentar construir un enorme castillo. No te atreverías a pararte encima de esa mesa sabiendo que una de sus patas está rota? La debilidad de un pilar hará que la vida amorosa de una pareja se venga a bajo.  Para evitar que esto suceda es necesario saber como estructurarlo .\n</p><p>\nLas  tres estructuras esenciales del amor son: la Intimidad Emocional, Afinidad Intelectual y la Atracción Quimica.\n</p><p>\nLa Intimidad emocional es confianza absoluta, complicidad, integración, alianza. Cuando ésta existe, se interpreta rápida y correctamente el lenguaje corporal, se detecta el verdadero estado de ánimo del compañero  aunque no haya palabras de por medio. Y cuando se usan las palabras se hace de una forma única y especial, en un nivel de fraternidad distinto al que se da en la comunicación con el resto de la gente. Las riñas se disuelven de una manera distinta ya que cada uno evita causarle daño al otro. La comunicación profunda les permite no volver a sentirse solos. Les da sentido a su mundo interior. Muchas parejas pasan la vida sin una comunicación profunda, conversando solo de temas superficiales. Un hermoso teatro que tenian como finalidad hacer creer a los demás que se amaban.\n</p><p>\nAfinidad Intelectual Las personas no están hechas sólo de emociones, están hechas también de IDEAS. Para nutrirse con los pensamientos de otro se requiere de una correspondencia intelectual capaz de permitir puntos de vista complementarios. Las personas pueden tener la capacidad de comunicarse íntimamente, pero si no poseen una forma similar de raciocinio respecto a los conceptos fundamentales como el trabajo, los valores, la religión, el sexo. la educación de los hijos, el tiempo libre, la organización familiar, etcétera, si no se enriquecen mentalmente durante su convivencia, terminan excluyéndose, el uno al otro, de gran parte de sus actividades. Pocas cosas alimentan más la llama del cariño que aportar ideas valiosas, desapercibidas para el otro.\nEn la medida en que alguien se ame a sí mismo podrá amar a su pareja, y la autoaceptación es un concepto que se da en la mente. Sólo siendo maduro intelectualmente es posible aceptar la individualidad e independencia del compañero, evitar los celos, el egoísmo, la posesión. Sólo con el juicio sereno y claro se es capaz de perdonar, ceder, dar otra oportunidad, aceptar los errores y estar dispuesto a permitir imperfecciones.\nLos novios que son capaces de estudiar y hacer sus trabajos de verdad, son muchos mas fuertes que los demàs.\n</p><p>\nAtracciòn Quimica Si tienes con tu pareja intimidad emocional, puedes decir que es TU AMIGA; si además se complementan en ideas, puedes considerarla TU COMPAÑERA. Pero falta un último punto indispensable para anudar el lazo del amor: también debe poder llegar a ser TU AMANTE. Esto se consigue con la atracción química. Y no me refiero al gusto corporal, pues es frecuente considerar hermosa a una persona sin sentir ningún interés por ella.Hay esa magia que los impulsa a estar cerca, el agrado mutuo producido por la voz, las acciones, el andar, la legitimidad, la forma especial y única de ser del otro.\n</p><p>\n Antes de casarte haz un análisis minucioso de ellos. Si ya eres casado, revisa las grietas que puedan tener.\nAl hallar algún problema detente y analízalo con tu pareja. Luchen juntos por solucionarlo; no lo minimicen porque tarde o temprano la plataforma en que están parados se caerá por ese lado.\n</p><p>\nEsta estructura que la considero bien importante para formar una relaciòn de pareja con buenas bases fue tomada del libro Juventud en Extasis.\n</p><p>\nHasta una nueva oportunidad...\n</p><p>\nTu terapeuta amiga.\n	</p>', '', '2013-10-18', 'si'),
+(3, 1, 'autoestima', 'no', 'Liberando los miedos', '', '<p>Los miedos son memorias grabadas como imagenes que desequilibran nuestro estado emocional generando angustia e incertidumbre y en algunas ocaciones nos paralizan.</p>\r\n\r\n \r\n\r\n <p>Unas de las maneras de liberar este estado emocional es a traves de la meditacion.</p>\r\n\r\n<p>Puedes hacer este ejercicio en cualquier momento, cada vez que sientas miedo.</p>\r\n\r\n<p>Para mejores resultados, es ideal hacerlo en un lugar privado y silencioso, trabajando con una lista de miedos que haz escrito previamente.</p>\r\n\r\n\r\n\r\n<p>Siéntate o acuéstate cómodamente con tu espalda recta y cierra los ojos. Toma aire profunda y lentamente hacia tu abdomen, luego exhala lo más rápido que puedas. Repite, toma aire lentamente, y luego suéltalo lo más rápido que puedas.</p>\r\n<p>\r\nY una vez más, inhala despacio, despacio, luego exhala rápidamente. Ahora continúa respirando a tu propio ritmo. Siente en tu interior ese miedo que te ha detenido, y si no lo puedes encontrar busca la lista de miedos.  Recuerda las escenas que la crearon quienes estaban en ese instante y la emocion que sentias en ese momento. En que parte de tu cuerpo se refleja la emocion, sientelo como si estuvieras en este instante viviendola.  Respira profundo y deja que esta emocion sea parte de ti,  agradece que se haya manifestado en tu vida para liberarlo. Siente que tomas todas estas escenas cargadas con la emocion del miedo y las colocas dentro de un globo grande blanco deja que se eleven al cielo hasta desaparecer completamente.  Respiras profundo y comienza a visualizar tu nueva vida sin miedos, seguro de ti mismo, logrando tus triunfos, viviendo la felicidad sientela en tu cuerpo y dale la bienvenida a tu vida diciendo internamente gracias, gracias, gracias.</p>\r\n\r\n\r\n\r\n<p>Cierra este ejercicio dandote un abrazo felicitandote por la sanacion que te has dado, sintiendo la libertad de ser quien eres sin miedos.</p>\r\n\r\n\r\n\r\n<p>Espero que este ejercicio te sea de gran ayuda, recuerda que en tu interior esta la solucion.</p>\r\n\r\n\r\n\r\n<p>Hasta una nueva oportunidad,</p>\r\n\r\n\r\n\r\n<p>Tu terapeuta amiga.</p>\r\n', '', '2013-11-21', 'si'),
+(4, 2, 'moda', 'no', 'Electric Christmas', '', '', '', '2013-12-09', 'si'),
+(5, 2, 'moda', 'no', 'Fun Enero', 'Moda y Maquillaje', '', '', '2014-01-16', 'si'),
+(6, 1, 'autoestima', 'no', '10 mandamientos de la Actitud Mental Positiva', 'Descubre los diez mandamientos de la actitud mental positiva y aprende a reprogramar tu mente subconsciente, con principios y actitudes que harán de ti una persona de éxito.', 'Descubre los diez mandamientos de la actitud mental positiva y aprende a reprogramar tu mente subconsciente, con principios y actitudes que harán de ti una persona de éxito. Éste no depende de la suerte; depende de nuestra actitud ante la vida y es en nuestras manos donde podemos encontrar la solución.&nbsp;\r\n		<br>\r\n		<br>\r\n		Actitud Mental Positiva es lo que define al ser humano avanzado, ya que la mente es tan poderosa que puede lograr todo lo que uno se propone; el optimismo es excelente y de gran ayuda para las personas que son altamente negativas. Lo recomiendo.&nbsp;\r\n		<br>\r\n		<br>\r\n		Los Diez Mandamientos de la Actitud Mental Positiva.\r\n	<ul>\r\n		<li style="margin-left:15px">\r\n			1) &nbsp;Comenzar el dia con agradecimientos.\r\n		</li>\r\n		<li style="margin-left:15px">\r\n			2) &nbsp;El primer abrazo que damos en el dia es para nosotros (abrazate)\r\n		</li>\r\n		<li style="margin-left:15px">\r\n			3) &nbsp;No permitir que lo que está fuera de nuestro alcance, influya en nuestras decisiones.\r\n		</li>\r\n		<li style="margin-left:15px">\r\n			4) &nbsp;Protegernos de los mensajes negativos viendo en ellos lo positivo\r\n		</li>\r\n		<li style="margin-left:15px">\r\n			5) &nbsp;Cuidar la manera como nos expresamos de los demás y de nosotros mismos.\r\n		</li>\r\n		<li style="margin-left:15px">\r\n			6) &nbsp;Cambiar la manera de saludar a los demás.\r\n		</li>\r\n		<li style="margin-left:15px">\r\n			7) &nbsp;Desarrollar una visión clara de nuestras metas.\r\n		</li>\r\n		<li style="margin-left:15px">\r\n			8) &nbsp;Aprovechar las oportunidades que nos ofrece la vida para destacar nuestros dones.\r\n		</li>\r\n		<li style="margin-left:15px">\r\n			9) &nbsp;Apreciar y dar gracias por aquello que poseemos, por nuestras experiencias y habilidades.\r\n		</li>\r\n		<li style="margin-left:15px">\r\n			<span style="font-family:Arial;font-size:12pt">10) Tener grandes expectativas de nuestro día, nuestras actividades y de las demás personas.</span>\r\n		</li>\r\n	</ul>\r\n		<br>\r\n	\r\n	<br>\r\n	\r\n		<br>\r\n	\r\n	<br>\r\n	Una actitud mental positiva no te convertirá en el más rápido, el más inteligente, o el más fuerte. Tampoco eliminará todos los problemas, pero sí te permitirá aprovechar al máximo tu potencial y obtener los mejores resultados. Ella no sólo te permitirá utilizar más eficazmente tus habilidades sino que también te ayudará a evitar aquellas cosas sobre las que no tienes ningún control y que te afectan negativamente.\r\n	<br>\r\n	\r\n		<br>\r\n	\r\n	<br>\r\n	\r\n		<br>\r\n	\r\n	<br>\r\n	La practica de estos mandamientos nos hara un habito lleno de exitos.\r\n	<br>\r\n	\r\n		<br>\r\n	\r\n	<br>\r\n	Hasta una nueva oportunidad...\r\n	<br>\r\n	\r\n		<br>\r\n	\r\n	<br>\r\n	Tu terapeuta amiga.\r\n	<br>', '', '2014-01-16', 'si'),
+(7, 2, 'moda', 'si', 'Como usar la Camisa Blanca', 'Un Minuto 3 Estilos - Belleza para Llevar', 'Un Minuto 3 Estilos - Belleza para Llevar', '<iframe width="380" height="315" src="//www.youtube.com/embed/yv5-pENCXhA" frameborder="0" allowfullscreen></iframe>', '2014-05-20', 'si'),
+(8, 2, 'moda', 'si', 'Como combinar una Falda Negra', 'Un Minuto 3 Estilos - Belleza para Llevar', 'Un Minuto 3 Estilos - Belleza para Llevar', '<iframe width="380" height="315" src="//www.youtube.com/embed/KHUoHeVgWCA" frameborder="0" allowfullscreen></iframe>', '2014-05-28', 'si');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `view_categoria`
+--
+
+CREATE TABLE `view_categoria` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `titulo` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `activo` enum('si','no') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'si',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `view_categoria`
+--
+
+INSERT INTO `view_categoria` (`id`, `titulo`, `activo`) VALUES
+(1, 'fitness', 'no'),
+(2, 'autoestima', 'si'),
+(3, 'moda', 'si');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `view_colaboradores`
+--
+
+CREATE TABLE `view_colaboradores` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `twitter` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `activo` enum('si','no') COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `view_colaboradores`
+--
+
+INSERT INTO `view_colaboradores` (`id`, `nombre`, `email`, `twitter`, `activo`) VALUES
+(1, 'Nayive de Rocco', 'alzurutt@hotmail.com', '@nayivederocco', 'si'),
+(2, 'Model''s View', 'modelsviewvenezuela@gmail.com', '@modelsview', 'si');
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

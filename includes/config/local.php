@@ -20,10 +20,10 @@
 		
 		//Database Connection
 		define ( 'DB_TYPE', 'mysql');			   	
-		define ( 'DB_USER', 'db23550_besign');	  
+		define ( 'DB_USER', 'root');	  
 		define ( 'DB_PASSWORD', 'root');		 //define ( 'DB_PASSWORD', 'SbejaA1220#');
 		define ( 'DB_PASS', 'root');	   		//define ( 'DB_PASS', 'SbejaA1220#');
-		define ( 'DB_NAME', 'db23550_models'); 
+		define ( 'DB_NAME', 'db23550_modelsview'); 
 		define ( 'DB_PREFIX', '');	
 		define ( 'URL_EMAIL', 'http://mi.modelsviewgroup.com/public/');	
 		

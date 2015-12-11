@@ -46,6 +46,7 @@
 			$this->welcome();
 			 	
 		}
+		
 
 		public function welcome() 
 		{
@@ -476,6 +477,62 @@
 			}
 
 		}
+
+
+		/*****************************************************************************************************************************/
+
+		public function users($action='') {//profesor
+
+
+			switch ($action) {
+				
+				case 'all':
+						//Auth::handleLogin('users');
+						$this->view->render('cde/users/all');
+				
+				case 'get':
+
+						//Auth::handleLogin('users');
+						switch($action){
+							case 'users':
+								$tablename = 'user_profile'; // List only administrative Users ( won't show clientes) 
+								$fields = array( 'name', 'username', 'id');
+								$where = "WHERE status !='deleted'";
+								$temptable ='';
+								break;
+							case 'actionlogs':
+								$tablename = 'users_action_log';
+								$fields = array( 'name_user', 'action','controller', 'date', 'item','id');					
+								$temptable = 'actionlogs';
+								$where = "";//"WHERE supplies_fields.status='active'";
+								break;
+						}
+						$data = $this->helper->getJSONtables($tablename, $fields, $where, $temptable);
+						echo $data;
+									
+								break;
+
+				case 'edit':
+						//Auth::handleLogin('users');
+						/*$userdata = $this->user->getUserdata();
+						switch($action){
+						case 'user':
+							$this->view->item = $this->model->getUser($id, 'id');					
+							$this->view->item_profile = $this->model->getUserProfile($id,'id');
+							//page
+							$this->view->render('cde/users/detail');
+							break;*/
+				break;
+
+
+			}
+		}
+		
+
+
+
+
+
 	
 	}
 ?>

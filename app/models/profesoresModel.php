@@ -1,6 +1,6 @@
 <?php 
 	
-	class usersModel extends Model {
+	class profesoresModel extends Model {
 	
 		public function __construct() {
 	
@@ -14,7 +14,11 @@
 			return DB::query("SELECT * FROM " . DB_PREFIX . "users WHERE $by=%s LIMIT 1", $id);
 		}
 		public function getUserProfile($id, $by='username') {
-			return DB::query("SELECT * FROM " . DB_PREFIX . "user_profile WHERE $by=%s LIMIT 1", $id);
+			return DB::query("SELECT * FROM " . DB_PREFIX . "cde_profesor WHERE $by=%s LIMIT 1", $id);
+		}
+		
+		public function getRegistrant($data, $by='id') {	
+			return DB::query("SELECT * FROM " . DB_PREFIX . "cde_profesor WHERE $by=%s LIMIT 1", $data);
 		}
 	
 	}

@@ -510,6 +510,15 @@
 			}
 
 		}
-	
+
+		public function users($action='') {
+			switch ($action) 
+			{
+				case 'all':
+			
+			$this->view->render('cde/users/all');
+		}
+		
 	}
+}
 ?>

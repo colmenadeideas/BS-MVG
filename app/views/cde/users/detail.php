@@ -1,7 +1,7 @@
 <?php foreach ($this->item as $Item) { 
 		$id = $Item['id'];
 		$tablename =  'users';
-		$tablename_fields =  'user_profile';	
+		$tablename_fields =  'cde_profesor';	
 		
 		
 ?>
@@ -23,7 +23,7 @@
 			<?php echo $this->item_profile[0]['phone'];?>
 			</a>
 	</td></tr>
-	<tr><td>
+	<!--tr><td>
 			VIP:
 			<a href="#" class="editable" id="vip" data-type="select" data-source="<?php echo URL;?>miweb/vip" data-pk="<?php echo $tablename_fields; ?>-vip-<?php echo $id; ?>">
 			<?php echo $this->item_profile[0]['vip'];?>
@@ -33,7 +33,7 @@
 			<a href="#" class="editable" id="status" data-type="select" data-source="<?php echo URL;?>miweb/status" data-pk="<?php echo $tablename_fields; ?>-status-<?php echo $id; ?>">
 			<?php echo $this->item_profile[0]['status'];?>
 			</a>
-	</td></tr>
+	</td></tr-->
 	<tr><td></td></tr>	
 </table>
 

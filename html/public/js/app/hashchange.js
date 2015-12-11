@@ -50,6 +50,11 @@ define(function() {
 							Users.run();																										
 						});						
 						break;
+					case "profesores":
+						require(['app/profesores'], function(profesores) {
+							profesores.run();																										
+						});						
+						break;	
 						
 				}
 

@@ -24,9 +24,9 @@
 			<?php $this -> render("cde/users/add");  ?>
 			<?php $this -> render("cde/users/edit");  ?>
 			
-			<?php// $this -> render("cde/filejobs/edit");  ?>
+			<?php // $this -> render("cde/filejobs/edit");  ?>
 			<?php //$this -> render("cde/services/edit");  ?>
-			<?php// $this -> render("cde/supplies/edit");  ?>
+			<?php // $this -> render("cde/supplies/edit");  ?>
 			
 			
 			

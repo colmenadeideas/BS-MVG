@@ -39,7 +39,7 @@
 					    </div>
 					</div>
 					
-					<div class="form-group">
+					<!--div class="form-group">
 						<label for="role" class="hidden-xs col-sm-3 control-label">Rol</label>
 					    <div class="col-sm-9">
 						<select id="role" name="role" data-placeholder="Rol del Usuario" class="chosen-select form-control" required>					
@@ -60,7 +60,7 @@
 							
 						</select>
 						</div>
-					</div>
+					</div-->
 					
 					<em> El Usuario será notificado por correo y recibirá instrucciones para su clave</em><br>
 					<div class="form-group">

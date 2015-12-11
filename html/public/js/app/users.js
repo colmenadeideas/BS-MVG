@@ -1,15 +1,22 @@
-function users() {
+define(['globals', 'functions'], function(globals, functions) {
 	
-	console.log('usuarioss');
+	
+	function run(){
+
+//function users() {
+	
+	console.log('usuarios');
 	$.fn.editable.defaults.mode = 'inline';
 	//Functions
 	//Add Forms
-	$('.add-users').validate({				
+	$('.add-users').validate({	
+				
 		submitHandler: function(form) {
 			$('.send').attr('disabled', 'disabled'); //prevent double send
 			$.ajax({
 				type: "POST",
-				url: URL+"users/add/user",
+				//url: URL+"users/add/user",
+				url: URL+"profesores/process",				
 				data: $(form).serialize(),
 				timeout: 12000,
 				success: function(response) {
@@ -32,7 +39,8 @@ function users() {
 		"bProcessing": true,
 		"bServerSide": true,
 		"iDisplayLength": 5,
-		"sAjaxSource": URL+"users/get/users",		
+		//"sAjaxSource": URL+"users/get/users",	
+		"sAjaxSource": URL+"profesores/get/users",
 		"aaSorting": [[ 0, "desc" ]],
         "aoColumnDefs": [ { 
         	"bSortable": false, "aTargets": [ 2 ] }, 
@@ -69,7 +77,7 @@ function users() {
 		"bProcessing": true,
 		"bServerSide": true,
 		"iDisplayLength": 10,
-		"sAjaxSource": URL+"users/get/actionlogs",		
+		"sAjaxSource": URL+"users/get/actionlogs",				
 		"aaSorting": [[ 5, "desc" ]],
         "aoColumnDefs": [ 
 				{"bSortable" : false, "aTargets" : [0,1,2,3,4] },
@@ -157,3 +165,9 @@ function users() {
 	});
 	
 }
+
+
+	return {
+      run: run
+	}
+});

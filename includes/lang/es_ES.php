@@ -1,4 +1,6 @@
 <?php
+	require_once ("es_ES/cde.php");
+
 	//Sistem messages
 	define ('SYSTEM_INVALID_PASSWORD','Contraseña incorrecta');
 	define ('SYSTEM_PASSWORD_CHANGE','Cambio de Password realizado');

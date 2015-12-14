@@ -72,12 +72,9 @@ define(['globals', 'functions'], function(globals, functions) {
 					  	 				
 					  	 			default:
 					  	 				return '<div class="btn-group">'+actionbuttons('edit',data[0])+'</div>';
-					  	 				break;
-					  	 			
+					  	 				break;					  	 			
 					  	 		}
 					  	 		
-					  	 		
-					   			
 					      	},
 					      	"fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
 				                activateCells(nTd);
@@ -121,13 +118,13 @@ define(['globals', 'functions'], function(globals, functions) {
 	                
 		//THIS IS SUBSTITUTE FOR "ONCLICK" PREVIOUS FUNCTIONS
 	    $(".action-approve", nTd).click(function() {											
-			var buttonfrom = $(this);
+			var buttonfrom  = $(this);
 			var element 	= $(this).data('element');
-			var id			= $(this).data('registration');
+			var id			= $(this).data('cronograma');
 			var targetmodal = "#confirm-approve";//$(this).data('target');
 			
 			
-			$.post(globals.URL+'registrations/showapprovebutton', function(data) {	
+			$.post(globals.URL+'cronogramas/showapprovebutton', function(data) {	
 				
 				$('div.view:visible').find(targetmodal+' .modal-content').hide().html(data).fadeIn('slow');	
 				
@@ -200,18 +197,40 @@ define(['globals', 'functions'], function(globals, functions) {
 				finalbutton = '<button data-element="cronogramas" data-cronograma="'+data+'" data-toggle="modal" data-target="#confirm-delete" type="button" class="btn  btn-danger btn-circle action-delete showtooltip"><i class="glyphicon glyphicon-trash"></i></button>';
 				break;
 			case 'edit': 
-				finalbutton = '<button type="button" title="Ver" class="btn  btn-info btn-circle action-view showtooltip" data-cronograma="'+data+'"><i class="glyphicon glyphicon-search"></i></button>';
+				//finalbutton = '<button type="button" title="Ver" class="btn  btn-info btn-circle action-view showtooltip" data-cronograma="'+data+'"><i class="glyphicon glyphicon-search"></i></button>';
+				finalbutton = '<a title="Ver" class="btn btn-info btn-circle action-view showtooltip" href="#cronogramas/get/'+data+'"><i class="glyphicon glyphicon-search"></i></a>';
 				break;
 			case 'registerpayment': 
 				finalbutton = '<button type="button" title="Registrar Pago" class="btn btn-sm btn-default btn-circle action-register-payment showtooltip" data-cronograma='+data+'"><i class="fa fa-credit-card fa-lg"></i></button>';
 				break;
 			case 'complete':
-				//finalbutton = '<button title="Aprobar Documentos Recibi" data-element="cronogramas" data-cronograma="'+data+'" data-toggle="modal" data-target="#confirm-completation" type="button" class="btn btn-sm btn-success action-approve action-approve-docs showtooltip"><i class="glyphicon glyphicon-file"></i></button>';				
-				finalbutton = '<button type="button" title="Aprobar Documentos Recibidos" class="btn btn-sm btn-success action-complete showtooltip" data-cronograma="'+data+'" data-element="cronogramas"><i class="glyphicon glyphicon-file"></i></button>';
+				//finalbutton = '<button title="Aprobar Documentos Recibi" data-element="cronogramas" data-cronograma="'+data+'" data-toggle="modal" data-target="#confirm-completation" type="button" class="btn btn-sm btn-success action-approve action-approve-docs showtooltip"><i class="glyphicon glyphicon-file"></i></button>'; registratfinalbutton = '<button type="button" title="Aprobar Documentos Recibidos" class="btn btn-sm btn-success action-complete showtooltip" data-cronograma="'+data+'" data-element="cronogramas"><i class="glyphicon glyphicon-file"></i></button>';
 				break;					
 			
 		}
 		return finalbutton;
+	}
+
+	function approve(what, id, callback, buttonfrom) {
+		switch (what) {
+			case 'cronogramas':		var controller = 'cronogramas';	var element = 'cronogramas';		break;				
+		}
+		var	table = $('.table-list').attr('id');
+
+		$(buttonfrom).prop('disabled', true);
+
+		$.post(globals.URL+controller+"/approve/"+id, function(data) {	
+			
+			$('#'+table).dataTable().fnDraw();	
+					
+		}).done( function(data){
+			var response = JSON.parse(data);
+			//console.log(data);
+			if (response.success == "1") {
+				callback;
+				$(buttonfrom).prop('disabled', false);
+			}
+		});
 	}
 	
 	
@@ -220,6 +239,7 @@ define(['globals', 'functions'], function(globals, functions) {
 
 
 	return {
-      run: run
+      run: run,
+      approve: approve
 	}
 });

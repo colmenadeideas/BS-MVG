@@ -1,0 +1,98 @@
+img.profile-list {
+	max-width: 50px !important;
+}
+.dim { color:#DFDFDF;}
+.btn-circle { border-radius: 25px; width: 40px; height: 40px; margin-right: 7px;}
+.time-list { color:#CCCACA; font-weight: bold; font-style: italic;}
+
+.sistema .jumbotron { 
+	background:none; color: #FFF; text-align: center; font-family: 'CenturyGothic' !important;
+	text-transform: uppercase;    border-bottom: solid thin rgba(255,255,255,0.4);
+}
+.affix-sidebar { 
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#FFF+0,ED5BD2+100 */
+	background: #FFF; /* Old browsers */
+	background: -moz-linear-gradient(top,  #FFF 0%, #FFF 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top,  #FFF 0%,#FFF 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom,  #FFF 0%,#FFF 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#FFF', endColorstr='#FFF',GradientType=0 ); /* IE6-9 */
+
+}
+.sidebar-nav .navbar li a { color:#292929; /* font-weight: 600; */font-size: 130%;  letter-spacing: 0.7px; font-family: 'CenturyGothic';
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+.sidebar-nav .navbar li a:hover, .sidebar-nav .navbar li a:active, .sidebar-nav .navbar li:active { color: #FFF}
+.sistema .navegacion .active img { padding: 20px }
+.sistema .navegacion, .sistema .navegacion .active, .sistema .navbar-default { background: none !important; }
+.view {
+	background: #686BCC; /* Old browsers */
+	background: -moz-linear-gradient(180deg,  #686BCC 0%, #A354B1 60%,  #FD5CD9 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(180deg,  #686BCC 0%, #A354B1 60%, #FD5CD9 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(180deg,  #686BCC 0%, #A354B1 60%, #FD5CD9 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#686BCC', endColorstr='#FD5CD9',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+.btn-main {
+    background: rgba(255,255,255,0.2);
+    border: solid 1px rgba(255,255,255,0.2);
+    border-bottom: none;
+    border-radius: 30px;
+    height: 54px;
+    margin: 20px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,1);
+    font-family: 'Century Gothic';
+    letter-spacing: 0.5px;
+    padding-right: 20px;
+}
+.btn-main:hover, .btn-main:focus {
+	background: rgba(255,255,255,0.3) !important;
+	border-color: rgba(255,255,255,0.3) !important;
+}
+.btn-main i {
+	background: #CDCDCD;
+	padding: 11px 0 0 0;
+    border-radius: 20px;
+    width: 37px;
+    height: 37px;
+    margin: -2px 7px 0 -3px;
+    text-shadow:2px 2px 0px rgba(0,0,0,0.15);
+    color: #FFF;
+}
+.btn-main i.add-fa {
+	background: #FFB713;
+}
+ul.pagination li, .pagination>li>a, .pagination>li:first-child>a, .pagination>li:first-child>span  {
+	border-radius: 25px;
+    background: none !important;
+    border-color: #FFF !important;
+    border-width: 2px;
+    width:  50px;
+    height: 50px;
+    padding: 10px 18px 0;
+}
+
+#cronogramas-all-list{
+    background: #FFF;
+    box-shadow: 5px 6px 6px rgba(0,0,0,0.35);
+    width: 85%;
+    margin: auto;
+    border: solid 10px #FFF;
+}
+#cronogramas-all-list_filter input{
+    border-radius: 25px;
+    height: 50px;
+    background: rgba(255,255,255,0.5);
+    border: solid 2px #FFF;
+    box-shadow: none !important;
+    min-width: 250px;
+}
+#cronogramas-all-list_filter ::-webkit-input-placeholder {  color: #FFF; }
+#cronogramas-all-list_filter :-moz-placeholder {  color: #FFF; }
+#cronogramas-all-list_filter ::-moz-placeholder {  color: #FFF; }
+#cronogramas-all-list_filter :-ms-input-placeholder {  color: #FFF; }
+
+
+/* azul 81dff4*/
+/* amarillo verde e3e030 */
+/* gradiente anterior 696bcd e572c6*/

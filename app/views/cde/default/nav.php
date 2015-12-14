@@ -13,7 +13,7 @@
 			<div class="navbar-collapse collapse sidebar-navbar-collapse">
 				<ul class="nav navbar-nav navegacion" id="sidenav01">
 					<li class="active">
-						<img class="img-responsive" src="<?php echo IMG; ?>modelsview-logo.gif">
+						<img class="img-responsive" src="<?php echo IMG; ?>modelsview-logo.png">
 						
 						<a href="#" data-toggle="collapse" data-target="#configmenu" data-parent="#sidenav01" class="collapsed"> 
 												 Configuración <i class="glyphicon glyphicon-cog"></i>

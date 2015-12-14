@@ -307,6 +307,31 @@
 					$where = ''; //clears '$where' so it won't use it in $sWhere, lines below
 					
 					break;
+
+				case 'cronogramas':
+					
+					$hora=date("his");
+					$tablename = $temptable."_".$hora;
+					
+					$sql="CREATE TEMPORARY TABLE IF NOT EXISTS ".$tablename. "
+						SELECT  c.`id`, c.`id_profesor`, c.`creationdate`, c.`lastupdate`,c.`status`, 
+								p.`name`, p.`lastname`, p.`data`, c.`id_materia`, m.`nombre_materia`
+									 FROM `cde_cronograma` AS c, `cde_profesor` AS p, `cde_materia` AS m  
+											WHERE c.`status`='pending' 
+													AND c.`id_materia` = m.`id`
+													AND c.`id_profesor` = p.`id`
+						".
+					$where ." 
+					GROUP BY c.id
+					";
+					
+					
+					mysql_query( $sql ) or die(mysql_error());
+					
+					$sTable =$tablename;					
+					$where = ''; //clears '$where' so it won't use it in $sWhere, lines below
+					
+					break;
 				
 				default:
 					

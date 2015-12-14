@@ -47,7 +47,7 @@
         
         <div class="col-lg-2 col-sm-2">
             <div class="col-lg-6 col-sm-6">
-                  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal"><i class="fa fa-check"></i></button>
+                  <button type="button" class="btn  btn-success btn-circle action-approve showtooltip" data-toggle="modal" data-target="#myModal"><i class="fa fa-check"></i></button>
 
                   <!-- Modal -->
                   <div class="modal fade" id="myModal" role="dialog">
@@ -72,7 +72,43 @@
                     </div>
                   </div>
               </div>
-            <div class="col-lg-6 col-sm-6"><i class="glyphicon glyphicon-remove"></i></div>
+
+        
+             <div class="col-lg-6 col-sm-6">
+                  <button type="button" class="btn btn-danger btn-circle action-reject showtooltip" data-toggle="modal" data-target="#myModalReject"><i class="glyphicon glyphicon-remove"></i></button>
+
+                  <!-- Modal -->
+                  <div class="modal fade" id="myModalReject" role="dialog">
+                    <div class="modal-dialog">
+                    
+                      <!-- Modal content-->
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                          <h4 style="text-align: center">... Comentarios ...</i><br>
+                             
+                          </h4>
+                        </div>
+                        <div class="modal-body">
+                          <form id="complete-registration-cde" action="" novalidate="novalidate" class="stepform">
+                              <input type="hidden" name="tipo" required="required" value="comentario">
+                              <input type="hidden" name="id_cronograma" required="required" value="1">
+                              <input type="hidden" name="id_profesor" required="required" value="1">
+                              <textarea rows="4" cols="50" name="comment" form="complete-registration-cde" placeholder="Ingrese su comentario..." requierd >  </textarea>
+                         
+                        </div>
+                              <div class="modal-footer">
+                               <p style="text-align: center"> <input type="submit" name="send" class="btn btn-success send" value="Listo!"> </p> 
+                              </div>
+                        </form>      
+                      </div>
+                      
+                    </div>
+                  </div>
+              </div>
+
+
+
         </div> 
 
 

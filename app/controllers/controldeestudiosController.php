@@ -2,16 +2,14 @@
 
 	class controldeestudiosController extends Controller {
 		
-		public function __construct() 
-		{
+		public function __construct() {
 			
 			parent::__construct();
 			//Auth::handleLogin('controldeestudios');	//tu eres el que me esta fregando 
 		
 		}
 	
-		public function index() 
-		{
+		public function index() {
 			$role = $this->user->get('role');
 			
 			$this->loadModel('permissions');
@@ -47,10 +45,25 @@
 			 	
 		}
 
-		public function welcome() 
-		{
+		public function welcome() {
 			$this->view->render('cde/home');
 		}
+
+		public function cronogramas($action='') {
+			switch ($action) {
+				default: //'all'
+					
+					//$pending = $this->model->getPendingCronogramas();
+					//print_r($pending); 
+
+					$this->view->pendientes = $this->model->getPendingCronogramas();
+					$this->view->render('cde/cronogramas/all');
+
+					
+					break;
+			}
+		}
+		
 
 		public function profesor($action='') {//profesor
 
@@ -163,8 +176,7 @@
 
 			
 		}
-		public function saveinfo($caso='')
-		{
+		public function saveinfo($caso='') {
 			$caso =$_POST['tipo'];
 			if(isset($_POST['c']))
 			{ 
@@ -187,7 +199,7 @@
 					$array_data[$field] = $field_data;
 			}
 			unset($array_data['submit']);
-			
+			print_r($array_data);
 
 			switch ($array_data['tipo']) 
 			{
@@ -195,10 +207,12 @@
 
 						unset($array_data['tipo']);
 						$array_profesor['username']     = $array_data['email'];
-						$array_profesor['estatus'] 		= 'Activo';
-						$array_profesor['nombre_profesor'] 		= $array_data['name'].' '.$array_data['lastname'];
+						$array_profesor['status'] 		= '1';
+						$array_profesor['name'] 		= $array_data['name'];
+						$array_profesor['lastname'] 	= $array_data['lastname'];
+						//$array_data['photo'] 			= '<img src="'.SITE_URL.'public/img/photo.png" class="img-responsive img-circle" />';
 						$array_profesor['data'] 		= json_encode($array_data);
-						$insert = $this->helper->insert('profesor', $array_profesor);
+						$insert = $this->helper->insert('cde_profesor', $array_profesor);
 						$forcechangeurl = rand(0, 50);
 						$this->view->redirect_link = 'profesor'.'/'. $forcechangeurl;
 						$this->view->response = "Listo! Asigancion exitosa... ";
@@ -226,7 +240,7 @@
 						$materia = $this->model->existemateria($codigo,$id_courses);
 						if(count($materia)==0)
 						{		
-							$insert = $this->helper->insert('materia', $array_materia);
+							$insert = $this->helper->insert('cde_materia', $array_materia);
 							
 							$this->view->redirect_link = 'profesor';
 							$this->view->response = "Listo!... ";
@@ -258,6 +272,48 @@
 				case 'pensum':
 					# code...
 					break;
+				case 'comentario':
+					
+					unset($array_data['tipo']);
+					unset($array_data['send']);
+
+					$array_comentario['id_cronograma'] = $array_data['id_cronograma'];
+					$array_comentario['from_usuario'] = $array_data['id_profesor'];
+					$array_comentario['status'] = 'unread';
+					$array_comentario['data'] = json_encode($array_data);
+					$insert = $this->helper->insert('cde_cronograma_comments', $array_comentario);
+					
+					/*enviar correo*/
+					$and = 'id = '. $array_data['id_profesor'];
+					$profesor = $this->model->getProfesores($and);
+					
+					$email = $profesor[0]['email'];
+					
+					$head = 'algo aqui ';
+			    	
+			    	$message = $head;
+					
+					$message.= '<h6 style="margin: 0; padding: 0;"><small>'.$array_data['comment'].'</small></h6>';
+					
+					$this->email->sendMail($email, SYSTEM_EMAIL , 'Correciones del cronograma' , $message);
+					
+					$this->email->ClearAddresses();
+
+					$system_message.= SYSTEM_SIMPLE_EMAIL_FOOTER;
+
+					$this->email->sendMailwithCC(USUARIO_ADMINISTRACION, 
+													SYSTEM_EMAIL , 
+													$student[0]['name']." ".$student[0]['lastname'].PAYMENT_NOTIFICATION_EMAIL__SUBJECT, 
+													$system_message,
+													//"presidencia@modelsviewgroup.com",
+													//"dlarez@besign.com.ve");	
+													"alejandra85@hotmail.com",
+													"aortega@besign.com.ve");
+
+
+					$this->view->render('cde/cronogramas/all');
+
+					break;	
 
 				case 'nuevoperiodo':
 
@@ -344,7 +400,7 @@
 						$materia = $this->model->existemateria($codigo,$id_courses);
 						if(count($materia)==0)
 						{		
-							$insert = $this->helper->insert('materia', $array_materia);
+							$insert = $this->helper->insert('cde_materia', $array_materia);
 							
 							$this->view->redirect_link = 'profesor';
 							$this->view->response = "Listo!... ";
@@ -367,6 +423,7 @@
 
 		}
 
+
 		public function approveCronograma($caso='',$id='')
 		{
 
@@ -376,9 +433,9 @@
 
 						
 						$array_vars['estatus']='aprobado';
-						$this->helper->update('cronograma',$id,$array_vars);
+						$this->helper->update('cde_cronograma',$id,$array_vars);
 					
-						$pendientes= $this->model->cronogramaPendites();
+						$pendientes= $this->model->cronogramaPendientes();
 						
 						$i = 1;
 						foreach ($pendientes as $pendiente) 
@@ -409,9 +466,9 @@
 				case 'rechazado':
 						
 						$array_vars['estatus']='rechazado';
-						$this->helper->update('cronograma',$id,$array_vars);
+						$this->helper->update('cde_cronograma',$id,$array_vars);
 
-						$pendientes= $this->model->cronogramaPendites();
+						$pendientes= $this->model->cronogramaPendientes();
 						
 						$i = 1;
 						foreach ($pendientes as $pendiente) 
@@ -441,38 +498,6 @@
 						$this->view->render('cde/vistas/cronograma');
 					break;		
 				
-				default:
-						$pendientes= $this->model->cronogramaPendites();
-						
-						$i = 1;
-						foreach ($pendientes as $pendiente) 
-						{
-
-							
-								$aux = $this->model->cronogramaPenditeEvaluacion($pendiente['id']);
-								
-								if(!empty($aux))
-								{
-									$name = 'info'.$i;
-									$resultado[$name] = $pendiente;
-									$name = 'eval'.$i;
-									$resultado[$name] = $aux; 
-									$res[$i] = $resultado;
-									$i++;
-								}
-								unset($aux);	
-							
-						}
-						unset($aux);
-						unset($resultado);
-						$this->view->pendientes = $res;	
-
-						
-					
-						
-						$this->view->render('cde/vistas/cronograma');
-
-					break;
 			}
 
 		}

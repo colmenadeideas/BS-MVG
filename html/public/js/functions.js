@@ -50,8 +50,16 @@ define(['globals'], function(globals) {
 	function getOnlyDate(data) {
 		var dateArr = data.split("-");
 		removeTime = dateArr[2].split(" ");
-		dateStr = removeTime[0] + "/" + dateArr[1] + "/" + dateArr[0];
+		dateStr = removeTime[0] + "/" + dateArr[1] + "/" + dateArr[0][2]+ dateArr[0][3];
 		return dateStr;
+	}
+	function getOnlyTime(data) {
+		var dateArr = data.split(":");
+		dateStr = dateArr[1] + ":" + dateArr[2];
+		return dateStr;
+		//removeTime = dateArr[2].split(" ");
+		//dateStr = removeTime[0] + "/" + dateArr[1] + "/" + dateArr[0];
+		//return dateStr;
 	}
 	//Definition for mask
 
@@ -83,6 +91,7 @@ define(['globals'], function(globals) {
       closeModal: 	closeModal,
       pad: 			pad,
       getOnlyDate: 	getOnlyDate,
+      getOnlyTime:  getOnlyTime,
       initForm: 	initForm
 
 	}

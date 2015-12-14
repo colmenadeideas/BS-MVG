@@ -15,7 +15,7 @@
 					
 				default: 
 					$tablename = 'cde_cronograma';
-					$fields = array('id','data','name', 'lastname',  'nombre_materia','creationdate','status');
+					$fields = array('id','data','name', 'lastname',  'nombre_materia','creationdate', 'lastupdate','status');
 					$temptable = 'cronogramas';
 					//$where = "WHERE courses_registrations.status!='completed' AND courses_registrations.status!='cancelled' AND courses_registrations.status!='archived'";
 					

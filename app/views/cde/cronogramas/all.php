@@ -1,15 +1,17 @@
 <div class="col-lg-12 col-xs-12 jumbotron">
-	<h2>Cronogramas</h2>
+	<h2><i class="fa fa-calendar-check-o "></i> Cronogramas</h2>
 </div>
 <div class="col-lg-12 col-xs-12">
-	<button class="btn btn-info" id="boton_imprimir_pendientes">Imprimir Pendientes</button><br><br>
+	<!--button class="btn btn-info" id="boton_imprimir_pendientes">Imprimir Pendientes</button--><br><br>
+	<button class="btn btn-info btn-main" id="button-add-cronograma"><i class="fa fa-plus add-fa"></i> Agregar Cronograma</button>
 	<table id="cronogramas-all-list" class="table table-hover table-list">
 		<thead>
-			<th width="50px">#Código</th>
-			<th>Profesor</th>
-			<th width="25%">Materia</th>
+			<th width="50px">#</th>
+			<th width="60px"></th>
+			<th width="25%">Profesor</th>
+			<th>Comentarios</th>
 			<th>Fecha</th>
-			<th>Fecha</th>
+			<th>Acciones</th>
 		</thead>
 	</table>
 	

@@ -317,7 +317,7 @@
 						SELECT  c.`id`, c.`id_profesor`, c.`creationdate`, c.`lastupdate`,c.`status`, 
 								p.`name`, p.`lastname`, p.`data`, c.`id_materia`, m.`nombre_materia`
 									 FROM `cde_cronograma` AS c, `cde_profesor` AS p, `cde_materia` AS m  
-											WHERE c.`status`='pendiente' 
+											WHERE c.`status`='pending' 
 													AND c.`id_materia` = m.`id`
 													AND c.`id_profesor` = p.`id`
 						".

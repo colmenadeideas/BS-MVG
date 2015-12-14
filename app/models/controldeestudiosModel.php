@@ -68,7 +68,7 @@
 
 			$result = DB::query("SELECT c.`id` ,c.`id_profesor`, p.`name`, p.`lastname`,c.`id_materia`, m.`nombre_materia`
 									 FROM `cde_cronograma` AS c, `cde_profesor` AS p, `cde_materia` AS m  
-											WHERE c.`status`='pendiente' 
+											WHERE c.`status`='pending' 
 													AND c.`id_materia` = m.`id`
 													AND c.`id_profesor` = p.`id` ");
 		
@@ -87,7 +87,7 @@
 												WHERE c.id = e.id_cronograma 
 													and m.id = c.id_materia 
 													and p.id = c.id_profesor 
-													and c.status = 'pendiente' 
+													and c.status = 'pending' 
 													and m.id_courses = cou.id 
 													and pen.id_courses = cou.id
 													and pen.estatus = 'Activo' 

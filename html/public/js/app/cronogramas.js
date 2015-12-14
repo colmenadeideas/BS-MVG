@@ -19,81 +19,53 @@ define(['globals', 'functions'], function(globals, functions) {
 			"bServerSide": true,
 			"iDisplayLength": 20,
 			"sAjaxSource": globals.URL+"cronogramas/get/all",		
-			//"aaSorting": [[ 5, "desc" ]],
+			"aaSorting": [[ 4, "desc" ]],
 		       "aoColumnDefs": [ 
-		       		//{ "sClass": "text-left", "aTargets": [ 0, 1 ] },
 				   //Format Columns
-
-				   	{   //Profesor     	
-			     	 "aTargets": [ 1 ],
-			      	 	/*"mData":  function (data) {
-			       			//return '<strong class="text-course">'+data[1] +'</strong>';
-			       			return '<div class="col-lg-1"><img src="'+globals.URL+'public/img/photo.png" class="img-responsive img-circle" /></div><div class="row col-lg-10"><h4>'+data[1] +'<br><small>'+data[2] +'</small></h4></div>';
-			      		}*/
-			   	 	
-
-						/*"mData":  function (data) {
-			       			//return '<strong class="text-course">'+data[1] +'</strong>';
-			       			return '<div class="col-lg-1"><img src="http://localhost/BS-MVG/html/public/img/photo.png" class="img-responsive img-circle" /></div><div class="row col-lg-10"><h4>'+data[1] +'<br><small>'+data[2] +'</small></h4></div>';
-			      		}*/
-						/*"mData":  function (data) {
-							return data[2];
-						},*/
-						//"mData": "lastname",
-			      		"mRender": function (data) {
-			      			var response = JSON.parse(data);
-			      			console.log(response);
-			      			
-                        	return '<img src="http://localhost/BS-MVG/html/public/img/photo.png"></>'+data ;
-						}
-
-					},
-
-			   	 	{   //Group     	
-			     	 "aTargets": [ 2 ],
+					{ //Code     	
+			     	"aTargets": [ 0 ],
 			      	 	"mData":  function (data) {
-			       			return '<small class="text-course">'+data[2] +'</small>';
-			      		}
-			   	 	},/*
-				   	{   //Full Name     	
-			     	 "aTargets": [ 3 ],
-			      	 	"mData":  function (data) {
-		    	   			return data[3] +' '+data[4];
+			       			return '<small class="dim">'+data[0]+'</small>';
 			      		}
 			   	 	},
-					{   //Lastname     	
-				  	 "aTargets": [ 4 ],
-				   	 	"mData":  function (data) {
-				   			return '';
-				   		}
-				 	},
-				   	{   //Date     	
-				   	 "aTargets": [ 5 ],
-				   	 	"mData":  function (data) {
-				   			return functions.getOnlyDate(data[5]);
-				  		}
-				 	},
-				 	{   //Status     	
-				   	 "aTargets": [ 6 ],
-				   	 	"mData":  function (data) {
-				   			return '<span class="label label-default '+data[6]+'">'+translateStatus(data[6])+'</span>';
-				  		}
-				 	},
-					{   //Botones y Detalle     	
-					  	 "aTargets": [ 7 ],
-					  	 	"mData":  function (data) {
-					  	 		
-					  	 		var currentstatus = data[6];
-					  	 		
+				   	{   //Profesor's Profile Pic     	
+			     	"aTargets": [ 1 ],
+			      	 	"mRender": function (data) {
+			      			var data = JSON.parse(data);
+                        	return '<img src="http://localhost/BS-MVG/html/public/img/'+data.photo+'"class="img-responsive img-circle profile-list" />' ;
+						}
+					},
+			   	 	{ //Profesor & Class     	
+			     	"aTargets": [ 2 ],
+			      	 	"mData":  function (data) {
+			       			return '<div class="row col-lg-10"><h4>'+data[4] +'<br><small>'+data[2]+' '+data[3]+'</small></h4></div>';
+			      		}
+			   	 	},
+			   	 	{ //Last Comment     	
+			     	"aTargets": [ 3 ],
+			      	 	"mData":  function (data) {
+			       			return '';
+			      		}
+			   	 	},
+			   	 	{ //Date    	
+			     	"aTargets": [ 4 ],
+			      	 	"mData":  function (data) {
+			      	 		if (data[6] != "0000-00-00 00:00:00") {
+			      	 			var lastupdate = "Modificado el "+functions.getOnlyDate(data[6]) +" "+ functions.getOnlyTime(data[6]);
+			      	 		}			      	 		
+			      	 		return '<small class="time-list">'+functions.getOnlyDate(data[5])+"<br>("+ functions.getOnlyTime(data[5])+")</small>";
+			      		}
+			   	 	},
+			   	 	
+					{ //Actions
+					"aTargets": [ 5 ],
+					  	"mData":  function (data) {
+					  		var currentstatus = data[7];
 					  	 		switch(currentstatus) {
 					  	 			case 'pending':
-					  	 				return '<div class="btn-group">'+actionbuttons('delete',data[0])+actionbuttons('edit',data[0])+actionbuttons('registerpayment',data[0])+'</div>'; 
+					  	 				return ''+actionbuttons('reject',data[0])+actionbuttons('approve',data[0])+actionbuttons('edit',data[0])+''; 
 					  	 				break;
-					  	 				
-					  	 			case 'clearpayment':
-					  	 				return '<div class="btn-group">'+actionbuttons('delete',data[0])+actionbuttons('edit',data[0])+actionbuttons('approve',data[0])+'</div>'; 
-					  	 				break;
-					  	 				
+					  	 								  	 				
 					  	 			case 'approved':
 					  	 				return '<div class="btn-group">'+actionbuttons('delete',data[0])+actionbuttons('edit',data[0])+actionbuttons('docsreminder',data[0])+actionbuttons('complete',data[0])+'</div>'; 
 					  	 				break;
@@ -111,7 +83,7 @@ define(['globals', 'functions'], function(globals, functions) {
 				                activateCells(nTd);
 
 				            }
-					   	 },*/
+					   	 },
 					   	 	
 					   	 ],		
 						"oLanguage": {
@@ -218,24 +190,24 @@ define(['globals', 'functions'], function(globals, functions) {
 	function actionbuttons(buttonname,data) {
 		switch (buttonname) {
 			case 'approve':
-				//finalbutton = '<button title="Aprobar Pago" data-element="registrations" data-registration="'+data+'" data-toggle="modal" data-target="#confirm-approve" type="button" class="btn btn-sm btn-success action-approve showtooltip"><i class="glyphicon glyphicon-ok"></i></button>';
-				finalbutton = '<button type="button" title="Aprobar Pago" class="btn btn-sm btn-success action-approve showtooltip" data-registration="'+data+'" data-element="registrations"><i class="glyphicon glyphicon-ok"></i></button>';				
+				
+				finalbutton = '<button type="button" title="Aprobar" class="btn  btn-success btn-circle action-approve showtooltip" data-cronograma="'+data+'" data-element="cronogramas"><i class="glyphicon glyphicon-ok"></i></button>';				
+				break;
+			case 'reject':
+				finalbutton = '<button data-element="cronogramas" title="Rechazar" data-cronograma="'+data+'" data-toggle="modal" data-target="#confirm-delete" type="button" class="btn btn-danger btn-circle action-reject showtooltip"><i class="fa fa-times"></i></i></button>';
 				break;
 			case 'delete':
-				finalbutton = '<button data-element="registrations" data-registration="'+data+'" data-toggle="modal" data-target="#confirm-delete" type="button" class="btn btn-sm btn-danger action-delete showtooltip"><i class="glyphicon glyphicon-trash"></i></button>';
+				finalbutton = '<button data-element="cronogramas" data-cronograma="'+data+'" data-toggle="modal" data-target="#confirm-delete" type="button" class="btn  btn-danger btn-circle action-delete showtooltip"><i class="glyphicon glyphicon-trash"></i></button>';
 				break;
 			case 'edit': 
-				finalbutton = '<button type="button" title="Ver Información" class="btn btn-sm btn-info action-view showtooltip" data-registration="'+data+'"><i class="glyphicon glyphicon-search"></i></button>';
+				finalbutton = '<button type="button" title="Ver" class="btn  btn-info btn-circle action-view showtooltip" data-cronograma="'+data+'"><i class="glyphicon glyphicon-search"></i></button>';
 				break;
 			case 'registerpayment': 
-				finalbutton = '<button type="button" title="Registrar Pago" class="btn btn-sm btn-default action-register-payment showtooltip" data-registration='+data+'"><i class="fa fa-credit-card fa-lg"></i></button>';
-				break;
-			case 'docsreminder':  //Step 3
-				finalbutton = '<button type="button" title="Reenviar instrucciones" class="btn btn-sm btn-default action-docs-reminder showtooltip" data-registration="'+data+'"><i class="glyphicon glyphicon-envelope"></i></button>';
+				finalbutton = '<button type="button" title="Registrar Pago" class="btn btn-sm btn-default btn-circle action-register-payment showtooltip" data-cronograma='+data+'"><i class="fa fa-credit-card fa-lg"></i></button>';
 				break;
 			case 'complete':
-				//finalbutton = '<button title="Aprobar Documentos Recibi" data-element="registrations" data-registration="'+data+'" data-toggle="modal" data-target="#confirm-completation" type="button" class="btn btn-sm btn-success action-approve action-approve-docs showtooltip"><i class="glyphicon glyphicon-file"></i></button>';				
-				finalbutton = '<button type="button" title="Aprobar Documentos Recibidos" class="btn btn-sm btn-success action-complete showtooltip" data-registration="'+data+'" data-element="registrations"><i class="glyphicon glyphicon-file"></i></button>';
+				//finalbutton = '<button title="Aprobar Documentos Recibi" data-element="cronogramas" data-cronograma="'+data+'" data-toggle="modal" data-target="#confirm-completation" type="button" class="btn btn-sm btn-success action-approve action-approve-docs showtooltip"><i class="glyphicon glyphicon-file"></i></button>';				
+				finalbutton = '<button type="button" title="Aprobar Documentos Recibidos" class="btn btn-sm btn-success action-complete showtooltip" data-cronograma="'+data+'" data-element="cronogramas"><i class="glyphicon glyphicon-file"></i></button>';
 				break;					
 			
 		}

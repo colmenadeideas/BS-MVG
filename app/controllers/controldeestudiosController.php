@@ -53,6 +53,7 @@
 			switch ($action) {
 				default: //'all'
 					
+<<<<<<< HEAD
 					//$pending = $this->model->getPendingCronogramas();
 					//print_r($pending); 
 
@@ -60,6 +61,38 @@
 					$this->view->render('cde/cronogramas/all');
 
 					
+=======
+//					$pending = $this->model->getPendingCronogramas();
+
+					//print_r($pending); 
+					$this->view->pendientes = $this->model->getPendingCronogramas();
+					$this->view->render('cde/cronogramas/all');
+
+					/*
+					//this is edit
+					$i = 1;
+					foreach ($pending as $cronograma) {
+
+						$cronogramasActivities = $this->model->getCronogramasActivi($pendiente['id']);
+							
+							if(!empty($aux))
+							{
+								$name = 'info'.$i;
+								$resultado[$name] = $pendiente;
+								$name = 'eval'.$i;
+								$resultado[$name] = $aux; 
+								$res[$i] = $resultado;
+								$i++;
+							}
+							unset($aux);	
+						
+					}
+					unset($aux);
+					unset($resultado);
+					$this->view->pendientes = $res;	
+					
+					$this->view->render('cde/vistas/cronograma');*/
+>>>>>>> ef4a3d3a4f2c39402e18dc541a3626788d00188c
 					break;
 			}
 		}

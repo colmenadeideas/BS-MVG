@@ -63,6 +63,14 @@
 
 		public function getPendingCronogramas()	{
 
+<<<<<<< HEAD
+=======
+
+
+
+		public function getPendingCronogramas()	{
+
+>>>>>>> ef4a3d3a4f2c39402e18dc541a3626788d00188c
 			$result = DB::query("SELECT c.`id` ,c.`id_profesor`, p.`name`, p.`lastname`,c.`id_materia`, m.`nombre_materia`
 									 FROM `cde_cronograma` AS c, `cde_profesor` AS p, `cde_materia` AS m  
 											WHERE c.`status`='pending' 
@@ -104,7 +112,11 @@
 		public function getProfesores($id = '')	
 		{
 
+<<<<<<< HEAD
 			$result = DB::query("SELECT * FROM `cde_profesor`  WHERE `status`='1' $id");
+=======
+			$result = DB::query("SELECT * FROM `cde_profesor`  WHERE `status`='1' ");
+>>>>>>> ef4a3d3a4f2c39402e18dc541a3626788d00188c
 			return $result;		
 		}
 		public function getCoursePeriodo()	

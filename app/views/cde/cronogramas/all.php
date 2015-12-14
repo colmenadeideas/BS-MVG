@@ -17,7 +17,13 @@
 	
 </div>
 <?php //$this->render('students/edit-loadarea'); ?>
+<<<<<<< HEAD
 <?php //$this->render('students/modal-loadarea'); ?>
 <?php //$this->render('students/confirm-approve'); ?>
 <?php //$this->render('students/confirm-completation'); 
 // ?>
+=======
+<?php $this->render('cde/cronogramas/modal-loadarea'); ?>
+<?php $this->render('cde/cronogramas/confirm-approve'); ?>
+<?php //$this->render('students/confirm-completation'); // ?>
+>>>>>>> ef4a3d3a4f2c39402e18dc541a3626788d00188c

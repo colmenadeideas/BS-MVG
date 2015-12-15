@@ -73,7 +73,7 @@ define(['globals', 'functions'], function(globals, functions) {
 	});
 	
 	//ActionLog
-	$('#actionlog-list').dataTable({
+	$('#actionlog-listo').dataTable({
 		"bProcessing": true,
 		"bServerSide": true,
 		"iDisplayLength": 10,

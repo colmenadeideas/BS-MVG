@@ -21,29 +21,19 @@
 			
 			switch ($what) {
 				
-				/*****  PROCESS PRE INSCRIPCION  *****/
+				/*****  PROCESS REGISTRO  *****/
 				case 'user':
 					// 1 -Creates User&Profile and Sends Authentication Link
 					$array_student['username'] 	= $array_data['email'];
 					//$array_student['rif'] 		= $array_data['nationality'].$array_data['cedula'];
-					$array_student['role'] 		= 'estudiante';
+					$array_student['role'] 		= 'profesor';
 					$array_student['name'] 		= $array_data['name'];
 					$array_student['lastname'] 	= $array_data['lastname'];
 					$array_student['email'] 	= $array_data['email'];
 					//$array_student['PromoIns']	= $array_data['PromoIns'];
-					$array_student['data'] 		= $array_data;
+					$array_student['data'] 		= $array_data[$field];
 					//Registration Data
-					//Check if user is reserved email 
-					/*$protected_emails =	$this->model->getReservedEmails();
-					
-					foreach ($protected_emails as $protected_email) {
-						
-						if ($protected_email['email'] == $array_data['email']) {
-							echo PROTECTED_EMAIL_MESSAGE;
-							exit;
-						}
-					}*/					
-					
+										
 					//Check if already exist in User database
 					
 					$already_registered =	$this->model->getRegistrant($array_data['email'], 'username');
@@ -58,57 +48,12 @@
 						
 						//echo $create_user;
 						  
-						if ($create_user > 0) {
-								
-							//Create Course Registration	
-							//$array_registration['course_available_group_id'] = 	$array_data['course_available_group_id'];
-							//$array_registration['student_id'] 				 = 	DB::insertId();
-							//$array_registration['data'] 					 = 	json_encode($array_data);
-							//$array_registration['status']					 =  'pending'; //awaits for payment
-							//$array_registration['PromoIns']					 =  $array_data['PromoIns']; //PROMO PREREGISTRO POR LA PAGINA
-							
-							//$create_registration = $this->step1($array_registration);				
-							
-							/*copiado de laser----------------------*/
-							
-						$id =  DB::insertId();
-						$array_profile['id'] = $id;
-						//Create and add Profile
-						$insert_profile = $this->helper->insert('cde_profesor', $array_profile);
-						//Create Role Permissions for User
-						/*If Permissions where setted by admin user, they would be created here */
-						
-						//::::Log Action::::					
-						//$log = $this->helper->insert('users_action_log', array('controller'=>'cde_profesor', 'action' =>  'add', 'item' =>  $id, 'username'=> $userdata[0]['id']));
-						
-						if($array_user['status'] !== "2"){
-						//Email User Activation
-						
-							//Email User Activation Notification
-							$message = SYSTEM_SIMPLE_EMAIL_HEAD;								
-							$message .= SYSTEM_EMAIL__USER_ACTIVATION_MESSAGE_PART1;
-							$message .= 'Su usuario es: '. $array_user['username'] .'<br><br>';
-							$message .= SYSTEM_EMAIL__USER_ACTIVATION_MESSAGE_PART2;
-							$message .= '<a href="'.URL.'account/authenticate/'.$temp_key.'/'.$array_user['username'].'" style="color: #ffffff; font-size:16px; font-weight: bold; font-family: Helvetica, Arial, sans-serif; text-decoration: none; line-height:40px; width:100%; display:inline-block">Activar Usuario</a>';				
-							$message .= SYSTEM_EMAIL__USER_ACTIVATION_MESSAGE_PART3;
-							$message .= SYSTEM_SIMPLE_EMAIL_FOOTER;
-							
-							alert("correon de Activacion");
-							
-							//$this->email->sendMail($array_user['username'], SYSTEM_EMAIL, ACTIVATION_USER_SUBJECT , $message);	
-							
-							
-							
-							
-						}			
-						
-					
-					} 
-					
+					}
 					break;
 					
+					
 					}
-				}
+		
 			}
 		
 		
@@ -125,10 +70,10 @@
 			//Auth::handleLogin('users');
 			switch($what){
 				case 'users':
-					$tablename = 'user_profile'; // List only administrative Users ( won't show clientes) 
+					$tablename = 'cde_profesor'; // List only administrative Users ( won't show clientes) 
 					$fields = array( 'name', 'username', 'id');
-					//$where = "WHERE status !='deleted'";
-					$temptable ='';
+					//$where = "WHERE status !='2'";
+					//$temptable ='';
 					break;
 				case 'actionlogs':
 					$tablename = 'users_action_log';
@@ -228,7 +173,10 @@
 						/*If Permissions where setted by admin user, they would be created here */
 						
 						//::::Log Action::::					
-						$log = $this->helper->insert('users_action_log', array('controller'=>'user_profile', 'action' =>  'add', 'item' =>  $id, 'username'=> $userdata[0]['id']));
+						//$log = $this->helper->insert('users_action_log', array('controller'=>'user_profile', 'action' =>  'add', 'item' =>  $id, 'username'=> $userdata[0]['id']));
+						
+						$log = $this->helper->insert('users_action_log', array('controller'=>'user_profile', 'action' =>  'add', 'item' =>  '5', 'username'=> 9));
+						
 						
 						if($array_user['status'] !== "2"){
 						//Email User Activation

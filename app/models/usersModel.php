@@ -13,6 +13,11 @@
 		public function getUser($id, $by='username') {
 			return DB::query("SELECT * FROM " . DB_PREFIX . "users WHERE $by=%s LIMIT 1", $id);
 		}
+		
+		public function getUserId($username) {
+			return DB::query("SELECT * FROM " . DB_PREFIX . "cde_profesor WHERE $by=%s LIMIT 1", $username);
+		}
+		
 		public function getUserProfile($id, $by='username') {
 			return DB::query("SELECT * FROM " . DB_PREFIX . "user_profile WHERE $by=%s LIMIT 1", $id);
 		}

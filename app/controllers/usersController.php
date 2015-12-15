@@ -27,13 +27,36 @@
 					case 'estudiante':
 						$profile = 'student_profile';
 						break;
+					case 'profesor':
+						$profile = 'cde_profesor';
+						break;
 					default:
 						$profile = 'user_profile';
 						break;
 				}				
 				
 				$this->create_profile($id, $profile, $data);
-							
+				
+				//$log = $this->helper->insert('users_action_log', array('controller'=>'user_profile', 'action' =>  'add', 'item' =>  $id, 'username'=> 3 /*$userdata[0]['id']*/));
+						
+					//if($data['role']=='profesor'){
+						//$UserId=$this->model->getUserId($array_user['username']);
+						//$UserId['id']=10;
+						//$userdata = $this->user->getUserdata();
+						
+						//$id=2;
+						$UserId=7;
+							//$log = $this->helper->insert('users_action_log', array('controller'=>'user_profile', 'action' =>  'add', 'item' =>  $id, 'username'=> $UserId));
+						
+						//$log = $this->helper->insert('users_action_log', array('controller'=>'user_profile', 'action' =>  'add', 'item' =>  $id, 'username'=> $UserId));
+						
+						$arreglo=array('controller'=>'user_profile', 'action' =>  'add', 'item' =>  $id, 'username'=> $UserId);
+						/*importante que el arreglo se haga fuera del insert*/
+						
+						$this->helper->insert('users_action_log', $arreglo);
+						
+						
+					//	}		
 								
 				//Email User Activation Notification								
 				$message = SYSTEM_EMAIL__USER_ACTIVATION_MESSAGE_PART1;
@@ -57,8 +80,10 @@
 			$array_profile['name'] = escape_value($data['name']);
 			$array_profile['lastname'] = escape_value($data['lastname']);
 			$array_profile['email'] = escape_value($data['email']);
-			//$array_profile['data'] = json_encode($data['data']);			
-			//Create and add Profile
+			//if(isset($data['data'])){
+				$array_profile['data'] = json_encode($data);			
+				//Create and add Profile
+			//}
 			$insert_profile = $this->helper->insert($tablename, $array_profile);
 			
 		}

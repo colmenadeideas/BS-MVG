@@ -53,9 +53,9 @@
 			switch ($action) {
 				case 'get':
 
-						$evaluaciones = $this->model->cronogramaPenditeEvaluacion('1','1');
+						$evaluaciones = $this->model->getCronograma($id);
 						$this->view->evaluaciones = $evaluaciones;	
-						$this->view->render('cde/vistas/cronograma');
+						$this->view->render('cde/cronogramas/edit');
 
 					break;
 

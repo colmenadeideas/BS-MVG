@@ -3,7 +3,8 @@
 	class controldeestudiosModel extends Model 
 	{
 	
-		public function __construct() {
+		public function __construct() 
+		{
 	
 			parent::__construct();
 		}
@@ -60,10 +61,6 @@
 			return $result;	
 		}
 
-
-
-
-
 		public function getPendingCronogramas()	{
 
 			$result = DB::query("SELECT c.`id` ,c.`id_profesor`, p.`name`, p.`lastname`,c.`id_materia`, m.`nombre_materia`
@@ -104,12 +101,7 @@
 											 		and e.`id_cronograma` = c.`id`");
 			return $result;*/		
 		}
-		
-
-
-
-
-		public function getProfesores()	
+		public function getProfesores($id = '')	
 		{
 
 			$result = DB::query("SELECT * FROM `cde_profesor`  WHERE `status`='1' ");

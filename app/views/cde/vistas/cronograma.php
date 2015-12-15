@@ -1,4 +1,3 @@
-<!-- -->
 <div style="background-color: beige;">
   <div class="views" >
     <div class="col-lg-12 col-xs-12">
@@ -73,6 +72,7 @@
                   </div>
               </div>
 
+
         
              <div class="col-lg-6 col-sm-6">
                   <button type="button" class="btn btn-danger btn-circle action-reject showtooltip" data-toggle="modal" data-target="#myModalReject"><i class="glyphicon glyphicon-remove"></i></button>
@@ -110,7 +110,3 @@
 
 
         </div> 
-
-
-  </div> 
-</div>

@@ -72,7 +72,8 @@ define(['globals', 'functions'], function(globals, functions) {
 					  	 				
 					  	 			default:
 					  	 				return '<div class="btn-group">'+actionbuttons('edit',data[0])+'</div>';
-					  	 				break;					  	 			
+					  	 				break;
+					  	 			
 					  	 		}
 					  	 		
 					      	},
@@ -191,7 +192,7 @@ define(['globals', 'functions'], function(globals, functions) {
 				finalbutton = '<button type="button" title="Aprobar" class="btn  btn-success btn-circle action-approve showtooltip" data-cronograma="'+data+'" data-element="cronogramas"><i class="glyphicon glyphicon-ok"></i></button>';				
 				break;
 			case 'reject':
-				finalbutton = '<button data-element="cronogramas" title="Rechazar" data-cronograma="'+data+'" data-toggle="modal" data-target="#confirm-delete" type="button" class="btn btn-danger btn-circle action-reject showtooltip"><i class="fa fa-times"></i></i></button>';
+				finalbutton = '<button data-element="cronogramas" title="Rechazar" data-cronograma="'+data+'" data-toggle="modal" data-target="#confirm-delete" type="button" class="btn btn-danger btn-circle action-reject showtooltip"><i class="fa fa-times"></i></button>';
 				break;
 			case 'delete':
 				finalbutton = '<button data-element="cronogramas" data-cronograma="'+data+'" data-toggle="modal" data-target="#confirm-delete" type="button" class="btn  btn-danger btn-circle action-delete showtooltip"><i class="glyphicon glyphicon-trash"></i></button>';
@@ -204,7 +205,8 @@ define(['globals', 'functions'], function(globals, functions) {
 				finalbutton = '<button type="button" title="Registrar Pago" class="btn btn-sm btn-default btn-circle action-register-payment showtooltip" data-cronograma='+data+'"><i class="fa fa-credit-card fa-lg"></i></button>';
 				break;
 			case 'complete':
-				//finalbutton = '<button title="Aprobar Documentos Recibi" data-element="cronogramas" data-cronograma="'+data+'" data-toggle="modal" data-target="#confirm-completation" type="button" class="btn btn-sm btn-success action-approve action-approve-docs showtooltip"><i class="glyphicon glyphicon-file"></i></button>'; registratfinalbutton = '<button type="button" title="Aprobar Documentos Recibidos" class="btn btn-sm btn-success action-complete showtooltip" data-cronograma="'+data+'" data-element="cronogramas"><i class="glyphicon glyphicon-file"></i></button>';
+				//finalbutton = '<button title="Aprobar Documentos Recibi" data-element="cronogramas" data-cronograma="'+data+'" data-toggle="modal" data-target="#confirm-completation" type="button" class="btn btn-sm btn-success action-approve action-approve-docs showtooltip"><i class="glyphicon glyphicon-file"></i></button>';				
+				finalbutton = '<button type="button" title="Aprobar Documentos Recibidos" class="btn btn-sm btn-success action-complete showtooltip" data-cronograma="'+data+'" data-element="cronogramas"><i class="glyphicon glyphicon-file"></i></button>';
 				break;					
 			
 		}
@@ -232,7 +234,7 @@ define(['globals', 'functions'], function(globals, functions) {
 			}
 		});
 	}
-	
+
 	
  
 

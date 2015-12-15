@@ -18,7 +18,7 @@ define(['globals', 'functions', 'app/newsletter'], function(globals, functions, 
 	}
 	function loadform(what, id)
 	{
-		console.log();
+		
 		switch (what) {
 			case 'payment':
 				var rute = 'registration/paymentform/';
@@ -27,6 +27,7 @@ define(['globals', 'functions', 'app/newsletter'], function(globals, functions, 
 				break;
 
 		}
+
 		$.post(URL + rute + id, function(data) {
 			$('#loadmodal .modal-body').hide().html(data).fadeIn('slow');
 			functions.initForm();
@@ -101,35 +102,47 @@ define(['globals', 'functions', 'app/newsletter'], function(globals, functions, 
 	if ($('#complete-registration-cde').length === 1) {
 		var form = '#complete-registration-cde';
 		functions.initForm();
-		console.log("dd3");
-		var direccionE = globals.URL + "controldeestudios/saveinfo";
 		
+		console.log("dd3");
+		//si regrea la direccion
+		var direccionE = globals.URL + "controldeestudios/saveinfo";
+		//aqui ya no pasa 
 		var $validator = $(form).validate({
-			rules : {				
+			rules : 
+			{				
+			
 			},
+		// no muestra nada de aqui 	
 		submitHandler : function(form) {
+				console.log('ao1');
 				$('.send').attr('disabled', 'disabled'); //prevent double send
-				$.ajax({
+				console.log('ao1');			
+					$.ajax({
 					type : "POST",
 					url : direccionE,
 					data : $(form).serialize(),
 					timeout : 12000,
 					success : function(response)
 					 {
+					 	console.log('hola');
 						console.log(response);
 						$('#response').html(response); //descomentar al terminar 
 						$('.send').removeAttr("disabled");
 						limpiarforma("complete-registration-cde");
+							
 					},
 					error : function(response) {
 						$('.send').removeAttr("disabled");
+						console.log('error');
 				
 					}
 				});
+				
 				return false;
 			}
+
 		});
-	
+	console.log('exit'); //salta aqui 
 	}
 
 //Step 0

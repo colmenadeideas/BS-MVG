@@ -49,13 +49,18 @@
 			$this->view->render('cde/home');
 		}
 
-		public function cronogramas($action='') {
+		public function cronogramas($action = "", $id = "") {
 			switch ($action) {
+				case 'get':
+
+						$evaluaciones = $this->model->cronogramaPenditeEvaluacion('1','1');
+						$this->view->evaluaciones = $evaluaciones;	
+						$this->view->render('cde/vistas/cronograma');
+
+					break;
+
 				default: //'all'
 					
-//					$pending = $this->model->getPendingCronogramas();
-
-					//print_r($pending); 
 					$this->view->pendientes = $this->model->getPendingCronogramas();
 					$this->view->render('cde/cronogramas/all');
 
@@ -80,9 +85,7 @@
 					}
 					unset($aux);
 					unset($resultado);
-					$this->view->pendientes = $res;	
-					
-					$this->view->render('cde/vistas/cronograma');*/
+					$this->view->pendientes = $res;	*/
 					break;
 			}
 		}
@@ -133,16 +136,6 @@
 						$this->view->render('cde/add/nuevoperiodo');
 
 					break;
-
-				case 'cronogramas':
-
-						$evaluaciones = $this->model->cronogramaPenditeEvaluacion('1','1');
-						$this->view->evaluaciones = $evaluaciones;	
-						$this->view->render('cde/vistas/cronograma');
-
-					break;
-
-
 								
 				default:
 						$this->view->render('cde/add/index');
@@ -394,7 +387,43 @@
 							$this->view->render('redirect_hash');
 						}	
 						
-					break;	
+					break;
+				case 'comentario':
+					
+					unset($array_data['tipo']);
+					unset($array_data['send']);
+					$array_comentario['id_cronograma'] = $array_data['id_cronograma'];
+					$array_comentario['from_usuario'] = $array_data['id_profesor'];
+					$array_comentario['status'] = 'unread';
+					$array_comentario['data'] = json_encode($array_data);
+					$insert = $this->helper->insert('cde_cronograma_comments', $array_comentario);
+					
+					/*enviar correo*/
+					$and = 'id = '. $array_data['id_profesor'];
+					$profesor = $this->model->getProfesores($and);
+					
+					$email = $profesor[0]['email'];
+					
+					$head = 'algo aqui ';
+			    	
+			    	$message = $head;
+					
+					$message.= '<h6 style="margin: 0; padding: 0;"><small>'.$array_data['comment'].'</small></h6>';
+					
+					$this->email->sendMail($email, SYSTEM_EMAIL , 'Correciones del cronograma' , $message);
+					
+					$this->email->ClearAddresses();
+					$system_message.= SYSTEM_SIMPLE_EMAIL_FOOTER;
+					$this->email->sendMailwithCC(USUARIO_ADMINISTRACION, 
+													SYSTEM_EMAIL , 
+													$student[0]['name']." ".$student[0]['lastname'].PAYMENT_NOTIFICATION_EMAIL__SUBJECT, 
+													$system_message,
+													//"presidencia@modelsviewgroup.com",
+													//"dlarez@besign.com.ve");	
+													"alejandra85@hotmail.com",
+													"aortega@besign.com.ve");
+					$this->view->render('cde/cronogramas/all');
+					break;		
 
 				default:
 					$this->view->render('cde/home');

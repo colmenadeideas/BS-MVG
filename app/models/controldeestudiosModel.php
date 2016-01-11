@@ -74,20 +74,14 @@
 
 		public function getCronograma($id) {
 
-			$result = DB::query("SELECT *");
+			$result = DB::query("SELECT * 
+									FROM cde_materia AS m, cde_cronograma AS c, cde_cronograma_actividades AS e
+										WHERE 
+										c.id = %i
+										AND c.id = e.id_cronograma
+										AND m.id = c.id_materia 								
+									", $id);			
 			
-			$result = DB::query("SELECT e.nombre_evaluacion,e.descripcion,e.id_cronograma 
-										 FROM cde_materia AS m, cde_periodo AS per, cde_cronograma AS c, cde_cronograma_actividades AS e, cde_profesor AS p, cde_pensum AS pen, courses AS cou 
-												WHERE c.id = e.id_cronograma 
-													and m.id = c.id_materia 
-													and p.id = c.id_profesor 
-													and c.status = 'pending' 
-													and m.id_courses = cou.id 
-													and pen.id_courses = cou.id
-													and pen.estatus = 'Activo' 
-													and per.id_pensum = pen.id
-													and m.id = $id_materia ".
-													$and."");
 			return $result;		
 
 

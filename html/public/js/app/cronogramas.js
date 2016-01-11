@@ -44,7 +44,7 @@ define(['globals', 'functions'], function(globals, functions) {
 			   	 	{ //Last Comment     	
 			     	"aTargets": [ 3 ],
 			      	 	"mData":  function (data) {
-			       			return '';
+			       			return '<div class="row col-lg-10"><small>'+data[8]+'</small></div>';
 			      		}
 			   	 	},
 			   	 	{ //Date    	
@@ -118,25 +118,7 @@ define(['globals', 'functions'], function(globals, functions) {
 		$(".showtooltip", nTd).tooltip();
 	                
 		//THIS IS SUBSTITUTE FOR "ONCLICK" PREVIOUS FUNCTIONS
-	    $(".action-approve", nTd).click(function() {											
-			var buttonfrom  = $(this);
-			var element 	= $(this).data('element');
-			var id			= $(this).data('cronograma');
-			var targetmodal = "#confirm-approve";//$(this).data('target');
-			
-			
-			$.post(globals.URL+'cronogramas/showapprovebutton', function(data) {	
-				
-				$('div.view:visible').find(targetmodal+' .modal-content').hide().html(data).fadeIn('slow');	
-				
-				functions.showModal(targetmodal);
-
-				$('#confirm-approve .confirmbutton').last().click( function(){ 
-					approve(element,id,	functions.closeModal(targetmodal), buttonfrom);	
-				});
-			});
-			
-		});
+	    activateButtons(nTd);
 		
 /*		$('#confirm-approve').last().on('hidden.bs.modal', function(e) {
 			updateTables(currenttable);								 	
@@ -212,6 +194,51 @@ define(['globals', 'functions'], function(globals, functions) {
 		}
 		return finalbutton;
 	}
+	//Esto permite que los botones estén en ambas vistas get/all get/$id
+	function activateButtons(nTd){
+
+		$('.showtooltip').tooltip();
+
+		$(".action-approve", nTd).click(function() {											
+			var buttonfrom  = $(this);
+			var element 	= $(this).data('element');
+			var id			= $(this).data('cronograma');
+			var targetmodal = "#confirm-approve";//$(this).data('target');
+			
+			
+			$.post(globals.URL+'cronogramas/showbutton/approve', function(data) {	
+				
+				$('div.view:visible').find(targetmodal+' .modal-content').hide().html(data).fadeIn('slow');	
+				
+				functions.showModal(targetmodal);
+
+				$('#confirm-approve .confirmbutton').last().click( function(){ 
+					approve(element,id,	functions.closeModal(targetmodal), buttonfrom);	
+				});
+			});
+			
+		});
+
+		$(".action-reject", nTd).click(function() {											
+			var buttonfrom  = $(this);
+			var element 	= $(this).data('element');
+			var id			= $(this).data('cronograma');
+			var targetmodal = "#confirm-reject";
+			
+			
+			$.post(globals.URL+'cronogramas/showbutton/reject', function(data) {	
+				
+				$('div.view:visible').find(targetmodal+' .modal-content').hide().html(data).fadeIn('slow');	
+				
+				functions.showModal(targetmodal);
+
+				$('#confirm-reject .confirmbutton').last().click( function(){ 
+					reject(element,id,	functions.closeModal(targetmodal), buttonfrom);	
+				});
+			});
+			
+		});
+	}
 
 	function approve(what, id, callback, buttonfrom) {
 		switch (what) {
@@ -235,13 +262,92 @@ define(['globals', 'functions'], function(globals, functions) {
 		});
 	}
 
-	
- 
+	function reject(what, id, callback, buttonfrom) {
+		switch (what) {
+			case 'cronogramas':		var controller = 'cronogramas';	var element = 'cronogramas';		break;				
+		}
+		var	table = $('.table-list').attr('id');
+
+		$(buttonfrom).prop('disabled', true);
+
+		$.post(globals.URL+controller+"/reject/"+id, function(data) {	
+			
+			$('#'+table).dataTable().fnDraw();	
+					
+		}).done( function(data){
+			var response = JSON.parse(data);
+			//console.log(data);
+			if (response.success == "1") {
+				callback;
+				$(buttonfrom).prop('disabled', false);
+			}
+		});
+	}
+
+
+	function validateComments() {
+		
+//		functions.initForm();
+		console.log("SS");
+		/*$('form#cronograma-reject').validate({
+			submitHandler : function(form) {
+				console.log("11");	
+				$('.send').attr('disabled', 'disabled'); //prevent double send
+				$.ajax({
+					type : "POST",
+					url : globals.URL + "comments/process",
+					data : $(form).serialize(),
+					timeout : 12000,
+					success : function(response) {
+						console.log(response);
+						closeModal('loadmodal');
+						//location.hash = 'registration/verify/again';
+					},
+					error : function(response) {
+						console.log(response);
+					}
+				});
+				return false;
+			}
+		});*/
+
+
+		$('#cronograma-reject').last().validate({
+			rules : {
+				"payment-number": {	number: true }, 
+				"payment-amount": { bsformat: true },
+			},
+			submitHandler : function(form) {
+				$('.send').attr('disabled', 'disabled'); //prevent double send
+				$.ajax({
+					type : "POST",
+					url : URL + "registration/process/payment",
+					data : $(form).serialize(),
+					timeout : 12000,
+					success : function(response) {
+						console.log(response);
+						functions.closeModal('loadmodal');
+						//location.hash = 'registration/verify/again';
+					},
+					error : function(response) {
+						console.log(response);
+					}
+				});
+				return false;
+			}
+		});
+
+	}
+
+	 
 
 
 
 	return {
       run: run,
-      approve: approve
+      approve: approve,
+      reject: reject,
+      activateButtons: activateButtons,
+      validateComments: validateComments
 	}
 });

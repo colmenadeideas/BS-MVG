@@ -235,6 +235,27 @@
 		return $newDate;
 		
 	}
+	function fechasFragmentadas($string, $format = "d/m/Y")	{
+
+		switch ($format) {
+			case 'd/m/Y':
+				return date("d/m/Y", strtotime($string));
+				break;
+
+			case 'hora':
+				return date("g:i a" ,strtotime($string));
+				break;	
+			case 'all':
+					date("F j, Y, g:i a",strtotime($string));
+				break;		
+			
+			default:
+				 return $string;
+				break;
+
+		}
+	}
+
 	 function dineroFormat($string, $decimales = 2, $sin = '') {
 		
 		if (empty($string)) {

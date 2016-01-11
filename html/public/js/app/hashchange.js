@@ -42,8 +42,17 @@ define(function() {
 						});
 					case "cronogramas":
 						require(['app/cronogramas'], function(Cronogramas) {
-							Cronogramas.run();																										
-						});						
+							switch(active_page[1]) {
+								case 'get':
+									Cronogramas.activateButtons();	
+									Cronogramas.validateComments();
+									break;
+								default:
+									Cronogramas.run();	
+									break;
+							}																																
+						});	
+
 						break;
 					case "users":
 						require(['app/users'], function(Users) {

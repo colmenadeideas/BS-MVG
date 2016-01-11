@@ -72,6 +72,7 @@ ul.pagination li, .pagination>li>a, .pagination>li:first-child>a, .pagination>li
     padding: 10px 18px 0;
 }
 
+
 #cronogramas-all-list{
     background: #FFF;
     box-shadow: 5px 6px 6px rgba(0,0,0,0.35);
@@ -92,7 +93,46 @@ ul.pagination li, .pagination>li>a, .pagination>li:first-child>a, .pagination>li
 #cronogramas-all-list_filter ::-moz-placeholder {  color: #FFF; }
 #cronogramas-all-list_filter :-ms-input-placeholder {  color: #FFF; }
 
-
+#cronograma-edit .activities {
+    background: #FFF;
+    box-shadow: 5px 6px 6px rgba(0,0,0,0.35);
+    border: solid 10px #FFF;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+#cronograma-edit { height: 300px; overflow-y:scroll }
+.activities h4 {
+ color:#35366F;
+ font-family: 'CenturyGothic';
+ text-transform: uppercase;
+}
+.activities h4 small {  text-transform: uppercase; font-size: 11px; font-weight:bolder; color: #B5B5B5 }
+.actions-float {
+    z-index: 99;
+    position: fixed;
+    right: 80px;
+    bottom: 40%;
+    width: 60px;
+    background: rgba(255,255,255,0.2);
+    border: solid 1px rgba(255,255,255,0.2);
+    border-bottom: none;
+    border-radius: 30px;
+    padding: 10px;
+}
+.actions-float .btn { margin: 5px auto;}
+.materia-ficha {
+    background: rgba(255,255,255,0.2);
+    padding: 5px 20px;
+    opacity: 0.5;
+    width:70%;
+}
+.materia-ficha  h2 {
+    color: #FFF;
+    font-family: 'Century Gothic';
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 25px;
+}
 /* azul 81dff4*/
 /* amarillo verde e3e030 */
 /* gradiente anterior 696bcd e572c6*/

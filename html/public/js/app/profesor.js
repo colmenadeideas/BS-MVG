@@ -95,55 +95,7 @@ define(['globals', 'functions', 'app/newsletter'], function(globals, functions, 
 
 	}
 
-	function checkcurrentform() 
-	{
-
-	console.log("dd2");
-	if ($('#complete-registration-cde').length === 1) {
-		var form = '#complete-registration-cde';
-		functions.initForm();
-		
-		console.log("dd3");
-		//si regrea la direccion
-		var direccionE = globals.URL + "controldeestudios/saveinfo";
-		//aqui ya no pasa 
-		var $validator = $(form).validate({
-			rules : 
-			{				
-			
-			},
-		// no muestra nada de aqui 	
-		submitHandler : function(form) {
-				console.log('ao1');
-				$('.send').attr('disabled', 'disabled'); //prevent double send
-				console.log('ao1');			
-					$.ajax({
-					type : "POST",
-					url : direccionE,
-					data : $(form).serialize(),
-					timeout : 12000,
-					success : function(response)
-					 {
-					 	console.log('hola');
-						console.log(response);
-						$('#response').html(response); //descomentar al terminar 
-						$('.send').removeAttr("disabled");
-						limpiarforma("complete-registration-cde");
-							
-					},
-					error : function(response) {
-						$('.send').removeAttr("disabled");
-						console.log('error');
-				
-					}
-				});
-				
-				return false;
-			}
-
-		});
-	console.log('exit'); //salta aqui 
-	}
+	
 
 //Step 0
 	if ($('#registration').length === 1) {
@@ -343,7 +295,6 @@ define(['globals', 'functions', 'app/newsletter'], function(globals, functions, 
 
 
 return {
-      run: run,
-      checkcurrentform: checkcurrentform
+      run: run
 	}
 });

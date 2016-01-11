@@ -1,6 +1,5 @@
-<div class="col-lg-12 col-xs-12 jumbotron">
-	<h2><i class="fa fa-calendar-check-o "></i> Cronogramas</h2>
-</div>
+<?php $this->render('cde/cronogramas/identifier'); ?>
+
 <div class="col-lg-12 col-xs-12">
 	<!--button class="btn btn-info" id="boton_imprimir_pendientes">Imprimir Pendientes</button--><br><br>
 	<button class="btn btn-info btn-main" id="button-add-cronograma"><i class="fa fa-plus add-fa"></i> Agregar Cronograma</button>

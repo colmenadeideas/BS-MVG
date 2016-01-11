@@ -5,11 +5,14 @@
 		public function __construct() {
 			
 			parent::__construct();
-			//Auth::handleLogin('controldeestudios');	//tu eres el que me esta fregando 
+			Auth::handleLogin('controldeestudios');
+			$this->view->userdata = $this->user->getUserdata();
+       		$this->view->userdata = $this->view->userdata[0];
 		
 		}
 	
 		public function index() {
+
 			$role = $this->user->get('role');
 			
 			$this->loadModel('permissions');
@@ -53,8 +56,7 @@
 			switch ($action) {
 				case 'get':
 
-						$evaluaciones = $this->model->getCronograma($id);
-						$this->view->evaluaciones = $evaluaciones;	
+						$this->view->activities = $this->model->getCronograma($id);
 						$this->view->render('cde/cronogramas/edit');
 
 					break;

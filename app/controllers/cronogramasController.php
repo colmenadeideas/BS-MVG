@@ -5,7 +5,7 @@
 		public function __construct() {
 			
 			parent::__construct();
-			//Auth::handleLogin('controldeestudios'); TODO habilitar
+			Auth::handleLogin('cronogramas');
 		
 		}
 
@@ -28,9 +28,18 @@
 		}
 
 
-		public function showapprovebutton () {
-			$this->view->render('cde/cronogramas/confirm-approve-content');
+		public function showbutton ($which) {
+			switch ($which) {
+				case 'approve':
+					$this->view->render('cde/cronogramas/confirm-approve-content');
+					break;
+				
+				case 'reject':
+					$this->view->render('cde/cronogramas/confirm-reject-content');
+					break;
+			}			
 		}
+
 
 
 		//Statuses

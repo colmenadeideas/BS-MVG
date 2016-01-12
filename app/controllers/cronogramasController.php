@@ -1,6 +1,7 @@
 <?php 
 
-	class cronogramasController extends Controller {
+	class cronogramasController extends Controller 
+	{
 		
 		public function __construct() {
 			
@@ -15,7 +16,7 @@
 					
 				default: 
 					$tablename = 'cde_cronograma';
-					$fields = array('id','data','name', 'lastname',  'nombre_materia','creationdate', 'lastupdate','status');
+					$fields = array('id','data','name', 'lastname',  'nombre_materia','creationdate', 'lastupdate','status','datacomments');
 					$temptable = 'cronogramas';
 					//$where = "WHERE courses_registrations.status!='completed' AND courses_registrations.status!='cancelled' AND courses_registrations.status!='archived'";
 					
@@ -23,7 +24,7 @@
 			}
 			
 			$data = $this->helper->getJSONtables($tablename, $fields, $where, $temptable);
-			echo $data;			
+					
 			
 		}
 
@@ -76,6 +77,31 @@
 			}
 			echo json_encode($response);
 			
+		}
+
+		public function print($id)
+		{
+		//	$registration = $this->model->getRegistration($id);			
+			
+			//if ( TRUE /*$registration[0]['status'] === 'approved' && $registration[0]['documentation'] === 'pending'*/) 
+		/*
+			{
+				//All ready to print, build forms
+				$this->view->registration = $registration[0];
+				$this->view->details =  json_decode($this->view->registration['data'], TRUE);
+				
+				$this->loadModel('courses');
+				$this->view->course_group = $this->model->getCourseGroup($registration[0]['course_available_group_id']);
+				$this->view->course = $this->model->getCourse($this->view->course_group[0]['parent_id']);							
+				
+				$this->view->render('registration/documentation/'.$this->view->course[0]['slug']);
+			}
+			else 
+			{
+				//Registration Sheet is yet pending for Complete, so show Sheet
+				$this->view->render('escuela/registration/step3');
+			}*/
+			echo "holaaa ".$id;
 		}
 	}
 ?>

@@ -1,7 +1,7 @@
 <?php $this->render('cde/cronogramas/identifier'); ?>
 
 <div class="col-lg-12 col-sm-12">
-  <button class="btn btn-info btn-main" id="button-print-cronograma"><i class="fa fa-print add-fa"></i> Imprimir</button>
+  <a  class="btn btn-info btn-main" id="button-print-cronograma" href="cronogramas/print/<?php echo $this->activities[0]['id_cronograma']; ?>"><i class="fa fa-print add-fa" ></i> Imprimir</a>
 </div>
 <div class="actions-float">
   <button type="button" title="Aprobar" class="btn btn-success btn-circle action-approve showtooltip" data-cronograma="<?php echo $this->activities[0]['id_cronograma']; ?>" data-element="cronogramas"><i class="glyphicon glyphicon-ok"></i></button>
@@ -32,7 +32,9 @@
     </div>
   <?php 
     $i++; 
-    } ?>
+    } 
+    print_r($this->activities);
+    ?>
 </div>
 <div class="col-lg-2 col-sm-2"></div>
 <?php $this->render('cde/cronogramas/modal-loadarea'); ?>

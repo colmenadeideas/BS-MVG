@@ -38,13 +38,16 @@ define(['globals', 'functions'], function(globals, functions) {
 			   	 	{ //Profesor & Class     	
 			     	"aTargets": [ 2 ],
 			      	 	"mData":  function (data) {
-			       			return '<div class="row col-lg-10"><h4>'+data[4] +'<br><small>'+data[2]+' '+data[3]+'</small></h4></div>';
+			  	       			return '<div class="row col-lg-10"><h4>'+data[4] +'<br><small>'+data[2]+' '+data[3]+'</small></h4></div>';
 			      		}
 			   	 	},
 			   	 	{ //Last Comment     	
 			     	"aTargets": [ 3 ],
 			      	 	"mData":  function (data) {
-			       			return '<div class="row col-lg-10"><small>'+data[8]+'</small></div>';
+			      	 			if (data[8] === 'null') {console.log(data[8]);};
+			      	 			
+
+			      	 			return '<div class="row col-lg-10"><small>'+data[8]+'</small></div>';
 			      		}
 			   	 	},
 			   	 	{ //Date    	

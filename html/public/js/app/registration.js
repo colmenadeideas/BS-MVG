@@ -7,10 +7,27 @@ define(['globals', 'functions', 'app/newsletter'], function(globals, functions, 
     	return false;
 });	*/
 
-	function printdocs(){
+	/*function printdocs(){
+		console.log('ao');
 		$('#printable-area').printArea();
 	}
+	*/
+
+
+/*	$( "#boton_imprimir_pendientes" ).click(function() {			
+	 		 $("#printable-area").printArea();	 		
+		});
+
+		$('.showtooltip').tooltip();*/
 	
+function printdocs()
+{
+	$('#printable-area').printArea();
+}
+
+
+
+
 	function loadform(what, id)
 	{
 		console.log();

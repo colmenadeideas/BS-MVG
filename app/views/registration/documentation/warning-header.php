@@ -5,5 +5,5 @@
 	<br>
 	<div class="clearfix"></div>
 	<a href="#registration/complete/<?php echo $this->registration['id']; ?>" class="btn btn-default btn-lg" role="button"><i class="glyphicon glyphicon-edit"></i> Modificar Planilla </a>
-	<button class="btn btn-lg btn-success pull-right" onclick="printdocs()"><i class="glyphicon glyphicon-print"></i> Imprimir </button>
+	<button class="btn btn-lg btn-success pull-right" id="botonimprimir" onclick="printdocs()"><i class="glyphicon glyphicon-print"></i> Imprimir </button>
 </div>

@@ -19,6 +19,7 @@ require.config({
         'assets/bootstrap.min' : ['jquery'],
         'assets/bootstrap-editable.min': ['jquery', 'assets/bootstrap.min'],
         'assets/jquery.validate.min': ['jquery'],
+        'assets/jquery-ui.min': ['jquery'], 
         'assets/jquery.easing.min': ['jquery'],             
         'assets/jquery.dataTables.min': ['jquery'],
         'assets/jquery.maskedinput.min': ['jquery'],
@@ -29,7 +30,7 @@ require.config({
         'app/registration': ['jquery','assets/bootstrap-datetimepicker','assets/jquery.maskedinput.min'],
         'app/newsletter': ['assets/jquery.validate.min'],
         'app/app': ['common', 'app/registration','app/newsletter'],
-        
+         
         
        
 	}

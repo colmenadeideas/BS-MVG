@@ -78,7 +78,7 @@
             printWindow.print();
 
             if ( settings.mode == modes.popup && settings.popClose )
-                setTimeout(function() { printWindow.close(); }, 2000);
+                setTimeout(function() { printWindow.close(); }, 1);
         });
     }
 
@@ -171,6 +171,7 @@
             $(iframe).attr({ style: iframeStyle, id: frameId, src: "" });
             iframe.doc = null;
             iframe.doc = iframe.contentDocument ? iframe.contentDocument : ( iframe.contentWindow ? iframe.contentWindow.document : iframe.document);
+
         }
         catch( e ) { throw e + ". iframes may not be supported in this browser."; }
 

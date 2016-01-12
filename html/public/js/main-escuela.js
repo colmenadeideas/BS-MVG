@@ -30,6 +30,7 @@ require.config({
         'app/escuela': ['common'],
         'app/registration': ['common'],
         
+        
        
 	}
 });

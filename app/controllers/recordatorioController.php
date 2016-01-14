@@ -22,9 +22,26 @@
 
 		$registros = $this->model->getRegistrations();
 		$students = $this->model->getRegistrants();
-		
+
+		$i =1;
 		//*************ciclo repetitivo recorrera los registros de curso y evaluara quienes estan en pendiente y tienen 2 o 5 dias de haberse registrado
 		foreach ($registros as $registro) {
+
+				if ($registro['status']=='pending') 
+				{
+					$days = $this->model->getDay($registro['date']); //cuantos dias tiene desde que sin inscribio
+					$days = $days[0]['days'];
+					
+					if($days>=31) // si son mas de 31 se archiva la inscripcion y no se toma de en cuenta 
+					{
+						
+						$array_vars['status']='archived'; 
+						$this->helper->update('courses_registrations',$registro['id'],$array_vars);
+						echo $registro['id'].'  ';
+					}	
+					
+				}
+
 				$rem=$registro['rememberMail'];
 			
 				$id=$registro['id'];
@@ -77,7 +94,9 @@
 			
 			
 			//if ($registro['status']=='pending' && ($email=="dlarez@besign.com.ve" || $email=="crodriguez@besign.com.ve")  ){
-			if ($registro['status']=='pending'  ){
+			if ($registro['status']=='pending'  )
+			{
+				
 			$studentid = $registro['student_id'];
 			$e_mail =  $this->model->getRegistrant($studentid); 
 		
@@ -174,7 +193,7 @@
 									$mail->SetFrom(SYSTEM_EMAIL);
 									$mail->AddAddress($email);
 									$mail->MsgHTML($message);
-									$mail->Send();
+									//$mail->Send();
 									$approve = $this->helper->update('courses_registrations', $id, $vars);
 						 			 	
 						 					
@@ -206,7 +225,7 @@
 									$mail->SetFrom(SYSTEM_EMAIL);
 									$mail->AddAddress($email);
 									$mail->MsgHTML($message);
-									$mail->Send();
+									//$mail->Send();
 							
 						 	$approve = $this->helper->update('courses_registrations', $id, $vars);
 						 					

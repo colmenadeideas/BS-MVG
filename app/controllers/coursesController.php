@@ -27,7 +27,10 @@
 			}
 			
 		}
-		
+		public function fullregistration($slug)
+		{
+			echo "holaaa";
+		}
 		
 		
 		public function preregistration ($course_slug, $buildpage='' ) {

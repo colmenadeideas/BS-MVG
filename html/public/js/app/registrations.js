@@ -18,7 +18,7 @@ define(['globals', 'functions'], function(globals, functions) {
 		});*/	
 		
 		//Confimation Modal for Complete process button		
-		$('#confirm-completation, #confirm-approve').last().on('hidden.bs.modal', function(e) {
+		$('#confirm-completation, #confirm-approve,#confirm-delete').last().on('hidden.bs.modal', function(e) {
 			updateTables(currenttable);
 		});
 		
@@ -46,7 +46,7 @@ define(['globals', 'functions'], function(globals, functions) {
 					"bProcessing": true,
 					"bServerSide": true,
 					"iDisplayLength": 20,
-					"sAjaxSource": globals.URL+"registrations/get/active",		
+					"sAjaxSource": globals.URL+"registrations/get/all",		
 					//"aaSorting": [[ 2, "desc" ]],
 				       "aoColumnDefs": [ 
 				       		//{ "sClass": "text-left", "aTargets": [ 0, 1 ] },
@@ -478,6 +478,26 @@ define(['globals', 'functions'], function(globals, functions) {
 			});
 													 	
 	    });
+	    $(".action-delete", nTd).click(function() {											
+			//complete("registrations", $(this).data('registration'));
+			var buttonfrom = $(this);
+			var element 	= $(this).data('element');
+			var id			= $(this).data('registration');
+			//var targetmodal = "#confirm-delete"; //$(this).data('target');
+			var targetmodal = "#confirm-delete"; //$(this).data('target');
+			
+			$.post(globals.URL+'registrations/showdeletebutton', function(data) {	
+				//$('#confirm-completation .modal-content').last().html(data);	
+				$('div.view:visible').find(targetmodal+' .modal-content').hide().html(data).fadeIn('slow');
+				functions.showModal(targetmodal);	
+
+				$('#confirm-delete .confirmbutton').last().click( function(){ 
+					deleteregistration(element,id,functions.closeModal(targetmodal), buttonfrom);			 	
+				});		
+			});
+													 	
+	    });
+
 	    $(".action-view", nTd).click(function() {											
 			edit("registrations", $(this).data('registration'));									 	
 	    });
@@ -488,6 +508,7 @@ define(['globals', 'functions'], function(globals, functions) {
 			docsreminder("registrations", $(this).data('registration'), $(this));	
 
 	   	});
+
 	}
 
 	function actionbuttons(buttonname,data) {
@@ -497,7 +518,8 @@ define(['globals', 'functions'], function(globals, functions) {
 				finalbutton = '<button type="button" title="Aprobar Pago" class="btn btn-sm btn-success action-approve showtooltip" data-registration="'+data+'" data-element="registrations"><i class="glyphicon glyphicon-ok"></i></button>';				
 				break;
 			case 'delete':
-				finalbutton = '<button data-element="registrations" data-registration="'+data+'" data-toggle="modal" data-target="#confirm-delete" type="button" class="btn btn-sm btn-danger action-delete showtooltip"><i class="glyphicon glyphicon-trash"></i></button>';
+				//finalbutton = '<button title="Eliminar Registro" data-element="registrations" data-registration="'+data+'" data-toggle="modal" data-target="#confirm-delete" type="button" class="btn btn-sm btn-danger action-delete showtooltip"><i class="glyphicon glyphicon-trash"></i></button>';
+				finalbutton = '<button type="button" title="Eliminar Registro" class="btn btn-sm btn-danger action-delete showtooltip"   data-registration="'+data+'" data-element="registrations"><i class="glyphicon glyphicon-trash"></i></button>';
 				break;
 			case 'edit': 
 				finalbutton = '<button type="button" title="Ver Información" class="btn btn-sm btn-info action-view showtooltip" data-registration="'+data+'"><i class="glyphicon glyphicon-search"></i></button>';
@@ -615,6 +637,26 @@ define(['globals', 'functions'], function(globals, functions) {
 			//callback;
 		});
 	}
+		function deleteregistration(what, id, callback, buttonfrom) {
+		console .log (what+ id);
+		switch (what)
+		{
+			case 'registrations':		var controller = 'registrations';	var element = 'registrations';		break;				
+		}
+		var	table = $('.table-list').attr('id');
+		$(buttonfrom).prop('disabled', true);
+		$.post(globals.URL+controller+"/delete/"+id, function(data) {				
+			$('#'+table).dataTable().fnDraw();
+		}).done( function(data){
+			if (data == "1") {
+				callback;
+				$(buttonfrom).prop('disabled', false);
+			}
+			//functions.closeModal('loadmodal');
+			//callback;
+		});
+	}
+
 
 	function registerpayment() {
 

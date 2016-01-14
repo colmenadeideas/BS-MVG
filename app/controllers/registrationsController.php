@@ -23,6 +23,14 @@
 		public function clearpayment() {
 			$this->view->render('students/clearpayment');
 		}
+		public function trash($id)
+		{
+
+			$array_vars['status']='archived'; 
+			$this->helper->update('courses_registrations',$id,$array_vars);
+			$this->view->pendientes=$this->model->getPending("pending","status");
+			$this->view->render('students/all');
+		}
 		public function availableadmin ($buildpage='') 
 		{
 			//$this->view->render('students/clearpayment');
@@ -566,6 +574,16 @@
 		}
 		public function showcompletationbutton () {
 			$this->view->render('students/confirm-completation-content');
+		}
+		public function showdeletebutton()
+		{
+			$this->view->render('students/confirm-delete-content');
+		}
+		public function delete($id)
+		{	
+			$array_vars['status']='archived'; 
+			$this->helper->update('courses_registrations',$id,$array_vars);
+			
 		}
 		public function complete($id) {
 				$vars['status'] = 'completed';

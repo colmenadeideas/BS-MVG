@@ -25,7 +25,10 @@
 		public function getRegistrations() {
 			return DB::query("SELECT * FROM " . DB_PREFIX . "courses_registrations");
 		}
-		
+		public function getDay($date)
+		{
+			return DB::query("SELECT DATEDIFF(now(),'".$date."') AS days");
+		}
 		
 		public function getCourseAvailable($data, $by='id') {	
 			return DB::query("SELECT * FROM " . DB_PREFIX . "courses_available_groups WHERE $by=%s LIMIT 1", $data);

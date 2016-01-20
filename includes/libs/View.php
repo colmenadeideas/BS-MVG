@@ -44,6 +44,13 @@ class View {
 				$ruta	 = '';
 				break;
 				
+			case 'site':						
+				$head 	= "default/head-site";
+				$nav 	= "default/nav-site";
+				$footer = "default/footer-site";	
+				$ruta 	= '';			
+				break;
+
 			default:				
 				$head 	= "default/head";
 				$nav 	= "default/nav";

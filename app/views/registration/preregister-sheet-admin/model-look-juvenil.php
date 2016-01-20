@@ -2,12 +2,12 @@
 	<div class="container">
 		<div class="jumbotron">
 			<img src="<?php echo IMAGES . "courses/" . $this -> course[0]['slug']; ?>/header.jpg" class="img-responsive hidden-sm hidden-xs" >
-			 
+			
 			<h1 class="hidden-md hidden-lg"><?php echo $this -> course[0]['name']; ?>
 				<small><br><?php echo $this -> course[0]['description']; ?></small>
 			</h1>
 		</div>	
-		
+			
 		<form id="registration" action="" novalidate="novalidate" class="stepform">
 			<!-- progressbar -->
 			<ul id="progressbar">
@@ -19,8 +19,12 @@
 		 	<fieldset class="pensum-costos">
 		 		
 		 			
-		 			
+		 			<div class="col-lg-12 col-md-12">
+						<img src="<?php echo IMAGES . "courses/" . $this -> course[0]['slug']; ?>/info.jpg" class="img-responsive" style="margin:auto" ><br>
+					</div>
 		 			<div class="col-lg-7 col-md-7 row">
+		 				<!--img class="img-responsive" src="http://mi.modelsviewgroup.com/public/images/courses/model-look-juvenil/pensum.jpg"-->
+		 				
 			 			<img class="img-responsive" src="<?php echo IMAGES; ?>courses/<?php echo $this -> course[0]['slug']; ?>/pensum.jpg">	 		
 					</div>
 					<div class="col-lg-5 col-md-5 pensum-costos">
@@ -39,8 +43,8 @@
 			 		</div>
 			 		
 		 		<input type="button" name="next" class="next btn btn-info btn-lg inscributton" value="¡INSCRIBIRME! »">
-		 		<br>
-		 		 <p style="color:black !important;text-align: center;">El pensum esta sujeto a cambio sin previo aviso</p>   		
+		 		<br><p style="color:black !important;text-align: center;">El pensum esta sujeto a cambio sin previo aviso</p>
+		 		
 		 		
 		 		
 		 					 		
@@ -53,10 +57,10 @@
 				<div class="seccion"><h3>DATOS PERSONALES </h3></div> 
 				
 					<div class="col-sm-6 col-lg-6">
-			        	<input type="text" name="name" placeholder="Nombres del niñ@" required="required" class="form-control input-lg">			                
+			        	<input type="text" name="name" placeholder="Nombres" required="required" class="form-control input-lg">			                
 			        </div> 
 			        <div class="col-sm-6 col-lg-6">
-			        	<input type="text" name="lastname" placeholder="Apellidos del niñ@" required="required"  class="form-control input-lg">			                
+			        	<input type="text" name="lastname" placeholder="Apellidos" required="required"  class="form-control input-lg">			                
 			        </div>
 			        <div class="col-sm-4 col-lg-4">
 		         		<input type="text" name="phonenumber" placeholder="Teléfono Habitación" class="form-control input-lg" required>
@@ -74,8 +78,22 @@
 				        
 				        <div class="col-sm-12 col-lg-12">
 				       		<textarea name="buzz" class="form-control" placeholder="¿Cómo te enteraste de Nosotros?"></textarea>
-				       		<input type="hidden" id="PromoIns" name="PromoIns" value="1" >
 			            </div>
+			            <div class="col-sm-12 col-lg-12 bg-success">
+			        	<div class="col-sm-6 col-lg-6">
+			        		<br>Refiere a una amiga y si tu amiga se inscribe <br><strong> ¡Recibes un 15% de descuento!</strong>
+			        	</div>
+			        	<div class="col-sm-6 col-lg-6"><br>
+				       		<input type="email" id="referal" name="referal" placeholder="" class="form-control input-lg">
+				       	</div>
+				       	
+				       
+				       	<input type="hidden" id="referred" name="referred" value="<?php echo $_GET['referred']; ?>">
+				       	<input type="hidden" id="referalid" name="referalid" value="<?php echo $_GET['referalid']; ?>" >
+				       	<input type="hidden" id="code" name="code" value="<?php echo $_GET['code']; ?>" >
+				       	
+				       	<input type="hidden" id="PromoIns" name="PromoIns" value="1" >
+			        </div>
 					
 		              
 		                    <div class="clearfix"></div>
@@ -86,6 +104,5 @@
 		                    
 		       </fieldset>
 		 </form>
-		 <div class="col-lg-offset-3 col-xs-offset-3 col-lg-6 col-xs-6"><div class="alert alert-success"><h3>¡Felicidades! Has comenzado tu proceso de inscripción</h3><br> <h4><a type="button" title="pagar en agencia" class="btn  btn-info btn" href="../../presidencia#registrations/all">Continuar</a></h4></div>
-></div> 
+		 <div id="response" class="col-lg-offset-3 col-xs-offset-3 col-lg-6 col-xs-6 registration-response"><?php echo COURSES_SUCCESS_REGISTRATION_MESSAGE_ADM; ?></div> 
 	</div>

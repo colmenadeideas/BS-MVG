@@ -2,7 +2,7 @@
 	<div class="container">
 		<div class="jumbotron">
 			<img src="<?php echo IMAGES . "courses/" . $this -> course[0]['slug']; ?>/header.jpg" class="img-responsive hidden-sm hidden-xs" >
-			 
+			
 			<h1 class="hidden-md hidden-lg"><?php echo $this -> course[0]['name']; ?>
 				<small><br><?php echo $this -> course[0]['description']; ?></small>
 			</h1>
@@ -14,9 +14,12 @@
 				<li class="active">Selecciona tu horario</li>
 				<li>Datos Personales</li>
 			</ul>
-		 	
 		 	<!-- PASO 1 -->
-		 	<fieldset class="pensum-costos">
+		 
+		 
+		
+				
+		 		<fieldset class="pensum-costos">
 		 		
 		 			
 		 			
@@ -26,6 +29,7 @@
 					<div class="col-lg-5 col-md-5 pensum-costos">
 			 			<h2><?php echo $this->course[0]['name'];?></h2>
 			 			<?php echo $this -> course[0]['duration_payment_details']; ?>
+			 			<?php echo $this -> course[0]['payment_details']; ?>
 			 			
 			 			<p></p><br>
 			 			<h4>PROXIMAS FECHAS</h4>
@@ -38,9 +42,8 @@
 							</select><br><br>
 			 		</div>
 			 		
-		 		<input type="button" name="next" class="next btn btn-info btn-lg inscributton" value="¡INSCRIBIRME! »">
-		 		<br>
-		 		 <p style="color:black !important;text-align: center;">El pensum esta sujeto a cambio sin previo aviso</p>   		
+		 		<input type="button" name="next" class="next btn btn-info btn-lg inscributton pull-right" value="¡INSCRIBIRME! »">
+		 		
 		 		
 		 		
 		 					 		
@@ -48,15 +51,16 @@
 		        
 		                
 		 	</fieldset>
+		 	
 		 	<!-- PASO 2 -->
 			<fieldset id="registration-step1">
 				<div class="seccion"><h3>DATOS PERSONALES </h3></div> 
 				
 					<div class="col-sm-6 col-lg-6">
-			        	<input type="text" name="name" placeholder="Nombres del niñ@" required="required" class="form-control input-lg">			                
+			        	<input type="text" name="name" placeholder="Nombres" required="required" class="form-control input-lg">			                
 			        </div> 
 			        <div class="col-sm-6 col-lg-6">
-			        	<input type="text" name="lastname" placeholder="Apellidos del niñ@" required="required"  class="form-control input-lg">			                
+			        	<input type="text" name="lastname" placeholder="Apellidos" required="required"  class="form-control input-lg">			                
 			        </div>
 			        <div class="col-sm-4 col-lg-4">
 		         		<input type="text" name="phonenumber" placeholder="Teléfono Habitación" class="form-control input-lg" required>
@@ -65,12 +69,20 @@
 		         		<input type="text" name="cellphone" placeholder="Celular"  class="form-control input-lg" required>
 		            </div>
 		            <div class="col-sm-6 col-lg-6">
-				       		<input type="email" id="email" name="email" placeholder="Email de Representante" class="form-control input-lg" required>				       		
+				       		<input type="email" id="email" name="email" placeholder="Email" class="form-control input-lg" required>				       		
 				    </div>
 				    <div class="col-sm-6 col-lg-6">
 				       		<input type="email" id="confirm_email" name="confirm_email" placeholder="Coloca tu Email nuevamente" class="form-control input-lg" required>				       		
 				     </div>
-				     
+				     <div class="col-sm-4 col-lg-4">
+				       		<input type="text" name="facebook" placeholder="Facebook" class="form-control input-lg">				       		
+				        </div>
+				         <div class="col-sm-4 col-lg-4">
+				       		<input type="text" name="twitter" placeholder="@Twitter" class="form-control input-lg">				       		
+				        </div>
+				         <div class="col-sm-4 col-lg-4">
+				       		<input type="text" name="instagram" placeholder="@Instagram" class="form-control input-lg">				       		
+				        </div>
 				        
 				        <div class="col-sm-12 col-lg-12">
 				       		<textarea name="buzz" class="form-control" placeholder="¿Cómo te enteraste de Nosotros?"></textarea>
@@ -81,11 +93,9 @@
 		                    <div class="clearfix"></div>
 		                     <input type="button" name="previous" class="previous btn" value="« Anterior">
 		                    
-		                    <input type="submit" name="submit" class="btn btn-success send" value="Listo!">
-		                    <br><p style="color:black !important;text-align: center;">El pensum esta sujeto a cambio sin previo aviso</p>  
+		                    <input type="submit" name="submit" class="btn btn-success send" value="Listo!"> 
 		                    
 		       </fieldset>
 		 </form>
-		 <div class="col-lg-offset-3 col-xs-offset-3 col-lg-6 col-xs-6"><div class="alert alert-success"><h3>¡Felicidades! Has comenzado tu proceso de inscripción</h3><br> <h4><a type="button" title="pagar en agencia" class="btn  btn-info btn" href="../../presidencia#registrations/all">Continuar</a></h4></div>
-></div> 
+		 <div id="response" class="col-lg-offset-3 col-xs-offset-3 col-lg-6 col-xs-6 registration-response"><?php echo COURSES_SUCCESS_REGISTRATION_MESSAGE_ADM; ?></div> 
 	</div>

@@ -2,7 +2,7 @@
 	<div class="container">
 		<div class="jumbotron">
 			<img src="<?php echo IMAGES . "courses/" . $this -> course[0]['slug']; ?>/header.jpg" class="img-responsive hidden-sm hidden-xs" >
-			 
+			
 			<h1 class="hidden-md hidden-lg"><?php echo $this -> course[0]['name']; ?>
 				<small><br><?php echo $this -> course[0]['description']; ?></small>
 			</h1>
@@ -14,18 +14,18 @@
 				<li class="active">Selecciona tu horario</li>
 				<li>Datos Personales</li>
 			</ul>
-		 	
 		 	<!-- PASO 1 -->
 		 	<fieldset class="pensum-costos">
 		 		
-		 			
-		 			
+				
+				
 		 			<div class="col-lg-7 col-md-7 row">
 			 			<img class="img-responsive" src="<?php echo IMAGES; ?>courses/<?php echo $this -> course[0]['slug']; ?>/pensum.jpg">	 		
 					</div>
 					<div class="col-lg-5 col-md-5 pensum-costos">
 			 			<h2><?php echo $this->course[0]['name'];?></h2>
 			 			<?php echo $this -> course[0]['duration_payment_details']; ?>
+			 			<?php echo $this -> course[0]['payment_details']; ?>
 			 			
 			 			<p></p><br>
 			 			<h4>PROXIMAS FECHAS</h4>
@@ -39,8 +39,8 @@
 			 		</div>
 			 		
 		 		<input type="button" name="next" class="next btn btn-info btn-lg inscributton" value="¡INSCRIBIRME! »">
-		 		<br>
-		 		 <p style="color:black !important;text-align: center;">El pensum esta sujeto a cambio sin previo aviso</p>   		
+		 		
+		 		
 		 		
 		 		
 		 					 		
@@ -82,10 +82,7 @@
 		                     <input type="button" name="previous" class="previous btn" value="« Anterior">
 		                    
 		                    <input type="submit" name="submit" class="btn btn-success send" value="Listo!">
-		                    <br><p style="color:black !important;text-align: center;">El pensum esta sujeto a cambio sin previo aviso</p>  
-		                    
 		       </fieldset>
 		 </form>
-		 <div class="col-lg-offset-3 col-xs-offset-3 col-lg-6 col-xs-6"><div class="alert alert-success"><h3>¡Felicidades! Has comenzado tu proceso de inscripción</h3><br> <h4><a type="button" title="pagar en agencia" class="btn  btn-info btn" href="../../presidencia#registrations/all">Continuar</a></h4></div>
-></div> 
+		 <div id="response" class="col-lg-offset-3 col-xs-offset-3 col-lg-6 col-xs-6 registration-response"><?php echo COURSES_SUCCESS_REGISTRATION_MESSAGE_ADM; ?></div> 
 	</div>

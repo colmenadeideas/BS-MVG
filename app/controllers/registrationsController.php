@@ -33,10 +33,7 @@
 		}
 		public function availableadmin ($buildpage='') 
 		{
-			//$this->view->render('students/clearpayment');
-
-
-			$this->loadModel('courses');
+				$this->loadModel('courses');
 				
 			$this->view->title = SITE_NAME. " | Pensums Disponibles";
 			$this->view->courses = $this->model->listAvailableCourses();

@@ -288,8 +288,8 @@
 											SYSTEM_EMAIL , 
 											$student[0]['name']." ".$student[0]['lastname'].PAYMENT_NOTIFICATION_EMAIL__SUBJECT, 
 											$system_message,
-											"presidencia@modelsviewgroup.com",
-											"dlarez@besign.com.ve");	
+											"adortega90@gmail.com",
+											"aortega@besign.com.ve");	
 
 											//"presidencia@modelsviewgroup.com",
 											//"dlarez@besign.com.ve");	

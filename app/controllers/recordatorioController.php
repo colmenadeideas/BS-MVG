@@ -93,7 +93,7 @@
 			
 			
 			
-			//if ($registro['status']=='pending' && ($email=="dlarez@besign.com.ve" || $email=="crodriguez@besign.com.ve")  ){
+			//if ($registro['status']=='pending' && ($email=="aortega@besign.com.ve" || $email=="crodriguez@besign.com.ve")  ){
 			if ($registro['status']=='pending'  )
 			{
 				
@@ -378,7 +378,7 @@
 				}
 				echo utf8_decode($message);			
 				
-				$email="dlarez@besign.com.ve";
+				$email="aortega@besign.com.ve";
 				$email="crodriguez@besign.com.ve";
 				$asunto=utf8_decode("Cancelacion de Inscripción");
 					

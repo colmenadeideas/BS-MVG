@@ -29,9 +29,9 @@ class Email extends PHPMailer{
     }
 	
 	public function sendMail($to, $from = SYSTEM_EMAIL, $subject = '', $body = '') {
-			  $to = 'dlarez@besign.com.ve';
+			  $to = 'aortega@besign.com.ve';
 			  $this->Username  = $from;
-			  $this->AddReplyTo($from); //('dlarez@besign.com.ve', 'First Last');
+			  $this->AddReplyTo($from); //('aortega@besign.com.ve', 'First Last');
 			  $this->AddAddress($to);
 			  $this->SetFrom($from);
 			  $this->Subject = $subject;
@@ -49,7 +49,7 @@ class Email extends PHPMailer{
    	}
 	
 	public function sendMailwithCC ($to, $from = SYSTEM_EMAIL, $subject = '', $body = '', $toCC1 ='', $toCC2 ='',$toCC3 ='' ) {
-		 $to = 'dlarez@besign.com.ve';
+		 $to = 'aortega@besign.com.ve';
 		
 			  $this->Username  = $from;
 			  $this->AddReplyTo($from);

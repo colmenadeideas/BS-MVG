@@ -28,5 +28,5 @@
 		define ( 'URL_EMAIL', 'http://mi.modelsviewgroup.com/public/');	
 		
 		//CORREOS		
-		define ( 'USUARIO_ADMINISTRACION', 'dlarez@besign.com.ve');	
+		define ( 'USUARIO_ADMINISTRACION', 'aortega@besign.com.ve');	
 ?>

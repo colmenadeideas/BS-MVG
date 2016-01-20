@@ -13,7 +13,7 @@
 	
 	define('COURSES_ALREADYREGISTERED_MESSAGE','<div class="alert alert-warning"><h3>Lo siento, ¡Ya te has inscrito previamente! Revisa tu bandeja de correo donde hemos enviado las instrucciones para continuar con tu registro, o contáctanos al '.CONTACT_PHONENUMBER.'</h3></div>');
 	define('COURSES_SUCCESS_REGISTRATION_MESSAGE', '<div class="alert alert-success"><h3>¡Felicidades! Has comenzado tu proceso de inscripción</h3><br> <h4>Revisa tu bandeja de correo y sigue las instrucciones que te hemos enviado</h4></div>');
-	define('COURSES_SUCCESS_REGISTRATION_MESSAGE_ADM', '<div class="alert alert-success"><h3>¡Felicidades! Has comenzado tu proceso de inscripción</h3><br> <h4><a type="button" title="pagar en agencia" class="btn  btn-info btn" href="presidencia#registrations/all">Continuar</a></h4></div>');
+	define('COURSES_SUCCESS_REGISTRATION_MESSAGE_ADM', '<div class="alert alert-success"><h3>¡Felicidades! Has comenzado tu proceso de inscripción</h3><br> <h4><a type="button" title="pagar en agencia" class="btn  btn-info btn" href="../../presidencia#registrations/all">Continuar</a></h4></div>');
 	
 	//EMAIL COLORS
 	define('SYSTEM_EMAIL_BGCOLOR', '#E4C4f0');

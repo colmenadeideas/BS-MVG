@@ -4,10 +4,10 @@
 	if( ini_get ( 'magic_quotes_gpc') ) {
 		$data = stripslashes($data);
 	}
-	$data =	strip_tags($data, '<p><a><br>');
-    return mysql_real_escape_string($data);   //use this if local
-	//return mysql_escape_string($data); //use this for server
-}
+		$data =	strip_tags($data, '<p><a><br>');
+	    return mysql_real_escape_string($data);   //use this if local
+		//return mysql_escape_string($data); //use this for server
+	}
 	
 	function strip_zeros_from_date($marked_string="") {
 		$no_zeros = str_replace('*0','', $marked_string);
@@ -345,6 +345,15 @@
 		
 		return $array_fields[$data];
 	}
+
+	function getPage() {
+		$current = explode("/",$_SERVER['REQUEST_URI']);
+		if (end($current) == "") {
+			return "home";
+		} else {
+			return end($current);	
+		}
+	}
 	
 	function replo($string){
 	
@@ -433,5 +442,6 @@
 		$string = $tmp;
 		return $string;
 	}
+	
 			
 ?>

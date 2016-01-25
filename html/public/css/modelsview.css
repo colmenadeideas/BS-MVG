@@ -74,7 +74,9 @@ nav ul a:hover {color:#DADADA}
 footer {
     background: #1A1A1A;
     color: #FFF;
-    padding: 15px 0;
+    padding: 10px 0;
+    position: absolute !important;
+    bottom: 0
 }
 footer a { color: #FFF }
 footer a:hover { color: #DADADA}
@@ -111,3 +113,62 @@ h1 { font-family: 'Tall Film'; text-transform: uppercase; text-align: center;
 .carousel-control.right, .carousel-control.left{ background-image: none; top: 50%;}
 .carousel-indicators li, .carousel-indicators .active { width: 20px; height: 20px; }
 .carousel-indicators li {  opacity: 0.4; border: 4px solid #000; }
+
+/*ESCUELA*/
+nav#escuela-menu, nav#productora-menu {  display: inline;  position: absolute;      top: 40%;      left: 0;      z-index: 2;      transition: all ease 0.3s;  }
+nav#escuela-menu ul a:first-child, nav#productora-menu ul a:first-child { display: none }
+nav#escuela-menu ul li, nav#productora-menu ul li {
+  text-transform: initial;    font-size: 200%;    display: list-item;    letter-spacing: 2px;    width: 100%;
+    margin-bottom: 30px;    height: 40px;
+}
+nav#escuela-menu ul li:hover, nav#productora-menu ul li:hover { color:rgba(0,0,0,0.4);}
+nav#escuela-menu ul a:active, nav#productora-menu ul a:active { text-decoration: none }
+nav#escuela-menu ul a:hover li:after, nav#productora-menu ul a:hover li:after {    background: #FFF;      border: solid #000 4px; }
+nav#escuela-menu ul li:after, nav#productora-menu ul li:after {
+    transition: all ease 0.3s;    display: block;    content: "·";    border-radius: 20px;
+    background: #FFF;    padding: 0px 0px;    color: #FFF;    font-size: 10px;
+    position: relative;    top: 0;    margin: 5px 5px 0 0;    left: 50px;    width: 20px;    height: 20px;
+}
+h1.fixedtitle {   width: 100%;    position: absolute;     z-index: 99;    top: 50px;  }
+h1.fixedtitle a { color:#000; }
+h1.fixedtitle a:hover { color:#000; text-decoration: none }
+.cronograma-materias ul li { list-style: none; }
+.btn.btn-inscripciones{
+  background: #000;
+  color: #FFF;
+  font-family: 'Tall Film';
+  text-transform: uppercase;
+  font-size: 250%;
+  letter-spacing: 5px;
+  border-radius: 8px;
+  font-weight: bold;
+  padding: 4px 10px 0px 15px;
+}
+.register-instructions {   
+  background: #FFF;      padding: 25px;    margin-top: -134px; text-shadow:1px 1px 3px #FFF;
+  position: absolute; bottom:-150px;
+}
+
+#infantil { 
+  background-image: url(../images/models-view-escuela-infantil.jpg);
+}
+#pre-juvenil { 
+  background-image: url(../images/models-view-escuela-juvenil.jpg);
+}
+#juvenil { 
+  background-image: url(../images/models-view-escuela-juvenil.jpg);
+}
+#taller-automaquillaje, #certificacion-5-estrellas {
+    background-image: url(../images/models-view-escuela-proximamente.jpg); 
+}
+#infantil, #pre-juvenil, #juvenil { background-position: top left; background-size: cover }
+#cursos { 
+  background-image: url(../images/models-view-escuela.jpg); 
+  background-position: top center;
+}
+#page-academia header, #page-productora header { top:0px;z-index: 99; position: relative;position: absolute; width: 100% }
+#page-academia header img, #page-productora header img{  max-width: 250px; }
+#page-academia header hr, #page-productora header hr {  top: -29px; }
+
+/* PRODUCTORA */
+#page-productora #main-menu { display: none }

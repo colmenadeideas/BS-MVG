@@ -9,7 +9,7 @@
 		
 		public function listAvailableCourses($by='order', $order='ASC') 
 		{
-			return DB::query("SELECT * FROM courses ORDER BY `$by` $order");
+			return DB::query("SELECT * FROM courses WHERE status = 1 ORDER BY `$by` $order");
 		}
 		
 		public function getCourse($data, $by='id') {

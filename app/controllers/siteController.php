@@ -15,13 +15,7 @@
 
 		}
 
-		public function escuela() {
-
-			$this->view->title = "MODEL'S VIEW | Escuela";
-			$this->view->buildpage('site/escuela', 'site');	
-
-		}
-	
+		
 	
 	}
 ?>

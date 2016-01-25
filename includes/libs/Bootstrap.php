@@ -10,7 +10,7 @@
 		private $_controllerPath = '../app/controllers/';
 		private $_modelPath = '../app/models/';
 		private $_errorFile = 'error.php';
-		private $_defaultFile = 'accountController';
+		private $_defaultFile = 'siteController';
 		
 		public function init(){
 			//sets the $_url
@@ -61,7 +61,7 @@
 			//	echo "<h5>2-a Will Load REQUESTED Controller <em>init()</em></h5><br>"; //DEVELOPMENT REMOVE
 			
 				if (empty($this->_url[0])) {
-					$who = 'account';
+					$who = 'site';
 					//TEST echo $who;
 					
 				} else {

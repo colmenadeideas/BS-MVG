@@ -1,9 +1,8 @@
 require.config({
-//aortega@besign.com.ve 20553370
 	
     baseUrl: "http://localhost/BS-MVG/html/public/js",
     requireDefine:true,
-    waitSeconds:12,
+    waitSeconds: 50,
     paths: {
       jquery:[  'jquery.min', '//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min'],
       'async': 'assets/requirejs-plugins/async',          
@@ -22,24 +21,14 @@ require.config({
         exports: '$'
       },
       'all.min': ['jquery'],
-      //'assets/jquery.scrollTo.min': ['jquery'], 
-      //'assets/slidebars.min': ['jquery'], 
       'functions': ['jquery', 'assets/jquery.validate.min'],
-      //'appassets/stepform' : ['jquery', 'globals', 'assets/jquery.validate.min'],
-      
-      //'assets/jquery.geocomplete.min' : ['jquery'],
-       'assets/bootstrap-datetimepicker-v4':['jquery','assets/bootstrap.min'],
-        
+      'assets/bootstrap-datetimepicker-v4':['jquery','assets/bootstrap.min'],       
 
-        'app/app': ['jquery','common', 'globals','assets/jquery.validate.min', 'app/posts'],
-        'app/login': ['jquery','globals','assets/jquery.validate.min'],
-        'app/site':  ['globals', 'app/login'],
-        'app/hashchange': ['common', 'app/login'],
+      'app/app': ['jquery','common', 'globals','assets/jquery.validate.min'],
+      'app/login': ['jquery','globals','assets/jquery.validate.min'],
 
 
-
-
-
+        'app/hashchange': ['common'],
         'assets/jquery.ba-bbq.min': ['jquery'],
         'assets/bootstrap.min' : ['jquery'],
         'assets/jquery.PrintArea' : ['jquery'],
@@ -49,6 +38,7 @@ require.config({
         'assets/jquery.dataTables.min': ['jquery'],
         'assets/jquery.maskedinput.min': ['jquery'],
         'assets/dataTables.bootstrap': ['jquery', 'assets/bootstrap.min', 'assets/jquery.dataTables.min'], 
+        'assets/jquery.fullpage.min': ['jquery', 'assets/jquery.slimscroll.min'],
 
 
 		'paging': ['jquery','assets/jquery.dataTables.min'],
@@ -58,7 +48,9 @@ require.config({
         			'assets/jquery.easing.min', 
         			'assets/jquery-ui.min','assets/bootstrap-datetimepicker',
         			'assets/dataTables.bootstrap','assets/jquery.PrintArea', 
-        			'assets/jquery.maskedinput.min', 'config'],
+        			'assets/jquery.maskedinput.min', 
+              'assets/jquery.fullpage.min',
+              'config'],
         'app/admin': ['globals','common'],
         'app/registration': ['globals','common'],
         'app/profesor': ['globals','common'], 
@@ -69,6 +61,7 @@ require.config({
         'app/newsletter': ['globals','assets/jquery.validate.min'],
         'app/escuela': ['globals','common'],
         'app/app': ['globals','common', 'app/registration','app/newsletter','app/profesor'],
+        'app/site': ['globals','common', 'app/login']
       
         
     }
@@ -90,6 +83,22 @@ require([
       console.log("Access:" + accessArray[3] +" Hash:" + accessHash);
 
       switch(accessArray[3]) {
+        case "site":
+          require(['app/site'], function(Site) {
+            Site.run();                                                    
+          });     
+          break;
+        case "academia":
+          require(['app/academia'], function(Academia) {
+            Academia.run();                                                    
+          });     
+          break;
+        case "productora":
+          require(['app/productora'], function(Productora) {
+            Productora.run();                                                    
+          });     
+          break;
+
         case "app":  
           break;
 
@@ -142,12 +151,12 @@ require([
                 });                 
                 break;
             }             
-          break;
+          break;          
 
         default:
         	require(['app/login'], function(login) {              
               login.run();
-            }); 
+          }); 
           break;
       } 
 

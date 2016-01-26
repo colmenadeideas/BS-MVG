@@ -24,12 +24,13 @@
 			}
 			
 			$data = $this->helper->getJSONtables($tablename, $fields, $where, $temptable);
-					
-			
+				
+			//echo "holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
 		}
 
 
-		public function showbutton ($which) {
+		public function showbutton ($which) 
+		{
 			switch ($which) {
 				case 'approve':
 					$this->view->render('cde/cronogramas/confirm-approve-content');
@@ -41,11 +42,12 @@
 			}			
 		}
 
-
+		
 
 		//Statuses
-		public function approve($id) {
-
+		public function approve($id='') 
+		{
+			$response["id"] = '2523';
 			$vars['status'] = 'approved';
 			//Change status
 			$approve = $this->helper->update('cde_cronograma', $id, $vars);
@@ -65,7 +67,7 @@
 				$message = $head;
 				$message.= "Hola, ".$profesor[0]['name']."<br><br> El Cronograma de <strong>".$materia[0]['nombre_materia']."</strong> ha sido aprobado y publicado.<br><br> ¡Gracias!";
 				$message.= CDE__EMAIL_FOOTER;
-				$this->email->sendMail($profesor[0]['email'], SYSTEM_EMAIL , CRONOGRAMA_EMAIL_SUBJECT, $message);	
+				$this->email->sendMail('aortega@besign.com.ve'/*$profesor[0]['email']*/, SYSTEM_EMAIL , CRONOGRAMA_EMAIL_SUBJECT, $message);	
 				
 				//$response["tag"] = "login";
 				$response["success"] = 1;
@@ -79,29 +81,6 @@
 			
 		}
 
-		public function print($id)
-		{
-		//	$registration = $this->model->getRegistration($id);			
-			
-			//if ( TRUE /*$registration[0]['status'] === 'approved' && $registration[0]['documentation'] === 'pending'*/) 
-		/*
-			{
-				//All ready to print, build forms
-				$this->view->registration = $registration[0];
-				$this->view->details =  json_decode($this->view->registration['data'], TRUE);
-				
-				$this->loadModel('courses');
-				$this->view->course_group = $this->model->getCourseGroup($registration[0]['course_available_group_id']);
-				$this->view->course = $this->model->getCourse($this->view->course_group[0]['parent_id']);							
-				
-				$this->view->render('registration/documentation/'.$this->view->course[0]['slug']);
-			}
-			else 
-			{
-				//Registration Sheet is yet pending for Complete, so show Sheet
-				$this->view->render('escuela/registration/step3');
-			}*/
-			echo "holaaa ".$id;
-		}
+		
 	}
 ?>

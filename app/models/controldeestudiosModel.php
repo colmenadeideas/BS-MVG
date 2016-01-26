@@ -123,8 +123,15 @@
 		}
 		public function getProfesores($id = '')	
 		{
-
-			$result = DB::query("SELECT * FROM `cde_profesor`  WHERE `status`='1' ");
+			if(empty($id))
+			{
+				$result = DB::query("SELECT * FROM `cde_profesor`  WHERE `status`='1' ");
+			}
+			else
+			{
+				$result = DB::query("SELECT * FROM `cde_profesor`  WHERE `status`='1' AND  `id`=$id");
+			}	
+			
 			return $result;		
 		}
 		public function getCoursePeriodo()	

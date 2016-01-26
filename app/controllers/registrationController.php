@@ -140,7 +140,8 @@
 			
 		}
 
-		public function documentation($id) {
+		public function documentation($id) 
+		{
 			//Check status for registration
 			$registration = $this->model->getRegistration($id);			
 			

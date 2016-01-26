@@ -11,7 +11,8 @@
 		
 		}
 	
-		public function index() {
+		public function index() 
+		{
 
 			$role = $this->user->get('role');
 			
@@ -48,15 +49,21 @@
 			 	
 		}
 
-		public function welcome() {
+		public function welcome() 
+		{
 			$this->view->render('cde/home');
 		}
 
-		public function cronogramas($action = "", $id = "") {
+		
+		public function cronogramas($action = "", $id = "")
+		 {
 			switch ($action) {
 				case 'get':
 
-						$this->view->activities = $this->model->getCronograma($id);
+						$activities = $this->model->getCronograma($id);
+						$this->view->activities = $activities;
+						
+						$this->view->profesor = $this->model->getProfesores($activities[0]['id_profesor']);
 						$this->view->render('cde/cronogramas/edit');
 
 					break;
@@ -65,31 +72,17 @@
 					
 					$this->view->pendientes = $this->model->getPendingCronogramas();
 					$this->view->render('cde/cronogramas/all');
-
-					/*
-					//this is edit
-					$i = 1;
-					foreach ($pending as $cronograma) {
-
-						$cronogramasActivities = $this->model->getCronogramasActivi($pendiente['id']);
-							
-							if(!empty($aux))
-							{
-								$name = 'info'.$i;
-								$resultado[$name] = $pendiente;
-								$name = 'eval'.$i;
-								$resultado[$name] = $aux; 
-								$res[$i] = $resultado;
-								$i++;
-							}
-							unset($aux);	
-						
-					}
-					unset($aux);
-					unset($resultado);
-					$this->view->pendientes = $res;	*/
 					break;
 			}
+		}
+
+		public function documentation($id) //id 
+		{
+				
+				$activities = $this->model->getCronograma($id);
+				$this->view->activities = $activities;
+				$this->view->profesor = $this->model->getProfesores($activities[0]['id_profesor']);
+				$this->view->render('cde/cronogramas/print-timetable');
 		}
 		
 
@@ -145,7 +138,8 @@
 
 			}
 		}
-		public function add($caso='') {
+		public function add($caso='') 
+		{
 
 
 			switch ($caso) {
@@ -437,41 +431,39 @@
 
 		public function approveCronograma($caso='',$id='')
 		{
-
 			switch ($caso) 
 			{
 				case 'aprobado':
-
-						
-						$array_vars['estatus']='aprobado';
-						$this->helper->update('cde_cronograma',$id,$array_vars);
-					
-						$pendientes= $this->model->cronogramaPendientes();
-						
-						$i = 1;
-						foreach ($pendientes as $pendiente) 
+						$vars['status'] = 'approved';
+								//Change status
+						$approve = $this->helper->update('cde_cronograma', $id, $vars);
+								//Send Notification & instructions
+						if ($approve > 0)
 						{
 
-							
-								$aux = $this->model->cronogramaPenditeEvaluacion($pendiente['id']);
-							
-								if(!empty($aux))
-								{
-									$name = 'info'.$i;
-									$resultado[$name] = $pendiente;
-									$name = 'eval'.$i;
-									$resultado[$name] = $aux; 
-									$res[$i] = $resultado;
-									$i++;
-								}
-								unset($aux);	
-							
+									//Get Profesor, notificar Cronograma aprobado y Publicado	
+									$activities = $this->model->getCronograma($id);
+									$profesor = $this->model->getProfesores($activities[0]['id_profesor']);
+									
+									//Email Instructions Step 2 	
+									$head= CDE__EMAIL_HEAD;							
+													
+									$message = $head;
+									$message.= "Hola, ".$profesor[0]['name']."<br><br> El Cronograma de <strong>".$materia[0]['nombre_materia']."</strong> ha sido aprobado y publicado.<br><br> ¡Gracias!";
+									$message.= CDE__EMAIL_FOOTER;
+									$this->email->sendMail('aortega@besign.com.ve'/*$profesor[0]['email']*/, SYSTEM_EMAIL , CRONOGRAMA_EMAIL_SUBJECT, $message);	
+									
+									//$response["tag"] = "login";
+									$response["success"] = 1;
+									$response["error"] = 0;	
+									$response["response"] = "Mensaje Respuesta";
+						} 
+						else 
+						{
+									$response["success"] = 0;
+									$response["error"] = 1;	
 						}
-						unset($aux);
-						unset($resultado);
-						$this->view->pendientes = $res;	
-						$this->view->render('cde/vistas/cronograma');
-					
+								echo json_encode($response);	
 					break;
 
 				case 'rechazado':

@@ -243,7 +243,9 @@ define(['globals', 'functions'], function(globals, functions) {
 		});
 	}
 
-	function approve(what, id, callback, buttonfrom) {
+	function approve(what, id, callback, buttonfrom) 
+	{
+		console.log('approve process');
 		switch (what) {
 			case 'cronogramas':		var controller = 'cronogramas';	var element = 'cronogramas';		break;				
 		}

@@ -172,3 +172,26 @@ h1.fixedtitle a:hover { color:#000; text-decoration: none }
 
 /* PRODUCTORA */
 #page-productora #main-menu { display: none }
+
+#desfile-de-modas, #maniqui-viviente, #vitrinismo, 
+#fotografia-de-moda, #estilismo, #promotoras { background-position: top left; background-size: cover }
+
+#desfile-de-modas { background-image: url(../images/productora/desfile-de-modas.jpg);}
+#maniqui-viviente { background-image: url(../images/productora/maniqui-viviente.jpg);}
+#vitrinismo { background-image: url(../images/productora/vitrinismo.jpg);}
+#fotografia-de-moda{ background-image: url(../images/productora/fotografia-de-moda.jpg);}
+#estilismo { background-image: url(../images/productora/estilismo.jpg);}
+#promotoras { background-image: url(../images/productora/promotoras.jpg);}
+
+.whiteView {  border-bottom: 2px solid #FFF !important;     text-shadow: 1px 2px 5px #000; }
+.whiteView a {color: #FFF !important;}
+
+#page-productora .productora-content {
+  margin: auto;
+  width: 50%;
+  background:rgba(255, 255, 255, 0.8);  
+  padding: 20px 25px 30px 40px;
+  line-height: 140%;
+  font-size: 120%;
+}
+.productora-content h2 { text-transform: uppercase;    color: #000;  font-size: 300%; }

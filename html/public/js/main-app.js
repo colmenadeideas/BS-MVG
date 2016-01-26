@@ -98,6 +98,11 @@ require([
             Productora.run();                                                    
           });     
           break;
+        case "agencia":
+          require(['app/agencia'], function(Agencia) {
+            Agencia.run();                                                    
+          });     
+          break;
 
         case "app":  
           break;

@@ -40,6 +40,15 @@ define(function() {
 							profesor.checkcurrentform();
 																										
 						});
+					break;	
+					
+					case "periodo":
+						require(['app/periodo'], function(periodo) {
+							profesor.checkcurrentform();
+																										
+						});
+					break;	
+
 					case "cronogramas":
 						require(['app/cronogramas'], function(Cronogramas) {
 							switch(active_page[1]) {

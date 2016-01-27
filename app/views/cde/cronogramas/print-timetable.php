@@ -3,7 +3,7 @@
 	<div class="col-lg-2 col-xs-2">
 	</div>	
 	<div class="col-lg-8 col-xs-8" style="overflow-y: auto;height: 600px;">
-		<div id="printable-area" class="print-documentation" style="background:white; border: 3px solid #585870;">
+		<div id="printable-area" class="print-documentation" style="background:white; border: 3px solid #585870;height: 100%">
 			
 			<div style="height:1cm"></div>
 			
@@ -12,9 +12,10 @@
 			</div>
 			
 			<div class="col-lg-6 col-xs-6">
-				<div class="col-lg-8 col-xs-8 upper">
-					<h3>Profesor: <h4><?php echo $this->profesor[0]['name'].' '.$this->profesor[0]['lastname']; ?></h4></h3> 
-		            <h3> Materia: <h4><?php echo $this->activities[0]['nombre_materia']; ?></h4></h3>       
+				<div class="col-lg-12 col-xs-12 upper" style="font-size: initial;">
+					<p>  Profesor: <?php echo $this->profesor[0]['name'].' '.$this->profesor[0]['lastname']; ?></p>
+		            <p>   Materia: <?php echo $this->activities[0]['nombre_materia']; ?></p>  
+		            <p>   Periodo: </p>     
 				</div>
 			</div>
 			<br>
@@ -54,3 +55,12 @@
 
 	<div class="col-lg-2 col-xs-2">	</div>
 </div>
+
+
+
+<script type="text/javascript">
+	function printdocs()
+	{
+		$('#printable-area').printArea();
+	}
+</script>

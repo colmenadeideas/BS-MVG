@@ -19,7 +19,7 @@ define(['globals', 'functions', 'app/newsletter'], function(globals, functions, 
 		});
  
 		$('.showtooltip').tooltip();*/
-	
+	console.log('load perido');
 function printdocs()
 {
 	$('#printable-area').printArea();
@@ -28,34 +28,7 @@ function printdocs()
 
 
 
-	function loadform(what, id)
-	{
-		console.log();
-		switch (what) {
-			case 'payment':
-				var rute = 'registration/paymentform/';
-				var table = 'registrations';
-				var element = 'registrations';
-				break;
 
-		}
-		$.post(URL + rute + id, function(data) {
-			$('#loadmodal .modal-body').hide().html(data).fadeIn('slow');
-			functions.initForm();
-			//validates & process this form
-			switch (what) {
-				case 'payment':
-					registerpayment();
-					break;
-			}
-			showModal('#loadmodal');
-
-			$('#loadmodal').on('hide.bs.modal', function(e) {
-				//$('#'+table+'-list').dataTable().fnDraw();
-			});
-		});
-		return false;
-	}
 
 	function registerpayment() {
 

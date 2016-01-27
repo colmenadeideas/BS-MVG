@@ -205,7 +205,9 @@ define(['globals', 'functions'], function(globals, functions) {
 		$(".action-approve", nTd).click(function() {											
 			var buttonfrom  = $(this);
 			var element 	= $(this).data('element');
+		
 			var id			= $(this).data('cronograma');
+		
 			var targetmodal = "#confirm-approve";//$(this).data('target');
 			
 			
@@ -216,6 +218,10 @@ define(['globals', 'functions'], function(globals, functions) {
 				functions.showModal(targetmodal);
 
 				$('#confirm-approve .confirmbutton').last().click( function(){ 
+					console.log('holaaaa2');
+					console.log(element);
+					console.log(id);
+
 					approve(element,id,	functions.closeModal(targetmodal), buttonfrom);	
 				});
 			});

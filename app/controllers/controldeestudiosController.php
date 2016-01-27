@@ -57,6 +57,7 @@
 		
 		public function cronogramas($action = "", $id = "")
 		 {
+			
 			switch ($action) {
 				case 'get':
 
@@ -76,14 +77,7 @@
 			}
 		}
 
-		public function documentation($id) //id 
-		{
-				
-				$activities = $this->model->getCronograma($id);
-				$this->view->activities = $activities;
-				$this->view->profesor = $this->model->getProfesores($activities[0]['id_profesor']);
-				$this->view->render('cde/cronogramas/print-timetable');
-		}
+
 		
 
 		public function profesor($action='') {//profesor
@@ -505,14 +499,24 @@
 
 		}
 
-		public function users($action='') {
+		public function users($action='') 
+		{
 			switch ($action) 
 			{
 				case 'all':
 			
-			$this->view->render('cde/users/all');
-		}
+				$this->view->render('cde/users/all');
+				break;
+			}
 		
-	}
+		}
+		public function periodo()
+		{
+			
+			$this->loadModel('courses');
+			//$this->view->courses = $this->model->listAvailableCourses();
+			$this->view->courses = $this->model->getCoursesPensum();
+			$this->view->render('cde/add/nuevoperiodo');
+		}
 }
 ?>

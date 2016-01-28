@@ -516,6 +516,9 @@
 			$this->loadModel('courses');
 			//$this->view->courses = $this->model->listAvailableCourses();
 			$this->view->courses = $this->model->getCoursesPensum();
+			$course = $this->model->getCourse('infantil','slug');
+			
+			$this->view->course = $course;
 			$this->view->render('cde/add/nuevoperiodo');
 		}
 }

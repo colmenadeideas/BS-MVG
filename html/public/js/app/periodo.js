@@ -8,7 +8,45 @@ console.log('load perido');
 
 	function checkcurrentform() 
 	{
-	console.log('load checkcurrentform');
+	    console.log('load checkcurrentform');
+		if ($('#periodo').length === 1) 
+		{
+			
+			console.log('presiono el submit !');	
+		 	functions.initForm();
+				var $validator = $('#periodo').validate({
+				rules : {},
+				messages: {},
+				onkeyup: false,
+				onfocusout: false,
+				onclick: false,
+				submitHandler : function(form) {
+					$('.send').attr('disabled', 'disabled'); //prevent double send
+					$.ajax({
+						type : "POST",
+						url : URL + "controldeestudios/startperiod",
+						data : $(form).serialize(),
+						timeout : 12000,
+						success : function(response) {
+							console.log('works' + response);
+							  $('#periodo').animate({opacity: 0 });
+							  $('#response').html(response).fadeIn('fast');
+						},
+						error : function(response) {
+							console.log(response);
+							 $('.send').removeAttr("disabled");
+							 $('#response').html(response).fadeIn('fast');
+						}
+					});
+					return false;
+				}
+			});
+		
+		}
+		
+
+
+
 
 		if ($('#newsletter').length === 1) {
 			newsletter.validate();
@@ -36,7 +74,7 @@ console.log('load perido');
 
 	}
 //Step 0
-	if ($('#perido').length === 1) 
+	/*if ($('#perido').length === 1) 
 	{
 		console.log('load #perido');
 
@@ -69,7 +107,7 @@ console.log('load perido');
 				return false;
 			}
 		});
-	}
+	}*/
 
 	//jQuery time
 	var current_fs, next_fs, previous_fs;   //fieldsets

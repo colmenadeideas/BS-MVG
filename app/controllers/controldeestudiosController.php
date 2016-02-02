@@ -90,11 +90,11 @@
 						
 					foreach($value as $selected) 
 					{
-						echo $selected.' ';
-						$course[$i]=$selected;
+						
+						$courses[$i]=$selected;
 						$i++;
 					}
-					$array_data['c'] = $course;
+					$array_data['c'] = $courses;
 				}
 				else
 				{
@@ -107,14 +107,30 @@
 			
 
 			unset($array_data['submit']);
-			print_r($array_data);
+			$pensum['fechaInicio'] = $array_data['fechaInicio'];
+			foreach ($courses as $key => $value) 
+			{
+				$aux = $this->model->getPensumCourseMateria($value);
+				//echo $value.' ';var_dump(isset($aux));
+				if(empty($aux))
+				{
+					$pensum[$value] = 'Vacio';
+				}
+				else
+				{
+					$pensum[$value] = $aux;
+				}
 
+			}
+
+			
+			print_r($pensum);
 		}
 
 
 		
 
-/*borrado las funcione profesor, add, saveinfo 01022016 */
+/*borrado las funciones profesor, add, saveinfo 01022016 */
 		
 
 		public function users($action='') 

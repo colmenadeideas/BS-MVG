@@ -2,7 +2,8 @@
 
 	class controldeestudiosController extends Controller {
 		
-		public function __construct() {
+		public function __construct() 
+		{
 			
 			parent::__construct();
 			Auth::handleLogin('controldeestudios');
@@ -46,7 +47,7 @@
 			//Page
 			$this->view->buildpage('', 'cde');	
 			$this->welcome();
-			 	
+		 	
 		}
 
 		public function welcome() 
@@ -78,19 +79,15 @@
 		}
 		public function startperiod()
 		{
-	
 			$i = 0;
 			foreach ($_POST as $key => $value)
 			{
 				$field = escape_value($key);
 				$field_data = escape_value($value);
-				
 				if($field=='c')
 				{
-						
 					foreach($value as $selected) 
 					{
-						
 						$courses[$i]=$selected;
 						$i++;
 					}
@@ -99,32 +96,30 @@
 				else
 				{
 					$array_data[$field] = $field_data;
-
-				}	
-				
-				
+				}		
 			}
-			
 
 			unset($array_data['submit']);
 			$pensum['fechaInicio'] = $array_data['fechaInicio'];
+			
 			foreach ($courses as $key => $value) 
 			{
 				$aux = $this->model->getPensumCourseMateria($value);
-				//echo $value.' ';var_dump(isset($aux));
 				if(empty($aux))
 				{
-					$pensum[$value] = 'Vacio';
+					$aux = $this->model->getCourse($value);
+					$pensumInactivos[$value] = $aux[0];
 				}
 				else
 				{
-					$pensum[$value] = $aux;
+					$pensumActivos[$value] = $aux;
 				}
-
+				unset($aux);
 			}
-
 			
-			print_r($pensum);
+			$this->view->pensumInactivos = $pensumInactivos;
+			$this->view->pensumActivos   = $pensumActivos;
+			$this->view->render('cde/add/creategroup');
 		}
 
 

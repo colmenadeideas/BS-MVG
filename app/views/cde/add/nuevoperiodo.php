@@ -10,12 +10,19 @@
           <input type="hidden" name="parte1" required="required" value="parte1">                     
           <div class="seccion"><h3>Registrar Nuevo Periodo </h3></div> 
             <div class="col-sm-12 col-lg-12">  
-              <div class="col-sm-4 col-lg-3"> </div>              
-                <div class="col-sm-6 col-lg-6">
+              <div class="col-sm-2 col-lg-2"> </div>              
+                
+                <div class="col-sm-4 col-lg-4">
                   <input type="text" name="fechaInicio" placeholder="Fecha de inicio del trimestre" required="" class="form-control input-lg datetimepicker left valid" value="<?php echo @$this -> fechaInicio['fechaInicio']; ?>">
                   <i class="glyphicon glyphicon-calendar add-on right"></i>
+                 </div>   
+
+                  <div class="col-sm-4 col-lg-4">
+                    <input type="text" name="fechaFin" placeholder="Fecha de fin del trimestre" required="" class="form-control input-lg datetimepicker left valid" value="<?php echo @$this -> fechaInicio['fechaInicio']; ?>">
+                    <i class="glyphicon glyphicon-calendar add-on right"></i>
                  </div>
-              <div class="col-sm-4 col-lg-3"></div> 
+
+              <div class="col-sm-2 col-lg-2"></div> 
             </div>    
             <div class="clearfix"></div>
             <br>   <input type="button" name="next" class="next btn" value="Siguiente »">
@@ -75,7 +82,8 @@
 
                         </tr>
                       </table>  
-                    </div>      
+                    </div>
+                      <?php print_r($this->pensumActivos) ;        ?>    
                   </div>          
             </div>
           <div class="clearfix"></div>

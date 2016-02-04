@@ -195,3 +195,24 @@ h1.fixedtitle a:hover { color:#000; text-decoration: none }
   font-size: 120%;
 }
 .productora-content h2 { text-transform: uppercase;    color: #000;  font-size: 300%; }
+
+/* Agencia  de Modelos */
+.model-item .info {
+  background: #000;
+  display: inline-block;
+  position: absolute;
+  left: 0;
+  bottom: 30px;
+  width: 70%;
+  border-radius: 0 50px 50px 0;
+}
+.model-item h3 {
+  font-family: 'Tall Film'; color: #FFF;     font-size: 400%;    text-transform: uppercase;
+}
+.model-item .model-metadata {
+  color: #FFF
+}
+#loadmore { height: 50px; width:50px; background-image: url(../img/loading.svg);
+    display: inline-block;
+    background-size: contain;
+}

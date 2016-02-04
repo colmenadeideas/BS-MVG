@@ -1,5 +1,5 @@
-<div id="postswrapper">
-   <div class="item">content</div>
-   ...
-   <div id="loadmoreajaxloader" style="display:none;"><center><img src="ajax-loader.gif" /></center></div>
+<div id="modelos" class="col-lg-12">
+	<?php $this->render('site/agencia-pagination'); ?>
+</div>
+<div id="loadmore" class="col-lg-12">
 </div>

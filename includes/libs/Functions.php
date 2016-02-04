@@ -354,6 +354,44 @@
 			return end($current);	
 		}
 	}
+
+	
+	function FilesInDir($tdir)	{ //funcion para abrir la carpeta y leer las fotos disponibles
+		$fulldir = IMAGES.'modelos/'.$tdir;
+		//$dirs = scandir(IMAGES.'modelos/'.$tdir);
+		$dirs = scandir(dirname(SITE_PATH)."/html/public/images/modelos/".$tdir."/");
+
+		$count=0;
+		$indicators = '<ol class="carousel-indicators">';
+		$banners =  '<div class="carousel-inner">';
+
+		foreach($dirs as $file)	{
+
+			if (($file == '.')||($file == '..')) {
+			} elseif (is_dir($tdir.'/'.$file)){
+				filesInDir($tdir.'/'.$file);
+			} else {
+				//Solo los thumbs							
+				$pos = strpos($file, "s");
+				if ($pos === false) { //Si el archivo  contiene s en su nombre, omitir
+					if ($file == "01.jpg" ) { $active = "active";} else { $active = ""; }
+				$banners.='<div class="item '.$active.'">
+			            <img src="'.$fulldir."/".$file.'" class="img-responsive">
+			        </div>';
+			    $indicators.= '<li data-target="banner" data-slide-to="'.$count.'" class="'.$active.'"></li>';							
+				} else {
+					//Si el archivo se llama 's'algo lo omite porque es un thumb							
+				}						
+			}	
+			$count++;				
+		}
+		$banners.= "</div>";
+		
+		$indicators.= "</ol>";
+		$final_slider = $banners.$indicators; 
+		echo $final_slider;		
+		
+	}
 	
 	function replo($string){
 	

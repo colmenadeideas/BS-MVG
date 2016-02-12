@@ -24,7 +24,7 @@ console.log('load perido');
 					$('.send').attr('disabled', 'disabled'); //prevent double send
 					$.ajax({
 						type : "POST",
-						url : URL + "controldeestudios/startperiod",
+						url : URL + "controldeestudios/periodo",
 						data : $(form).serialize(),
 						timeout : 12000,
 						success : function(response) {
@@ -73,41 +73,6 @@ console.log('load perido');
 
 
 	}
-//Step 0
-	/*if ($('#perido').length === 1) 
-	{
-		console.log('load #perido');
-
-		functions.initForm();
-		console.log('exists periodo!');
-		var $validator = $('#perido').validate({
-			rules : {},
-			messages: {},
-			onkeyup: false,
-			onfocusout: false,
-			onclick: false,
-			submitHandler : function(form) {
-				$('.send').attr('disabled', 'disabled'); //prevent double send
-				$.ajax({
-					type : "POST",
-					url : URL + "registration/process", //ruta de submit
-					data : $(form).serialize(),
-					timeout : 12000,
-					success : function(response) {
-						console.log('works' + response);
-						  $('#perido').animate({opacity: 0 });
-						  $('#response').html(response).fadeIn('fast');
-					},
-					error : function(response) {
-						console.log(response);
-						 $('.send').removeAttr("disabled");
-						 $('#response').html(response).fadeIn('fast');
-					}
-				});
-				return false;
-			}
-		});
-	}*/
 
 	//jQuery time
 	var current_fs, next_fs, previous_fs;   //fieldsets

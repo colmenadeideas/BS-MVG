@@ -60,6 +60,20 @@
 			return $result;		
 		}
 
+		/*public function getMateriaCourse($id)
+		{
+						$result = DB::query("SELECT m.`id`,m.`id_pensum`,m.`codigo`,m.`nombre_materia`,m.`descripcion`,m.`trimestre`,m.`id_courses`,m.`estatus` 
+			FROM `cde_materia` m, `courses` c
+			 WHERE m.`id_courses` = c.`id` AND m.`estatus` ='Activo'")
+		}*/
+
+		public function getMaterias()
+		{
+			$result = DB::query("SELECT * FROM `cde_materia` m
+										  WHERE m.`estatus` ='Activo'");
+			return $result;	
+
+		}
 		public function getPensumCourseMateria($id)
 		{
 			$result = DB::query("SELECT p.`id_courses`,`id_pensum`,m.`id` `id_materia`,`slug`,`nombre_materia`,`descripcion`,`trimestre`

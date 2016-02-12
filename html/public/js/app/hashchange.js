@@ -45,7 +45,6 @@ define(function() {
 					case "periodo":
 						require(['app/periodo'], function(periodo) {
 							periodo.checkcurrentform();
-							//periodo.loadcourse();
 							periodo.run();
 																										
 						});

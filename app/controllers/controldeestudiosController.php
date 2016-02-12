@@ -77,54 +77,7 @@
 					break;
 			}
 		}
-		public function startperiod()
-		{
-			$i = 0;
-			foreach ($_POST as $key => $value)
-			{
-				$field = escape_value($key);
-				$field_data = escape_value($value);
-				if($field=='c')
-				{
-					foreach($value as $selected) 
-					{
-						$courses[$i]=$selected;
-						$i++;
-					}
-					$array_data['c'] = $courses;
-				}
-				else
-				{
-					$array_data[$field] = $field_data;
-				}		
-			}
-
-			unset($array_data['submit']);
-			$pensum['fechaInicio'] = $array_data['fechaInicio'];
-			
-			foreach ($courses as $key => $value) 
-			{
-				$aux = $this->model->getPensumCourseMateria($value);
-				if(empty($aux))
-				{
-					$aux = $this->model->getCourse($value);
-					$pensumInactivos[$value] = $aux[0];
-				}
-				else
-				{
-					$pensumActivos[$value] = $aux;
-				}
-				unset($aux);
-			}
-			
-			$this->view->pensumInactivos = $pensumInactivos;
-			$this->view->pensumActivos   = $pensumActivos;
-			$this->view->render('cde/add/creategroup');
-		}
-
-
 		
-
 /*borrado las funciones profesor, add, saveinfo 01022016 */
 		
 
@@ -139,16 +92,59 @@
 			}
 		
 		}
-		public function periodo()
+		public function periodo($action = '')
 		{
 			
-			$this->loadModel('courses');
-			//$this->view->courses = $this->model->listAvailableCourses();
-			$this->view->courses = $this->model->getCoursesPensum();
-			$course = $this->model->getCourse('infantil','slug');
-			
-			$this->view->course = $course;
-			$this->view->render('cde/add/nuevoperiodo');
+			if(empty($_POST))
+			{
+				$this->loadModel('courses');
+				$this->view->courses = $this->model->getCoursesPensum();
+				$course = $this->model->getCourse('infantil','slug');
+				$this->view->course = $course;
+				$this->view->render('cde/add/nuevoperiodo');	
+			}
+			else
+			{
+				$i = 0;
+				foreach ($_POST as $key => $value)
+				{
+					$field = escape_value($key);
+					$field_data = escape_value($value);
+					if($field=='c')
+					{
+						foreach($value as $selected) 
+						{
+							$courses[$i]=$selected;
+							$i++;
+						}
+						$array_data['c'] = $courses;
+					}
+					else
+					{
+						$array_data[$field] = $field_data;
+					}		
+				}
+				unset($array_data['submit']);
+				$pensum['fechaInicio'] = $array_data['fechaInicio'];
+				foreach ($courses as $key => $value) 
+				{
+					$aux = $this->model->getPensumCourseMateria($value);
+					if(empty($aux))
+					{
+						$aux = $this->model->getCourse($value);
+						$pensumInactivos[$value] = $aux[0];
+					}
+					else
+					{
+						$pensumActivos[$value] = $aux;
+					}
+					unset($aux);
+				}
+				$this->view->pensumInactivos = $pensumInactivos;
+				$this->view->pensumActivos   = $pensumActivos;
+				$this->view->materias        = $this->model->getMaterias($value);
+				$this->view->render('cde/add/creategroup');
+			}	
 		}
 }
 ?>

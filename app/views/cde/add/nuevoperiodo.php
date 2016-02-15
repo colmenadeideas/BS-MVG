@@ -57,9 +57,83 @@
           <div class="clearfix"></div>
 
               <input type="button" name="previous" class="previous btn" value="« Anterior">
-              <input type="submit" name="send" class="btn btn-success send" value="Asignar pensum »" >
+              <input type="button" name="next" class="next btn" value="Asignar pensum »" >
 
         </fieldset>
+         <fieldset id='periodo-step2'>
+           
+                  <?php $pensumActivos = $this->pensumActivos;     ?>
+                  <?php print_r($pensumActivos);?>
+                  <?php $pensumInactivos = $this->pensumInactivos;     ?>
+                  <?php $band = false;     ?>
+                   <div class="seccion"> <h3 style="margin-bottom: 30px;" >  <?php echo $activos[0]['slug']; ?>  </h3> </div> 
+                      <div class="col-sm-12 col-lg-12" style="margin-bottom: 40px;"> 
+                        <h4>Seleccione o modifique el pensum</h4>
+                          <div  class="col-lg-6 col-md-6 col-xs-6">
+                            <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">Ver materias del pensum actual </button>
+                          </div> 
+                          <div  class="col-lg-6 col-md-6 col-xs-6">
+                            <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo1">Agregar un nuevo pensum</button>
+                          </div> 
+
+                              <div id="demo" class="collapse">
+
+                                  <table  class="table table-hover table-list dataTable" >
+                                    <thead>
+                                      <tr>
+                                        <th width="20%" style="text-align: center;"> Codigo       </th>
+                                        <th width="30%" style="text-align: center;"> Materia      </th>
+                                        <th width="30%" style="text-align: center;"> Descripcion  </th>
+                                        <th width="30%" style="text-align: center;"> Trimestre    </th>
+                                      </tr>  
+                                    </thead>
+                                    <tbody role="alert" aria-live="polite" aria-relevant="all">
+                                     
+                                          <?php foreach ($activos as $act) 
+                                          {?> <tr>
+                                                 <td><?php echo $act['id_materia']     ?> </td>
+                                                 <td><?php echo $act['nombre_materia'] ?> </td>
+                                                 <td><?php echo $act['descripcion']    ?> </td>
+                                                 <td><?php echo $act['trimestre']      ?> </td>
+                                               </tr>   
+                                     <?php } ?>
+                                      
+                                    </tbody>    
+                                </table>  
+
+                          </div> 
+                              <div id="demo1" class="collapse">
+                                <table  class="table table-hover table-list dataTable" >
+                                  <thead>
+                                    <tr>
+                                      <th width="10%" style="text-align: center;">              </th>
+                                      <th width="20%" style="text-align: center;"> Codigo       </th>
+                                      <th width="25%" style="text-align: center;"> Materia      </th>
+                                      <th width="30%" style="text-align: center;"> Descripcion  </th>
+                                      <th width="25%" style="text-align: center;"> Trimestre    </th>
+                                    </tr>  
+                                  </thead>
+                                  <tbody role="alert" aria-live="polite" aria-relevant="all">
+                                   
+                                        <?php foreach ($activos as $act) 
+                                        {?> <tr>
+                                               <td> <input type="checkbox" name="vehicle" value="Bike" required="" > </td>
+                                               <td><?php echo $act['id_materia']     ?> </td>
+                                               <td><?php echo $act['nombre_materia'] ?> </td>
+                                               <td><?php echo $act['descripcion']    ?> </td>
+                                               <td><?php echo $act['trimestre']      ?> </td>
+                                             </tr>   
+                                   <?php } ?>
+                                    
+                                  </tbody>    
+                              </table>  
+                          </div>  
+
+                     </div> 
+                     <div class="clearfix"></div>
+                     <!--input type="button" name="previous" class="previous btn" value="« Anterior"-->
+                    <input type="button" name="next" class="next btn" value="Siguiente »">                  
+                  </fieldset>
     </form>
               <div class="clearfix">&nbsp;</div>
   </div>

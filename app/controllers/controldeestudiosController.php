@@ -143,7 +143,8 @@
 				$this->view->pensumInactivos = $pensumInactivos;
 				$this->view->pensumActivos   = $pensumActivos;
 				$this->view->materias        = $this->model->getMaterias($value);
-				$this->view->render('cde/add/creategroup');
+				//echo '5465465456465464646';
+				//$this->view->render('cde/add/creategroup');
 			}	
 		}
 }

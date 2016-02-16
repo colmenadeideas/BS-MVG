@@ -9,45 +9,7 @@ console.log('load perido');
 	function checkcurrentform() 
 	{
 	    console.log('load checkcurrentform');
-		if ($('#periodo').length === 1) 
-		{
-			/*
-			console.log('presiono el submit !');	
-		 	functions.initForm();
-				var $validator = $('#periodo').validate({
-				rules : {},
-				messages: {},
-				onkeyup: false,
-				onfocusout: false,
-				onclick: false,
-				submitHandler : function(form) {
-					$('.send').attr('disabled', 'disabled'); //prevent double send
-					$.ajax({
-						type : "POST",
-						url : URL + "controldeestudios/periodo",
-						data : $(form).serialize(),
-						timeout : 12000,
-						success : function(response) {
-							console.log('works' + response);
-							  $('#periodo').animate({opacity: 0 });
-							  $('#response').html(response).fadeIn('fast');
-						},
-						error : function(response) {
-							console.log(response);
-							 $('.send').removeAttr("disabled");
-							 $('#response').html(response).fadeIn('fast');
-						}
-					});
-					return false;
-				}
-			});*/
 		
-		}
-		
-
-
-
-
 		if ($('#newsletter').length === 1) {
 			newsletter.validate();
 		}
@@ -74,29 +36,6 @@ console.log('load perido');
 
 	}
 
-	/*$("#send2").click(function()
-	{
-		 console.log('el camino');
-
-			//$.ajax({type : "POST",url : URL + "controldeestudios/periodo",data : $('#periodo').serialize()});
-
-					$.ajax({
-						type : "POST",
-						url : URL + "controldeestudios/periodo",
-						data : $(form).serialize(),
-						timeout : 12000,
-						success : function(response) {
-							console.log('works' + response);
-							  
-							  
-						},
-						error : function(response) {
-							console.log(response);
-							 $('.send').removeAttr("disabled");
-							 $('#response').html(response).fadeIn('fast');
-						}
-					});
-	});*/
 
 	//jQuery time
 	var current_fs, next_fs, previous_fs;   //fieldsets
@@ -118,21 +57,19 @@ console.log('load perido');
 						data : $("form").serialize(),
 						timeout : 12000,
 						success : function(response) {
-							
+							console.log(response);
 							  console.log('paseeee');
-							 // $('#periodo-step2').html(response);
-							 //$('#periodo-step2').append(data);
-							  $('#periodo-step2').html(response);
+							  $('#response').php(response);
 
+							 // $('#periodo-step2').html(response).fadeIn('fast');
 						},
 						error : function(response) {
 							console.log(response);
-							 $('.send').removeAttr("disabled");
-							 $('#response').html(response).fadeIn('fast');
+							 
 						}
 					});
-		}	
-	console.log('load next');
+		}
+		console.log('load next');
 
 		//if(animating) return false;
 		//animating = true;

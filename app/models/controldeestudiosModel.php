@@ -67,10 +67,9 @@
 			 WHERE m.`id_courses` = c.`id` AND m.`estatus` ='Activo'")
 		}*/
 
-		public function getMaterias()
+		public function getMaterias() 
 		{
-			$result = DB::query("SELECT * FROM `cde_materia` m
-										  WHERE m.`estatus` ='Activo'");
+			$result = DB::query("SELECT * FROM `cde_materia` m WHERE m.`estatus` ='Activo'");
 			return $result;	
 
 		}

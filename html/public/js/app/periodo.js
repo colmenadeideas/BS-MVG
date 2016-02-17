@@ -36,7 +36,18 @@ console.log('load perido');
 
 	}
 
-
+		$(function(){
+		  // Clona la fila oculta que tiene los campos base, y la agrega al final de la tabla
+		  $("#agregar").on('click', function(){
+		    $("#tabla tbody tr:eq(0)").clone().removeClass('fila-base').appendTo("#tabla tbody");
+		  });
+		 
+		  // Evento que selecciona la fila y la elimina 
+		  $(document).on("click",".eliminar",function(){
+		    var parent = $(this).parents().get(0);
+		    $(parent).remove();
+		  });
+		});
 	//jQuery time
 	var current_fs, next_fs, previous_fs;   //fieldsets
 	var left, opacity, scale; 			   //fieldset properties which we will animate
@@ -59,7 +70,7 @@ console.log('load perido');
 						success : function(response) {
 							console.log(response);
 							  console.log('paseeee');
-							  $('#response').php(response);
+							  $('#response').html(response);
 
 							 // $('#periodo-step2').html(response).fadeIn('fast');
 						},

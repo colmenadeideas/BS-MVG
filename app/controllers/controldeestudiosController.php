@@ -93,7 +93,7 @@
 		
 		}
 		/*puebaaaa muejajaja */
-		public function periodo()
+		/*public function periodo()
 		{	
 			
 			$courses[1]=1;
@@ -120,8 +120,8 @@
   				$this->view->materias        = $this->model->getMaterias();
   				$this->view->render('cde/add/creategroup');	
 
-		}
-		/*public function periodo($action = '')
+		}*/
+		public function periodo($action = '')
 		{
 			
 			if(empty($_POST))
@@ -171,8 +171,17 @@
 				}
 				$band = false;
 				$i=1;
-				$fieldset = '';		
-				if(!empty($pensumActivos))
+				$fieldset = '';	
+
+
+				$this->view->pensumInactivos = $pensumInactivos;
+  				$this->view->pensumActivos   = $pensumActivos;
+  				$this->view->materias        = $this->model->getMaterias();
+  				
+  				$this->view->render('cde/add/creategroup');	
+
+				if(false)
+				//if(!empty($pensumActivos))
 				{
 					$band = true;
 					foreach ($pensumActivos as $activos ) 
@@ -215,7 +224,10 @@
 					}
 				}
 			echo $fieldset;
+		
+
+              
 			}
-		}*/
+		}
 }
 ?>

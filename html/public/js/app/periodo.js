@@ -18,36 +18,60 @@ console.log('load perido');
 		}
 
 
-		if ($('#complete-registration').length === 1) {
+		if ($('#complete-registration').length === 1) 
+		{
 			functions.initForm();
 			
-		$('#factura1').click(function() {
-			if ($('#factura1').is(':checked')) {
-					$('#factura-juridica').collapse('show');
-				} 
-		}); 
-		
-		$('#factura2').click(function() {
-			if ($('#factura2').is(':checked')) {
-					$('#factura-juridica').collapse('hide');
+				$('#factura1').click(function() {
+					if ($('#factura1').is(':checked')) {
+							$('#factura-juridica').collapse('show');
+						} 
+				}); 
+				
+				$('#factura2').click(function() {
+					if ($('#factura2').is(':checked')) {
+							$('#factura-juridica').collapse('hide');
+				}
+			}); 
 		}
-	}); 
 
 
-	}
+		$(document).ready(function() {
+		    var panels = $('.user-infos');
+		    var panelsButton = $('.dropdown-user');
+		    panels.hide();
 
-		$(function(){
-		  // Clona la fila oculta que tiene los campos base, y la agrega al final de la tabla
-		  $("#agregar").on('click', function(){
-		    $("#tabla tbody tr:eq(0)").clone().removeClass('fila-base').appendTo("#tabla tbody");
-		  });
-		 
-		  // Evento que selecciona la fila y la elimina 
-		  $(document).on("click",".eliminar",function(){
-		    var parent = $(this).parents().get(0);
-		    $(parent).remove();
-		  });
+		    //Click dropdown
+		    panelsButton.click(function() {
+		        //get data-for attribute
+		        var dataFor = $(this).attr('data-for');
+		        var idFor = $(dataFor);
+
+		        //current button
+		        var currentButton = $(this);
+		        idFor.slideToggle(400, function() {
+		            //Completed slidetoggle
+		            if(idFor.is(':visible'))
+		            {
+		                currentButton.html('<i class="glyphicon glyphicon-chevron-up text-muted"></i>');
+		            }
+		            else
+		            {
+		                currentButton.html('<i class="glyphicon glyphicon-chevron-down text-muted"></i>');
+		            }
+		        })
+		    });
+
+
+		    $('[data-toggle="tooltip"]').tooltip();
+
+		    $('button').click(function(e) {
+		        e.preventDefault();
+		        alert("This is a demo.\n :-)");
+		    });
 		});
+
+	
 	//jQuery time
 	var current_fs, next_fs, previous_fs;   //fieldsets
 	var left, opacity, scale; 			   //fieldset properties which we will animate
@@ -71,6 +95,8 @@ console.log('load perido');
 							console.log(response);
 							  console.log('paseeee');
 							  $('#response').html(response);
+							  checkcurrentform(); 
+							  console.log('probando');
 
 							 // $('#periodo-step2').html(response).fadeIn('fast');
 						},

@@ -93,7 +93,7 @@
 		
 		}
 		/*puebaaaa muejajaja */
-		/*public function periodo()
+		public function periodo2()
 		{	
 			
 			$courses[1]=1;
@@ -118,9 +118,10 @@
 				$this->view->pensumInactivos = $pensumInactivos;
   				$this->view->pensumActivos   = $pensumActivos;
   				$this->view->materias        = $this->model->getMaterias();
+  				$this->view->fecha           = $array_data['fechaInicio'];
   				$this->view->render('cde/add/creategroup');	
 
-		}*/
+		}
 		public function periodo($action = '')
 		{
 			
@@ -128,8 +129,6 @@
 			{
 				$this->loadModel('courses');
 				$this->view->courses = $this->model->getCoursesPensum();
-				$course = $this->model->getCourse('infantil','slug');
-				$this->view->course = $course;
 				$this->view->render('cde/add/nuevoperiodo');	
 			}
 			else
@@ -154,7 +153,7 @@
 					}		
 				}
 				unset($array_data['submit']);
-				$pensum['fechaInicio'] = $array_data['fechaInicio'];
+
 				foreach ($courses as $key => $value) 
 				{
 					$aux = $this->model->getPensumCourseMateria($value);
@@ -169,65 +168,58 @@
 					}
 					unset($aux);
 				}
-				$band = false;
-				$i=1;
-				$fieldset = '';	
-
-
 				$this->view->pensumInactivos = $pensumInactivos;
   				$this->view->pensumActivos   = $pensumActivos;
   				$this->view->materias        = $this->model->getMaterias();
-  				
+  				$this->view->fecha           = $array_data['fechaInicio'];
   				$this->view->render('cde/add/creategroup');	
-
-				if(false)
-				//if(!empty($pensumActivos))
-				{
-					$band = true;
-					foreach ($pensumActivos as $activos ) 
-					{	
-						$i++;
-						$per = 'periodo-step'.$i; 
-						$fieldset.= '<fieldset id='.$per.'>
-									  <div class="seccion"> <h3 style="margin-bottom: 30px;" >'.$activos[0]['slug'].'</h3> </div> 
-									    <div class="col-sm-12 col-lg-12" style="margin-bottom: 40px;"> 
-									      <h4>Seleccione o modifique el pensum</h4>
-									        <div  class="col-lg-6 col-md-6 col-xs-6">
-									          <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">Ver materias del pensum actual </button>
-									        </div> 
-									        <div  class="col-lg-6 col-md-6 col-xs-6">
-									          <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo1">Agregar un nuevo pensum</button>
-									        </div> 
-									        <div id="demo" class="collapse">
-	        									<table  class="table table-hover table-list dataTable" >
-	                                    <thead>
-	                                      <tr>
-	                                        <th width="20%" style="text-align: center;"> Codigo       </th>
-	                                        <th width="30%" style="text-align: center;"> Materia      </th>
-	                                        <th width="30%" style="text-align: center;"> Descripcion  </th>
-	                                        <th width="30%" style="text-align: center;"> Trimestre    </th>
-	                                      </tr>  
-	                                    </thead>
-	                                    <tbody role="alert" aria-live="polite" aria-relevant="all">';
-	                                          foreach ($activos as $act) 
-	                                          { 
-	                                          	$fieldset.='<tr><td>'.$act['id_materia'].'</td><td> '.$act['nombre_materia'].'  </td><td> '.$act['descripcion'].' </td> <td> '.$act['trimestre'].' </td></tr>' ;  
-	                                   		 }
-	                                   	$fieldset.= '</tbody>    
-	                                    	</table>  
-	                                      	   </div> 
-                        	              		 </div> 
-	                                    	        <div class="clearfix"></div>
-	                                    	        <input type="button" name="previous" class="previous btn" value="« Anterior">
-	                                    	        <input type="button" name="next" class="next btn" value="Siguiente »">                  
-	                                    	         </fieldset>';
-					}
-				}
-			echo $fieldset;
-		
-
-              
 			}
+		}
+		public function editinline() 
+		{
+			echo "AAAAAAAAAAASADSDDDFJDADAS";
+			$pk = escape_value($_POST['pk']);
+			$value = escape_value($_POST['value']);
+			
+			$parts = explode( '-', $pk );
+			$tablename = $parts[0];
+			$fieldname = $parts[1];
+			$id = $parts[2];
+			//if not by ID, something else
+			@$by = $parts[3];	
+			print_r($_POST['pk']);
+			/*
+			$arrayModificacion = array();
+			
+			$arrayModificacion[$fieldname] = $value;
+			
+			if($tablename == 'supplies_fields') 
+			{
+					
+				$userdata = $this->user->getUserdata();	
+				$arrayModificacion['edited_by'] = $userdata[0]['id'];
+				$arrayModificacion['parent_id'] = $id;
+				$insert = $this->helper->insert($tablename, $arrayModificacion);	
+				
+			} else {
+					
+				if (!empty($by)) {
+					$insert = $this->helper->update($tablename, $id, $arrayModificacion, $by);
+				} else {
+					$insert = $this->helper->update($tablename, $id, $arrayModificacion);			
+				}
+			
+			}*/
+									
+			
+			
+			//::::Log Action::::
+			//$userdata = $this->user->getUserdata();					
+			//$log = $this->helper->insert('users_action_log', array('controller'=>$tablename, 'action' =>  'edit', 'item' =>  $id, 'username'=> $userdata[0]['id']));		
+			
+			//print_r($insert);
+			
+			
 		}
 }
 ?>

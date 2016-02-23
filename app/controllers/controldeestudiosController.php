@@ -160,7 +160,7 @@
 					if(empty($aux))
 					{
 						$aux = $this->model->getCourse($value);
-						$pensumInactivos[$value] = $aux[0];
+						$pensumInactivos[$value] = $aux;
 					}
 					else
 					{
@@ -177,7 +177,7 @@
 		}
 		public function editinline() 
 		{
-			echo "AAAAAAAAAAASADSDDDFJDADAS";
+			
 			$pk = escape_value($_POST['pk']);
 			$value = escape_value($_POST['value']);
 			

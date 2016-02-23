@@ -120,7 +120,7 @@
                                                 </tr>
                                               </tbody>
                                             </table>
-                                          <div> <a id="add_row"  class=" btn btn-default pull-right">Add Row</a> </div>
+                                          <div> <a id="add_row"  class="add_row_new btn">Add Row</a> </div>
                                       </div>
                                   </div>
                               </div>
@@ -207,7 +207,7 @@
                                                 </tr>
                                               </tbody>
                                             </table>
-                                          <div><a id="add_row" class="add_row btn btn-default pull-right">Add Row</a></div>
+                                          <div><a id="add_row" class="add_row_new btn">Add Row</a></div>
                                       </div>
                                   </div>
                               </div>

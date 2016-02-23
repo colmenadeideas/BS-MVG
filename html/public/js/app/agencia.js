@@ -2,13 +2,15 @@ define(['globals', 'functions'], function(globals, functions) {
 	function run() {
 		
 		$(window).scroll(function(){
+			var category = $('[name="category"]').last().val();
+
             if  ($(window).scrollTop() == $(document).height() - $(window).height()){
-                // run our call for pagination
-                console.log( "·Hit the end");
-                $('#pagination').val();
+               //Call for Pagination
+                var pagination = $('[name="pagination"]').last().val();
+                console.log( "Hit the end"+pagination);
                 $('div#loadmore').show();
                 $.ajax({
-					url: globals.URL+"agencia/load/women/"+pagination,
+					url: globals.URL+"agencia/load/"+category+"/"+pagination,
 					success: function(html)	{
 						if(html) {
 							$("#modelos").append(html);

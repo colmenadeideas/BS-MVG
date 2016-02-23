@@ -216,3 +216,36 @@ h1.fixedtitle a:hover { color:#000; text-decoration: none }
     display: inline-block;
     background-size: contain;
 }
+
+ul.category-menu {list-style: none; text-align: center;    padding: 0;}
+ul.category-menu li { display: inline-block;  padding: 0 20px; }
+ul.category-menu li a { color: #000}
+
+#page-agencia footer, #page-women footer,
+#page-men footer,
+#page-kids footer,
+#page-agencia h1.fixedtitle,
+#page-women h1.fixedtitle,
+#page-men h1.fixedtitle,
+#page-kids h1.fixedtitle
+
+{ position: inherit !important; }
+
+#page-agencia article,
+#page-women article,
+#page-kids article,
+#page-men article {
+  margin-bottom: 20px;
+  height: 500px;
+}
+
+#page-agencia .carousel-control img, 
+#page-agencia .carousel-control img,
+#page-men .carousel-control img, 
+#page-men .carousel-control img,
+#page-kids .carousel-control img, 
+#page-kids .carousel-control img, 
+#page-women .carousel-control img,
+#page-women .carousel-control img
+ { width: 50%}
+

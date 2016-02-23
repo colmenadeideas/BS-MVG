@@ -81,9 +81,9 @@ console.log('load perido');
 
 			$(document).ready(function() 
 			{
-			 	var add_new_row = "#add_row"/*+$("#prueba").val()*/;
+			 	//var add_new_row = "#add_row"/*+$("#prueba").val()*/;
 
-   			$(add_new_row).on("click", function() 
+   			$("#add_row").on("click", function() 
    			{
 				        // Dynamic Rows Code
 				        
@@ -159,7 +159,7 @@ console.log('load perido');
 
 
 
-				    $(add_new_row).trigger("click");
+				    $("#add_row").trigger("click");
 });
 		
 		//jQuery time

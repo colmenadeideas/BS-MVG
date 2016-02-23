@@ -360,9 +360,10 @@
 		$fulldir = IMAGES.'modelos/'.$tdir;
 		//$dirs = scandir(IMAGES.'modelos/'.$tdir);
 		$dirs = scandir(dirname(SITE_PATH)."/html/public/images/modelos/".$tdir."/");
+		//agata-r-portfolio
 
 		$count=0;
-		$indicators = '<ol class="carousel-indicators">';
+		//$indicators = '<ol class="carousel-indicators">';
 		$banners =  '<div class="carousel-inner">';
 
 		foreach($dirs as $file)	{
@@ -378,7 +379,7 @@
 				$banners.='<div class="item '.$active.'">
 			            <img src="'.$fulldir."/".$file.'" class="img-responsive">
 			        </div>';
-			    $indicators.= '<li data-target="banner" data-slide-to="'.$count.'" class="'.$active.'"></li>';							
+			   // $indicators.= '<li data-target="'.$id_indicator.'" data-slide-to="'.$count.'" class="'.$active.'"></li>';							
 				} else {
 					//Si el archivo se llama 's'algo lo omite porque es un thumb							
 				}						
@@ -387,8 +388,9 @@
 		}
 		$banners.= "</div>";
 		
-		$indicators.= "</ol>";
-		$final_slider = $banners.$indicators; 
+		//$indicators.= "</ol>";
+		//$final_slider = $banners.$indicators; 
+		$final_slider = $banners; 
 		echo $final_slider;		
 		
 	}

@@ -17,22 +17,36 @@ console.log('load perido');
 				newsletter.validate();
 			}
 
-
-			if ($('#complete-registration').length === 1) 
-			{
+			if ($('#pensum').length === 1) {
 				functions.initForm();
+				console.log('exists pensum!');
+				var $validator = $('#pensum').validate({
+					rules : {},
 				
-					$('#factura1').click(function() {
-						if ($('#factura1').is(':checked')) {
-								$('#factura-juridica').collapse('show');
-							} 
-					}); 
-					
-					$('#factura2').click(function() {
-						if ($('#factura2').is(':checked')) {
-								$('#factura-juridica').collapse('hide');
+					onkeyup: false,
+					onfocusout: false,
+					onclick: false,
+					submitHandler : function(form) {
+						$('.send').attr('disabled', 'disabled'); //prevent double send
+						$.ajax({
+							type : "POST",
+							url : URL + "controldeestudios/process",
+							data : $(form).serialize(),
+							timeout : 12000,
+							success : function(response) {
+								console.log('works' + response);
+								  $('#pensum').animate({opacity: 0 });
+								  $('#response').html(response).fadeIn('fast');
+							},
+							error : function(response) {
+								console.log(response);
+								 $('.send').removeAttr("disabled");
+								 $('#response').html(response).fadeIn('fast');
+							}
+						});
+						return false;
 					}
-				}); 
+				});
 			}
 
 
@@ -61,16 +75,92 @@ console.log('load perido');
 			            }
 			        })
 			    });
-
-
 			    $('[data-toggle="tooltip"]').tooltip();
-
-			    $('button').click(function(e) {
-			        e.preventDefault();
-			        alert("This is a demo.\n :-)");
-			    });
 			});
 
+
+			$(document).ready(function() 
+			{
+			 	var add_new_row = "#add_row"/*+$("#prueba").val()*/;
+
+   			$(add_new_row).on("click", function() 
+   			{
+				        // Dynamic Rows Code
+				        
+				        // Get max row id and set new id
+				        var newid = 0;
+				        $.each($("#tab_logic tr"), function() 
+				        {
+				            if (parseInt($(this).data("id")) > newid) {
+				                newid = parseInt($(this).data("id"));
+				            }
+				        });
+				        newid++;
+				        
+				        var tr = $("<tr></tr>", {
+				            id: "addr"+newid,
+				            "data-id": newid
+				        });
+				        
+				        // loop through each td and create new elements with name of newid
+				        $.each($("#tab_logic tbody tr:nth(0) td"), function() 
+				        {
+				            var cur_td = $(this);
+				            
+				            var children = cur_td.children();
+				            
+				            // add new td and element if it has a nane
+				            if ($(this).data("name") != undefined) {
+				                var td = $("<td></td>", {
+				                    "data-name": $(cur_td).data("name")
+				                });
+				                
+				                var c = $(cur_td).find($(children[0]).prop('tagName')).clone().val("");
+				                c.attr("name", $(cur_td).data("name") + newid);
+				                c.appendTo($(td));
+				                td.appendTo($(tr));
+				            } else {
+				                var td = $("<td></td>", {
+				                    'text': $('#tab_logic tr').length
+				                }).appendTo($(tr));
+				            }
+				        });
+				        
+	        
+				        // add the new row
+				        $(tr).appendTo($('#tab_logic'));
+				        
+				        $(tr).find("td button.row-remove").on("click", function() {
+				             $(this).closest("tr").remove();
+				        });
+				});
+
+
+
+
+				    // Sortable Code
+				    var fixHelperModified = function(e, tr) 
+				    {
+				        var $originals = tr.children();
+				        var $helper = tr.clone();
+				    
+				        $helper.children().each(function(index) {
+				            $(this).width($originals.eq(index).width())
+				        });
+				        
+				        return $helper;
+				    };
+				  
+				   /*$(".table-sortable tbody").sortable({
+				        helper: fixHelperModified      
+				    }).disableSelection();
+
+				   $(".table-sortable thead").disableSelection();*/
+
+
+
+				    $(add_new_row).trigger("click");
+});
 		
 		//jQuery time
 		var current_fs, next_fs, previous_fs;   //fieldsets
@@ -94,7 +184,7 @@ console.log('load perido');
 								console.log(response);
 								  console.log('paseeee');
 								  $('#response').html(response);
-								  editing();
+								  
 								  checkcurrentform(); 
 								  console.log('probando');
 
@@ -207,21 +297,8 @@ console.log('load perido');
 		// console.log(agea);
 		//}
 	});
-	editing();
+	
  }
-
-function editing(controller) {
-	console.log('editig');
-	console.log(globals.URL + 'controldeestudios' + '/editinline');
-	$.fn.editable.defaults.mode = 'inline';
-	$('.editable').editable({
-		url : globals.URL + 'controldeestudios' + '/editinline',
-		success : function(response, newValue) 
-		{
-			console.log(response);
-		}
-	});
-}
 
 
 

@@ -60,6 +60,7 @@
               <input type="button" name="next" class="next btn" value="Asignar pensum »" >
 
         </fieldset>
+      </form>
         <div id="response"> </div>
     
               <div class="clearfix">&nbsp;</div>

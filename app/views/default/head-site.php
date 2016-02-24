@@ -21,6 +21,7 @@
     <script data-main="<?php echo JS;?>main-app" src="<?php echo JS; ?>require.js"></script>
 </head>
 <body id="<?php echo "page-".getPage(); ?>">
+    <div id="preloader"></div>
     <header>
        <a href="<?php echo URL; ?>"> <img src="<?php echo IMG; ?>modelsview-logo.svg" alt="Model's View Group Academia de Modelaje" title="Model's View Group Academia de Modelaje"></a>
         <hr>

@@ -12,7 +12,7 @@ define(function() {
 		if (cache[url]) {
 			cache[url].show();	//$('#preloader').fadeOut();			
 		} else {
-			$('#preloader').show();			
+			//$('#preloader').show();			
 			//show preloader per request -- This is not related to first login preloader			
 			cache[url] = $('<div class="view"/>').appendTo('#desktop').load(url, function() {
 				
@@ -78,6 +78,7 @@ define(function() {
 				}
 
 				$('#preloader').fadeOut();
+				//console.log("nemesis");
 			});
 			
 		}

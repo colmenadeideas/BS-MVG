@@ -35,6 +35,11 @@
 			return DB::query("SELECT  a.`id`,a.`slug`,a.`name`,a.`description`,b.`id` as `id_pensum`, b.estatus FROM " . DB_PREFIX . "courses a  LEFT JOIN cde_pensum b  ON (a.id = b.id_courses AND b.estatus = 'Activo')");
 		}
 
+		public function getListAvaibleMat()
+		{
+			//return DB::query("SELECT * FROM " . DB_PREFIX . "cde_materia,courses_available_groups WHERE cde_materia.estatus ='Activo' AND courses_available_groups.parent_id = cde_materia.id_courses");
+			return DB::query("SELECT * FROM " . DB_PREFIX . "courses, cde_materia WHERE cde_materia.estatus =  'Activo' AND  `courses`.id = cde_materia.id_courses AND `courses`.`status` =1");
+		}
 		
 	}
 		

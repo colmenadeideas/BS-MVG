@@ -11,7 +11,7 @@
 			
 			$this->loadModel('courses');
 			$this->view->courses = $this->model->listAvailableCourses();
-
+			$this->view->materias = $this->model->getListAvaibleMat();
 			$this->view->title = "MODEL'S VIEW | Escuela";
 			$this->view->buildpage('site/academia', 'site');	
 

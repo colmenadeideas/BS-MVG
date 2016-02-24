@@ -160,7 +160,7 @@
 					if(empty($aux))
 					{
 						$aux = $this->model->getCourse($value);
-						$pensumInactivos[$value] = $aux;
+						$pensumActivos[$value] = $aux;
 					}
 					else
 					{

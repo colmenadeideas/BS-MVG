@@ -370,7 +370,7 @@
 
 			if (($file == '.')||($file == '..')) {
 			} elseif (is_dir($tdir.'/'.$file)){
-				filesInDir($tdir.'/'.$file);
+				FilesInDir($tdir.'/'.$file);
 			} else {
 				//Solo los thumbs							
 				$pos = strpos($file, "s");

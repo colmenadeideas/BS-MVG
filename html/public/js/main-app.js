@@ -83,7 +83,7 @@ require([
       var accessHash = $.param.fragment();
       
       console.log("Access:" + accessArray[3] +" Hash:" + accessHash);
-
+      $('#preloader').fadeOut();
       switch(accessArray[3]) {
         case "site":
           require(['app/site'], function(Site) {

@@ -17,8 +17,7 @@
 		public function kids() 	{	$this->agency("kids"); 	}
 
 		public function agency($category) {
-						
-
+			
 			$this->view->title = "MODEL'S VIEW | Agencia de Modelos - ".strtoupper($category);
 			$this->view->category = $category;
 
@@ -28,14 +27,9 @@
 
 		}
 
-		public function load($what, $pagination = "1")
-		{
-		
-			$this->view->models = $this->model->getModels($what, $pagination+1);
-			
-			$thi = DB::count();
-			$this->view->last_row =$thi; 
-			echo $thi;
+		public function load($what, $pagination = "0"){
+			$this->view->models = $this->model->getModels($what, $pagination);
+			$this->view->last_row = DB::count() + $pagination;
 			$this->view->render('site/agencia-pagination');					
 		}
 		

@@ -37,8 +37,8 @@
 
 		public function getListAvaibleMat()
 		{
-			//return DB::query("SELECT * FROM " . DB_PREFIX . "cde_materia,courses_available_groups WHERE cde_materia.estatus ='Activo' AND courses_available_groups.parent_id = cde_materia.id_courses");
-			return DB::query("SELECT * FROM " . DB_PREFIX . "courses, cde_materia WHERE cde_materia.estatus =  'Activo' AND  `courses`.id = cde_materia.id_courses AND `courses`.`status` =1");
+			//return DB::query("SELECT * FROM " . DB_PREFIX . "courses, cde_materia WHERE cde_materia.estatus =  'Activo' AND  `courses`.id = cde_materia.id_courses AND `courses`.`status` =1");
+			return DB::query("SELECT cde_materia.`id`,`nombre_materia`,`id_courses`,`estatus`,trimestre FROM " . DB_PREFIX . "courses, cde_materia WHERE cde_materia.estatus =  'Activo' AND  `courses`.id = cde_materia.id_courses AND `courses`.`status` =1");
 		}
 		
 	}

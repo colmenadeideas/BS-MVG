@@ -75,7 +75,7 @@ require([
     'app/hashchange'
     ],
     function($, app, start) { 
-
+ 
       var accessArray = window.location.pathname.split('/');
       console.log(window.location);
 
@@ -101,8 +101,11 @@ require([
           });     
           break;
         case "agencia":
-          require(['app/agencia'], function(Agencia) {
-            Agencia.run();                                                    
+           
+          require(['app/agencia'], function(agencia) {
+            agencia.run();
+
+
           });     
           break;
 

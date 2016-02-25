@@ -1,4 +1,5 @@
 <h1 class="fixedtitle"><a href="#cursos-disponibles">Escuela de Modelos</a></h1>
+
 <nav id="escuela-menu">	
 	<ul>
         <a href="#cursos-disponibles">
@@ -10,7 +11,8 @@
 			foreach ($this->courses as $course) { ?>
 				<a href="#escuela-<?php echo $course['slug']; ?>">
 					<li data-menuanchor="<?php echo $course['slug']; ?>">
-						<?php echo $course['name']; ?>
+                        <?php echo $course['name']; ?>
+
 					</li>
 				</a>
 		<?php } ?>
@@ -23,6 +25,7 @@
 	<?php foreach ($this->courses as $course) { ?>
    
 	<div class="section" id="<?php echo $course['slug']; ?>">
+
         <div class="col-lg-12 nopadding register-instructions">
            <div class="col-lg-8 col-md-8 col-md-push-4">
                 <div class="col-lg-2 text-center">
@@ -55,7 +58,7 @@
                 $t3 = false;    
                 $t4 = false;    
                 $t5 = false;    
-               
+                $band = false;
                foreach ($this->materias as $materia) 
                {  
                   
@@ -69,7 +72,7 @@
                                     <li><?php echo $materia['nombre_materia']; ?></li>       
                             <?php }     
                                 else
-                                { $t1 =true;?>
+                                { $t1 =true;$band = true;?>
                                     <div class="col-lg-4 col-md-4 col-sm-4 cronograma-materias">
                                      <h3>1er Trimestre</h3>
                                         <ul>
@@ -154,7 +157,7 @@
                } ?>
            </ul>
        </div>
-             *El pensum esta sujeto a cambio sin previo aviso
+            *El pensum esta sujeto a cambio sin previo aviso
 	</div>
 	<?php } ?>
 </div>

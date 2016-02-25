@@ -1,13 +1,15 @@
 define(['globals', 'functions'], function(globals, functions) {
+			
 	function run() {
-		
 		$(window).scroll(function(){
 			var category = $('[name="category"]').last().val();
-
-            if  ($(window).scrollTop() == $(document).height() - $(window).height()){
+					var aux = $(document).height() - $(window).height();
+            if  ($(window).scrollTop() >= $(document).height() - $(window).height()){
                //Call for Pagination
+               
                 var pagination = $('[name="pagination"]').last().val();
-                console.log( "Hit the end"+pagination);
+               
+                console.log( "Hit the end "+pagination);
                 $('div#loadmore').show();
                 $.ajax({
 					url: globals.URL+"agencia/load/"+category+"/"+pagination,
@@ -21,10 +23,7 @@ define(['globals', 'functions'], function(globals, functions) {
 					}
 				});
             }
-        });
-		
-
-	   
+         });
 	}
 
 return {

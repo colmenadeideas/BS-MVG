@@ -166,12 +166,15 @@ h1.fixedtitle a:hover { color:#000; text-decoration: none }
   background-image: url(../images/models-view-escuela-infantil.jpg);
 }
 #pre-juvenil { 
-  background-image: url(../images/models-view-escuela-juvenil.jpg);
+ /* background-image: url(../images/models-view-escuela-juvenil.jpg);*/
+     background-image: url(../images/models-view-escuela-proximamente.jpg); 
+
 }
 #juvenil { 
   background-image: url(../images/models-view-escuela-juvenil.jpg);
 }
-#taller-automaquillaje, #certificacion-5-estrellas {
+#taller-automaquillaje, #certificacion-5-estrellas 
+{
     background-image: url(../images/models-view-escuela-proximamente.jpg); 
 }
 #infantil, #pre-juvenil, #juvenil { background-position: top left; background-size: cover }

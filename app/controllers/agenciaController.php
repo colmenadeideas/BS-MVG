@@ -9,7 +9,9 @@
 
 		public function index() {
 			
-			$this->women();
+			//$this->women();
+			$this->view->title = "MODEL'S VIEW | Agencia de Modelos";
+			$this->view->buildpage('site/agencia', 'site');	
 		}
 
 		public function women() {	$this->agency("women"); }

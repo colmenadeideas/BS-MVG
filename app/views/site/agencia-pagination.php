@@ -1,6 +1,6 @@
 <input name="pagination" value="<?php echo $this->last_row;?>" type="hidden">
 
-<?php foreach ($this->models as $Model) { ?>
+<?php foreach ($this->models as $Model) {echo $Model['name']."_".$Model['lastname'];;?>
 	<article class="col-lg-6 col-md-6 col-sm-6 model-item">	
 		<div id="<?php echo create_slug(strtolower($Model['name']."-".$Model['lastname'][0])); ?>" class="col-lg-6 col-md-6 col-sm-6 nopadding">
 			 <img src="<?php echo IMAGES; ?>modelos/<?php echo create_slug(strtolower($Model['name']."_".$Model['lastname'])); ?>/01.jpg" 
@@ -15,10 +15,15 @@
 			  
 
 			        <?php
+        
 			        $id_indicator = create_slug(strtolower($Model['name']."-".$Model['lastname'][0]))."-portfolio"; 
 					$imagen = $Model['name']."_".$Model['lastname'];
-					$imagen = preg_replace('`&[^;]+Ã­;`','',htmlentities($imagen));
-					FilesInDir(strtolower($imagen)); ?>
+					$imagen = normaliza($imagen);	
+					FilesInDir(strtolower($imagen),'true');
+
+   				
+
+					 ?>
 			   
 				<a class="left carousel-control" href="#<?php echo create_slug(strtolower($Model['name']."-".$Model['lastname'][0])); ?>-portfolio" data-slide="prev">
 			       <img src="<?php echo IMG; ?>leftarrow.png" />

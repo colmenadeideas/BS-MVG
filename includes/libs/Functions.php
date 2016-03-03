@@ -354,15 +354,23 @@
 			return end($current);	
 		}
 	}
-
+	function normaliza ($cadena)
+	{
+	    $originales = 'ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõöøùúûýýþÿŔŕ';
+	    $modificadas = 'aaaaaaaceeeeiiiidnoooooouuuuybsaaaaaaaceeeeiiiidnoooooouuuyybyRr';
+	    $cadena = utf8_decode($cadena);
+	    $cadena = strtr($cadena, utf8_decode($originales), $modificadas);
+	    return utf8_encode($cadena);
+	}
 	
-	function FilesInDir($tdir)	{ //funcion para abrir la carpeta y leer las fotos disponibles
+	function FilesInDir($tdir,$carr='')	{ //funcion para abrir la carpeta y leer las fotos disponibles
 		$fulldir = IMAGES.'modelos/'.$tdir;
 		//$dirs = scandir(IMAGES.'modelos/'.$tdir);
 		$dirs = scandir(dirname(SITE_PATH)."/html/public/images/modelos/".$tdir."/");
 		//agata-r-portfolio
+		
+			$count=0;
 
-		$count=0;
 		//$indicators = '<ol class="carousel-indicators">';
 		$banners =  '<div class="carousel-inner">';
 
@@ -370,15 +378,29 @@
 
 			if (($file == '.')||($file == '..')) {
 			} elseif (is_dir($tdir.'/'.$file)){
-				FilesInDir($tdir.'/'.$file);
+				FilesInDir($tdir.'/'.$file,$carr);
 			} else {
+
 				//Solo los thumbs							
 				$pos = strpos($file, "s");
-				if ($pos === false) { //Si el archivo  contiene s en su nombre, omitir
-					if ($file == "01.jpg" ) { $active = "active";} else { $active = ""; }
-				$banners.='<div class="item '.$active.'">
-			            <img src="'.$fulldir."/".$file.'" class="img-responsive">
-			        </div>';
+				$pos2 = strpos($file, "_DS_Store");
+				
+				if ($pos === false and $pos=== false) 
+				{ //Si el archivo  contiene s en su nombre, omitir
+					if(empty($carr))
+					{
+						if ($file == "01.jpg" ) { $active = "active";} else { $active = ""; }
+						$banners.='<div class="item '.$active.'">
+				            <img src="'.$fulldir."/".$file.'" class="img-responsive">
+				        </div>';
+			    	}
+			    	else
+			    	{
+						if ($file == "02.jpg" ) { $active = "active";} else { $active = ""; }
+						$banners.='<div class="item '.$active.'">
+				            <img src="'.$fulldir."/".$file.'" class="img-responsive">
+				        </div>';
+			    	}	
 			   // $indicators.= '<li data-target="'.$id_indicator.'" data-slide-to="'.$count.'" class="'.$active.'"></li>';							
 				} else {
 					//Si el archivo se llama 's'algo lo omite porque es un thumb							
@@ -482,6 +504,7 @@
 		$string = $tmp;
 		return $string;
 	}
+
 	
 			
 ?>

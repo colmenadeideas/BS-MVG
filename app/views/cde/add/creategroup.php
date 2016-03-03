@@ -84,7 +84,7 @@
                                       <div class=" col-md-10 col-lg-10">
                                           <strong><?php echo $activos[0]['slug']; ?></strong><br>
                                           <!--table class="table table-user-information"-->
-                                           <table class="table table-bordered table-hover table-sortable" id="tab_logic" name="">
+                                           <table class="table table-bordered table-hover table-sortable tab_logic" >
                                               <thead>
                                                 <tr >
                                                   <th class="text-center">
@@ -125,7 +125,7 @@
                                                 </tr>
                                               </tbody>
                                             </table>
-                                          <div> <a id="add_row"  class="add_row_new btn">Add Row</a> </div>
+                                          <div> <a  class="add_row_new btn add_row"  >Add Row</a> </div>
                                       </div>
                                   </div>
                               </div>

@@ -22,7 +22,8 @@
 			
 			$permisos = json_decode($permisos[0]['permissions'], TRUE);
 			
-			foreach ($permisos as $key => $value) {
+			foreach ($permisos as $key => $value) 
+			{
 				//Check if Menu is authorized for user role
 				if ($value == 1) { 
 					$menu = $this->model->getMenu($key);
@@ -59,7 +60,8 @@
 		public function cronogramas($action = "", $id = "")
 		 {
 			
-			switch ($action) {
+			switch ($action) 
+			{
 				case 'get':
 
 						$activities = $this->model->getCronograma($id);
@@ -79,7 +81,39 @@
 		}
 		
 /*borrado las funciones profesor, add, saveinfo 01022016 */
-		
+		public function process()
+		{
+				print_r($_POST);
+				$array_data['fecha'] = escape_value($_POST['fecha']);
+				unset($_POST['fecha']);				
+				$num_courses = escape_value($_POST['num_courses']);
+				unset($_POST['num_courses']);
+				unset($_POST['next']);
+				$i =1;$j=0;
+				foreach ($_POST as $key => $value)
+				{
+					$field = escape_value($key);
+					$field_data = escape_value($value);
+					$array_data[$field] = $field_data;
+				}
+
+				$pensum="Pensum_".$i;
+				$slug=$array_data['slug_'.$i];
+				
+				foreach ($variable as $key => $value) 
+				{
+					if($key!=$pensum )
+					{
+
+					}
+					else
+					{
+						$i++;
+						$pensum="Pensum_".$i;
+
+					}	
+				}
+		}
 
 		public function users($action='') 
 		{
@@ -92,13 +126,14 @@
 			}
 		
 		}
+		
 		/*puebaaaa muejajaja */
-		public function periodo2()
+		public function periodo()
 		{	
 			
 			$courses[1]=1;
 			$courses[2]=2;
-			$courses[3]=3;
+			//$courses[3]=3;
 			$i = 0;
 				foreach ($courses as $key => $value) 
 				{
@@ -106,7 +141,7 @@
 					if(empty($aux))
 					{
 						$aux = $this->model->getCourse($value);
-						$pensumInactivos[$value] = $aux;
+						$pensumActivos[$value] = $aux;
 					}
 					else
 					{
@@ -115,14 +150,14 @@
 					unset($aux);
 				}
 
-				$this->view->pensumInactivos = $pensumInactivos;
+				
   				$this->view->pensumActivos   = $pensumActivos;
   				$this->view->materias        = $this->model->getMaterias();
   				$this->view->fecha           = $array_data['fechaInicio'];
   				$this->view->render('cde/add/creategroup');	
 
 		}
-		public function periodo($action = '')
+		public function periodo2($action = '')
 		{
 			
 			if(empty($_POST))
@@ -168,7 +203,7 @@
 					}
 					unset($aux);
 				}
-				$this->view->pensumInactivos = $pensumInactivos;
+				
   				$this->view->pensumActivos   = $pensumActivos;
   				$this->view->materias        = $this->model->getMaterias();
   				$this->view->fecha           = $array_data['fechaInicio'];

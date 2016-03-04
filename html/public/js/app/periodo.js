@@ -81,16 +81,19 @@ console.log('load perido');
 
 			$(document).ready(function() 
 			{
-			 	//var add_new_row = "#add_row"/*+$("#prueba").val()*/;
+			 	
 
-   			$("#add_row").on("click", function() 
+   			$(".add_row").on("click", function() 
    			{
 				        // Dynamic Rows Code
 				        
 				        // Get max row id and set new id
 				        var newid = 0;
-				        $.each($("#tab_logic tr"), function() 
+				        var curso = $(this).data("table");
+				      	var table = "#tab_logic_"+curso;
+				        $.each($(table +" tr"), function() 
 				        {
+
 				            if (parseInt($(this).data("id")) > newid) {
 				                newid = parseInt($(this).data("id"));
 				            }
@@ -103,7 +106,7 @@ console.log('load perido');
 				        });
 				        
 				        // loop through each td and create new elements with name of newid
-				        $.each($("#tab_logic tbody tr:nth(0) td"), function() 
+				        $.each($(table+ " tbody tr:nth(0) td"), function() 
 				        {
 				            var cur_td = $(this);
 				            
@@ -121,14 +124,14 @@ console.log('load perido');
 				                td.appendTo($(tr));
 				            } else {
 				                var td = $("<td></td>", {
-				                    'text': $('#tab_logic tr').length
+				                    'text': $(table+' tr').length
 				                }).appendTo($(tr));
 				            }
 				        });
 				        
 	        
 				        // add the new row
-				        $(tr).appendTo($('#tab_logic'));
+				        $(tr).appendTo($(table));
 				        
 				        $(tr).find("td button.row-remove").on("click", function() {
 				             $(this).closest("tr").remove();
@@ -159,7 +162,7 @@ console.log('load perido');
 
 
 
-				    $("#add_row").trigger("click");
+				   // $(".add_row").trigger("click");
 });
 		
 		//jQuery time

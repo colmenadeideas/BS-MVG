@@ -1,4 +1,4 @@
-<?php $pensumActivos = $this->pensumActivos;  ?>
+<?php $pensumActivos = $this->pensumActivos; //print_r($pensumActivos); ?>
 <?php $materias = $this->materias;     ?>
 
 
@@ -13,6 +13,7 @@
     $band = empty($activos[0]['order']);
 
   ?>
+  
    <div class="container">
          <div class="table-responsive">
            <div class="well col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-lg-offset-2" style="margin-left: 0px;">
@@ -34,8 +35,8 @@
                   <div class="row user-infos <?php echo $activos[0]['slug']; ?>">
                       <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xs-offset-0 col-sm-offset-0 col-md-offset-1 col-lg-offset-1">
                      <?php if($band) {?>
-                        
-                      <p><input type="radio" name="Pensum_<?php echo $i; ?>" value="actual" checked ><p>Pensum actual   <span data-toggle="collapse" data-target="#<?php echo $activos[0]['slug'].'1'; ?>"> Ver mas</span></p></p>
+                       <p><input type="radio" name="Pensum_<?php echo $i; ?>" value="actual" checked ><p>Pensum actual   <span data-toggle="collapse" data-target="#<?php echo $activos[0]['slug'].'1'; ?>"> Ver mas</span></p></p>                    
+                       <input type="hidden" name="id_<?php echo $activos[0]['slug']; ?>" value="<?php echo $activos[0]['id_courses']; ?>" >
                          <div id="<?php echo $activos[0]['slug'].'1'; ?>" class="collapse">
                               <div class="panel panel-primary" style="border-color: #1F1F1F; ">
                               <div class="panel-heading" style="border-color: #1F1F1F; background-color: #0D0D0E;">
@@ -99,8 +100,10 @@
 
                       <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xs-offset-0 col-sm-offset-0 col-md-offset-1 col-lg-offset-1">
                         <div> 
-
-                          <input type="radio" name="Pensum_<?php echo $i; ?>"  <?php if(!$band){ echo "checked"; echo 'value="nuevo"';}else{ echo 'value="actulizado"';} ?> > <p data-toggle="collapse" data-target="#<?php echo $activos[0]['slug'].'2'; ?>"  >Crear pensum nuevo</p></div>
+                          <input type="radio" name="Pensum_<?php echo $i; ?>"  <?php if(!$band){ echo "checked "; echo 'value="nuevo"';}else{ echo 'value="actulizado"';} ?> > <p data-toggle="collapse" data-target="#<?php echo $activos[0]['slug'].'2'; ?>"  >Crear pensum nuevo</p></div>
+                         <?php if(!$band){  ?>
+                            <input type="hidden" name="id_<?php echo $activos[0]['slug']; ?>" value="<?php echo $activos[0]['id']; ?>" >
+                          <?php  } ?>
                          <div id="<?php echo $activos[0]['slug'].'2'; ?>" class="collapse">
                               <div class="panel panel-primary" style="border-color: #1F1F1F; ">
                               <div class="panel-heading" style="border-color: #1F1F1F; background-color: #0D0D0E;">
@@ -142,11 +145,11 @@
                                                   </td>
                                                     <td data-name="sel_<?php echo $activos[0]['slug']; ?>_">
                                                       <select name="sel_<?php echo $activos[0]['slug']; ?>_0" >
-                                                              <option value"1" >Trimestre 1</option>
-                                                              <option value"2">Trimestre 2</option>
-                                                              <option value"3">Trimestre 3</option>
-                                                              <option value"4">Trimestre 4</option>
-                                                              <option value"5">Trimestre 5</option>
+                                                              <option value="1">Trimestre 1</option>
+                                                              <option value="2">Trimestre 2</option>
+                                                              <option value="3">Trimestre 3</option>
+                                                              <option value="4">Trimestre 4</option>
+                                                              <option value="5">Trimestre 5</option>
                                                       </select>
                                                     </td>
                                                               <td data-name="del">

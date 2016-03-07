@@ -83,36 +83,80 @@
 /*borrado las funciones profesor, add, saveinfo 01022016 */
 		public function process()
 		{
-				print_r($_POST);
-				$array_data['fecha'] = escape_value($_POST['fecha']);
-				unset($_POST['fecha']);				
+				
+				//print_r($_POST);
+				$fecha = escape_value($_POST['fecha']);
 				$num_courses = escape_value($_POST['num_courses']);
+				unset($_POST['fecha']);				
 				unset($_POST['num_courses']);
 				unset($_POST['next']);
-				$i =1;$j=0;
+				$i =1;$j=1;
+				$band = true;
+				$aux_array = $array_data;
+				
 				foreach ($_POST as $key => $value)
 				{
 					$field = escape_value($key);
 					$field_data = escape_value($value);
 					$array_data[$field] = $field_data;
 				}
-
-				$pensum="Pensum_".$i;
-				$slug=$array_data['slug_'.$i];
 				
-				foreach ($variable as $key => $value) 
+				$pensum = "Pensum_".$i;
+				$pensum_value = $array_data["Pensum_".$i];
+				$slug   = $array_data['slug_'.$i];
+				$id     = $array_data['id_'.$slug];
+				
+				unset($array_data['slug_'.$i]);
+				unset($array_data["Pensum_".$i]);
+				unset($array_data['id_'.$slug]);
+				print_r($array_data);
+				exit;
+				foreach ($array_data as $key => $value) 
 				{
+					
+		
 					if($key!=$pensum )
 					{
+						if(strpos($key, '_'.$slug.'_'.'0')!==false)
+						{
+							switch ($key) {
+								case 'materia_'.$slug.'_'.$j:
+									$array_mat['nombre_materia']  = $value;
+									break;								
+								case 'desc_'.$slug.'_'.$j:
+									$array_mat['descripcion']     = $value;
+									break;
+								case 'sel_'.$slug.'_'.$j:
+									$array_mat['trimestre']       = $value;
+									$array_mat['id_courses']      = $id;
+									$array_materia[$j]            = $array_mat;
+									$j++;
+
+									break;
+								
+								default:
+									# code...
+									break;
+							}
+
+
+						}
+			
 
 					}
 					else
 					{
+						
 						$i++;
-						$pensum="Pensum_".$i;
-
+						$pensum = "Pensum_".$i;
+						$pensum_value = $array_data["Pensum_".$i];
+						$slug   = $array_data['slug_'.$i];
+						$id     = $array_data['id_'.$slug];
+						$j = 1;
+						$band = true;
 					}	
 				}
+				
 		}
 
 		public function users($action='') 

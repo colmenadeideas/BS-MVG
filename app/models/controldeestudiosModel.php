@@ -60,12 +60,10 @@
 			return $result;		
 		}
 
-		/*public function getMateriaCourse($id)
-		{
-						$result = DB::query("SELECT m.`id`,m.`id_pensum`,m.`codigo`,m.`nombre_materia`,m.`descripcion`,m.`trimestre`,m.`id_courses`,m.`estatus` 
-			FROM `cde_materia` m, `courses` c
-			 WHERE m.`id_courses` = c.`id` AND m.`estatus` ='Activo'")
-		}*/
+		public function getPensum($id) 
+		{	
+			return DB::query("SELECT * FROM " . DB_PREFIX . "cde_pensum  WHERE `id_courses`=$id and `estatus`='activo' LIMIT 1");
+		}
 
 		public function getMaterias() 
 		{

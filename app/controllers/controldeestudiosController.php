@@ -89,10 +89,9 @@
 				$num_courses = escape_value($_POST['num_courses']);
 				unset($_POST['fecha']);				
 				unset($_POST['num_courses']);
-				unset($_POST['next']);
-				$i =1;$j=1;
-				$band = true;
-				$aux_array = $array_data;
+
+
+				
 				
 				foreach ($_POST as $key => $value)
 				{
@@ -100,60 +99,137 @@
 					$field_data = escape_value($value);
 					$array_data[$field] = $field_data;
 				}
-				
-				$pensum = "Pensum_".$i;
+				$i =1;$j=1;
+				$band = true;
+				$aux_array = $array_data;
+
+				$pensum = "Pensum_2";
 				$pensum_value = $array_data["Pensum_".$i];
 				$slug   = $array_data['slug_'.$i];
 				$id     = $array_data['id_'.$slug];
 				
-				unset($array_data['slug_'.$i]);
-				unset($array_data["Pensum_".$i]);
-				unset($array_data['id_'.$slug]);
-				print_r($array_data);
-				exit;
+				unset($array_data['slug_'.$i]);unset($array_data["Pensum_".$i]);unset($array_data['id_'.$slug]);
+				$i++;
+			
 				foreach ($array_data as $key => $value) 
 				{
-					
-		
+				
 					if($key!=$pensum )
 					{
-						if(strpos($key, '_'.$slug.'_'.'0')!==false)
-						{
-							switch ($key) {
-								case 'materia_'.$slug.'_'.$j:
-									$array_mat['nombre_materia']  = $value;
-									break;								
-								case 'desc_'.$slug.'_'.$j:
-									$array_mat['descripcion']     = $value;
-									break;
-								case 'sel_'.$slug.'_'.$j:
-									$array_mat['trimestre']       = $value;
-									$array_mat['id_courses']      = $id;
-									$array_materia[$j]            = $array_mat;
-									$j++;
-
-									break;
-								
-								default:
-									# code...
-									break;
-							}
-
-
+						if(strpos($key, '_'.$slug.'_'.'0')===false)
+						{	
+							
+								switch ($key) 
+								{
+									case 'materia_'.$slug.'_'.$j:
+									
+										$array_mat['nombre_materia']  = $value;
+										
+										break;								
+									case 'desc_'.$slug.'_'.$j:
+									
+										$array_mat['descripcion']     = $value;
+										
+										break;
+									case 'sel_'.$slug.'_'.$j:
+									
+										$array_mat['trimestre']       = $value;
+										$array_mat['id_courses']      = $id;
+										$array_materia[$j]            = $array_mat;
+										
+										unset($array_mat);
+										$j++;
+										
+										break;
+									default:
+										# code...
+										break;
+								}
 						}
-			
-
+						if($pensum_value == 'actual' and $band)
+						{
+							
+							$pen_act = $this->model->getPensum($id);
+							$vars['id_pensum']  = $pen_act[0]['id'];
+							$vars['id_courses'] = $id;
+							$vars['star_date']  = '2015-03-26 10:26:43'; // poner las fecha que van 
+							$vars['end_date']   = '2015-03-26 10:26:43';
+							//$insert = $this->helper->insert('cde_periodo', $vars);
+							$band = false;
+						}
 					}
 					else
 					{
-						
-						$i++;
-						$pensum = "Pensum_".$i;
-						$pensum_value = $array_data["Pensum_".$i];
-						$slug   = $array_data['slug_'.$i];
-						$id     = $array_data['id_'.$slug];
-						$j = 1;
-						$band = true;
+
+						switch ($key) 
+						{
+								
+							case 'Pensum_'.$i :
+
+								if($pensum_value == 'actualizado' or $pensum_value == 'nuevo' )
+								{
+									/*desactivar el pensum actual*/
+									if ($pensum_value == 'actualizado' ) 
+									{
+										$pen_act = $this->model->getPensum($id);
+										$vars['estatus'] = 'Inactivo';
+										$this->helper->update('cde_pensum', $pen_act[0]['id'], $vars);
+										unset($vars);
+									}
+
+									/*crear pensum */
+									$vars['codigo'] = '20162';
+									$vars['estatus'] = 'Activo';
+									$insert = $this->helper->insert('cde_pensum', $vars);
+									unset($vars);
+									
+									/* crear materias para el curso */
+									$id_pensum = DB::insertId();
+									$vars['id_pensum'] = $id_pensum;
+									$vars['id_courses'] = $id;
+									$vars['estatus'] ='Activo';
+									foreach ($array_materia as $mat) 
+									{
+										$vars['nombre_materia'] = $mat['nombre_materia'];
+										$vars['descripcion'] 	= $mat['descripcion'];
+										$vars['trimestre'] 		= $mat['trimestre'];
+										$insert = $this->helper->insert('cde_materia', $vars);
+
+									}
+									unset($vars);
+
+									/*crear el periodo*/
+									$vars['id_pensum']  = $id_pensum;
+									$vars['id_courses'] = $id;
+									$vars['star_date']  = '2015-03-26 10:26:43'; // poner las fecha que van 
+									$vars['end_date']   = '2015-03-26 10:26:43';
+									$insert = $this->helper->insert('cde_periodo', $vars);
+									unset($vars);
+
+									/*fin del proceso */	
+								}	
+								$pensum = "Pensum_".$i;
+								$pensum_value = $value;
+								break;
+							case 'slug_'.$i :
+								$slug   = $value;
+								break;
+							case 'id_'.$slug :
+								$id = $value;
+								$j = 1;
+								$band = true;
+							break;
+
+							case 'next!':
+							
+								break;
+							
+							default:
+								# code...
+								break;
+						}
+
+
 					}	
 				}
 				

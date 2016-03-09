@@ -26,21 +26,22 @@
                           <img class="img-responsive img-circle" src="<?php echo IMAGES; ?>courses/<?php echo $activos[0]['slug']; ?>/course.jpg"  alt="User Pic">
                       </div>
                       <div class="col-xs-8 col-sm-9 col-md-10 col-lg-10">
-                          <strong><?php echo $activos[0]['slug']; ?></strong><br>
+                          <strong style="text-Transform: uppercase;font-size: x-large;"><?php echo $activos[0]['slug']; ?></strong><br>
                           <span class="text-muted">Pensum:<?php if(!$band) echo "NO"; ?> Disponible </span>
                       </div>
-                      <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 dropdown-user" data-for=".<?php echo $activos[0]['slug']; ?>">
+                      <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 dropdown-user" data-for=".<?php echo $activos[0]['slug']; ?>" style="font-size: xx-large;">
                           <i class="glyphicon glyphicon-chevron-down text-muted"></i>
                       </div>
                   </div>
 
                   <div class="row user-infos <?php echo $activos[0]['slug']; ?>">
-                      <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xs-offset-0 col-sm-offset-0 col-md-offset-1 col-lg-offset-1">
                      <?php if($band) {?>
-                       <p><input type="radio" name="Pensum_<?php echo $i; ?>" value="actual" checked ><p>Pensum actual   <span data-toggle="collapse" data-target="#<?php echo $activos[0]['slug'].'1'; ?>"> Ver mas</span></p></p>                    
+                      <span class="btn btn-primary" data-toggle="collapse" data-target="#<?php echo $activos[0]['slug'].'1'; ?>"> <input type="radio" name="Pensum_<?php echo $i; ?>" value="actual" checked >Pensum actual  </span>               
+                       <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xs-offset-0 col-sm-offset-0 col-md-offset-1 col-lg-offset-1">
+
                        <input type="hidden" name="id_<?php echo $activos[0]['slug']; ?>" value="<?php echo $activos[0]['id_courses']; ?>" >
                          <div id="<?php echo $activos[0]['slug'].'1'; ?>" class="collapse">
-                              <div class="panel panel-primary" style="border-color: #1F1F1F; ">
+                              <div class="panel panel-primary" style="border-color: #1F1F1F;margin-top:40px; ">
                               <div class="panel-heading" style="border-color: #1F1F1F; background-color: #0D0D0E;">
                                   <h2 class="panel-title">Informacion del pensum actual </h2>
                               </div>
@@ -49,7 +50,7 @@
                                       <div class="col-md-2 col-lg-2 hidden-xs hidden-sm">
                                          <img class="img-responsive img-circle" src="<?php echo IMAGES; ?>courses/<?php echo $activos[0]['slug']; ?>/course.jpg"  alt="User Pic">
                                       </div>
-                                      <div class=" col-md-10 col-lg-10">
+                                      <div class=" col-md-10 col-lg-10" style="overflow-y: auto;height: 400px;">
                                           <strong><?php echo $activos[0]['slug']; ?></strong><br>
                                           <table class="table table-user-information">
                                             <tbody>
@@ -99,15 +100,15 @@
                         </div> 
                         <?php } ?> 
                       </div>
+                      <span class="btn btn-info"  data-toggle="collapse" data-target="#<?php echo $activos[0]['slug'].'2'; ?>" ><input type="radio" name="Pensum_<?php echo $i; ?>"  <?php if(!$band){ echo "checked "; echo 'value="nuevo"';}else{ echo 'value="actualizado"';} ?> > Crear pensum nuevo</span>
 
                       <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xs-offset-0 col-sm-offset-0 col-md-offset-1 col-lg-offset-1">
-                        <div> 
-                          <input type="radio" name="Pensum_<?php echo $i; ?>"  <?php if(!$band){ echo "checked "; echo 'value="nuevo"';}else{ echo 'value="actualizado"';} ?> > <p data-toggle="collapse" data-target="#<?php echo $activos[0]['slug'].'2'; ?>"  >Crear pensum nuevo</p></div>
+                       
                          <?php if(!$band){  ?>
                             <input type="hidden" name="id_<?php echo $activos[0]['slug']; ?>" value="<?php echo $activos[0]['id']; ?>" >
                           <?php  } ?>
                          <div id="<?php echo $activos[0]['slug'].'2'; ?>" class="collapse">
-                              <div class="panel panel-primary" style="border-color: #1F1F1F; ">
+                              <div class="panel panel-primary" style="border-color: #1F1F1F;margin-top:40px; ">
                               <div class="panel-heading" style="border-color: #1F1F1F; background-color: #0D0D0E;">
                                   <h2 class="panel-title">Informacion del pensum actual </h2>
                                   <input type="hidden" name="slug_<?php echo $i; ?>" value="<?php echo $activos[0]['slug']; ?>">   
@@ -117,7 +118,7 @@
                                       <div class="col-md-2 col-lg-2 hidden-xs hidden-sm">
                                          <img class="img-responsive img-circle" src="<?php echo IMAGES; ?>courses/<?php echo $activos[0]['slug']; ?>/course.jpg"  alt="User Pic">
                                       </div>
-                                      <div class=" col-md-10 col-lg-10">
+                                      <div class=" col-md-10 col-lg-10" style="overflow-y: auto;height: 400px;">
                                           <strong><?php echo $activos[0]['slug']; ?></strong><br>
                                           <!--table class="table table-user-information"-->
                                            <table class="table table-bordered table-hover table-sortable" id="tab_logic_<?php echo $activos[0]['slug']; ?>" >
@@ -177,7 +178,7 @@
         <div class="clearfix"></div>
 
               <input type="button" name="previous" class="previous btn" value="« Anterior">
-              <input type="submit" name="next" class="next btn" value="Listo!">
+              <input type="submit" name="next" class="btn btn-success" value="Listo!">
        
 </fieldset>
 

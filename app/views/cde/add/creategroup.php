@@ -1,9 +1,11 @@
 <?php $pensumActivos = $this->pensumActivos; //print_r($pensumActivos); ?>
 <?php $materias = $this->materias;     ?>
+<?php $fechas = $this->fecha;     ?>
 
 
 <form id="pensum" name="pensum" method="post" action='' novalidate="novalidate" class="stepform">
- <input type="hidden" name="fecha" value="<?php echo $this->fecha;  ?>">   
+ <input type="hidden" name="fechaInicio" value="<?php echo $this->fecha['inicio'];  ?>">   
+ <input type="hidden" name="fechaFin" value="<?php echo $this->fecha['fin'];  ?>">   
 
 <fieldset id="periodo-step2">
   <?php $i =0; foreach ($pensumActivos as $activos ) 
@@ -100,7 +102,7 @@
 
                       <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xs-offset-0 col-sm-offset-0 col-md-offset-1 col-lg-offset-1">
                         <div> 
-                          <input type="radio" name="Pensum_<?php echo $i; ?>"  <?php if(!$band){ echo "checked "; echo 'value="nuevo"';}else{ echo 'value="actulizado"';} ?> > <p data-toggle="collapse" data-target="#<?php echo $activos[0]['slug'].'2'; ?>"  >Crear pensum nuevo</p></div>
+                          <input type="radio" name="Pensum_<?php echo $i; ?>"  <?php if(!$band){ echo "checked "; echo 'value="nuevo"';}else{ echo 'value="actualizado"';} ?> > <p data-toggle="collapse" data-target="#<?php echo $activos[0]['slug'].'2'; ?>"  >Crear pensum nuevo</p></div>
                          <?php if(!$band){  ?>
                             <input type="hidden" name="id_<?php echo $activos[0]['slug']; ?>" value="<?php echo $activos[0]['id']; ?>" >
                           <?php  } ?>
@@ -178,9 +180,9 @@
               <input type="submit" name="next" class="next btn" value="Listo!">
        
 </fieldset>
- <input type="hidden" name="num_courses" value="<?php echo $i;  ?>">   
 
  </form>
+  <div id="response" class="col-lg-offset-3 col-xs-offset-3 col-lg-6 col-xs-6" style="margin-top:60px;" >
 
- <div id="response"></div>
+  </div> 
     

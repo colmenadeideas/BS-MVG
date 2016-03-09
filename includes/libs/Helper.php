@@ -55,7 +55,7 @@
 			return $ip;
 		}
 			
-		
+		 
 		//Database	
 		static function insert($tablename, $vars){
 			

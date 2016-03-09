@@ -83,38 +83,33 @@
 /*borrado las funciones profesor, add, saveinfo 01022016 */
 		public function process()
 		{
-				
-				//print_r($_POST);
-				$fecha = escape_value($_POST['fecha']);
-				$num_courses = escape_value($_POST['num_courses']);
-				unset($_POST['fecha']);				
+				$fechaInicio = escape_value($_POST['fechaInicio']);
+				$fechaFin    = escape_value($_POST['fechaFin']);
+				unset($_POST['fechaInicio']);				
+				unset($_POST['fechaFin']);				
 				unset($_POST['num_courses']);
-
-
-				
-				
+				/**/
 				foreach ($_POST as $key => $value)
 				{
 					$field = escape_value($key);
 					$field_data = escape_value($value);
 					$array_data[$field] = $field_data;
 				}
+				/*Inicializando las variables necesarias*/
+				//print_r($array_data);
 				$i =1;$j=1;
-				$band = true;
-				$aux_array = $array_data;
-
 				$pensum = "Pensum_2";
 				$pensum_value = $array_data["Pensum_".$i];
 				$slug   = $array_data['slug_'.$i];
 				$id     = $array_data['id_'.$slug];
-				
+				$band = true;
 				unset($array_data['slug_'.$i]);unset($array_data["Pensum_".$i]);unset($array_data['id_'.$slug]);
 				$i++;
-			
+
 				foreach ($array_data as $key => $value) 
 				{
-				
-					if($key!=$pensum )
+					
+					if($key!=$pensum and $key !='next')
 					{
 						if(strpos($key, '_'.$slug.'_'.'0')===false)
 						{	
@@ -132,11 +127,9 @@
 										
 										break;
 									case 'sel_'.$slug.'_'.$j:
-									
 										$array_mat['trimestre']       = $value;
 										$array_mat['id_courses']      = $id;
 										$array_materia[$j]            = $array_mat;
-										
 										unset($array_mat);
 										$j++;
 										
@@ -152,62 +145,64 @@
 							$pen_act = $this->model->getPensum($id);
 							$vars['id_pensum']  = $pen_act[0]['id'];
 							$vars['id_courses'] = $id;
-							$vars['star_date']  = '2015-03-26 10:26:43'; // poner las fecha que van 
-							$vars['end_date']   = '2015-03-26 10:26:43';
-							//$insert = $this->helper->insert('cde_periodo', $vars);
+							$vars['star_date']  = $fechaInicio; // poner las fecha que van 
+							$vars['end_date']   = $fechaFin;
+							$insert = $this->helper->insert('cde_periodo', $vars);
 							$band = false;
 						}
 					}
 					else
-					{
-
-						switch ($key) 
-						{
+					{	
+							
 								
-							case 'Pensum_'.$i :
-
-								if($pensum_value == 'actualizado' or $pensum_value == 'nuevo' )
+								if($pensum_value == 'actualizado' or $pensum_value == 'nuevo')
 								{
-									/*desactivar el pensum actual*/
+									/*desactivar el pensum actual y sus materias */
 									if ($pensum_value == 'actualizado' ) 
 									{
+										
 										$pen_act = $this->model->getPensum($id);
-										$vars['estatus'] = 'Inactivo';
-										$this->helper->update('cde_pensum', $pen_act[0]['id'], $vars);
+										$vars['estatus'] = 'Activo';
+										$this->helper->update('cde_pensum',$pen_act[0]['id'], $vars);
+										$this->helper->update('cde_materia',$id,$vars,"id_courses");
 										unset($vars);
 									}
-
 									/*crear pensum */
 									$vars['codigo'] = '20162';
 									$vars['estatus'] = 'Activo';
+									$vars['id_courses'] = $array_materia[1]['id_courses'];
 									$insert = $this->helper->insert('cde_pensum', $vars);
 									unset($vars);
 									
 									/* crear materias para el curso */
 									$id_pensum = DB::insertId();
 									$vars['id_pensum'] = $id_pensum;
-									$vars['id_courses'] = $id;
 									$vars['estatus'] ='Activo';
 									foreach ($array_materia as $mat) 
 									{
 										$vars['nombre_materia'] = $mat['nombre_materia'];
 										$vars['descripcion'] 	= $mat['descripcion'];
 										$vars['trimestre'] 		= $mat['trimestre'];
+										$vars['id_courses']		= $mat['id_courses'];
 										$insert = $this->helper->insert('cde_materia', $vars);
-
 									}
 									unset($vars);
 
 									/*crear el periodo*/
 									$vars['id_pensum']  = $id_pensum;
 									$vars['id_courses'] = $id;
-									$vars['star_date']  = '2015-03-26 10:26:43'; // poner las fecha que van 
-									$vars['end_date']   = '2015-03-26 10:26:43';
+									$vars['star_date']  = $fechaInicio; 
+									$vars['end_date']   = $fechaFin;
 									$insert = $this->helper->insert('cde_periodo', $vars);
 									unset($vars);
 
 									/*fin del proceso */	
-								}	
+								}
+
+						switch ($key) 
+						{
+								
+							case 'Pensum_'.$i :	
 								$pensum = "Pensum_".$i;
 								$pensum_value = $value;
 								break;
@@ -219,10 +214,6 @@
 								$j = 1;
 								$band = true;
 							break;
-
-							case 'next!':
-							
-								break;
 							
 							default:
 								# code...
@@ -232,7 +223,20 @@
 
 					}	
 				}
-				
+						echo'<div class="col-lg-3 col-md-3 col-xs-3"></div>
+								<div class="col-lg-6 col-md-6 col-xs-6" style="margin-top:60px;">
+									<div class="alert alert-success">
+										<h3>¡Se han iniciado los periodos de inscripcion inscripcion exitosamentente!<br> 
+											Continue con el proceso por favor.
+										</h3>
+											<br>
+										<p style="text-align: center;" >
+											<a class="next btn btn-info btn-lg inscributton" href="#">
+												Asignar Horarios
+											</a>
+										</p>
+									</div>
+							</div><div class="col-lg-3 col-md-3 col-xs-3"></div>';
 		}
 
 		public function users($action='') 
@@ -248,11 +252,11 @@
 		}
 		
 		/*puebaaaa muejajaja */
-		public function periodo()
+		public function periodo2()
 		{	
 			
 			$courses[1]=1;
-			$courses[2]=2;
+		//	$courses[2]=2;
 			//$courses[3]=3;
 			$i = 0;
 				foreach ($courses as $key => $value) 
@@ -273,11 +277,11 @@
 				
   				$this->view->pensumActivos   = $pensumActivos;
   				$this->view->materias        = $this->model->getMaterias();
-  				$this->view->fecha           = $array_data['fechaInicio'];
   				$this->view->render('cde/add/creategroup');	
 
 		}
-		public function periodo2($action = '')
+
+		public function periodo($action = '')
 		{
 			
 			if(empty($_POST))
@@ -324,9 +328,10 @@
 					unset($aux);
 				}
 				
-  				$this->view->pensumActivos   = $pensumActivos;
-  				$this->view->materias        = $this->model->getMaterias();
-  				$this->view->fecha           = $array_data['fechaInicio'];
+  				$this->view->pensumActivos   		= $pensumActivos;
+  				$this->view->materias       		= $this->model->getMaterias();
+  				$this->view->fecha['inicio']        = $array_data['fechaInicio'];
+  				$this->view->fecha['fin']           = $array_data['fechaFin'];
   				$this->view->render('cde/add/creategroup');	
 			}
 		}
@@ -343,36 +348,7 @@
 			//if not by ID, something else
 			@$by = $parts[3];	
 			print_r($_POST['pk']);
-			/*
-			$arrayModificacion = array();
-			
-			$arrayModificacion[$fieldname] = $value;
-			
-			if($tablename == 'supplies_fields') 
-			{
-					
-				$userdata = $this->user->getUserdata();	
-				$arrayModificacion['edited_by'] = $userdata[0]['id'];
-				$arrayModificacion['parent_id'] = $id;
-				$insert = $this->helper->insert($tablename, $arrayModificacion);	
-				
-			} else {
-					
-				if (!empty($by)) {
-					$insert = $this->helper->update($tablename, $id, $arrayModificacion, $by);
-				} else {
-					$insert = $this->helper->update($tablename, $id, $arrayModificacion);			
-				}
-			
-			}*/
-									
-			
-			
-			//::::Log Action::::
-			//$userdata = $this->user->getUserdata();					
-			//$log = $this->helper->insert('users_action_log', array('controller'=>$tablename, 'action' =>  'edit', 'item' =>  $id, 'username'=> $userdata[0]['id']));		
-			
-			//print_r($insert);
+		
 			
 			
 		}

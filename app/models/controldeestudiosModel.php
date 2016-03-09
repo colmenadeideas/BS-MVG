@@ -78,7 +78,7 @@
 										 		WHERE p.`id_courses`=c.`id` 
               										and c.`id` = $id 
              										    and p.`estatus` = 'Activo' 
-                       										and m.`id_pensum` = p.`id` ORDER BY  `m`.`trimestre` ASC ");
+                       										and m.`id_courses`=c.`id` ORDER BY  `m`.`trimestre` ASC ");
 			return $result;	
 		}
 		public function getCourse($id)

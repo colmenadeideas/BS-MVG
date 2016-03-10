@@ -239,6 +239,7 @@
 							</div><div class="col-lg-3 col-md-3 col-xs-3"></div>';
 		}
 
+
 		public function users($action='') 
 		{
 			switch ($action) 
@@ -249,36 +250,6 @@
 				break;
 			}
 		
-		}
-		
-		/*puebaaaa muejajaja */
-		public function periodo2()
-		{	
-			
-			$courses[1]=1;
-		//	$courses[2]=2;
-			//$courses[3]=3;
-			$i = 0;
-				foreach ($courses as $key => $value) 
-				{
-					$aux = $this->model->getPensumCourseMateria($value);
-					if(empty($aux))
-					{
-						$aux = $this->model->getCourse($value);
-						$pensumActivos[$value] = $aux;
-					}
-					else
-					{
-						$pensumActivos[$value] = $aux;
-					}
-					unset($aux);
-				}
-
-				
-  				$this->view->pensumActivos   = $pensumActivos;
-  				$this->view->materias        = $this->model->getMaterias();
-  				$this->view->render('cde/add/creategroup');	
-
 		}
 
 		public function periodo($action = '')
@@ -332,9 +303,10 @@
   				$this->view->materias       		= $this->model->getMaterias();
   				$this->view->fecha['inicio']        = $array_data['fechaInicio'];
   				$this->view->fecha['fin']           = $array_data['fechaFin'];
-  				$this->view->render('cde/add/creategroup');	
+  				$this->view->render('cde/add/createperiodo');	
 			}
 		}
+
 		public function editinline() 
 		{
 			
@@ -347,10 +319,13 @@
 			$id = $parts[2];
 			//if not by ID, something else
 			@$by = $parts[3];	
-			print_r($_POST['pk']);
-		
-			
-			
+			print_r($_POST['pk']);	
 		}
+
+		public function registranotas()
+		{
+			$this->view->render('cde/add/notas');
+		}
+
 }
 ?>

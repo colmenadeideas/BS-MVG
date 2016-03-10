@@ -48,6 +48,13 @@ define(function() {
 							periodo.run();
 																										
 						});
+					break;					
+					case "registranotas":
+						require(['app/notas'], function(registranotas) {
+							registranotas.checkcurrentform();
+							registranotas.run();
+																										
+						});
 					break;	
 
 					case "cronogramas":

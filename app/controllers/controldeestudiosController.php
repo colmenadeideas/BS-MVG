@@ -322,8 +322,10 @@
 			print_r($_POST['pk']);	
 		}
 
-		public function registranotas()
+		public function notas()
 		{
+			$this->loadModel('courses');
+			$this->view->cursos = $this->model->getCoursesPensum();
 			$this->view->render('cde/add/notas');
 		}
 

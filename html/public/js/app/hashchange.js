@@ -49,10 +49,10 @@ define(function() {
 																										
 						});
 					break;					
-					case "registranotas":
-						require(['app/notas'], function(registranotas) {
-							registranotas.checkcurrentform();
-							registranotas.run();
+					case "notas":
+						require(['app/notas'], function(notas) {
+							notas.checkcurrentform();
+							notas.run();
 																										
 						});
 					break;	

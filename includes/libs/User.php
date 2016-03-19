@@ -51,7 +51,8 @@
 		
 		/* Model Login */
 		
-		public function validatePassword($username, $data) {
+		public function validatePassword($username, $data) 
+		{
 				
 			//retrieve hash from database
 			
@@ -59,7 +60,7 @@
 			$hash = $hash[0]['pass_hash'];
 			
 		   	$result = $this->validate_password($data, $hash);
-		   
+		
 		   	return $result;
 		   
 		}

@@ -49,7 +49,7 @@ console.log('load perido');
 				});
 			}
 
-
+  
 			$(document).ready(function() {
 			    var panels = $('.user-infos');
 			    var panelsButton = $('.dropdown-user');

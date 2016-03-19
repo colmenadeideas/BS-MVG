@@ -18,6 +18,8 @@ console.log('load notas');
 			}
 
 			if ($('#pensum').length === 1) {
+
+
 				functions.initForm();
 				console.log('exists pensum!');
 				var $validator = $('#pensum').validate({
@@ -137,10 +139,6 @@ console.log('load notas');
 				             $(this).closest("tr").remove();
 				        });
 				});
-
-
-
-
 				    // Sortable Code
 				    var fixHelperModified = function(e, tr) 
 				    {

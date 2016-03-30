@@ -263,6 +263,7 @@
 				$temp_key = uniqid(rand(), true);	
 				$array_user['pass_hash'] = $this->user->create_hash($temp_key);
 				$insert = $this->helper->update('users', $already_registered[0]["id"], $array_user);
+				var_dump($insert);
 				//Send Passwrod change email
 				$message =  SETTINGS_EMAIL_HEAD;								
 				$message .= PASSWORD_RECOVERY_MESSAGE_PART1;
@@ -271,7 +272,7 @@
 				$message .= PASSWORD_RECOVERY_MESSAGE_PART3;
 				$message .= SETTINGS_EMAIL_FOOTER;
 					
-				$this->email->sendMail($username, SYSTEM_EMAIL, PASSWORD_RECOVERY_SUBJECT , $message);
+				//$this->email->sendMail($username, SYSTEM_EMAIL, PASSWORD_RECOVERY_SUBJECT , $message);
 				
 				echo PASSWORD_RECOVERY_SUCCESS_RESPONSE;
 			}

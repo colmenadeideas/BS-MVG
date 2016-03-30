@@ -36,6 +36,7 @@
 		       return false; 
 		    $pbkdf2 = base64_decode($params[HASH_PBKDF2_INDEX]);
 			
+
 			return $this->slow_equals(
 		        $pbkdf2,
 		        $this->pbkdf2(

@@ -36,12 +36,18 @@
        
         <fieldset id="registration-step2">  
               <div class="seccion"><h3>Cargar Notas </h3></div> 
-              <div class="col-sm-12 col-lg-12">
+                <div class="col-sm-2 col-lg-2" style="border: 3px solid #585870">
 
 
 
-              </div>  
+                </div>
+             
+                 <div class="col-sm-9 col-lg-9" style="border: 3px solid #6F6CA7">
 
+
+                </div> 
+
+ 
         </fieldset>
         
    
